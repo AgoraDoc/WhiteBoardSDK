@@ -26,12 +26,16 @@ import wendu.dsbridge.OnReturnValue;
  * white on 2018/8/10.
  */
 
+ /**
+  * `WhiteboardView` 类，用于设置白板界面。
+  */
 public class WhiteboardView extends DWebView {
 
 
     /**
-     * 初始化白板界面
-     * @param context
+     * 初始化白板界面。
+     *
+     * @param context 安卓活动 (Android Activity) 的上下文。
      */
     public WhiteboardView(Context context) {
         super(getFixedContext(context));
@@ -39,15 +43,21 @@ public class WhiteboardView extends DWebView {
     }
 
     /**
-     * 初始化白板界面
-     * @param context
-     * @param attrs
+     * 初始化白板界面。
+     *
+     * @param context 安卓活动 (Android Activity) 的上下文。
+     * @param attrs 自定义控件属性，详见 Android 文档。// TODO ???
      */
     public WhiteboardView(Context context, AttributeSet attrs) {
         super(getFixedContext(context), attrs);
         init();
     }
 
+    /**
+     * 获取安卓活动 (Android Activity) 的上下文。// TODO ??? 什么意思？是否要对外暴露？
+     * @param context
+     * @return
+     */
     public static Context getFixedContext(Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             return context.createConfigurationContext(new Configuration());
@@ -76,14 +86,32 @@ public class WhiteboardView extends DWebView {
     private final static Gson gson = new Gson();
 
 
+    /**
+     * // TODO ？？？
+     * @param <T>
+     * @param method
+     * @param args
+     * @param handler
+     */
     public <T> void callHandler(String method, Object[] args, OnReturnValue<T> handler) {
         super.callHandler(method, toMaps(args), handler);
     }
 
+    /**
+     * // TODO ？？？
+     * @param method
+     * @param args
+     */
     public void callHandler(String method, Object[] args) {
         this.callHandler(method, args, null);
     }
 
+    /**
+     * // TODO？？？
+     * @param <T>
+     * @param method
+     * @param handler
+     */
     public <T> void callHandler(String method, OnReturnValue<T> handler) {
         this.callHandler(method, null, handler);
     }

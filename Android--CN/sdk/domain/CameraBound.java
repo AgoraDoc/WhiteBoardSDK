@@ -1,31 +1,43 @@
 package com.herewhite.sdk.domain;
 
 /**
- * 视野范围描述类
+ * `CameraBound` 类，用于设置用户的视野范围。
+ *
  * @since 2.5.0
  */
 public class CameraBound extends WhiteObject {
+
+    /**
+     * 获取用户视野范围的原点对应白板原点的横向偏移。
+     *
+     * @return 用户视野范围的原点对应白板原点的横向偏移。
+     */
     public Double getCenterX() {
         return centerX;
     }
 
     /**
-     * 基础视野中心点，默认 0
+     * 设置用户视野范围的原点对应白板原点的横向偏移。
      *
-     * @param centerX the center x
+     * @param centerX 用户视野范围的原点对应白板原点的横向偏移。默认值为 0，即与白板原点的横轴坐标相同。// TODO 取值范围？？
      */
     public void setCenterX(Double centerX) {
         this.centerX = centerX;
     }
 
+    /**
+     * 获取用户视野范围的原点对应白板原点的纵向偏移。
+     *
+     * @return 用户视野范围的原点对应白板原点的纵向偏移。
+     */
     public Double getCenterY() {
         return centerY;
     }
 
     /**
-     * 基础视野中心点，默认 0
+     * 设置用户视野范围的原点对应白板原点的纵向偏移。
      *
-     * @param centerY the center y
+     * @param centerY 用户视野范围的原点对应白板原点的纵向偏移。默认值为 0，即与白板原点的纵轴左边相同。// TODO 取值范围？？
      */
     public void setCenterY(Double centerY) {
         this.centerY = centerY;
@@ -36,72 +48,97 @@ public class CameraBound extends WhiteObject {
     }
 
     /**
-     * 基础视野宽度，不传则为无穷
+     * 设置用户视野范围的宽度。
      *
      * 配合 {@link #setMinContentMode(ContentModeConfig)} {@link #setMinContentMode(ContentModeConfig)} 使用，
-     * 用来描述，最大最小缩放比例。
+     * 用来描述，最大最小缩放比例。// TODO 怎么配合的？最大缩放比例不能超过设置的宽、高范围？
      *
-     * @param width the width
+     * @param width 用户视野范围的宽度。如果不设，表表示宽度无限制。
      */
     public void setWidth(Double width) {
         this.width = width;
     }
 
+    /**
+     * 获取用户视野范围的宽度。
+     *
+     * @return 用户视野范围的宽度。
+     */
     public Double getHeight() {
         return height;
     }
 
     /**
-     * 基础视野高度，不传则为无穷
+     * 设置用户视野范围的高度。
      *
      * 配合 {@link #setMinContentMode(ContentModeConfig)} {@link #setMinContentMode(ContentModeConfig)} 使用，
-     * 用来描述，最大最小缩放比例。
+     * 用来描述，最大最小缩放比例。 // TODO 怎么配合的？最大缩放比例不能超过设置的宽、高范围？
      *
-     * @param height the height
+     * @param height 用户视野范围的高度。如果不设，表表示宽度无限制。
      */
     public void setHeight(Double height) {
         this.height = height;
     }
 
+
+    /**
+     * 获取视图的最大缩放比例。
+     *
+     * @return 视图的最大缩放比例。
+     */
     public ContentModeConfig getMaxContentMode() {
         return maxContentMode;
     }
 
     /**
-     * 最大缩放比例，不传则不会限制最大比例
+     * 设置视图的最大缩放比例。
      *
-     * @param maxContentMode {@link ContentModeConfig}
+     * 不传则不会限制最大比例 // TODO 如果视野范围设置了宽高，这里不设置会怎样？
+     *
+     * // TODO Content 是指什么？白板内容？图像？视图？视觉矩阵？
+     *
+     * @param maxContentMode 视图的最大缩放比例，详见 {@link ContentModeConfig ContentModeConfig}。如果不设，则表示无限制。
      */
     public void setMaxContentMode(ContentModeConfig maxContentMode) {
         this.maxContentMode = maxContentMode;
     }
 
+
+    /**
+     * 获取视图的最小缩放比例。
+     *
+     * @return 视图的最小缩放比例。
+     */
     public ContentModeConfig getMinContentMode() {
         return minContentMode;
     }
 
     /**
-     * 最小缩放比例，不传则不会限制最小比例
+     * 设置视图的最小缩放比例。
      *
-     * @param minContentMode {@link ContentModeConfig}
+     * 不传则不会限制最小比例 // TODO 如果视野范围设置了宽高，这里不设置会怎样？不设表示可以在视野范围内任意缩放？
+     *
+     * @param minContentMode 视图的最小缩放比例，详见 {@link ContentModeConfig ContentModeConfig}。如果不设，则表示无限制。
      */
     public void setMinContentMode(ContentModeConfig minContentMode) {
         this.minContentMode = minContentMode;
     }
 
+    /**
+     * 获取用户将视图移出视野范围边界时感受到的阻力。
+     *
+     * @return 用户将视图移出视野范围边界时感受到的阻力。
+     */
     public Double getDamping() {
         return damping;
     }
 
     /**
+     * 设置用户将视图移出视野范围边界时感受到的阻力。
      *
-     * 阻力参数
+     * 该方法仅在用户使用多指触碰方式移动视角时生效。// TODO 是这样吗？
      *
-     * 越出边界时手势的阻力（范围 0.0 ~ 1.0）
-     * 使用多指触碰改变视角时，如果越出边界。该值越大，感受到的阻力越大。
-     * 当取 0.0 时，完全感受不到阻力；当取 1.0 时，则无法移出便捷。
-     * 取中间值，则感受介乎两者之间。
-     * @param damping the damping
+     * @param damping 阻力大小，取值范围为 [0.0,1.0]。取值越大，用户感受到的阻力越大。取值为 0.0 时，完全无阻力，用户可继续移动视图；取值为 1.0 时，则用户无法将视图移出边界。
      */
     public void setDamping(Double damping) {
         this.damping = damping;
@@ -120,9 +157,9 @@ public class CameraBound extends WhiteObject {
     }
 
     /**
-     * 效果类似 sdkConfig 删除的 zoomMinScale， zoomMaxScale 效果
-     * @param miniScale
-     * @param maxScale
+     * 视野范围。// TODO 是用来初始化视野范围吗？
+     * @param miniScale 最小缩放比例。
+     * @param maxScale 最大缩放比例。
      */
     public CameraBound(Double miniScale, Double maxScale) {
         this();
