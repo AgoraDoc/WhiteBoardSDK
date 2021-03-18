@@ -133,11 +133,11 @@ public class Player extends Displayer {
     }
 
     /**
-     * 设置白板回放的跳转时间。
+     * 设置白板回放的开始时间。
      *
-     * 通常来说白板回放是从头开始的。如果你想要从特定的时间开始回放，则可以通过该方法设置。
-     *
-     * @param seekTime 白板回放的跳转时间，单位为毫秒。
+     * 由于 SDK 会录制实时房间的全部过程，因此默认情况下，回放会播放从房间构造开始直到最后一次活跃结束的全部过程。
+     * 因此在进行回放时，需要调用该方法设置开始回放的时间点。
+     * @param seekTime 白板回放的开始时间，单位为毫秒。
      */
     public void seekToScheduleTime(long seekTime) {
         bridge.callHandler("player.seekToScheduleTime", new Object[]{seekTime});

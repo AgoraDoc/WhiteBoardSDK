@@ -1,107 +1,133 @@
 package com.herewhite.sdk.domain;
 
 /**
- * 视野范围描述类
+ * CameraBound 类。该类描述白板的基础视野范围，用于实现视角限制业务。
  * @since 2.5.0
  */
 public class CameraBound extends WhiteObject {
+    /**
+     * 获取基础视野中心点在 x 轴上的位置。
+     * @return 基础视野中心点在 x 轴上的位置。
+     */
     public Double getCenterX() {
         return centerX;
     }
 
     /**
-     * 基础视野中心点，默认 0
+     * 设置基础视野中心点在 x 轴上的位置。
      *
-     * @param centerX the center x
+     * @param centerX 基础视野中心点在 x 轴上的位置，默认值为 0。
      */
+    // TODO 默认值表示什么意思。
     public void setCenterX(Double centerX) {
         this.centerX = centerX;
     }
 
+    /**
+     * 获取基础视野中心点在 y 轴上的位置。
+     * @return 基础视野中心点在 y 轴上的位置。 
+     */
     public Double getCenterY() {
         return centerY;
     }
 
     /**
-     * 基础视野中心点，默认 0
+     * 设置基础视野中心点在 y 轴上的位置。
      *
-     * @param centerY the center y
+     * @param centerY 基础视野点在 y 轴上的位置，默认值为 0。
      */
     public void setCenterY(Double centerY) {
         this.centerY = centerY;
     }
 
+    /**
+     * 获取基础视野的宽度。
+     * @return 基础视野的宽度。
+     */
     public Double getWidth() {
         return width;
     }
 
     /**
-     * 基础视野宽度，不传则为无穷
+     * 设置基础视野的宽度。
      *
-     * 配合 {@link #setMinContentMode(ContentModeConfig)} {@link #setMinContentMode(ContentModeConfig)} 使用，
-     * 用来描述，最大最小缩放比例。
+     * 该方法可以配合 {@link #setMinContentMode(ContentModeConfig)} 和 {@link #setMaxContentMode(contentModeConfig)} 方法使用，用来设置视野的缩放比例。
      *
-     * @param width the width
+     * @param width 基础视野的宽度。如果不设置该参数，则表示无穷宽。
      */
     public void setWidth(Double width) {
         this.width = width;
     }
 
+    /**
+     * 获取基础视野的高度。
+     * @return 基础视野的高度。
+     */
     public Double getHeight() {
         return height;
     }
 
     /**
-     * 基础视野高度，不传则为无穷
+     * 设置基础视野的高度。
      *
-     * 配合 {@link #setMinContentMode(ContentModeConfig)} {@link #setMinContentMode(ContentModeConfig)} 使用，
-     * 用来描述，最大最小缩放比例。
+     * 该方法可以配合 {@link #setMinContentMode(ContentModeConfig)} 和 {@link #setMaxContentMode(ContentModeConfig)} 方法使用，用来设置视野的缩放比例。
      *
-     * @param height the height
+     * @param height 基础视野的高度。如果不设置该参数，则表示无穷高。
      */
     public void setHeight(Double height) {
         this.height = height;
     }
 
+    /**
+     * 获取基础视野的最大缩放比例。
+     * @return 基础视野的最大缩放比例。
+     */
     public ContentModeConfig getMaxContentMode() {
         return maxContentMode;
     }
 
     /**
-     * 最大缩放比例，不传则不会限制最大比例
+     * 设置基础视野的最大缩放比例。
      *
-     * @param maxContentMode {@link ContentModeConfig}
+     * @param maxContentMode 基础视野的最大缩放比例，详见 {@link ContentModeConfig}。如果不设置该参数，则不限制基础视野的最大缩放比例。
      */
     public void setMaxContentMode(ContentModeConfig maxContentMode) {
         this.maxContentMode = maxContentMode;
     }
 
+    /**
+     * 获取基础视野的最小缩放比例。
+     * @return 基础视野的最小缩放比例。
+     */
     public ContentModeConfig getMinContentMode() {
         return minContentMode;
     }
 
     /**
-     * 最小缩放比例，不传则不会限制最小比例
+     * 设置基础视野的最小缩放比例，不传则不会限制最小比例
      *
-     * @param minContentMode {@link ContentModeConfig}
+     * @param minContentMode 基础视野的最小缩放比例，详见 {@link ContentModeConfig}。如果不设置该参数，则不限制基础视野的最小缩放比例。
      */
     public void setMinContentMode(ContentModeConfig minContentMode) {
         this.minContentMode = minContentMode;
     }
 
+    /**
+     * 获取视野越出页面边界时手势的阻力参数。
+     * @return 视野越出页面边界时手势的阻力参数。
+     */
     public Double getDamping() {
         return damping;
     }
 
     /**
      *
-     * 阻力参数
+     * 设置视野越出页面边界时手势的阻力参数。
      *
-     * 越出边界时手势的阻力（范围 0.0 ~ 1.0）
-     * 使用多指触碰改变视角时，如果越出边界。该值越大，感受到的阻力越大。
-     * 当取 0.0 时，完全感受不到阻力；当取 1.0 时，则无法移出便捷。
-     * 取中间值，则感受介乎两者之间。
-     * @param damping the damping
+     * @param damping 视野越出页面边界时手势的阻力参数，取值范围为 [0.0,1.0]。当使用多个指尖触碰改变视角时，视野有可能会越出页面边界。设置该值
+     * 可以调整越出边界的阻力。取值越大，则用户感受到的阻力越大。
+     * - 0.0: 完全感受不到阻力。
+     * - 1.0: 视野无法越出页面边界。
      */
     public void setDamping(Double damping) {
         this.damping = damping;

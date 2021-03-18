@@ -1,7 +1,7 @@
 package com.herewhite.sdk.domain;
 
 /**
- * 视觉矩形配置类
+ * RectangleConfig 类。该类配置白板的视觉矩形。
  * @since 2.2.0
  */
 public class RectangleConfig extends WhiteObject {
@@ -11,15 +11,16 @@ public class RectangleConfig extends WhiteObject {
     private Double height;
 
     /**
-     * 只需宽高，动画的视觉矩形构建方法
+     * RectangleConfig 构造函数。该函数通过宽、高和动画模式提供视觉矩形的构建方法。
      *
-     * 固定视角中心为白板初始化时的中点。会根据宽高，计算 originX originY。
-     * 适合快速显示完整 ppt 内容。
+     * SDK 将白板初始化时的中点固定视为白板的视角中心，然后根据传入的宽高，计算白板视觉矩形相对于场景左上角的 x 和 y 坐标。
+     * 该方法适用于需要快速显示完整 PPT 内容的场景。
      *
-     * @param width  视觉矩形宽度（实际展示内容的最小宽度）
-     * @param height 视觉矩形高度（实际展示内容的最小高度）
-     * @param mode   动画参数
+     * @param width 白板视觉矩形的宽度。该参数的值为实际展示内容的最小宽度。
+     * @param height 白板视觉矩形的高度。该参数的值为实际展示内容的最小高度。
+     * @param mode 白板的动画模式，详见 {@link AnimationMode}。
      */
+    // TODO width 的参数解释感觉不太好懂，需要优化。
     public RectangleConfig(Double width, Double height, AnimationMode mode) {
         this.width = width;
         this.height = height;
@@ -29,33 +30,42 @@ public class RectangleConfig extends WhiteObject {
     }
 
     /**
-     * 只需宽高的视觉矩形构建方法
+     * RectangleConfig 构造函数。该函数通过宽和高提供视觉矩形的构建方法。
      *
-     * 固定视角中心为白板初始化时的中点。会根据宽高，计算 originX originY。
-     * 动画默认为 连续动画 {@link AnimationMode#Continuous}
-     * 适合快速显示完整 ppt 内容。
+     * SDK 将白板初始化时的中点固定视为白板的视角中心，然后根据传入的宽高，计算白板视觉矩形相对于场景左上角的 x 和 y 坐标。
+     * 该方法不支持设置动画模式，而是使用默认的连续动画 `Continuous` 模式。适用于需要快速显示完整 PPT 内容的场景。
      *
      * @param width  视觉矩形宽度（实际展示内容的最小宽度）
      * @param height 视觉矩形高度（实际展示内容的最小高度）
      */
+    // TODO 2个 RectangleConfig 构造都有适用于快速显示完成 ppt 的描述，是不是手抖了。
     public RectangleConfig(Double width, Double height) {
         this(width, height, AnimationMode.Continuous);
     }
 
     /**
-     * 自行配置左上角位置，宽高的构建方法
+     * RectangleConfig 构造函数。该函数通过相对于场景左上角的 x 坐标、y 坐标，以及宽和高提供视觉矩形的构建方法。
      *
-     * 注意，originX，originY 为白板内部坐标系坐标。白板内部坐标系
-     *
-     * @param originX the origin x
-     * @param originY the origin y
-     * @param width   the width
-     * @param height  the height
+     * 该方法不支持设置动画模式，而是使用默认的连续动画 `Continuous` 模式。
+     * @param originX  视觉矩形相对于场景左上角的 x 坐标。
+     * @param originY 视觉矩形相对于场景左上角的 y 坐标。
+     * @param width 视觉矩形的宽度。
+     * @param height 视觉矩形的高度。
      */
+    // 注意，originX，originY 为白板内部坐标系坐标。白板内部坐标系 这句话是什么意思。
     public RectangleConfig(Double originX, Double originY, Double width, Double height) {
         this(originX, originY, width, height, AnimationMode.Continuous);
     }
 
+    /**
+     * RectangleConfig 构造函数。该函数通过相对于场景左上角的 x 坐标、y 坐标、宽、高以及动画模式提供视觉矩形的构造方法。
+     *
+     * @param originX  视觉矩形相对于场景左上角的 x 坐标。
+     * @param originY 视觉矩形相对于场景左上角的 y 坐标。
+     * @param width 视觉矩形的宽度。
+     * @param height 视觉矩形的高度。
+     * @param mode 视觉矩形的动画模式，详见 {@link AnimationMode}。
+     */
     public RectangleConfig(Double originX, Double originY, Double width, Double height, AnimationMode mode) {
         this.originX = originX;
         this.originY = originY;
@@ -64,42 +74,77 @@ public class RectangleConfig extends WhiteObject {
         this.animationMode = mode;
     }
 
+    /**
+     * 获取视觉矩形相对于场景左上角的 x 坐标。
+     * @return 视觉矩形相对于场景左上角的 x 坐标。
+     */
     public Double getOriginX() {
         return originX;
     }
 
+    /**
+     * 设置视觉矩形相对于场景左上角的 x 坐标。
+     */
     public void setOriginX(Double originX) {
         this.originX = originX;
     }
 
+    /**
+     * 获取视觉矩形相对于场景左上角的 y 坐标。
+     * @return 视觉矩形相对于场景左上角的 y 坐标。
+     */
     public Double getOriginY() {
         return originY;
     }
 
+    /**
+     * 设置视觉矩形相对于场景左上角的 y 坐标。
+     */
     public void setOriginY(Double originY) {
         this.originY = originY;
     }
 
+    /**
+     * 获取视觉矩形的宽度。
+     * @return 视觉矩形的宽度。
+     */
     public Double getWidth() {
         return width;
     }
 
+    /**
+     * 设置视觉决定的宽度。
+     */
     public void setWidth(Double width) {
         this.width = width;
     }
 
+    /**
+     * 获取视觉矩形的高度。
+     * @return 视觉矩形的高度。
+     */
     public Double getHeight() {
         return height;
     }
 
+    /**
+     * 设置视觉矩形的高度。
+     */
     public void setHeight(Double height) {
         this.height = height;
     }
 
+    /**
+     * 获取视觉矩形的动画模式。
+     * @return 视觉矩形的动画模式，详见 {@link AnimationMode}。
+     */
     public AnimationMode getAnimationMode() {
         return animationMode;
     }
 
+    /**
+     * 设置视觉矩形的动画模式。
+     */
     public void setAnimationMode(AnimationMode animationMode) {
         this.animationMode = animationMode;
     }
