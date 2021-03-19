@@ -3,6 +3,8 @@ package com.herewhite.sdk.domain;
 /**
  * {@link com.herewhite.sdk.RoomParams#setUserPayload(Object)} Payload 已支持自定义格式内容
  * 上传
+ *
+ * MemberInformation 已弃用，现已支持更高自由度的用户信息定义
  */
 public class MemberInformation extends WhiteObject {
     private Long id;
