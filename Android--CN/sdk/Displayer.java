@@ -103,8 +103,11 @@ public class Displayer {
 
 
     /**
-     * 获取当前房间内所有的白板页面信息
-     * @param promise 返回 一个 map，key 为场景目录地址，value 为该目录下，所有 Scene 数组。
+     * 获取当前房间内所有的白板页面信息。
+     * @param promise `Promise<Map<String, Scene[]>>` 接口实例，详见 {@link Promise<Map<String, Scene[]>>}。你可以通过该接口查询获取当前房间
+     * 内所有白板页面信息的结果：
+     * - 如果查询成功，将返回当前房间内所有的白板页面信息。该返回值为 map 格式，其中 key 为场景路径，value 为该路径下所有的场景数据。
+     * - 如果查询失败，将返回错误码。
      */
     public void getEntireScenes(final Promise<Map<String, Scene[]>> promise) {
         bridge.callHandler("displayer.entireScenes", new OnReturnValue<JSONObject>() {
@@ -119,23 +122,29 @@ public class Displayer {
 
     /**
      * 刷新当前白板的视觉矩形。
-     * @note 当 WhiteboardView 大小出现改变时，需要手动调用该方法。
+     * 
+     * 当 WhiteboardView 大小出现改变时，需要手动调用该方法。
      */
     public void refreshViewSize() {
         bridge.callHandler("displayer.refreshViewSize", new Object[]{});
     }
 
     /**
-     * 以连续动画的形式，等比例缩放ppt，保证ppt所有内容都在容器内。
+     * 以连续动画的形式等比例缩放 PPT。
+     * 
+     * 该方法确保 PPT 页面的所有内容都在视野范围内。
      * @since 2.4.22
      */
+    // TODO 是这个方法保证，还是调用这个方法的时候需要自己保证？
     public void scalePptToFit() {
         bridge.callHandler("displayer.scalePptToFit", new Object[]{});
     }
 
     /**
-     * 等比例缩放ppt，保证ppt所有内容都在容器内。
-     * @param mode 缩放时，动画行为
+     * 等比例缩放 PPT。
+     * 
+     * 该方法确保 PPT 页面的内容都在视野内。
+     * @param mode PPT 缩放时的动画行为，详见 {@link AnimationMode}。
      * @since 2.4.28
      */
     public void scalePptToFit(AnimationMode mode) {
