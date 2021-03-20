@@ -3,7 +3,7 @@ import { ComponentType, HTMLAttributes, Consumer } from "react";
 export { ComponentType, HTMLAttributes, Consumer } from "react";
 
 /**
- * 当前 white-web-sdk 的版本号 
+ * 当前 white-web-sdk 的版本号
  */
 export declare const WhiteVersion: string;
 
@@ -13,15 +13,15 @@ export declare const AdminObserverId: number;
 
 export declare type Event = {
     /**
-     * 事件名称 
+     * 事件名称
      */
     event: string;
     /**
-     * 事件的负载 
+     * 事件的负载
      */
     payload: any;
     /**
-     * 事件触发者的用户 ID，若是系统事件，则为 AdminObserverId 
+     * 事件触发者的用户 ID，若是系统事件，则为 AdminObserverId
      */
     authorId: number;
     scope: Scope;
@@ -49,63 +49,63 @@ export declare type Level = "debug" | "info" | "warn" | "error";
 
 export declare enum DeviceType {
     /**
-     * 桌面设备，使用键盘鼠标 
+     * 桌面设备，使用键盘鼠标
      */
     Desktop = "desktop",
     /**
-     * 触碰板设备，比如只能手机、平板电脑 
+     * 触碰板设备，比如只能手机、平板电脑
      */
     Touch = "touch",
     /**
-     * 同时支持键盘、鼠标、触碰板的设备 
+     * 同时支持键盘、鼠标、触碰板的设备
      */
     Surface = "surface",
 }
 
 export declare type Camera = {
     /**
-     * 视角的中心对准的点的 x 坐标（世界坐标系） 
+     * 视角的中心对准的点的 x 坐标（世界坐标系）
      */
     centerX: number;
     /**
-     * 视角的中心对准的点的 y 坐标（世界坐标系） 
+     * 视角的中心对准的点的 y 坐标（世界坐标系）
      */
     centerY: number;
     /**
-     * 视角拉伸会导致物体放大缩小的倍率 
+     * 视角拉伸会导致物体放大缩小的倍率
      */
     scale: number;
 };
 
 export declare type Rectangle = Size & {
     /**
-     * 矩形的左上角 x 坐标 
+     * 矩形的左上角 x 坐标
      */
     originX: number;
     /**
-     * 矩形的左上角 y 坐标 
+     * 矩形的左上角 y 坐标
      */
     originY: number;
 };
 
 export declare type Size = {
     /**
-     * 宽 
+     * 宽
      */
     width: number;
     /**
-     * 高 
+     * 高
      */
     height: number;
 };
 
 export declare enum AnimationMode {
     /**
-     * 以播放渐变动画的方式移动视角 
+     * 以播放渐变动画的方式移动视角
      */
     Continuous = "continuous",
     /**
-     * 一瞬间就将视角移动到目标 
+     * 一瞬间就将视角移动到目标
      */
     Immediately = "immediately",
 }
@@ -129,7 +129,7 @@ export declare interface Cursor {
     /**
      * 光标的容器，在创建之初为空。
      * 你可以通过如下代码向容器中添加 HTML 元素，以改变光标的外观。
-     * 
+     *
      * @example
      * ```typescript
      * const icon = document.createElement("img");
@@ -140,39 +140,39 @@ export declare interface Cursor {
     readonly divElement: HTMLDivElement;
 
     /**
-     * 光标所属用户的 ID 
+     * 光标所属用户的 ID
      */
     readonly memberId: number;
 
     /**
-     * 光标所属用户的一些属性封装 
+     * 光标所属用户的一些属性封装
      */
     readonly cursorMember: CursorMember;
 
     /**
-     * 光标指示中心点的 x 坐标（相对于白板左上角） 
+     * 光标指示中心点的 x 坐标（相对于白板左上角）
      */
     readonly x: number;
 
     /**
-     * 光标指示中心点的 y 坐标（相对于白板左上角） 
+     * 光标指示中心点的 y 坐标（相对于白板左上角）
      */
     readonly y: number;
 
     /**
-     * 光标图形的宽度 
+     * 光标图形的宽度
      */
     readonly width: number;
 
     /**
-     * 光标图形的高度 
+     * 光标图形的高度
      */
     readonly height: number;
 
     /**
      * 成员 cursorMember 改变后的回调。可以用如下代码监听。
      * @params cursorMember 更新后的
-     * 
+     *
      * @example
      * ```typescript
      * cursor.onCursorMemberChanged = function(cursorMember) {
@@ -204,17 +204,17 @@ export declare interface Cursor {
 
 export declare interface CursorMember {
     /**
-     * 用户所选择的 strokeColor 
+     * 用户所选择的 strokeColor
      */
     readonly color: Color;
 
     /**
-     * 用户所选择的教具 
+     * 用户所选择的教具
      */
     readonly appliance: string;
 
     /**
-     * @deprecated 过期属性 
+     * @deprecated 过期属性
      */
     readonly information: MemberInformation;
 
@@ -254,26 +254,26 @@ export declare interface CursorAdapter {
 
 export declare type CursorDescription = {
     /**
-     * 光标指示中心点的 x 坐标（相对光标图形的左上角） 
+     * 光标指示中心点的 x 坐标（相对光标图形的左上角）
      */
     x: number;
     /**
-     * 光标指示中心点的 y 坐标（相对光标图形的左上角） 
+     * 光标指示中心点的 y 坐标（相对光标图形的左上角）
      */
     y: number;
     /**
-     * 光标图形的宽 
+     * 光标图形的宽
      */
     width: number;
     /**
-     * 光标图形的高 
+     * 光标图形的高
      */
     height: number;
 };
 
 export declare type FloatBarOptions = {
     /**
-     * 浮动条调色盘的颜色列表 
+     * 浮动条调色盘的颜色列表
      */
     colors: ReadonlyArray<Readonly<Color>>;
 };
@@ -355,37 +355,37 @@ export declare type InvisibleCallbacks<A extends Object> = {
 
 export declare type LoggerOptions = {
     /**
-     * 上报 debug 日志的模式 
+     * 上报 debug 日志的模式
      */
     reportDebugLogMode?: LoggerReportMode;
     /**
-     * 上报质量数据的模式 
+     * 上报质量数据的模式
      */
     reportQualityMode?: LoggerReportMode;
     /**
-     * 上报 debug 日志的等级过滤 
+     * 上报 debug 日志的等级过滤
      */
     reportLevelMask?: Level;
     /**
-     * 在 Console 打印 debug 日志的等级过滤 
+     * 在 Console 打印 debug 日志的等级过滤
      */
     printLevelMask?: Level;
 };
 
 /**
- * 日志数据上报模式 
+ * 日志数据上报模式
  */
 export declare enum LoggerReportMode {
     /**
-     * 总是上报 
+     * 总是上报
      */
     AlwaysReport = "alwaysReport",
     /**
-     * 禁止上报 
+     * 禁止上报
      */
     BanReport = "banReport",
     /**
-     * 根据控制台配置来决定是否上报 
+     * 根据控制台配置来决定是否上报
      */
     DependsOnRemote = "dependsOnRemote",
 }
@@ -394,52 +394,52 @@ export declare function setAsyncModuleLoadMode(mode: AsyncModuleLoadMode): void;
 
 export declare enum AsyncModuleLoadMode {
     /**
-     * 禁止所有缓存操作，每次加载模块的时候都从网上下载 
+     * 禁止所有缓存操作，每次加载模块的时候都从网上下载
      */
     DisableCache = "disableCache",
     /**
-     * 将模块以 blob 的形式缓存在 indexDB 
+     * 将模块以 blob 的形式缓存在 indexDB
      */
     StoreAsBlob = "storeAsBlob",
     /**
-     * 将模块以 base64 字符串的形式缓存在 indexDB 
+     * 将模块以 base64 字符串的形式缓存在 indexDB
      */
     StoreAsBase64 = "storeAsBase64",
 }
 
 export declare enum ViewMode {
     /**
-     * 自由模式。不跟随任何人，也不被任何人跟随，自己可以自由操作视角。 
+     * 自由模式。不跟随任何人，也不被任何人跟随，自己可以自由操作视角。
      */
     Freedom = "freedom",
     /**
-     * 跟随模式。跟随当前房间的主播视角。 
+     * 跟随模式。跟随当前房间的主播视角。
      */
     Follower = "follower",
     /**
-     * 主播模式。可以自由操作视角，但房间中处于跟随模式的人会跟随。 
+     * 主播模式。可以自由操作视角，但房间中处于跟随模式的人会跟随。
      */
     Broadcaster = "broadcaster",
 }
 
 export declare enum RenderEngine {
     /**
-     * 以 svg 的形式渲染 
+     * 以 svg 的形式渲染
      */
     SVG = "svg",
     /**
-     * 以 canvas 的形式渲染 
+     * 以 canvas 的形式渲染
      */
     Canvas = "canvas",
 }
 
 /**
- * 判断是否为实时房间 
+ * 判断是否为实时房间
  */
 export declare function isRoom(displayer: Displayer): boolean;
 
 /**
- * 判断是否为回放录像播放器 
+ * 判断是否为回放录像播放器
  */
 export declare function isPlayer(displayer: Displayer): boolean;
 
@@ -469,7 +469,7 @@ export declare interface Callbacks<CALLBACKS> {
 
 /**
  * 默认热键配置
- * 
+ *
  * | 键盘按键                | 效果                     |
  * | :--------------------- | :---------------------- |
  * | Backspace / Delete     | 删除所选对象              |
@@ -483,67 +483,67 @@ export declare const DefaultHotKeys: Partial<HotKeys>;
 
 export declare type HotKeys = {
     /**
-     * 复刻 
+     * 复刻
      */
     duplicate: HotKey;
     /**
-     * 复制 
+     * 复制
      */
     copy: HotKey;
     /**
-     * 粘贴 
+     * 粘贴
      */
     paste: HotKey;
     /**
-     * 撤回 
+     * 撤回
      */
     undo: HotKey;
     /**
-     * 重做 
+     * 重做
      */
     redo: HotKey;
     /**
-     * 删除 
+     * 删除
      */
     delete: HotKey;
     /**
-     * 锁定放缩比例 
+     * 锁定放缩比例
      */
     lock: HotKey;
     /**
-     * 切换到选择工具（selector） 
+     * 切换到选择工具（selector）
      */
     changeToSelector: HotKey;
     /**
-     * 切换到激光笔（laserPointer） 
+     * 切换到激光笔（laserPointer）
      */
     changeToLaserPointer: HotKey;
     /**
-     * 切换到铅笔工具（pencil） 
+     * 切换到铅笔工具（pencil）
      */
     changeToPencil: HotKey;
     /**
-     * 切换到矩形工具（rectangle） 
+     * 切换到矩形工具（rectangle）
      */
     changeToRectangle: HotKey;
     /**
-     * 切换到圆形工具（ellipse） 
+     * 切换到圆形工具（ellipse）
      */
     changeToEllipse: HotKey;
     /**
-     * 切换到橡皮工具（eraser） 
+     * 切换到橡皮工具（eraser）
      */
     changeToEraser: HotKey;
     /**
-     * 切换到直线工具（straight） 
+     * 切换到直线工具（straight）
      */
     changeToStraight: HotKey;
     /**
-     * 切换到箭头工具（arrow） 
+     * 切换到箭头工具（arrow）
      */
     changeToArrow: HotKey;
     /**
-     * 切换到抓手工具（handle） 
+     * 切换到抓手工具（handle）
      */
     changeToHand: HotKey;
 };
@@ -569,51 +569,51 @@ export declare type HotKeyEvent = {
 export declare type HotKeyChecker = (event: HotKeyEvent, kind: KeyboardKind)=>boolean;
 
 /**
- * 创建 PPT 转换任务 
+ * 创建 PPT 转换任务
  */
 export declare function createPPTTask(params: PPTTaskParams): PPTTask;
 
 export declare type PPT = {
     /**
-     * 转换任务的唯一识别符 ``taskUUID`` 
+     * 转换任务的唯一识别符 ``taskUUID``
      */
     uuid: string;
     /**
-     * 转换任务的 Token 
+     * 转换任务的 Token
      */
     kind: PPTKind;
     /**
-     * PPT 的宽 
+     * PPT 的宽
      */
     width: number;
     /**
-     * PPT 的高 
+     * PPT 的高
      */
     height: number;
     /**
-     * PPT 对应的场景描述列表  
+     * PPT 对应的场景描述列表
      */
     scenes: ReadonlyArray<SceneDefinition>;
 };
 
 export declare interface PPTTask {
     /**
-     * 转换任务的唯一识别符 ``taskUUID`` 
+     * 转换任务的唯一识别符 ``taskUUID``
      */
     readonly uuid: string;
 
     /**
-     * 转换任务类型 
+     * 转换任务类型
      */
     readonly kind: PPTKind;
 
     /**
-     * 回调函数 
+     * 回调函数
      */
     readonly callbacks: Callbacks<PPTTaskCallbacks>;
 
     /**
-     * 自动轮询，等到该任务成功或失败 
+     * 自动轮询，等到该任务成功或失败
      */
     checkUtilGet(): Promise<PPT>;
 
@@ -621,116 +621,116 @@ export declare interface PPTTask {
 
 export declare enum PPTKind {
     /**
-     * PPT 转网页 
+     * PPT 转网页
      */
     Dynamic = "dynamic",
     /**
-     * PPT 转图片 
+     * PPT 转图片
      */
     Static = "static",
 }
 
 export declare enum PPTTaskStatus {
     /**
-     * 正在等待转换 
+     * 正在等待转换
      */
     Waiting = "Waiting",
     /**
-     * 正在转换 
+     * 正在转换
      */
     Converting = "Converting",
 }
 
 export declare enum PPTTaskStep {
     /**
-     * 提取资源 
+     * 提取资源
      */
     Extracting = "Extracting",
     /**
-     * 打包 
+     * 打包
      */
     Packaging = "Packaging",
     /**
-     * 生成预览图 
+     * 生成预览图
      */
     GeneratingPreview = "GeneratingPreview",
     /**
-     * 媒体文件转换 
+     * 媒体文件转换
      */
     MediaTranscode = "MediaTranscode",
 }
 
 export declare type PPTTaskProgress = {
     /**
-     * 转换任务状态 
+     * 转换任务状态
      */
     status: PPTTaskStatus;
     /**
-     * 转换进行到的步骤 
+     * 转换进行到的步骤
      */
     currentStep?: PPTTaskStep;
     /**
-     * 全部页数 
+     * 全部页数
      */
     totalPageSize: number;
     /**
-     * 已转换完的页数 
+     * 已转换完的页数
      */
     convertedPageSize: number;
     /**
-     * 转换进度（百分比） 
+     * 转换进度（百分比）
      */
     convertedPercentage: number;
 };
 
 export declare type PPTTaskParams = {
     /**
-     * 转换任务的唯一识别符 ``taskUUID`` 
+     * 转换任务的唯一识别符 ``taskUUID``
      */
     uuid: string;
     /**
-     * 转换所在的数据中心区域 
+     * 转换所在的数据中心区域
      */
     region?: string;
     /**
-     * 转换任务类型 
+     * 转换任务类型
      */
     kind: PPTKind;
     /**
-     * 转换任务的 Token 
+     * 转换任务的 Token
      */
     taskToken: string;
     /**
-     * 轮循转换任务状态的时间间隔（毫秒） 
+     * 轮循转换任务状态的时间间隔（毫秒）
      */
     checkProgressInterval?: number;
     /**
-     * 轮循转换任务的超时时间（毫秒） 
+     * 轮循转换任务的超时时间（毫秒）
      */
     checkProgressTimeout?: number;
     /**
-     * 回调函数 
+     * 回调函数
      */
     callbacks?: PPTTaskCallbacks;
 };
 
 export declare type PPTTaskCallbacks = {
     /**
-     * 转换任务的进度状态更新 
+     * 转换任务的进度状态更新
      */
     onProgressUpdated: (progress: PPTTaskProgress)=>void;
     /**
-     * 转换任务成功 
+     * 转换任务成功
      */
     onTaskSuccess: (result: PPT)=>void;
     /**
-     * 转换任务失败 
+     * 转换任务失败
      */
     onTaskFail: (error: Error)=>void;
 };
 
 /**
- * @deprecated 
+ * @deprecated
  */
 export declare interface LegacyPPTConverter {
     convert(params: LegacyPPTConvertParams): Promise<LegacyPPT>;
@@ -738,7 +738,7 @@ export declare interface LegacyPPTConverter {
 }
 
 /**
- * @deprecated 
+ * @deprecated
  */
 export declare type LegacyPPT = {
     uuid: string;
@@ -750,7 +750,7 @@ export declare type LegacyPPT = {
 };
 
 /**
- * @deprecated 
+ * @deprecated
  */
 export declare type LegacyPPTConvertParams = {
     url: string;
@@ -767,7 +767,7 @@ export declare type LegacyPPTConvertParams = {
 export declare function contentModeScale(scale: number): ContentMode;
 
 /**
- * 镜头拉到让屏幕刚好能显示满限定区域 
+ * 镜头拉到让屏幕刚好能显示满限定区域
  */
 export declare function contentModeAspectFit(): ContentMode;
 
@@ -784,7 +784,7 @@ export declare function contentModeAspectFitScale(scale: number): ContentMode;
 export declare function contentModeAspectFitSpace(space: number): ContentMode;
 
 /**
- * 镜头拉到让限定区域刚好完整地现实在屏幕上 
+ * 镜头拉到让限定区域刚好完整地现实在屏幕上
  */
 export declare function contentModeAspectFill(): ContentMode;
 
@@ -803,11 +803,11 @@ export declare type CameraBound = {
      */
     damping?: number;
     /**
-     * 边界的中心点在世界坐标系中的 x 坐标，默认值是 0.0 
+     * 边界的中心点在世界坐标系中的 x 坐标，默认值是 0.0
      */
     centerX?: number;
     /**
-     * 边界的中心点在世界坐标系中的 y 坐标，默认值是 0.0 
+     * 边界的中心点在世界坐标系中的 y 坐标，默认值是 0.0
      */
     centerY?: number;
     /**
@@ -821,11 +821,11 @@ export declare type CameraBound = {
      */
     height?: number;
     /**
-     * 对视角放大的限制模式，不填是没有限制 
+     * 对视角放大的限制模式，不填是没有限制
      */
     maxContentMode?: ContentMode;
     /**
-     * 对视角缩小的限制模式，不填是没有限制 
+     * 对视角缩小的限制模式，不填是没有限制
      */
     minContentMode?: ContentMode;
 };
@@ -840,22 +840,22 @@ export declare type ContentMode = (screenSize: Size, boundSize: Size)=>number;
 
 export declare enum ScenePathType {
     /**
-     * 该场景不存在 
+     * 该场景不存在
      */
     None = "none",
     /**
-     * 场景组 
+     * 场景组
      */
     Dir = "dir",
     /**
-     * 场景 
+     * 场景
      */
     Page = "page",
 }
 
 export declare type SceneMap = {
     /**
-     * 场景目录路径: 该目录下的场景列表 
+     * 场景目录路径: 该目录下的场景列表
      */
     [dirPath: string]: WhiteScene[];
 };
@@ -863,19 +863,19 @@ export declare type SceneMap = {
 export declare interface Displayer<CALLBACKS extends DisplayerCallbacks = DisplayerCallbacks> {
     /**
      * 回调函数，你可以通过如下方式来操作回调函数。
-     * 
+     *
      * @example
      * ```typescript
      * function sliceChangeCallback(slice) {
      *     // 监听到 onSliceChanged 回调
      * }
-     * 
+     *
      * // 注册回调函数
      * displayer.callbacks.on("onSliceChanged", sliceChangeCallback);
-     * 
+     *
      * // 注销回调函数
      * displayer.callbacks.off("onSliceChanged", sliceChangeCallback);
-     * 
+     *
      * displayer.callbacks.once("onSliceChanged", function(slice) {
      *     // 仅仅回调一次
      * });
@@ -890,42 +890,42 @@ export declare interface Displayer<CALLBACKS extends DisplayerCallbacks = Displa
     readonly observerId: number;
 
     /**
-     * 当前房间所在的区域 
+     * 当前房间所在的区域
      */
     readonly region: string;
 
     /**
-     * 当前所处的 ``slice`` 的 UUID 
+     * 当前所处的 ``slice`` 的 UUID
      */
     readonly slice: string;
 
     /**
-     * 该客户端的设备类型，决定 SDK 如何处理鼠标事件和触碰事件 
+     * 该客户端的设备类型，决定 SDK 如何处理鼠标事件和触碰事件
      */
     readonly deviceType: DeviceType;
 
     /**
-     * 该客户端的屏幕类型，用于调整手势识别参数 
+     * 该客户端的屏幕类型，用于调整手势识别参数
      */
     readonly screenType: ScreenType;
 
     /**
-     * 状态 
+     * 状态
      */
     readonly state: DisplayerState;
 
     /**
-     * 当前是否允许对房间进行写操作 
+     * 当前是否允许对房间进行写操作
      */
     readonly enableWriteNow: boolean;
 
     /**
-     * 按下键盘上哪个键能唤出抓手工具抓住屏幕以供用户拖动，若为 ``undefined`` 则关闭该功能 
+     * 按下键盘上哪个键能唤出抓手工具抓住屏幕以供用户拖动，若为 ``undefined`` 则关闭该功能
      */
     readonly handToolKey: string | undefined;
 
     /**
-     * 是否启动抓手工具抓住屏幕以供用户拖动 
+     * 是否启动抓手工具抓住屏幕以供用户拖动
      */
     handToolActive: boolean;
 
@@ -949,7 +949,7 @@ export declare interface Displayer<CALLBACKS extends DisplayerCallbacks = Displa
     refreshViewSize(): void;
 
     /**
-     * 修改 ``cameraBound`` 以调整视角边界 
+     * 修改 ``cameraBound`` 以调整视角边界
      */
     setCameraBound(cameraBound: CameraBound): void;
 
@@ -960,14 +960,14 @@ export declare interface Displayer<CALLBACKS extends DisplayerCallbacks = Displa
     memberState(memberId: number): MemberState;
 
     /**
-     * 移动视角 
+     * 移动视角
      */
     moveCamera(camera: Partial<Camera> & Readonly<{
         animationMode?: AnimationMode;
     }>): void;
 
     /**
-     * 移动视角以容纳特定的视觉矩形 
+     * 移动视角以容纳特定的视觉矩形
      */
     moveCameraToContain(rectangle: Rectangle & Readonly<{
         animationMode?: AnimationMode;
@@ -980,7 +980,7 @@ export declare interface Displayer<CALLBACKS extends DisplayerCallbacks = Displa
     bindHtmlElement(element: HTMLDivElement | null): void;
 
     /**
-     * 获取特定的不可件插件 
+     * 获取特定的不可件插件
      */
     getInvisiblePlugin<A extends Object>(kind: string): InvisiblePlugin<A> | null;
 
@@ -1007,12 +1007,12 @@ export declare interface Displayer<CALLBACKS extends DisplayerCallbacks = Displa
     scenePreview(scenePath: string, div: HTMLElement, width: number | undefined, height: number | undefined): void;
 
     /**
-     * 生成屏幕快照 
+     * 生成屏幕快照
      */
     generateScreenshot(scenePath?: string, width?: number, height?: number): Promise<string>;
 
     /**
-     * 生成屏幕快照 
+     * 生成屏幕快照
      */
     fillSceneSnapshot(scenePath: string, div: HTMLElement, width: number, height: number): void;
 
@@ -1028,7 +1028,7 @@ export declare interface Displayer<CALLBACKS extends DisplayerCallbacks = Displa
      * @param event 自定义事件名
      * @param listener 自定义事件监听器
      * @param fireInterval 限定回调间隔（毫秒），如果回调频率过高，会将调用频率降低到每经过一段间隔事件统一调用一次
-     * 
+     *
      * @example
      * ```typescript
      * function listener(events) {
@@ -1077,84 +1077,84 @@ export declare interface Displayer<CALLBACKS extends DisplayerCallbacks = Displa
 
 export declare type DisplayerState = {
     /**
-     * 房间的公共全局变量。房间里所有人看到的都是同一份。 
+     * 房间的公共全局变量。房间里所有人看到的都是同一份。
      */
     globalState: GlobalState;
     /**
-     * 房间的所有可读写用户列表 
+     * 房间的所有可读写用户列表
      */
     roomMembers: ReadonlyArray<RoomMember>;
     /**
-     * 场景状态 
+     * 场景状态
      */
     sceneState: SceneState;
     /**
-     * 视角状态 
+     * 视角状态
      */
     cameraState: CameraState;
 };
 
 export declare type DisplayerCallbacks = {
     /**
-     * 表示 ``displayer.enableWriteNow`` 发生了改变。 
+     * 表示 ``displayer.enableWriteNow`` 发生了改变。
      */
     onEnableWriteNowChanged: (enableWriteNow: boolean)=>void;
     /**
-     * 表示 ``displayer.handToolKey`` 发生了改变。 
+     * 表示 ``displayer.handToolKey`` 发生了改变。
      */
     onHandToolActive: (active: boolean)=>void;
     /**
-     * ``displayer.slice`` 发生了变化。 
+     * ``displayer.slice`` 发生了变化。
      */
     onSliceChanged: (slice: string)=>void;
     /**
      * 表示某个用户（``userId`` 所指示的用户）的行为在同步过来的时候报错了。
      * 一般而言，这个报错通常是可以忽略的，具体请根据业务情况来自行决定是否监听它。
-     * 
+     *
      * @param userId 哪个用户同步时报的错
      * @param error 错误对象
      */
     onCatchErrorWhenAppendFrame: (userId: number, error: Error)=>void;
     /**
-     * 表示渲染画面时发生了错误。 
+     * 表示渲染画面时发生了错误。
      */
     onCatchErrorWhenRender: (error: Error)=>void;
     onRenderDuration: (renderDuration: number)=>void;
     /**
      * 加载转网页 PPT 的进度回调。
-     * 
+     *
      * @param uuid 对应 PPT 的 ``taskUUID``
      * @param progress 进度，一个 0.0 ～ 1.0 的实数
      */
     onPPTLoadProgress: (uuid: string, progress: number)=>void;
     /**
-     * 表明转网页 PPT 中某个 ``shape`` 对应的媒体资源开始播放了 
+     * 表明转网页 PPT 中某个 ``shape`` 对应的媒体资源开始播放了
      */
     onPPTMediaPlay: (shapeId: string, type: MediaType)=>void;
     /**
-     * 表明转网页 PPT 中某个 ``shape`` 对应的媒体资源暂停了 
+     * 表明转网页 PPT 中某个 ``shape`` 对应的媒体资源暂停了
      */
     onPPTMediaPause: (shapeId: string, type: MediaType)=>void;
 };
 
 export declare interface Room extends Displayer {
     /**
-     * 房间的 ``uuid``，用于唯一标识该房间。 
+     * 房间的 ``uuid``，用于唯一标识该房间。
      */
     readonly uuid: string;
 
     /**
-     * 房间当前的 Session 的 ``uuid``。会被上报作为日志字段（如果开启了自动日志上报功能）。如果当前尚未与服务器建立连接，则为 ``undefined``。 
+     * 房间当前的 Session 的 ``uuid``。会被上报作为日志字段（如果开启了自动日志上报功能）。如果当前尚未与服务器建立连接，则为 ``undefined``。
      */
     readonly session: string;
 
     /**
-     * 房间 Token，即加入房间时传入的字段。 
+     * 房间 Token，即加入房间时传入的字段。
      */
     readonly roomToken: string;
 
     /**
-     * 房间连接所处的阶段 
+     * 房间连接所处的阶段
      */
     readonly phase: RoomPhase;
 
@@ -1165,17 +1165,17 @@ export declare interface Room extends Displayer {
     readonly state: RoomState;
 
     /**
-     * 房间是否「可写」 
+     * 房间是否「可写」
      */
     readonly isWritable: boolean;
 
     /**
-     * 可撤销步骤。即此时此刻，还可以调用多少次 ``room.undo()`` 方法。 
+     * 可撤销步骤。即此时此刻，还可以调用多少次 ``room.undo()`` 方法。
      */
     readonly canUndoSteps: number;
 
     /**
-     * 可重做步骤。即此时此刻，还可以调用多少次 ``room.redo()`` 方法。 
+     * 可重做步骤。即此时此刻，还可以调用多少次 ``room.redo()`` 方法。
      */
     readonly canRedoSteps: number;
 
@@ -1186,25 +1186,25 @@ export declare interface Room extends Displayer {
     disableDeviceInputs: boolean;
 
     /**
-     * 是否禁止橡皮擦除图片 
+     * 是否禁止橡皮擦除图片
      */
     disableEraseImage: boolean;
 
     /**
      * 是否禁止如下方法（默认值是 ``true``）。可修改。
-     * 
+     *
      * - ``room.redo``
      * - ``room.undo``
      * - ``room.duplicate``
      * - ``room.copy``
      * - ``room.paste``
-     * 
+     *
      * 房间内所有人的 ``white-web-sdk`` 的版本必须不低于 ``2.9.3`` 时，才能将该值设为 ``false``。房间内任何一个人将该值设为 ``false``，都会导致房间内低于 ``2.9.3`` 的用户前端报错且不能正常使用。
      */
     disableSerialization: boolean;
 
     /**
-     * 主动延迟接收的远端消息，单位是毫秒，默认值 ``0``。将该值设置成大于 ``0`` 的数字，可以人为造成类似网络时延的效果。可修改。 
+     * 主动延迟接收的远端消息，单位是毫秒，默认值 ``0``。将该值设置成大于 ``0`` 的数字，可以人为造成类似网络时延的效果。可修改。
      */
     timeDelay: number;
 
@@ -1216,16 +1216,16 @@ export declare interface Room extends Displayer {
 
     /**
      * 用于修改房间的 ``globalState`` 的字段。可以通过如下方法修改特定字段。
-     * 
+     *
      * @example
      * ```typescript
      * room.setGlobalState({
      *     foobar: "hello world",
      * });
      * ```
-     * 
+     *
      * 也可以通过将某个字段置为 ``undefined``，来删掉该字段。
-     * 
+     *
      * @example
      * ```typescript
      * room.setGlobalState({
@@ -1237,17 +1237,17 @@ export declare interface Room extends Displayer {
 
     /**
      * 用于修改房间的 ``memberState`` 的字段。可以通过如下方法修改特定字段。
-     * 
+     *
      * @example
      * ```typescript
      * room.setMemberState({
      *     foobar: "hello world",
      * });
      * ```
-     * 
+     *
      * @example
      * 也可以通过将某个字段置为 ``undefined``，来删掉该字段。
-     * 
+     *
      * ```typescript
      * room.setMemberState({
      *     foobar: undefined,
@@ -1257,17 +1257,17 @@ export declare interface Room extends Displayer {
     setMemberState(modifyState: Partial<MemberState>): MemberState;
 
     /**
-     * 修改房间的 ``room.state.broadcastState.mode`` 的值。会改变自己或房间内其他人的视角模式。 
+     * 修改房间的 ``room.state.broadcastState.mode`` 的值。会改变自己或房间内其他人的视角模式。
      */
     setViewMode(viewMode: ViewMode): void;
 
     /**
-     * 修改当前场景地址，会将切换当前房间的场景。 
+     * 修改当前场景地址，会将切换当前房间的场景。
      */
     setScenePath(scenePath: string): void;
 
     /**
-     * 修改当前场景的索引号，会将切换当前房间的场景。 
+     * 修改当前场景的索引号，会将切换当前房间的场景。
      */
     setSceneIndex(index: number): void;
 
@@ -1292,12 +1292,12 @@ export declare interface Room extends Displayer {
     cleanCurrentScene(retainPpt?: boolean): void;
 
     /**
-     * 在房间中删除场景。参考[《删除场景｜场景管理》](/javascript-zh/home/scenes-management#删除场景)。 
+     * 在房间中删除场景。参考[《删除场景｜场景管理》](/javascript-zh/home/scenes-management#删除场景)。
      */
     removeScenes(path: string): void;
 
     /**
-     * 在房间中移动场景。参考[《移动场景｜场景管理》](/javascript-zh/home/scenes-management#移动场景)。 
+     * 在房间中移动场景。参考[《移动场景｜场景管理》](/javascript-zh/home/scenes-management#移动场景)。
      */
     moveScene(originalPath: string, targetPath: string): void;
 
@@ -1332,47 +1332,47 @@ export declare interface Room extends Displayer {
     getPluginRectangle(identifier: string): Rectangle | undefined;
 
     /**
-     * 复刻当前选择工具所选的所有组键件。只有在 ``room.disableSerialization`` 为 ``false`` 的时候可调用。 
+     * 复刻当前选择工具所选的所有组键件。只有在 ``room.disableSerialization`` 为 ``false`` 的时候可调用。
      */
     duplicate(): void;
 
     /**
-     * 复制当前选择工具所选的所有组键件。只有在 ``room.disableSerialization`` 为 ``false`` 的时候可调用。 
+     * 复制当前选择工具所选的所有组键件。只有在 ``room.disableSerialization`` 为 ``false`` 的时候可调用。
      */
     copy(): void;
 
     /**
-     * 粘贴上一次复制的组件。只有在 ``room.disableSerialization`` 为 ``false`` 的时候可调用。 
+     * 粘贴上一次复制的组件。只有在 ``room.disableSerialization`` 为 ``false`` 的时候可调用。
      */
     paste(): void;
 
     /**
-     * 撤回上一个动作。只有在 ``room.disableSerialization`` 为 ``false`` 的时候可调用。 
+     * 撤回上一个动作。只有在 ``room.disableSerialization`` 为 ``false`` 的时候可调用。
      */
     undo(): number;
 
     /**
-     * 重做上一个动作。只有在 ``room.disableSerialization`` 为 ``false`` 的时候可调用。 
+     * 重做上一个动作。只有在 ``room.disableSerialization`` 为 ``false`` 的时候可调用。
      */
     redo(): number;
 
     /**
-     * 删除当前选择工具所选的所有组件。 
+     * 删除当前选择工具所选的所有组件。
      */
     delete(): void;
 
     /**
-     * PPT 翻页到下一页。如果当前 PPT 没有动画，则切换到顺位索引 +1 的场景，如果有动画，则播放下一个动画。 
+     * PPT 翻页到下一页。如果当前 PPT 没有动画，则切换到顺位索引 +1 的场景，如果有动画，则播放下一个动画。
      */
     pptNextStep(): void;
 
     /**
-     * PPT 翻页到前一页。如果当前 PPT 没有动画，则切换到顺位索引 -1 的场景，如果有动画，则切换到上一个动画播放完毕的样子。 
+     * PPT 翻页到前一页。如果当前 PPT 没有动画，则切换到顺位索引 -1 的场景，如果有动画，则切换到上一个动画播放完毕的样子。
      */
     pptPreviousStep(): void;
 
     /**
-     * 令房间断开连接。这是一个异步方法，会返回 ``Promise`` 对象。 
+     * 令房间断开连接。这是一个异步方法，会返回 ``Promise`` 对象。
      */
     disconnect(): Promise<void>;
 
@@ -1380,38 +1380,38 @@ export declare interface Room extends Displayer {
 
 export declare enum RoomPhase {
     /**
-     * 连接中 
+     * 连接中
      */
     Connecting = "connecting",
     /**
-     * 已连接 
+     * 已连接
      */
     Connected = "connected",
     /**
-     * 正在重连 
+     * 正在重连
      */
     Reconnecting = "reconnecting",
     /**
-     * 断开连接中 
+     * 断开连接中
      */
     Disconnecting = "disconnecting",
     /**
-     * 已断开连接 
+     * 已断开连接
      */
     Disconnected = "disconnected",
 }
 
 export declare enum RoomErrorLevel {
     /**
-     * 当无权写时执行写操作，则直接抛出错误 
+     * 当无权写时执行写操作，则直接抛出错误
      */
     ThrowError = "throwError",
     /**
-     * 当无权写时执行写操作，拦截操作，并在控制台打印警告 
+     * 当无权写时执行写操作，拦截操作，并在控制台打印警告
      */
     Warn = "warn",
     /**
-     * 当无权写时执行写操作，拦截操作，什么也不做 
+     * 当无权写时执行写操作，拦截操作，什么也不做
      */
     Ignore = "ignore",
 }
@@ -1428,14 +1428,14 @@ export declare type RoomCallbacks = DisplayerCallbacks & {
      */
     onRoomStateChanged: (modifyState: Partial<RoomState>)=>void;
     /**
-     * 实时房间出错了，并因此断开了连接 
+     * 实时房间出错了，并因此断开了连接
      */
     onDisconnectWithError: (error: Error)=>void;
     /**
      * 被提出房间，并因此断开了连接。
-     * 
+     *
      * @param reason 被踢出房间的原因
-     * 
+     *
      * | ``reason`` 字段 | 描述                          |
      * | :--------------| :--------------------------- |
      * | kickByAdmin    | 被管理员踢出                   |
@@ -1448,56 +1448,56 @@ export declare type RoomCallbacks = DisplayerCallbacks & {
      */
     onKickedWithReason: (reason: string)=>void;
     /**
-     * 表明 ``room.canUndoSteps`` 发生了变化 
+     * 表明 ``room.canUndoSteps`` 发生了变化
      */
     onCanUndoStepsUpdate: (canUndoSteps: number)=>void;
     /**
-     * 表明 ``room.canRedoSteps`` 发生了变化 
+     * 表明 ``room.canRedoSteps`` 发生了变化
      */
     onCanRedoStepsUpdate: (canUndoSteps: number)=>void;
     /**
-     * 拦截器，声明是否拦截掉白板的监听的键盘事件，若返回 ``true`` 则拦截掉。拦截掉后，该键盘事件不会引发白板的业务响应。 
+     * 拦截器，声明是否拦截掉白板的监听的键盘事件，若返回 ``true`` 则拦截掉。拦截掉后，该键盘事件不会引发白板的业务响应。
      */
     willInterceptKeyboardEvent: (event: KeyboardEvent)=>boolean;
     /**
-     * 白板监听到了键盘按下事件。 
+     * 白板监听到了键盘按下事件。
      */
     onKeyDown: (event: KeyboardEvent)=>void;
     /**
-     * 白板监听到了键盘松开事件。 
+     * 白板监听到了键盘松开事件。
      */
     onKeyUp: (event: KeyboardEvent)=>void;
 };
 
 export declare type SceneDefinition = {
     /**
-     * 场景名字 
+     * 场景名字
      */
     name?: string;
     /**
-     * PPT 描述 
+     * PPT 描述
      */
     ppt?: PptDescription;
 };
 
 export declare interface Player extends Displayer {
     /**
-     * 录像所属的房间 UUID 
+     * 录像所属的房间 UUID
      */
     readonly roomUUID: string;
 
     /**
-     * 当前录像所属的分片唯一识别符 
+     * 当前录像所属的分片唯一识别符
      */
     readonly slice: string;
 
     /**
-     * 当前是否能立即播放（可能会缓冲） 
+     * 当前是否能立即播放（可能会缓冲）
      */
     readonly isPlayable: boolean;
 
     /**
-     * 回放播放器连接的阶段 
+     * 回放播放器连接的阶段
      */
     readonly phase: PlayerPhase;
 
@@ -1508,27 +1508,27 @@ export declare interface Player extends Displayer {
     readonly state: PlayerState;
 
     /**
-     * 播放进度（毫秒），录像开始时为 0 
+     * 播放进度（毫秒），录像开始时为 0
      */
     readonly progressTime: number;
 
     /**
-     * 录像时长（毫秒） 
+     * 录像时长（毫秒）
      */
     readonly timeDuration: number;
 
     /**
-     * 录像总帧数 
+     * 录像总帧数
      */
     readonly framesCount: number;
 
     /**
-     * 录像开始的绝对时间戳（unix 时间，毫秒） 
+     * 录像开始的绝对时间戳（unix 时间，毫秒）
      */
     readonly beginTimestamp: number;
 
     /**
-     * 播放速度倍率，取 1.0 表明正常速度播放 
+     * 播放速度倍率，取 1.0 表明正常速度播放
      */
     playbackSpeed: number;
 
@@ -1539,27 +1539,27 @@ export declare interface Player extends Displayer {
     readonly scheduleTime: number;
 
     /**
-     * 播放 
+     * 播放
      */
     play(): void;
 
     /**
-     * 暂停 
+     * 暂停
      */
     pause(): void;
 
     /**
-     * 停止 
+     * 停止
      */
     stop(): void;
 
     /**
-     * 跳转到特定进度 
+     * 跳转到特定进度
      */
     seekToProgressTime(progressTime: number): void;
 
     /**
-     * 修改观察模式 
+     * 修改观察模式
      */
     setObserverMode(observerMode: ObserverMode): void;
 
@@ -1573,45 +1573,45 @@ export declare interface Player extends Displayer {
 
 export declare enum PlayerPhase {
     /**
-     * 等待首帧 
+     * 等待首帧
      */
     WaitingFirstFrame = "waitingFirstFrame",
     /**
-     * 正在播放 
+     * 正在播放
      */
     Playing = "playing",
     /**
-     * 暂停 
+     * 暂停
      */
     Pause = "pause",
     /**
-     * 播放器已停止 
+     * 播放器已停止
      */
     Stopped = "stop",
     /**
-     * 录像播到末尾 
+     * 录像播到末尾
      */
     Ended = "ended",
     /**
-     * 正在缓冲 
+     * 正在缓冲
      */
     Buffering = "buffering",
 }
 
 export declare type PlayerState = DisplayerState & {
     /**
-     * 观察模式 
+     * 观察模式
      */
     observerMode: ObserverMode;
 };
 
 export declare type PlayerCallbacks = DisplayerCallbacks & {
     /**
-     * 表明 ``player.isPlayable`` 发生了改变。 
+     * 表明 ``player.isPlayable`` 发生了改变。
      */
     onIsPlayableChanged: (isPlayable: boolean)=>void;
     /**
-     * 表明 ``player.phase`` 发生了改变。 
+     * 表明 ``player.phase`` 发生了改变。
      */
     onPhaseChanged: (phase: PlayerPhase)=>void;
     /**
@@ -1620,60 +1620,60 @@ export declare type PlayerCallbacks = DisplayerCallbacks & {
      */
     onLoadFirstFrame: ()=>void;
     /**
-     * 表明 ``player.state`` 发生了变化。具体参考[《房间与回放的业务状态管理》](/javascript-zh/home/business-state-management)。 
+     * 表明 ``player.state`` 发生了变化。具体参考[《房间与回放的业务状态管理》](/javascript-zh/home/business-state-management)。
      */
     onPlayerStateChanged: (modifyState: Partial<PlayerState>)=>void;
     /**
-     * 回放发生了错误，并因此失败，``player.phase`` 的状态变成了 ``PlayerPhase.Stopped``。 
+     * 回放发生了错误，并因此失败，``player.phase`` 的状态变成了 ``PlayerPhase.Stopped``。
      */
     onStoppedWithError: (error: Error)=>void;
     /**
-     * 表明 ``player.progressTime`` 发生了变化。 
+     * 表明 ``player.progressTime`` 发生了变化。
      */
     onProgressTimeChanged: (progressTimestamp: number)=>void;
 };
 
 export declare type BroadcastState = {
     /**
-     * 视角跟随模式 
+     * 视角跟随模式
      */
     mode: ViewMode;
     /**
-     * 当前房间主播的用户 ID。若不存在主播，则为 ``undefined`` 
+     * 当前房间主播的用户 ID。若不存在主播，则为 ``undefined``
      */
     broadcasterId?: number;
     /**
-     * @deprecated 过期属性 
+     * @deprecated 过期属性
      */
     broadcasterInformation?: MemberInformation;
 };
 
 export declare enum ObserverMode {
     /**
-     * 导演模式 
+     * 导演模式
      */
     Directory = "directory",
     /**
-     * 自由模式 
+     * 自由模式
      */
     Freedom = "freedom",
 }
 
 export declare type RoomMember = {
     /**
-     * 用户 ID 
+     * 用户 ID
      */
     memberId: number;
     /**
-     * 用户的状态 
+     * 用户的状态
      */
     memberState: MemberState;
     /**
-     * 当前用户的 session ID 
+     * 当前用户的 session ID
      */
     session: string;
     /**
-     * 当前用户的自定义负载，在该用户调用 ``joinRoom`` 时传入 
+     * 当前用户的自定义负载，在该用户调用 ``joinRoom`` 时传入
      */
     payload: any;
 };
@@ -1685,7 +1685,7 @@ export declare type RoomState = DisplayerState & {
      */
     memberState: MemberState;
     /**
-     * 视角跟随状态 
+     * 视角跟随状态
      */
     broadcastState: Readonly<BroadcastState>;
     /**
@@ -1697,23 +1697,23 @@ export declare type RoomState = DisplayerState & {
 
 export declare type SceneState = {
     /**
-     * 房间内所有场景列表 
+     * 房间内所有场景列表
      */
     scenes: ReadonlyArray<WhiteScene>;
     /**
-     * 当前场景地址 
+     * 当前场景地址
      */
     scenePath: string;
     /**
-     * 当前场景的名字 
+     * 当前场景的名字
      */
     sceneName: string;
     /**
-     * 当前场景所在的父场景组地址 
+     * 当前场景所在的父场景组地址
      */
     contextPath: string;
     /**
-     * 当前场景处于其父场景组之中的位置索引 
+     * 当前场景处于其父场景组之中的位置索引
      */
     index: number;
 };
@@ -1726,74 +1726,74 @@ export declare const PlayerConsumer: Consumer<Player | undefined>;
 
 export declare type MemberState = {
     /**
-     * 当前用户所选择的教具 
+     * 当前用户所选择的教具
      */
     currentApplianceName: ApplianceNames;
     /**
-     * 教具绘制线条的颜色 
+     * 教具绘制线条的颜色
      */
     strokeColor: Color;
     /**
-     * 教具绘制线条的粗细 
+     * 教具绘制线条的粗细
      */
     strokeWidth: number;
     /**
-     * 文字的字体大小 
+     * 文字的字体大小
      */
     textSize: number;
     /**
-     * 使用 ``shape`` 教具时，绘制图形的具体类型 
+     * 使用 ``shape`` 教具时，绘制图形的具体类型
      */
     shapeType?: ShapeType;
     /**
-     * @deprecated 已过期 
+     * @deprecated 已过期
      */
     pencilOptions: PencilOptions;
 };
 
 export declare enum ApplianceNames {
     /**
-     * 选择工具 
+     * 选择工具
      */
     selector = "selector",
     /**
-     * 激光笔 
+     * 激光笔
      */
     laserPointer = "laserPointer",
     /**
-     * 铅笔工具 
+     * 铅笔工具
      */
     pencil = "pencil",
     /**
-     * 矩形工具 
+     * 矩形工具
      */
     rectangle = "rectangle",
     /**
-     * 圆形工具 
+     * 圆形工具
      */
     ellipse = "ellipse",
     /**
-     * 图形工具 
+     * 图形工具
      */
     shape = "shape",
     /**
-     * 橡皮工具 
+     * 橡皮工具
      */
     eraser = "eraser",
     /**
-     * 文字工具 
+     * 文字工具
      */
     text = "text",
     /**
-     * 直线工具 
+     * 直线工具
      */
     straight = "straight",
     /**
-     * 箭头工具 
+     * 箭头工具
      */
     arrow = "arrow",
     /**
-     * 抓手工具 
+     * 抓手工具
      */
     hand = "hand",
 }
@@ -1866,50 +1866,50 @@ export declare type GlobalState = {
 
 export declare type PptDescription = {
     /**
-     * PPT 资源的 URL 
+     * PPT 资源的 URL
      */
     src: string;
     /**
-     * PPT 的宽 
+     * PPT 的宽
      */
     width: number;
     /**
-     * PPT 的高 
+     * PPT 的高
      */
     height: number;
     /**
-     * PPT 的预览图的 URL 
+     * PPT 的预览图的 URL
      */
     previewURL?: string;
 };
 
 export declare type ImageInformation = {
     /**
-     * 图片的唯一识别符 
+     * 图片的唯一识别符
      */
     uuid: string;
     /**
-     * 图片中点在世界坐标系中的 x 坐标 
+     * 图片中点在世界坐标系中的 x 坐标
      */
     centerX: number;
     /**
-     * 图片中点在世界坐标系中的 y 坐标 
+     * 图片中点在世界坐标系中的 y 坐标
      */
     centerY: number;
     /**
-     * 图片中点在世界坐标系中的宽 
+     * 图片中点在世界坐标系中的宽
      */
     width: number;
     /**
-     * 图片中点在世界坐标系中的高 
+     * 图片中点在世界坐标系中的高
      */
     height: number;
     /**
-     * 图片是否被锁定 
+     * 图片是否被锁定
      */
     locked: boolean;
     /**
-     * 图片是否禁止非等比放缩 
+     * 图片是否禁止非等比放缩
      */
     uniformScale?: boolean;
 };
@@ -1944,19 +1944,19 @@ export declare enum CursorNames {
 
 export declare enum ScreenType {
     /**
-     * 桌面设备 
+     * 桌面设备
      */
     Desktop = "desktop",
     /**
-     * 只能手机 
+     * 只能手机
      */
     Phone = "phone",
     /**
-     * 平板电脑 
+     * 平板电脑
      */
     Pad = "pad",
     /**
-     * 电视 
+     * 电视
      */
     TV = "tv",
 }
@@ -1968,7 +1968,7 @@ export declare type WhiteWebSdkConfiguration = {
      */
     appIdentifier: string;
     /**
-     * 连接的数据中心 
+     * 连接的数据中心
      */
     region?: string;
     /**
@@ -1985,7 +1985,7 @@ export declare type WhiteWebSdkConfiguration = {
      */
     screenType?: ScreenType;
     /**
-     * 对画面的渲染模式，默认值为 ``RenderEngine.Canvas`` 
+     * 对画面的渲染模式，默认值为 ``RenderEngine.Canvas``
      */
     renderEngine?: RenderEngine;
     /**
@@ -1995,54 +1995,54 @@ export declare type WhiteWebSdkConfiguration = {
      */
     fonts?: UserFonts;
     /**
-     * 抓手工具热键。按下该键时，会自动切换成**抓手工具**（``currentApplianceName="hand"``），松开后，切回原来的工具。如果不传，则关闭该功能。 
+     * 抓手工具热键。按下该键时，会自动切换成**抓手工具**（``currentApplianceName="hand"``），松开后，切回原来的工具。如果不传，则关闭该功能。
      */
     handToolKey?: string;
     /**
-     * 设置文字工具（``currentApplianceName="text"``）的字体。若不传，文字工具则展示浏览器默认字体 
+     * 设置文字工具（``currentApplianceName="text"``）的字体。若不传，文字工具则展示浏览器默认字体
      */
     fontFamily?: string;
     /**
-     * 是否一次性加载 PPT 转网页的所有资源，默认是 ``false``。启用后，会在第一页时，就加载所有页面内容，会造成一定性能问题，已不推荐使用。 
+     * 是否一次性加载 PPT 转网页的所有资源，默认是 ``false``。启用后，会在第一页时，就加载所有页面内容，会造成一定性能问题，已不推荐使用。
      */
     preloadDynamicPPT?: boolean;
     /**
-     * SDK 如何处理日志上报，默认是开启自动上报。更多关于日志的信息，可以参考[《线上日志》](/document-zh/home/oneline-log) 
+     * SDK 如何处理日志上报，默认是开启自动上报。更多关于日志的信息，可以参考[《线上日志》](/document-zh/home/oneline-log)
      */
     loggerOptions?: LoggerOptions;
     /**
      * 断线重连设置，如果传入 ``false`` 或 ``{disableReconnect: true}`` 则可以关闭断线重连。
      * 默认开启自动断线重连。
-     * 你可以参考[《实时房间状态管理》](/document-zh/home/room-state-management)了解更多关于断线重连相关的状态变化。 
+     * 你可以参考[《实时房间状态管理》](/document-zh/home/room-state-management)了解更多关于断线重连相关的状态变化。
      */
     reconnectionOptions?: Partial<ReconnectionOptions> | false;
     /**
      * 默认为``true``。开启该功能后，若是主动调用``room`` 对象的方法来修改``room.state`` 的值，导致值变化，是不会调用回调方法通知说``room.state`` 发生改变了的。
-     * 
+     *
      * 关闭该功能后，只要``room.state`` 发生改变，就会回调。
-     * 
+     *
      * 如何判断是主动修改``room.state``？
      * 如果调用这些方法：``room.setGlobalState``、``room.setMemberState``、``room.setViewMode``、``room.setScenePath``、``room.setSceneIndex``、``room.moveCamera``、``room.moveCameraToContain``、``room.putScenes``、``room.removeScenes``、``room.moveScene``。
      * 那么通过调用这些方法所修改的字段本身的变化，都是为 ** 主动修改 ** 导致的变化。
      */
     onlyCallbackRemoteStateModify?: boolean;
     /**
-     * 插件列表。 
+     * 插件列表。
      */
     plugins?: Plugins;
     /**
-     * 不可见插件列表。 
+     * 不可见插件列表。
      */
     invisiblePlugins?: ReadonlyArray<InvisiblePluginClass<string, any, any>>;
     /**
      * 默认值为 ``[]``。这是一个装满 ``React.ComponentType`` 类型的数组，用于包装白板的 view。你可以用它对白板的 view 进行自定义包装。例如使用如下代码。
-     * 
+     *
      * @example
      * ```tsx
      * import React from "react";
-     * 
+     *
      * class WrappedCompnent extends React.Component {
-     * 
+     *
      *     render() {
      *         return (
      *             <div>
@@ -2052,7 +2052,7 @@ export declare type WhiteWebSdkConfiguration = {
      *         );
      *     }
      * }
-     * 
+     *
      * const whiteWebSdk = new WhiteWebSdk({
      *     appIdentifier: "$APP_IDENTIFIER",
      *     wrappedComponents: [WrappedCompnent],
@@ -2062,7 +2062,7 @@ export declare type WhiteWebSdkConfiguration = {
     wrappedComponents?: WrappedComponents;
     /**
      * > 2.11.12 新增 useServerWrap 功能
-     * 
+     *
      * 动态 ppt 专用参数。
      * 目前字段 ``useServerWrap`` 默认关闭，后续版本会变更为打开状态。开启后，
      * 会使用服务器端排版结果，避免各平台显示效果不一致。
@@ -2071,7 +2071,7 @@ export declare type WhiteWebSdkConfiguration = {
     pptParams?: PptParams;
     /**
      * 将白板中的图片等资源的 URL 拦截并替换。例如，如下代码可以自动给所有图片 URL 加一个尾缀。
-     * 
+     *
      * @example
      * ```typescript
      * const whiteWebSdk = new WhiteWebSdk({
@@ -2085,7 +2085,7 @@ export declare type WhiteWebSdkConfiguration = {
     urlInterrupter?: (url: string)=>string;
     /**
      * 用于处理 ``WhiteWebSdk`` 初始化失败的回调。
-     * 
+     *
      * @example
      * ```typescript
      * const whiteWebSdk = new WhiteWebSdk({
@@ -2102,12 +2102,12 @@ export declare type WhiteWebSdkConfiguration = {
 
 export declare type ConstructRoomParams = {
     /**
-     * 设置鼠标光标适配器，参考[《鼠标光标适配器》](/javascript-zh/home/cursor-adapter)。 
+     * 设置鼠标光标适配器，参考[《鼠标光标适配器》](/javascript-zh/home/cursor-adapter)。
      */
     cursorAdapter?: CursorAdapter;
     /**
      * 是否关闭「自动适配尺寸」功能，默认为 ``false``。
-     * 关闭后，每当白板的 view 的尺寸改变时，必须主动调用 ``room.refreshViewSize()`` 以适配。 
+     * 关闭后，每当白板的 view 的尺寸改变时，必须主动调用 ``room.refreshViewSize()`` 以适配。
      */
     disableAutoResize?: boolean;
     /**
@@ -2117,11 +2117,11 @@ export declare type ConstructRoomParams = {
      */
     disableCameraTransform?: boolean;
     /**
-     * 不可见插件列表 
+     * 不可见插件列表
      */
     invisiblePlugins?: ReadonlyArray<InvisiblePluginClass<string, any, any>>;
     /**
-     * 默认值为 ``[]``。这是一个装满 ``React.ComponentType`` 类型的数组，用于包装白板的 view。你可以用它对白板的 view 进行自定义包装。 
+     * 默认值为 ``[]``。这是一个装满 ``React.ComponentType`` 类型的数组，用于包装白板的 view。你可以用它对白板的 view 进行自定义包装。
      */
     wrappedComponents?: WrappedComponents;
     /**
@@ -2138,20 +2138,20 @@ export declare type ConstructRoomParams = {
 
 export declare type JoinRoomParams = ConstructRoomParams & {
     /**
-     * 房间的 ``uuid``，在构造房间时会返回，是该房间的唯一标识符。 
+     * 房间的 ``uuid``，在构造房间时会返回，是该房间的唯一标识符。
      */
     uuid: string;
     /**
-     * 连接的数据中心。优先级高于 ``WhiteWebSdkConfiguration`` 中的 ``region`` 字段 
+     * 连接的数据中心。优先级高于 ``WhiteWebSdkConfiguration`` 中的 ``region`` 字段
      */
     region?: string;
     /**
-     * 房间的 Token，用于鉴权。阅读[《访问密钥｜项目与鉴权》](/document-zh/home/project-and-authority#访问密钥)以便了解如何签出房间的 Token。 
+     * 房间的 Token，用于鉴权。阅读[《访问密钥｜项目与鉴权》](/document-zh/home/project-and-authority#访问密钥)以便了解如何签出房间的 Token。
      */
     roomToken: string;
     /**
      * 可以是任意类型的数据结构，用于描述当前用户的自定义信息。房间内用户在加入房间设置的 ``userPayload`` 可被房间内其他用户通过如下代码读取。
-     * 
+     *
      * @example
      * ```javascript
      * for (var member of room.state.roomMembers) {
@@ -2183,7 +2183,7 @@ export declare type JoinRoomParams = ConstructRoomParams & {
      */
     disableNewPencil?: boolean;
     /**
-     * 是否禁止橡皮擦除图片，默认值为 ``false``。 
+     * 是否禁止橡皮擦除图片，默认值为 ``false``。
      */
     disableEraseImage?: boolean;
     /**
@@ -2193,7 +2193,7 @@ export declare type JoinRoomParams = ConstructRoomParams & {
     floatBar?: boolean | Partial<FloatBarOptions>;
     /**
      * 用于配置热键。若不传，则使用**默认热键**方案，具体如下。
-     * 
+     *
      * | 键盘按键                | 效果                     |
      * | :--------------------- | :---------------------- |
      * | Backspace / Delete     | 删除所选对象              |
@@ -2202,12 +2202,12 @@ export declare type JoinRoomParams = ConstructRoomParams & {
      * | ctrl + y / command + y | 重做                    |
      * | ctrl + c / command + c | 复制                     |
      * | ctrl + v / command + v | 粘贴                    |
-     * 
+     *
      * 如果你想关闭热键功能，可以将其值置为 ``{}``。
      */
     hotKeys?: Partial<HotKeys>;
     /**
-     * 决定了，在房间没有写权限时，如果主动调用了写操作，此时 SDK 应该做何响应 
+     * 决定了，在房间没有写权限时，如果主动调用了写操作，此时 SDK 应该做何响应
      */
     rejectWhenReadonlyErrorLevel?: RoomErrorLevel;
 };
@@ -2225,7 +2225,7 @@ export declare type ReplayRoomParams = ConstructRoomParams & {
      */
     room?: string;
     /**
-     * 连接的数据中心。优先级高于 ``WhiteWebSdkConfiguration`` 中的 ``region`` 字段 
+     * 连接的数据中心。优先级高于 ``WhiteWebSdkConfiguration`` 中的 ``region`` 字段
      */
     region?: string;
     /**
@@ -2234,7 +2234,7 @@ export declare type ReplayRoomParams = ConstructRoomParams & {
      */
     beginTimestamp?: number;
     /**
-     * 表明回放区间的时长（单位是毫秒）。此参数必须和 ``room``、``beginTimestamp`` 一起使用，且使用时禁止传入 ``slice`` 参数。 
+     * 表明回放区间的时长（单位是毫秒）。此参数必须和 ``room``、``beginTimestamp`` 一起使用，且使用时禁止传入 ``slice`` 参数。
      */
     duration?: number;
     roomToken?: string;
@@ -2242,7 +2242,7 @@ export declare type ReplayRoomParams = ConstructRoomParams & {
 
 export declare type PlayableCheckingParams = {
     /**
-     * 连接的数据中心 
+     * 连接的数据中心
      */
     region?: string;
     /**
@@ -2262,7 +2262,7 @@ export declare type PlayableCheckingParams = {
      */
     beginTimestamp?: number;
     /**
-     * 表明回放区间的时长（单位是毫秒）。此参数必须和 ``room``、``beginTimestamp`` 一起使用，且使用时禁止传入 ``slice`` 参数。 
+     * 表明回放区间的时长（单位是毫秒）。此参数必须和 ``room``、``beginTimestamp`` 一起使用，且使用时禁止传入 ``slice`` 参数。
      */
     duration?: number;
 };
@@ -2275,17 +2275,17 @@ export declare class WhiteWebSdk {
     readonly region: string;
 
     /**
-     * 该客户端的设备类型，决定 SDK 如何处理鼠标事件和触碰事件 
+     * 该客户端的设备类型，决定 SDK 如何处理鼠标事件和触碰事件
      */
     readonly deviceType: DeviceType;
 
     /**
-     * 该客户端的屏幕类型，用于调整手势识别参数 
+     * 该客户端的屏幕类型，用于调整手势识别参数
      */
     readonly screenType: ScreenType;
 
     /**
-     * 对画面的渲染模式 
+     * 对画面的渲染模式
      */
     readonly renderEngine: RenderEngine;
 
@@ -2297,12 +2297,12 @@ export declare class WhiteWebSdk {
      * @param callbacks 回调函数
      * @returns 异步地返回房间
      * @throws 如果加入房间失败，则会异步地抛出错误
-     * 
+     *
      * @example
      * ```typescript
      * const joinRoomParams = {...};
      * const roomCallbacks = {...};
-     * 
+     *
      * whiteWebSdk.joinRoom(joinRoomParams, roomCallbacks)
      *            .then(function (room) {
      *                // 加入房间成功，拿到 room 对象
@@ -2315,7 +2315,7 @@ export declare class WhiteWebSdk {
     joinRoom(params: JoinRoomParams, callbacks?: Partial<RoomCallbacks>): Promise<Room>;
 
     /**
-     * 判断房间是否可播放 
+     * 判断房间是否可播放
      */
     isPlayable(params: PlayableCheckingParams): Promise<boolean>;
 
@@ -2325,12 +2325,12 @@ export declare class WhiteWebSdk {
      * @param callbacks 回调函数
      * @returns 异步地返回房间
      * @throws 如果加入房间失败，则会异步地抛出错误
-     * 
+     *
      * @example
      * ```typescript
      * const replayRoomParams = {...};
      * const replayCallbacks = {...};
-     * 
+     *
      * whiteWebSdk.replayRoom(replayRoomParams, replayCallbacks)
      *            .then(function (player) {
      *                // 回放成功，拿到 player 对象
@@ -2343,7 +2343,7 @@ export declare class WhiteWebSdk {
     replayRoom(params: ReplayRoomParams, callbacks?: Partial<PlayerCallbacks>): Promise<Player>;
 
     /**
-     * @deprecated 
+     * @deprecated
      */
     pptConverter(roomToken: string): LegacyPPTConverter;
 
@@ -2405,7 +2405,7 @@ export declare enum Scope {
 }
 
 /**
- * @deprecated 
+ * @deprecated
  */
 export declare type MemberInformation = {
     id: number;
@@ -2443,11 +2443,11 @@ export declare type EventFilter = (event: Event)=>boolean;
 
 export declare type CameraState = Camera & {
     /**
-     * 屏幕的宽 
+     * 屏幕的宽
      */
     width: number;
     /**
-     * 屏幕的高 
+     * 屏幕的高
      */
     height: number;
 };
@@ -2458,19 +2458,19 @@ export declare type Identifier = string;
 
 export declare enum ShapeType {
     /**
-     * 三角形 
+     * 三角形
      */
     Triangle = "triangle",
     /**
-     * 菱形 
+     * 菱形
      */
     Rhombus = "rhombus",
     /**
-     * 五角星 
+     * 五角星
      */
     Pentagram = "pentagram",
     /**
-     * 说话泡泡 
+     * 说话泡泡
      */
     SpeechBalloon = "speechBalloon",
 }
@@ -2478,15 +2478,15 @@ export declare enum ShapeType {
 export declare type PencilOptions = {
     enableDrawPoint: boolean;
     /**
-     * @deprecated no effect in new pencil 
+     * @deprecated no effect in new pencil
      */
     disableBezier: boolean;
     /**
-     * @deprecated no effect in new pencil 
+     * @deprecated no effect in new pencil
      */
     sparseWidth: number;
     /**
-     * @deprecated no effect in new pencil 
+     * @deprecated no effect in new pencil
      */
     sparseHump: number;
 };

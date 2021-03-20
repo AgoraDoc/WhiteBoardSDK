@@ -30,7 +30,7 @@ import java.util.UUID;
 import wendu.dsbridge.OnReturnValue;
 
 /**
- * 实时房间 room 操作类
+ * `Room` 类，用于操作互动白板实时房间。
  */
 public class Room extends Displayer {
 
@@ -41,7 +41,11 @@ public class Room extends Displayer {
         this.disconnectedBySelf = disconnectedBySelf;
     }
 
-    /** 标记是否是自己主动断开房间的，以避免递归反复加入房间 */
+    /**
+     * 获取用户是否主动断开与白板房间的连接。
+     *
+     * 该方法可以避免白板 SDK 反复重连，用户不断重新加入房间。
+     */
     public Boolean getDisconnectedBySelf() {
         return disconnectedBySelf;
     }
@@ -49,7 +53,11 @@ public class Room extends Displayer {
     private Boolean disconnectedBySelf = false;
 
     /**
-     * @return 获取当前房间的互动模式，true 为互动模式；false 为订阅模式。
+     * 获取当前实时房间是否为互动模式。
+     *
+     * @return 获取当前实时房间是否为互动模式：
+     * - `true`：当前实时房间为互动模式
+     * - `false`: 当前实时房间为为订阅模式。// TODO 所有加入该房间的用户都只能进行读取操作？
      */
     public Boolean getWritable() {
         return writable;
@@ -81,10 +89,13 @@ public class Room extends Displayer {
     }
 
     /**
-     * 获取当前用户在白板事实房间中的 memberId，该 id 从 0 开始递增
-     * 参考 {@link RoomMember#getMemberId()}
-     * @return 用户 memberId
+     * 获取用户在当前互动白板实时房间中的用户 ID。
+     *
      * @since 2.4.11
+     *
+     * @see getMemberId()
+     *
+     * @return 用户 ID。
      */
     public Long getObserverId() {
         return observerId;
@@ -96,9 +107,11 @@ public class Room extends Displayer {
 
     //region Set API
     /**
-     * 设置全局共享状态，会立刻更新同步 GlobalState。 {@link #getGlobalState()} 可以立刻获取到最新状态。
+     * 修改互动白板实时房间的公共全局状态。
      *
-     * @param globalState 自定义字段，可以传入 {@link GlobalState} 子类
+     * 实时房间的 `globalState` 属性为公共全局变量，房间内所有用户看到的都是相同的 `globalState`，所有互动模式用户都可以读写。修改 `globalState` 属性会立即生效并同步给所有用户。
+     *
+     * @param globalState 房间公共全局状态，自定义字段，可以传入 {@link GlobalState GlobalState} 子类。// TODO {@link GlobalState GlobalState} 子类是什么？{@link GlobalState GlobalState} 类下面什么都没有。
      */
     public void setGlobalState(GlobalState globalState) {
         syncRoomState.putDisplayerStateProperty("globalState", globalState);
@@ -106,9 +119,12 @@ public class Room extends Displayer {
     }
 
     /**
-     * 设置当前用户教具，会立刻更新 MemberState。 {@link #getMemberState()} 可以立刻获取到最新设置。
+     * 修改房间内的教具状态。
      *
-     * @param memberState {@link MemberState} 只需要传入需要修改的部分即可。
+     * 调用该方法会立刻更新房间的 {@link MemberState MemberState}。
+     * 你可以调用 {@link getMemberState() getMemberState} 获取最新设置的教具状态。
+     *
+     * @param memberState 需要修改的教具状态，详见 {@link MemberState MemberState}。
      */
     public void setMemberState(MemberState memberState) {
         syncRoomState.putDisplayerStateProperty("memberState", memberState);
@@ -119,31 +135,53 @@ public class Room extends Displayer {
 
 
     /**
-     * 复制选中内容，不会粘贴，而是存储在内存中
+     * 复制选中内容。
+     *
      * @since 2.9.3
+     *
+     * 该方法会将选中的内容存储到内存中，不会粘贴到白板中。
+     *
+     * @note
+     * 该方法仅当 {@link disableSerialization disableSerialization} 设为 `false` 时生效。
      */
     public void copy() {
         bridge.callHandler("room.sync.copy", new Object[]{});
     }
 
     /**
-     * 将 copy API 的复制内容，粘贴到白板中间（用户当前视野的中间）。多次粘贴，会有随机偏移
+     * 粘贴复制的内容。
+     *
      * @since 2.9.3
+     *
+     * 该方法会将 {@link copy copy} 方法复制的内容粘贴到白板中（用户当前的视野中间）。
+     *
+     * @note
+     * - 该方法仅当 {@link disableSerialization disableSerialization} 设为 `false` 时生效。
+     * // TODO Web 的 copy、paste、duplicate 方法有这条限制，Android 和 iOS 的也是吗？还有其他方法有这条限制吗？
+     * - 多次调用该方法时，不能保证粘贴的内容每次都在用户当前的视野中间，可能会出现随机偏移。
      */
     public void paste() {
         bridge.callHandler("room.sync.paste", new Object[]{});
     }
 
     /**
-     * copy paste 组合 API
+     * 复制并粘贴选中的内容。
+     *
      * @since 2.9.3
+     *
+     * 该方法会将选中的内容复制并粘贴到白板中（用户当前的视野中间）。
+     *
+     * @note
+     * - 该方法仅当 {@link disableSerialization disableSerialization} 设为 `false` 时生效。
+     * - 多次调用该方法时，不能保证粘贴的内容每次都在用户当前的视野中间，可能会出现随机偏移。
      */
     public void duplicate() {
         bridge.callHandler("room.sync.duplicate", new Object[]{});
     }
 
     /**
-     * 删除选中内容
+     * 删除选中的内容。
+     *
      * @since 2.9.3
      */
     public void deleteOperation() {
@@ -151,26 +189,51 @@ public class Room extends Displayer {
     }
 
     /**
-     * 不兼容改动
-     * 调用了该 API 的房间，将导致 web sdk 2.9.2 以下（不包含），native 端 2.9.3 以下（不包含）的客户端，崩溃。请确认使用 sdk 版本再进行开启。
-     * @param disable 禁用本地序列化,默认 true，即禁止启动本地序列化；false 时，则打开序列化，可以对本地操作进行解析，可以执行 该 pragma mark 下的 redo undo 操作
+     * 开启/禁止本地序列化。
+     *
      * @since 2.9.3
+     *
+     * 设置 `disableSerialization(true)` 后，以下方法将不生效：// TODO 以下这些方法是可以调用，但是不生效，还是调用时会报错？
+     * - `redo`
+     * - `undo`
+     * - `duplicate`
+     * - `copy`
+     * - `paste`
+     *
+     * @warning
+     * 如果你使用以下版本的白板 SDK，请勿调用该方法，否则会导致 app 客户端崩溃。(房间内有任何一个用户使用以下版本的白板 SDK，都请勿调用该方法，否则会到 app 客户端崩溃。)
+     * - Web 2.9.2 以下版本
+     * - Android 2.9.3 以下版本
+     * - iOS 2.9.3 以下版本
+     *
+     * @param disable 是否禁止本地序列化：
+     * - `true`：（默认）禁止开启本地序列化；
+     * - `false`： 开启本地序列化，即可以对本地操作进行解析。
      */
     public void disableSerialization(boolean disable) {
         bridge.callHandler("room.sync.disableSerialization", new Object[]{disable});
     }
 
     /**
-     * 回退 undo 的效果，需要 disableSerialization 为 false
+     * 重做，即回退撤销操作。
+     *
      * @since 2.9.3
+     *
+     * @note
+     * 该方法仅当 {@link disableSerialization disableSerialization} 设为 `false` 时生效。
+     *
      */
     public void redo() {
         bridge.callHandler("room.redo", new Object[]{});
     }
 
     /**
-     * 撤销上一步操作，需要 disableSerialization 为 false
+     * 撤销上一步操作。
+     *
      * @since 2.9.3
+     *
+     * @note
+     * 该方法仅当 {@link disableSerialization disableSerialization} 设为 `false` 时生效。
      */
     public void undo() {
         bridge.callHandler("room.undo", new Object[]{});
@@ -178,17 +241,23 @@ public class Room extends Displayer {
     //endregion
 
     /**
-     * 切换视角模式
+     * 切换视角模式。
      *
-     * 1. 主播模式：房间只存在一个主播。成为主播后，房间中其他用户（包括新加入用户）的视角模式，都会切换为跟随模式。
-     * 2. 跟随模式：当用户进行操作时，会从跟随模式，切换成自由模式。
-     *            可以通过： 禁止响应用户操作 {@link #disableOperations(boolean)} ，来保证用户保持在跟随模式。
-     * 3. 自由模式：当房间中，不存在主播时，所有人默认均为自由模式。
+     * 互动白板实时房间支持对用户设置以下视角：
+     * - `Broadcaster`: 主播模式。
+     * - `Follower`：跟随模式。
+     * - `Freedom'：（默认）自由模式。
      *
-     * 切换视角后，{@link #getBroadcastState()} 方法需要等待服务器更新后，才能更新。
-     * 可以使用 {@link #getBroadcastState(Promise)} 强制更新信息
+     * 该方法的设置会影响房间内所有用户的视角：
+     * - 当房间内不存在视角为主播模式的用户时，所有用户的视角都默认为自由模式。
+     * - 当一个用户的视角设置为主播模式后，房间内其他所有用户（包括新加入房间的用户）的视角会被自动设置为跟随模式。
+     * - 当跟随模式的用户进行白板操作时，其视角会自动切换为自由模式。你可以调用 {@link disableOperations(boolean) disableOperations}(true) 禁止跟随模式的用户操作白板，以保证其保持跟随模式。
      *
-     * @param viewMode {@link ViewMode}
+     *
+     * 切换视角后，需要等待服务器更新 `BroadcastState` 属性，才能通过 {@link getBroadcastState() getBroadcastState} 获取最新设置的视角模式。
+     * 你可以使用 {@link getBroadcastState(Promise) getBroadcastState} 强制更新信息。// TODO 不是很理解，怎么强制更新？
+     *
+     * @param viewMode 视角模式，详见 {@link ViewMode ViewMode}。
      */
     public void setViewMode(ViewMode viewMode) {
         bridge.callHandler("room.setViewMode", new Object[]{viewMode.name()});
@@ -197,19 +266,27 @@ public class Room extends Displayer {
     //endregion
 
     /**
-     * 主动断连，断开后，当前 room 实例将无法使用。
-     * 再次使用，需要使用 {@link WhiteSdk#joinRoom(RoomParams, RoomCallbacks, Promise)} 重新创建实例
-     * 如需退出后回调，请使用 {@link #disconnect(Promise)}
+     * 主动断开与互动白板实时房间实例的连接。
+     *
+     * 该方法会把与当前房间实例相关的所有资源释放掉。如果要再次加入房间，需要重新调用 `joinRoom`。
+     *
+     * @note
+     * 调用该方法不会触发回调。如果需要收到断开连接的回调，请使用 {@link disconnect(Promise) disconnect}。
      */
     public void disconnect() {
         disconnect(null);
     }
 
     /**
-     * 主动断连，断开后，该 room 实例将无法使用。
-     * 再次使用，需要使用 {@link WhiteSdk#joinRoom(RoomParams, RoomCallbacks, Promise)} 重新创建实例
+     * 主动断开与互动白板实时房间实例的连接。
      *
-     * @param promise 退出后回调
+     * 该方法会把与当前房间实例相关的所有资源释放掉。如果要再次加入房间，需要重新调用 `joinRoom`。
+     *
+     * 你可以在该方法中传入 'Promise<Object>' 接口实例，以获取方法调用结果。
+     *
+     * @param promise 'Promise<Object>' 接口实例，详见 {@link Promise<T> Promise<T>}。你可以通过该接口获取 `disconnect` 的调用结果：
+     * - 如果方法调用成功，则返回房间对象。// TODO 方法调用成功，返回什么？
+     * - 如果方法调用失败，则返回错误码。// TODO 方法调用失败，是返回错误码，还是错误信息？
      */
     public void disconnect(@Nullable final Promise<Object> promise) {
         setDisconnectedBySelf(true);
@@ -235,30 +312,42 @@ public class Room extends Displayer {
     }
     //region image
     /**
-     * 插入占位区域，一般配合 {@link #completeImageUpload(String, String)} 完成插入图片功能。
-     * 如图片网络地址已知，推荐使用 {@link #insertImage(ImageInformationWithUrl)} API，插入网络图片。
-     * @param imageInfo {@link ImageInformation}
+     * 插入图片显示区域
+     *
+     * SDK 会根据你传入的 `ImageInformation` 在白板上设置并插入图片的显示区域。
+     * 调用该方法后，还需要调用 {@link completeImageUpload(String, String) completeImageUpload} 传入图片的 Url 地址，以在该显示区域插入并展示图片。
+     *
+     * @note
+     * 你也可以调用 {@link insertImage(imageInformationWithUrl) insertImage} 方法同时传入图片信息和图片的 Url 地址，在白板中插入并展示图片。
+     *
+     * @param imageInfo 图片信息，详见 {@link ImageInformation ImageInformation}。
      */
     public void insertImage(ImageInformation imageInfo) {
         bridge.callHandler("room.insertImage", new Object[]{imageInfo});
     }
 
     /**
-     * 将特定 uuid 的占位区域，替换成网络图片
+     * 展示图片。
      *
-     * @param uuid 占位 uuid，需要有唯一性，即 {@link #insertImage(ImageInformation)} 中传入的 uuid
-     * @param url  图片网络地址。
+     * 该方法可以将指定的网络图片展示到指定的图片显示区域。
+     *
+     * @note
+     * 调用该方法前，请确保你已经调用 {@link insertImage(imageInfo) insertImage} 方法在白板上插入了图片的显示区域。
+     *
+     * @param uuid 图片显示区域的 UUID, 即在 {@link insertImage(ImageInformation) insertImage} 方法的 {@link ImageInformation ImageInformation} 中传入的图片 UUID。
+     * @param url  图片的 URL 地址。必须确保 app 客户端能访问该 URL，否则无法正常展示图片。
      */
     public void completeImageUpload(String uuid, String url) {
         bridge.callHandler("room.completeImageUpload", new Object[]{uuid, url});
     }
 
     /**
-     * 插入网络图片
+     * 插入并展示图片
      *
-     * 该 API 封装 {@link #insertImage} 以及 {@link #completeImageUpload(String, String)} API，上传网络图片。
+     * 该方法封装了 {@link insertImage(imageInfo) insertImage} 和 {@link completeImageUpload(String, String) completeImageUpload} 方法。
+     * 你可以在该方法中同时传入图片信息和图片的 URL，直接在白板中插入图片的显示区域并展示图片。
      *
-     * @param imageInformationWithUrl 图片信息 {@link ImageInformationWithUrl}
+     * @param imageInformationWithUrl 图片信息及图片的 URL 地址，详见 {@link ImageInformationWithUrl ImageInformationWithUrl}。
      */
     public void insertImage(ImageInformationWithUrl imageInformationWithUrl) {
         ImageInformation imageInformation = new ImageInformation();
