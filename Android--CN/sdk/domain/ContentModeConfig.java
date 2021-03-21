@@ -93,7 +93,7 @@ public class ContentModeConfig extends WhiteObject {
     }
 
     /**
-     * 设置图像相对于视野范围的剪裁或填充空间。
+     * 设置视野范围的填充空间。// 参考 android API
      *
      * // TODO 相对于基准视野范围额外在两边多出来的空间？
      *

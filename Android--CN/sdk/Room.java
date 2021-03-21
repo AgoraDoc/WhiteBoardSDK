@@ -364,24 +364,31 @@ public class Room extends Displayer {
 
     //region GET API
     /**
-     * 同步API 获取房间全局状态
-     * 如已通过 {@link com.herewhite.sdk.domain.WhiteDisplayerState#setCustomGlobalStateClass(Class)}
-     * 设置好自定义 GlobalState。在获取后，可以直接进行强转。
-     * 调用 {@link #setGlobalState(GlobalState)} API 后，可以立刻调用该 API
+     * 获取房间的全局状态。该方法为同步调用。
      *
-     * @see GlobalState
      * @since 2.4.0
+     *
+     * @note
+     * - 对于通过 {@link com.herewhite.sdk.domain.WhiteDisplayerState#setCustomGlobalStateClass(Class) setCustomGlobalStateClass} 方法设置的自定义 `GlobalState`，在获取后，可以直接进行强转。
+     * - 调用 {@link #setGlobalState(GlobalState)} 方法后，可以立刻调用该方法。
+     *
+     * @return 房间的全局状态，详见 {@link GlobalState GlobalState}。
      */
     public GlobalState getGlobalState() {
         return syncRoomState.getDisplayerState().getGlobalState();
     }
 
     /**
-     * 异步API 强制获取房间全局状态。
-     * 如已通过 {@link com.herewhite.sdk.domain.WhiteDisplayerState#setCustomGlobalStateClass(Class)}
-     * 设置好自定义 GlobalState。在获取后，可以直接进行强转。
-     * @deprecated 建议使用 {@link #getGlobalState()} API。
-     * @param promise 完成回调
+     * 强制获取房间全局状态。该方法为异步调用。// TODO 这里为什么是强制获取？
+     *
+     * @deprecated 该方法已废弃。请使用 {@link #getGlobalState()}。
+     *
+     * @note
+     * 对于通过 {@link com.herewhite.sdk.domain.WhiteDisplayerState#setCustomGlobalStateClass(Class) setCustomGlobalStateClass} 方法设置的自定义 `GlobalState`，在获取后，可以直接进行强转。
+     *
+     * @param promise `Promise<GlobalState>` 接口实例，详见 {@link Promise<T> Promise<T>}。你可以通过该接口获取 `getGlobalState` 的调用结果：
+     * - 如果方法调用成功，则返回 `GlobalState` 对象。
+     * - 如果方法调用失败，则返回错误码。
      */
     public void getGlobalState(final Promise<GlobalState> promise) {
         getGlobalState(GlobalState.class, promise);
@@ -427,20 +434,30 @@ public class Room extends Displayer {
     }
 
     /**
-     * 同步API 获取当前用户教具状态,使用 {@link #setMemberState(MemberState)} 该 API 内容会立刻更新
+     * 获取当前用户的教具状态。
      *
-     * @return 用户教具状态 {@link MemberState}
      * @since 2.4.0
+     *
+     * @note
+     * - 该方法为同步调用。
+     * - 调用 {@link #setMemberState(MemberState)} 方法后，可以立即调用 {@link getMemberState() getMemberState} 获取最新的教具状态。
+     *
+     * @return 用户教具状态，详见 {@link MemberState}。
      */
     public MemberState getMemberState() {
         return syncRoomState.getDisplayerState().getMemberState();
     }
 
     /**
-     * 异步API 获取当前用户教具状态
+     * 获取当前用户的教具状态。
      *
-     * @param promise 完成回调
-     * @see MemberState
+     * @note
+     * 该方法为异步调用。
+     *
+     * @param promise `Promise<MemberState>` 接口实例，详见 {@link Promise<T> Promise<T>}。你可以通过该接口获取 `getMemberState` 的调用结果：
+     * - 如果方法调用成功，则返回用户教具状态，详见 {@link MemberState MemberState}。
+     * - 如果方法调用失败，则返回错误码。
+     *
      */
     public void getMemberState(final Promise<MemberState> promise) {
         bridge.callHandler("room.getMemberState", new OnReturnValue<String>() {
@@ -462,22 +479,28 @@ public class Room extends Displayer {
     }
 
     /**
-     * 同步API 获取房间中用户列表
-     * 当有用户加入时，会在回调中自动更新该属性。由于本地用户没有任何操作可以更新该 API，所以可以在所有代码中都直接使用
-     * 同步 API
+     * 获取实时房间用户列表。
      *
-     * @return 用户列表
-     * @see RoomMember
-     * @since 2.4.0
+     * @note
+     * - 该方法为同步调用。
+     * - 房间的用户列表仅包含互动模式（具有读写权限）的用户，不包含订阅模式（只读权限）的用户。
+     *
+     * @return 用户列表，详见 {@link RoomMember RoomMember}。
      */
     public RoomMember[] getRoomMembers() {
         return syncRoomState.getDisplayerState().getRoomMembers();
     }
 
     /**
-     * 异步API 获取房间中用户列表
+     * 获取实时房间用户列表。
      *
-     * @param promise 完成回调
+     * @note
+     * - 该方法为异步调用。
+     * - 房间的用户列表仅包含互动模式（具有读写权限）的用户，不包含订阅模式（只读权限）的用户。
+     *
+     * @param promise `Promise<RoomMember[]>` 接口实例，详见 {@link Promise<T> Promise<T>}。你可以通过该接口获取 `getRoomMembers` 的调用结果：
+     * - 如果方法调用成功，则返回用户列表，详见 {@link RoomMember RoomMember}。
+     * - 如果方法调用失败，则返回错误码。
      */
     public void getRoomMembers(final Promise<RoomMember[]> promise) {
         bridge.callHandler("room.getRoomMembers", new Object[]{}, new OnReturnValue<Object>() {
@@ -499,21 +522,32 @@ public class Room extends Displayer {
     }
 
     /**
-     * 同步缓存API 获取用户视角状态
-     * 当调用 {@link #setViewMode(ViewMode)} 时，{@link BroadcastState} 无法立刻更新，
-     * 此时可以调用 {@link #getBroadcastState(Promise)} 异步API 获取状态。
+     * 获取用户视角状态。
      *
-     * @see BroadcastState
      * @since 2.4.0
+     *
+     * @note
+     * - 该方法为同步调用。
+     * - 调用 {@link #setViewMode(ViewMode)} 修改用户视角后，无法立刻通过 {@link getBroadcastState getBroadcastState} 获取最新的用户视角状态。
+     * 如果需要立即获取最新的用户视角状态，可以调用 {@link #getBroadcastState(Promise)}。
+     *
+     * @return 用户视角状态，详见 {@link BroadcastState BroadcastState}。
      */
     public BroadcastState getBroadcastState() {
         return syncRoomState.getDisplayerState().getBroadcastState();
     }
 
     /**
-     * 异步API 获取用户视角状态
+     * 获取用户视角状态。
      *
-     * @param promise 完成回调
+     * @note
+     * - 该方法为异步调用。
+     * - 调用 {@link #setViewMode(ViewMode)} 修改用户视角后，无法立刻通过 {@link getBroadcastState getBroadcastState} 获取最新的用户视角状态。如果需要
+     * 立即获取最新的用户视角状态，可以调用 {@link #getBroadcastState(Promise)}。
+     *
+     * @param promise `Promise<BroadcastState>` 接口实例，详见 {@link Promise<T> Promise<T>}。你可以通过该接口获取 `getBroadcastState` 的调用结果：
+     * - 如果方法调用成功，则返回用户视角状态，详见 {@link BroadcastState BroadcastState}。
+     * - 如果方法调用失败，则返回错误码。
      */
     public void getBroadcastState(final Promise<BroadcastState> promise) {
         bridge.callHandler("room.getBroadcastState", new Object[]{}, new OnReturnValue<Object>() {
@@ -535,21 +569,36 @@ public class Room extends Displayer {
     }
 
     /**
-     * 同步缓存API 获取房间当前场景目录下场景状态。
+     * 获取房间当前场景组下的场景状态。
      *
-     * 当调用 {@link #setScenePath(String, Promise)}、{@link #setScenePath(String)}、{@link #putScenes(String, Scene[], int)}
-     * 等 API 时，该 API 不会立即更新，此时如需立即获取 SceneState，请使用 {@link #getSceneState(Promise)} 异步API。
-     *
-     * @see SceneState
      * @since 2.4.0
+     *
+     * @note
+     * - 该方法为同步调用。
+     * - 调用以下方法修改或新增场景后，无法通过 {@link getSceneState() getSceneState} 立即获取最新的场景状态。此时，如果需要立即获取最新的场景状态，可以调用 {@link #getSceneState(Promise)}。
+     *  - {@link #setScenePath(String, Promise)}
+     *  - {@link #setScenePath(String)}
+     *  - {@link #putScenes(String, Scene[], int)}
+     *
+     * @return 当前场景组下的场景状态，详见 {@link SceneState SceneState}。
      */
     public SceneState getSceneState() {
         return syncRoomState.getDisplayerState().getSceneState();
     }
 
     /**
-     * 异步API 获取房间当前场景目录下场景状态
-     * @param promise 完成回调
+     * 获取房间当前场景组下的场景状态。
+     *
+     * @note
+     * - 该方法为异步调用。
+     * - 调用以下方法修改或新增场景后，你可以通过 {@link #getSceneState(Promise)} 立即获取最新的场景状态。
+     *  - {@link #setScenePath(String, Promise)}
+     *  - {@link #setScenePath(String)}
+     *  - {@link #putScenes(String, Scene[], int)}
+     *
+     * @param promise `Promise<SceneState>` 接口实例，详见 {@link Promise<T> Promise<T>}。你可以通过该接口获取 `getSceneState` 的调用结果：
+     * - 如果方法调用成功，则返回场景状态，详见 {@link SceneState SceneState}。
+     * - 如果方法调用失败，则返回错误码。
      */
     public void getSceneState(final Promise<SceneState> promise) {
         bridge.callHandler("room.getSceneState", new Object[]{}, new OnReturnValue<Object>() {
@@ -571,21 +620,36 @@ public class Room extends Displayer {
     }
 
     /**
-     * 同步缓存API 获取房间当前场景目录下场景列表。
-     *
-     * 当调用 {@link #setScenePath(String, Promise)}、{@link #setScenePath(String)}、{@link #putScenes(String, Scene[], int)}
-     * 等 API 后，该 API 不会立即更新，此时如需立即获取 SceneState，请使用 {@link #getScenes(Promise)} 异步API。
+     * 获取房间当前场景组下的场景列表。
      *
      * @since 2.4.0
+     *
+     * @note
+     * - 该方法为同步调用。
+     * - 调用以下方法修改或新增场景后，无法通过 {@link getScenes() getScenes} 立即获取最新的场景列表。此时，如果需要立即获取最新的场景列表，可以调用 {@link #getScenes(Promise)}。
+     *  - {@link #setScenePath(String, Promise)}
+     *  - {@link #setScenePath(String)}
+     *  - {@link #putScenes(String, Scene[], int)}
+     *
+     * @return 当前场景组下的场景列表，详见 {@link Scene Scene}。
      */
     public Scene[] getScenes() {
         return this.getSceneState().getScenes();
     }
 
     /**
-     * 异步API 获取房间当前场景目录下场景列表。
+     * 获取房间当前场景组下的场景列表。
      *
-     * @param promise 完成回调
+     * @note
+     * - 该方法为异步调用。
+     * - 调用以下方法修改或新增场景后，可以调用 {@link #getScenes(Promise)}，立即获取最新的场景列表。
+     *  - {@link #setScenePath(String, Promise)}
+     *  - {@link #setScenePath(String)}
+     *  - {@link #putScenes(String, Scene[], int)}
+     *
+     * @param promise `Promise<Scene[]>` 接口实例，详见 {@link Promise<T> Promise<T>}。你可以通过该接口获取 `getScenes` 的调用结果：
+     * - 如果方法调用成功，则返回场景列表，详见 {@link Scene Scene}。
+     * - 如果方法调用失败，则返回错误码。
      */
     public void getScenes(final Promise<Scene[]> promise) {
         bridge.callHandler("room.getScenes", new Object[]{}, new OnReturnValue<Object>() {
@@ -608,23 +672,33 @@ public class Room extends Displayer {
 
 
     /**
-     * 同步缓存API 获取当前用户缩放比例。
+     * 获取当前用户的视野缩放比例。
      *
-     * 当调用 {@link #zoomChange(double)}、{@link #moveCamera(CameraConfig)} API 进行调整缩放比例后，该 API 不会立刻更新
-     * 此时请调用 {@link #getZoomScale()} 异步API
-     *
-     * @return 房间缩放比例
      * @since 2.4.0
+     *
+     * // TODO 是不是已经废弃了？ Web 的已经废弃。改用什么？
+     *
+     * @note
+     * - 该方法为同步调用。
+     * - 调用 {@link #zoomChange(double)} 或 {@link #moveCamera(CameraConfig)} 调整视野缩放比例后，无法通过 {@link getZoomScale() getZoomScale} 立即获取最新的缩放比例。此时，如果需要立即获取最新的缩放比例，可以调用 {@link #getZoomScale(Promise)}。
+     *
+     * @return 视野缩放比例。
      */
     public double getZoomScale() {
         return syncRoomState.getDisplayerState().getZoomScale();
     }
 
     /**
-     * 异步API 获取房间缩放比例
+     * 获取当前用户的视野缩放比例。
      *
-     * 一般情况下，请使用 {@link #getZoomScale()} 同步 API 进行获取。
-     * @param promise 获取完成后回调
+     * // TODO 是否已废弃？改用什么？
+     * @note
+     * - 该方法为异步调用。
+     * - 调用 {@link #zoomChange(double)} 或 {@link #moveCamera(CameraConfig)} 调整视野缩放比例后，如果需要立即获取最新的缩放比例，可以调用 {@link #getZoomScale(Promise)}。
+     *
+     * @param promise `Promise<Number>` 接口实例，详见 {@link Promise<T> Promise<T>}。你可以通过该接口获取 `getZoomScale` 的调用结果：
+     * - 如果方法调用成功，则返回视野缩放比例。
+     * - 如果方法调用失败，则返回错误码。
      */
     public void getZoomScale(final Promise<Number> promise) {
         bridge.callHandler("room.getZoomScale", new OnReturnValue<Object>() {
@@ -646,22 +720,32 @@ public class Room extends Displayer {
     }
 
     /**
-     * 同步缓存API 获取房间连接状态
+     * 获取房间连接状态。
      *
-     * 当主动调用 {@link #disconnect()} {@link #disconnect(Promise)} API 时，该 API 无法立即更新，此时可以使用
-     * {@link #getRoomPhase()} 异步 API
-     * @see RoomPhase
      * @since 2.4.0
+     *
+     * @note
+     * - 该方法为同步调用。
+     * - 调用 {@link #disconnect()} 或 {@link #disconnect(Promise)} 断开 SDK 与实时房间的连接后，无法立即通过 {@link getRoomPhase() getRoomPhase} 获取最新的房间连接状态。
+     * 此时，你可以调用 {@link #getRoomPhase()} 立即获取最新的房间连接状态。
+     *
+     * @return 房间的连接状态，详见 {@link RoomPhase RoomPhase}。
      */
     public RoomPhase getRoomPhase() {
         return this.roomPhase;
     }
 
     /**
-     * 异步 获取房间连接状态
+     * 获取房间连接状态。
      *
-     * 普通情况下，请使用 {@link #getRoomPhase()} 同步 API 进行获取。
-     * @param promise 获取所有状态后，完成回调
+     * @note
+     * - 该方法为异步调用。
+     * - 调用 {@link #disconnect()} 或 {@link #disconnect(Promise)} 断开 SDK 与实时房间的连接后，无法立即通过 {@link getRoomPhase() getRoomPhase} 获取最新的房间连接状态。
+     * 此时，你可以调用 {@link #getRoomPhase()} 立即获取最新的房间连接状态。
+     *
+     * @param promise `Promise<RoomPhase>` 接口实例，详见 {@link Promise<T> Promise<T>}。你可以通过该接口获取 `getRoomPhase` 的调用结果：
+     * - 如果方法调用成功，则返回房间连接状态，详见 {@link RoomPhase RoomPhase}。
+     * - 如果方法调用失败，则返回错误码。
      */
     public void getRoomPhase(final Promise<RoomPhase> promise) {
         bridge.callHandler("room.getRoomPhase", new OnReturnValue<Object>() {
@@ -683,22 +767,30 @@ public class Room extends Displayer {
     }
 
     /**
-     * 同步缓存API 获取实时房间内所有状态。
-     * 当调用场景 API 后，想要立即获取 sceneState 相关内容时，请使用异步 {@link #getRoomState(Promise)}
+     * 获取实时房间所有状态。
      *
-     * @return RoomState
-     * @see RoomState
      * @since 2.4.0
+     *
+     * @note
+     * - 该方法为同步调用。
+     * - 修改房间的状态属性后，无法立即通过 {@link getRoomState() getRoomState} 获取最新的房间状态。此时，如果需要立即获取最新的房间状态，可以调用 {@link #getRoomState(Promise)} 获取。
+     *
+     * @return 房间当前的所有状态，详见 {@link RoomState RoomState}。
      */
     public RoomState getRoomState() {
         return syncRoomState.getDisplayerState();
     }
 
     /**
-     * 异步API 获取实时房间内所有状态
+     * 获取实时房间所有状态。
      *
-     * 如果只是简单获取房间状态，请使用 {@link #getRoomState()} 同步 API，进行获取。
-     * @param promise 获取所有状态后，完成回调
+     * @note
+     * - 该方法为同步调用。
+     * - 修改房间的状态属性后，无法立即通过 {@link getRoomState() getRoomState} 获取最新的房间状态。此时，如果需要立即获取最新的房间状态，可以调用 {@link #getRoomState(Promise)} 获取。
+     *
+     * @param promise `Promise<RoomState>` 接口实例，详见 {@link Promise<T> Promise<T>}。你可以通过该接口获取 `getRoomState` 的调用结果：
+     * - 如果方法调用成功，则返回房间所有状态，详见 {@link RoomState RoomState}。
+     * - 如果方法调用失败，则返回错误码。
      */
     public void getRoomState(final Promise<RoomState> promise) {
         bridge.callHandler("room.state.getDisplayerState", new OnReturnValue<Object>() {

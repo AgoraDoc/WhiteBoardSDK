@@ -25,8 +25,10 @@ public class WhiteSdkConfiguration extends WhiteObject {
         /**
          * SVG 渲染模式。
          * 2.8.0 及之前版本的 `whiteSDK` 默认使用的渲染模式，兼容性较好，但性能较差。
+         * 2.8.0
          * Android 6.1 ~ Android 8.1 有部分机器无法渲染 canvas 模式，只能用这个，默认 sdk 中会使用 svg 模式
          * // TODO 这个默认是指 2.8.0 之前版本的 `whiteSDK` 默认为 svg，还是指 Android 6.1 ~ Android 8.1 有部分机器上默认就是 SVG？
+         * Android 6.1 ~ Android 8.1 根据版本判断。
          */
         @SerializedName("svg")
         svg,
@@ -34,10 +36,10 @@ public class WhiteSdkConfiguration extends WhiteObject {
          * Canvas 渲染模式。
          *
          * 2.8.0 版本起新增 Canvas 渲染模式，其性能较好，但兼容性较差。
-         * 2.9.0 及之后版本的 `whiteSDK` 默认使用 Canvas 渲染模式。
+         * 2.9.0 及之后版本的 `whiteSDK` 默认使用 Canvas 渲染模式。// TODO 根据 Android 版本 （6.1 ~ Android 8.1） 自动切换为 SVG。
          *
          * @note
-         * 部分 Android 6.1 至 Android 8.1 设备无法支持 canvas 渲染模式，请设置为 svg 渲染模式。
+         * 部分 Android 6.1 至 Android 8.1 设备无法支持 canvas 渲染模式，请设置为 svg 渲染模式。（例外）
          */
         @SerializedName("canvas")
         canvas,
@@ -167,11 +169,11 @@ public class WhiteSdkConfiguration extends WhiteObject {
      * @note
      * 初始化 `WhiteSdk` 时，如果你实现并传入 {@link AudioMixerBridge AudioMixerBridge} 类，SDK 会自动设置 'setEnableRtcIntercept(true)'。你无需主动调用该方法。
      * // TODO 如果初始化 `WhiteSdk` 时传入了 {@link AudioMixerBridge AudioMixerBridge} 类，SDK 会自动设置了 'setEnableRtcIntercept(true)'，然后再调用 'setEnableRtcIntercept(false)' 会怎样？
-     *
+     * //  Answer: 初始化之后，调用 sdk 配置类里的任何方法都不生效。
      * @param enableRtcIntercept 是否启用 RTC SDK 的混音方法播放动态 PPT 中的音频：
      * - `true`：启用。
      * - `false`：（默认）不启用。
-     *
+     * 文档中隐藏
      */
     void setEnableRtcIntercept(boolean enableRtcIntercept) {
         this.enableRtcIntercept = enableRtcIntercept;
@@ -302,8 +304,8 @@ public class WhiteSdkConfiguration extends WhiteObject {
      *
      * @param appIdentifier 白板项目的唯一标识。详见获取白板项目的 App Identifier。
      * @param log 是否开启 debug 日志回调:
-     *  - `true`：(默认)开启。// TODO 默认是开启吗？
-     *  - `false`: 关闭。
+     *  - `true`：开启。
+     *  - `false`: (默认)关闭。
      *  @note 该日志仅包含调用初始化互动白板 SDK、加入房间和开始回放等方法的回调。
      */
     public WhiteSdkConfiguration(String appIdentifier, boolean log) {
@@ -403,8 +405,8 @@ public class WhiteSdkConfiguration extends WhiteObject {
      * 开启仅接收远端用户状态改变回调后，本地用户状态改变不会触发回调。
      *
      * @param onlyCallbackRemoteStateModify 是否开启仅接收远端用户状态改变回调：
-     * - `true`：是。
-     * - `false`：（默认）否。// TODO 默认？
+     * - `true`：开启。
+     * - `false`：（默认）关闭。
      */
     public void setOnlyCallbackRemoteStateModify(boolean onlyCallbackRemoteStateModify) {
         this.onlyCallbackRemoteStateModify = onlyCallbackRemoteStateModify;

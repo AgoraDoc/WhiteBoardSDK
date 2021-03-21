@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * `RoomParams` 类，用于配置实时房间的参数。
  *
- * @note 在加入房间前调用。// TODO 是必须在调用 `joinRoom' 前调用吗？
+ * @note 在加入房间前调用。// TODO 是必须在调用 `joinRoom' 前调用吗？// 是的，在 joinRoom 后调用不生效。
  */
 public class RoomParams extends WhiteObject {
 
@@ -68,7 +68,7 @@ public class RoomParams extends WhiteObject {
      * 如果设置为 `false`，则用户以订阅模式加入房间，在房间内只具有只读权限，将不会出现在房间的成员列表中，其他用户无法得知该用户的存在。
      *
      * @note
-     * 互动模式API，设置为订阅（false）的房间，无法操作影响房间的 API。// TODO 这句话的意思是如果白板房间为订阅模式（即只读模式），则该方法不生效？
+     * 互动模式API，设置为订阅（false）的房间，无法操作影响房间的 API。// TODO 这句话的意思是如果白板房间为订阅模式（即只读模式），则该方法不生效？// 白板房间本身没有互动和只读模式
      *
      * @param writable 用户是否以互动模式加入白板房间：
      * - `true`：（默认）以互动模式加入白板房间。
@@ -108,7 +108,7 @@ public class RoomParams extends WhiteObject {
      * 设置加入房间的超时时间。
      *
      * @param timeout 超时时长。
-     * @param timeUnit 时长单位。// TODO 取值是？
+     * @param timeUnit 时长单位。// TODO java 基础类 查看 Android API 文档
      */
     public void setTimeout(long timeout, TimeUnit timeUnit) {
         this.timeout = TimeUnit.MILLISECONDS.convert(timeout, timeUnit);
@@ -128,7 +128,7 @@ public class RoomParams extends WhiteObject {
     }
 
     /**
-     * 开启/禁止教具响应用户输入。 // TODO 禁止用户使用教具在白板上输入？
+     * 开启/禁止教具响应用户输入。 // TODO 禁止用户使用教具在白板上输入？一样的意思
      *
      * @since 2.5.0
      *
@@ -191,9 +191,6 @@ public class RoomParams extends WhiteObject {
      *
      * @since 2.5.0
      *
-     * @note
-     * // TODO 开启贝塞尔曲线优化有什么不良影响吗？
-     *
      * @param disableBezier 是否关闭贝塞尔曲线优化：
      * - `true`: 关闭贝塞尔曲线优化。
      * - `false`: （默认）开启贝塞尔曲线优化。
@@ -222,7 +219,7 @@ public class RoomParams extends WhiteObject {
      *
      * @param disableCameraTransform 是否禁止本地用户操作白板视角：
      * - `true`：禁止本地用户操作白板视角。
-     * - `false`：允许本地用户操作白板视角。// TODO 默认值？
+     * - `false`：（默认）允许本地用户操作白板视角。
      */
     public void setDisableCameraTransform(boolean disableCameraTransform) {
         this.disableCameraTransform = disableCameraTransform;
@@ -266,10 +263,9 @@ public class RoomParams extends WhiteObject {
      *
      * @since 2.0.0
      *
-     * 推荐使用 {@link WhiteObject} 子类，以保证字段结构正确  // TODO 如何使用 WhiteObject 子类？需要怎样的字段结构？
-     *
      * @note
-     * 自定义的用户信息会被完整透传，请确保字段结构正确。
+     * - 必须使用 {@link WhiteObject} 子类，以保证字段结构正确
+     * - 自定义的用户信息会被完整透传。
      *
      * 如果要在白板房间中显示用户头像，请在 `userPayload` 中传入 `avatar` 字段并添加用户头像的地址，例如 `"avatar", "https://example.com/user.png")`。
      * 从 {@link MemberInformation MemberInformation} 迁移，只需要在 `userPayload` 中，传入相同字段即可。
@@ -318,7 +314,7 @@ public class RoomParams extends WhiteObject {
      * @param roomToken 用于鉴权的 Room Token。生成该 Room Token 的房间 UUID 必须和上面传入的房间 UUID 一致。
      * @param userPayload 自定义用户信息，必须为 key-value 结构。
      * 参考 {@link #setUserPayload(Object)} key-value 结构，请使用自定义后的 {@link WhiteObject} 子类。// TODO ???
-     * // TODO 初始化房间配置参数时传入自定义用户信息 调用 setUserPayload 什么关系？初始化的时候传入了 userPayload，就不需要再调用 setUserPayload 了？如果调用了，会怎样？
+     * // TODO 初始化房间配置参数时传入自定义用户信息 调用 setUserPayload 什么关系？初始化的时候传入了 userPayload，就不需要再调用 setUserPayload 了？如果调用了，会怎样？// 初始化后调用 setUserPayload 可以更新用户信息
      *
      */
     public RoomParams(String uuid, String roomToken, Object userPayload) {

@@ -46,7 +46,7 @@ public class WhiteboardView extends DWebView {
      * 初始化白板界面。
      *
      * @param context 安卓活动 (Android Activity) 的上下文。
-     * @param attrs 自定义控件属性，详见 Android 文档。// TODO ???
+     * @param attrs 自定义控件属性，详见 Android 文档。
      */
     public WhiteboardView(Context context, AttributeSet attrs) {
         super(getFixedContext(context), attrs);
@@ -57,6 +57,7 @@ public class WhiteboardView extends DWebView {
      * 获取安卓活动 (Android Activity) 的上下文。// TODO ??? 什么意思？是否要对外暴露？
      * @param context
      * @return
+     * 兼容 API 文档中隐藏
      */
     public static Context getFixedContext(Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
@@ -92,6 +93,7 @@ public class WhiteboardView extends DWebView {
      * @param method
      * @param args
      * @param handler
+     * 内部调用，文档中隐藏
      */
     public <T> void callHandler(String method, Object[] args, OnReturnValue<T> handler) {
         super.callHandler(method, toMaps(args), handler);
@@ -101,6 +103,7 @@ public class WhiteboardView extends DWebView {
      * // TODO ？？？
      * @param method
      * @param args
+     * 内部调用，文档中隐藏
      */
     public void callHandler(String method, Object[] args) {
         this.callHandler(method, args, null);
@@ -111,6 +114,7 @@ public class WhiteboardView extends DWebView {
      * @param <T>
      * @param method
      * @param handler
+     * 内部调用，文档中隐藏
      */
     public <T> void callHandler(String method, OnReturnValue<T> handler) {
         this.callHandler(method, null, handler);
