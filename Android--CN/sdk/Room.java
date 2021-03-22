@@ -286,7 +286,7 @@ public class Room extends Displayer {
      *
      * @param promise 'Promise<Object>' 接口实例，详见 {@link Promise<T> Promise<T>}。你可以通过该接口获取 `disconnect` 的调用结果：
      * - 如果方法调用成功，则返回房间对象。// TODO 方法调用成功，返回什么？
-     * - 如果方法调用失败，则返回错误码。// TODO 方法调用失败，是返回错误码，还是错误信息？
+     * - 如果方法调用失败，则返回错误信息。// TODO 方法调用失败，是返回错误信息，还是错误信息？
      */
     public void disconnect(@Nullable final Promise<Object> promise) {
         setDisconnectedBySelf(true);
@@ -388,7 +388,7 @@ public class Room extends Displayer {
      *
      * @param promise `Promise<GlobalState>` 接口实例，详见 {@link Promise<T> Promise<T>}。你可以通过该接口获取 `getGlobalState` 的调用结果：
      * - 如果方法调用成功，则返回 `GlobalState` 对象。
-     * - 如果方法调用失败，则返回错误码。
+     * - 如果方法调用失败，则返回错误信息。
      */
     public void getGlobalState(final Promise<GlobalState> promise) {
         getGlobalState(GlobalState.class, promise);
@@ -456,7 +456,7 @@ public class Room extends Displayer {
      *
      * @param promise `Promise<MemberState>` 接口实例，详见 {@link Promise<T> Promise<T>}。你可以通过该接口获取 `getMemberState` 的调用结果：
      * - 如果方法调用成功，则返回用户教具状态，详见 {@link MemberState MemberState}。
-     * - 如果方法调用失败，则返回错误码。
+     * - 如果方法调用失败，则返回错误信息。
      *
      */
     public void getMemberState(final Promise<MemberState> promise) {
@@ -500,7 +500,7 @@ public class Room extends Displayer {
      *
      * @param promise `Promise<RoomMember[]>` 接口实例，详见 {@link Promise<T> Promise<T>}。你可以通过该接口获取 `getRoomMembers` 的调用结果：
      * - 如果方法调用成功，则返回用户列表，详见 {@link RoomMember RoomMember}。
-     * - 如果方法调用失败，则返回错误码。
+     * - 如果方法调用失败，则返回错误信息。
      */
     public void getRoomMembers(final Promise<RoomMember[]> promise) {
         bridge.callHandler("room.getRoomMembers", new Object[]{}, new OnReturnValue<Object>() {
@@ -547,7 +547,7 @@ public class Room extends Displayer {
      *
      * @param promise `Promise<BroadcastState>` 接口实例，详见 {@link Promise<T> Promise<T>}。你可以通过该接口获取 `getBroadcastState` 的调用结果：
      * - 如果方法调用成功，则返回用户视角状态，详见 {@link BroadcastState BroadcastState}。
-     * - 如果方法调用失败，则返回错误码。
+     * - 如果方法调用失败，则返回错误信息。
      */
     public void getBroadcastState(final Promise<BroadcastState> promise) {
         bridge.callHandler("room.getBroadcastState", new Object[]{}, new OnReturnValue<Object>() {
@@ -598,7 +598,7 @@ public class Room extends Displayer {
      *
      * @param promise `Promise<SceneState>` 接口实例，详见 {@link Promise<T> Promise<T>}。你可以通过该接口获取 `getSceneState` 的调用结果：
      * - 如果方法调用成功，则返回场景状态，详见 {@link SceneState SceneState}。
-     * - 如果方法调用失败，则返回错误码。
+     * - 如果方法调用失败，则返回错误信息。
      */
     public void getSceneState(final Promise<SceneState> promise) {
         bridge.callHandler("room.getSceneState", new Object[]{}, new OnReturnValue<Object>() {
@@ -649,7 +649,7 @@ public class Room extends Displayer {
      *
      * @param promise `Promise<Scene[]>` 接口实例，详见 {@link Promise<T> Promise<T>}。你可以通过该接口获取 `getScenes` 的调用结果：
      * - 如果方法调用成功，则返回场景列表，详见 {@link Scene Scene}。
-     * - 如果方法调用失败，则返回错误码。
+     * - 如果方法调用失败，则返回错误信息。
      */
     public void getScenes(final Promise<Scene[]> promise) {
         bridge.callHandler("room.getScenes", new Object[]{}, new OnReturnValue<Object>() {
@@ -698,7 +698,7 @@ public class Room extends Displayer {
      *
      * @param promise `Promise<Number>` 接口实例，详见 {@link Promise<T> Promise<T>}。你可以通过该接口获取 `getZoomScale` 的调用结果：
      * - 如果方法调用成功，则返回视野缩放比例。
-     * - 如果方法调用失败，则返回错误码。
+     * - 如果方法调用失败，则返回错误信息。
      */
     public void getZoomScale(final Promise<Number> promise) {
         bridge.callHandler("room.getZoomScale", new OnReturnValue<Object>() {
@@ -745,7 +745,7 @@ public class Room extends Displayer {
      *
      * @param promise `Promise<RoomPhase>` 接口实例，详见 {@link Promise<T> Promise<T>}。你可以通过该接口获取 `getRoomPhase` 的调用结果：
      * - 如果方法调用成功，则返回房间连接状态，详见 {@link RoomPhase RoomPhase}。
-     * - 如果方法调用失败，则返回错误码。
+     * - 如果方法调用失败，则返回错误信息。
      */
     public void getRoomPhase(final Promise<RoomPhase> promise) {
         bridge.callHandler("room.getRoomPhase", new OnReturnValue<Object>() {
@@ -790,7 +790,7 @@ public class Room extends Displayer {
      *
      * @param promise `Promise<RoomState>` 接口实例，详见 {@link Promise<T> Promise<T>}。你可以通过该接口获取 `getRoomState` 的调用结果：
      * - 如果方法调用成功，则返回房间所有状态，详见 {@link RoomState RoomState}。
-     * - 如果方法调用失败，则返回错误码。
+     * - 如果方法调用失败，则返回错误信息。
      */
     public void getRoomState(final Promise<RoomState> promise) {
         bridge.callHandler("room.state.getDisplayerState", new OnReturnValue<Object>() {
@@ -814,33 +814,39 @@ public class Room extends Displayer {
 
     //region Scene API
     /**
-     * 切换至特定的场景,如需同时获取报错，或完成回调，请使用 {@link #setScenePath(String, Promise)}
+     * 切换至指定的场景。
      *
-     * 所有人都会同时切换到对应场景中
+     * 方法调用成功后，房间内的所有用户看到的白板都会切换到指定场景。
      *
-     * 切换失败的几种原因：
-     *  1. 路径不合法，请确定场景路径的定义。（以 "/" 开头）
-     *  2. 场景路径，对应的场景不存在。
-     *  3. 传入的地址，是场景目录，而不是场景路径。
+     * @note
+     * - 该方法为同步调用。
+     * - 如需获取方法调用回调，请使用 {@link #setScenePath(String, Promise)}。
      *
-     * @param path 想要切换的场景 的场景路径(场景目录+场景名）
+     * 场景切换失败可能有以下原因：
+     * - 路径不合法，请确保场景路径以 "/"，由场景组和场景名构成。
+     * - 场景路径对应的场景不存在。
+     * - 传入的路径是场景组的路径，而不是场景路径。
+     *
+     * @param path 想要切换到的场景的场景路径，请确保场景路径以 "/"，由场景组和场景名构成，例如，`/math/classA`.
      */
     public void setScenePath(String path) {
         bridge.callHandler("room.setScenePath", new Object[]{path});
     }
 
     /**
-     * 切换至特定的场景
+     * 切换至指定的场景。
      *
-     * 所有人都会同时切换到对应场景中
+     * 方法调用成功后，房间内的所有用户看到的白板都会切换到指定场景。
      *
-     * 切换失败的几种原因：
-     *  1. 路径不合法，请确定场景路径的定义。（以 "/" 开头）
-     *  2. 场景路径，对应的场景不存在。
-     *  3. 传入的地址，是场景目录，而不是场景路径。
+     * 场景切换失败可能有以下原因：
+     * - 路径不合法，请确保场景路径以 "/"，由场景组和场景名构成。
+     * - 场景路径对应的场景不存在。
+     * - 传入的路径是场景组的路径，而不是场景路径。
      *
-     * @param path 想要切换的场景 的场景目录
-     * @param promise 完成回调，如果出错会进入 catchEx
+     * @param path 想要切换到的场景的场景路径，请确保场景路径以 "/"，由场景组和场景名构成，例如，`/math/classA`.
+     * @param promise `Promise<Boolean>` 接口，详见 {@link Promise<T> Promise<T>}。你可以通过该接口获取 `setScenePath` 的调用结果：
+     * - 如果方法调用成功，则返回 `true`.
+     * - 如果方法调用失败，则返回错误信息。
      */
     public void setScenePath(String path, final Promise<Boolean> promise) {
         bridge.callHandler("room.setScenePath", new Object[]{path}, new OnReturnValue<String>() {
@@ -857,12 +863,15 @@ public class Room extends Displayer {
     }
 
     /**
-     * 在当前场景目录中，切换当前场景。
+     * 切换至当前场景组下的指定场景。
      *
-     * 当 index 超出当前目录的场景数，会报错，进入 promise 错误回调
+     * 方法调用成功后，房间内的所有用户看到的白板都会切换到指定场景。
+     * 指定的场景必须在当前场景组中，否则，方法调用会失败。
      *
-     * @param index 目标场景在当前场景目录下的 index。
-     * @param promise 设置完后回调
+     * @param index 目标场景在当前场景组下的 index。// TODO 这个 index 是怎么定义的？
+     * @param promise `Promise<Boolean>` 接口，详见 {@link Promise<T> Promise<T>}。你可以通过该接口获取 `setSceneIndex` 的调用结果：
+     * - 如果方法调用成功，则返回 `true`.
+     * - 如果方法调用失败，则返回错误信息。
      */
     public void setSceneIndex(Integer index, @Nullable final Promise<Boolean> promise) {
         bridge.callHandler("room.setSceneIndex", new Object[]{index}, new OnReturnValue<String>() {
