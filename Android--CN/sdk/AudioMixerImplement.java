@@ -5,6 +5,7 @@ import android.webkit.JavascriptInterface;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+
 public class AudioMixerImplement {
 
     AudioMixerImplement(WhiteboardView bridge, AudioMixerBridge mixerBridge) {
@@ -14,12 +15,15 @@ public class AudioMixerImplement {
 
     /**
      * 混音 API 完成后的状态回调
-     * @param state 混音状态
-     *  710: 成功调用 startAudioMixing 或 resumeAudioMixing
-     *  711: 成功调用 pauseAudioMixing
-     *  713: 成功调用 stopAudioMixing
-     *  714: 播放失败，error code 会有具体原因,
-     * @param errorCode 当播放失败时，该值有意义
+     * @param state 音乐文件播放状态：
+     *  - MEDIA_ENGINE_AUDIO_EVENT_MIXING_PLAY(710): RTC SDK 成功调用 `startAudioMixing` 播放音乐文件或 `resumeAudioMixing`  恢复播放音乐文件。
+     *  - MEDIA_ENGINE_AUDIO_EVENT_MIXING_PAUSED(711)：RTC SDK 成功调用 `pauseAudioMixing` 暂停播放音乐文件。
+     *  - MEDIA_ENGINE_AUDIO_EVENT_MIXING_STOPPED(713)：RTC SDK 成功调用 `stopAudioMixing` 停止播放音乐文件。
+     *  - MEDIA_ENGINE_AUDIO_EVENT_MIXING_ERROR(714)：音乐文件播放失败。SDK 会在 `errorCode` 参数中返回具体的报错原因。
+     * @param errorCode 音乐文件播放失败的原因：
+     * - MEDIA_ENGINE_AUDIO_ERROR_MIXING_OPEN(701)：音乐文件打开出错。
+     * - MEDIA_ENGINE_AUDIO_ERROR_MIXING_TOO_FREQUENT(702)：音乐文件打开太频繁。
+     * - MEDIA_ENGINE_AUDIO_EVENT_MIXING_INTERRUPTED_EOF(703)：音乐文件播放异常中断。
      */
     public void setMediaState(long state, long errorCode) {
         this.bridge.callHandler("rtc.callback", new Object[]{state, errorCode});

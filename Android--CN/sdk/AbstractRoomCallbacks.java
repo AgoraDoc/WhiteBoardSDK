@@ -8,6 +8,9 @@ import com.herewhite.sdk.domain.RoomState;
  * Created by buhe on 2018/8/12.
  */
 
+/**
+ * // TODO 是否在文档中隐藏？
+ */
 public abstract class AbstractRoomCallbacks implements RoomCallbacks {
     @Override
     public void onPhaseChanged(RoomPhase phase) {

@@ -2,6 +2,9 @@ package com.herewhite.sdk;
 
 import android.util.Log;
 
+/**
+ * // TODO 在文档中隐藏？
+ */
 public class Logger {
 
     public final static String LOG_TAG = "WhiteSDK";

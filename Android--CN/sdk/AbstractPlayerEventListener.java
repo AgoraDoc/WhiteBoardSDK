@@ -9,6 +9,9 @@ import com.herewhite.sdk.domain.SDKError;
  * Created by buhe on 2018/8/12.
  */
 
+ /**
+  * // TODO 是否在文档中隐藏？
+  */
 public abstract class AbstractPlayerEventListener implements PlayerEventListener {
 
     @Override

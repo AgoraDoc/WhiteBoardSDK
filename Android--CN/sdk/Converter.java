@@ -26,6 +26,9 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+/**
+ * // TODO 是否在文档中隐藏？
+ */
 public class Converter {
 
     public enum ConvertType {

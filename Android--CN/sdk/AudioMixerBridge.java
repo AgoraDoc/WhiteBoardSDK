@@ -1,10 +1,23 @@
 package com.herewhite.sdk;
 
 /**
- * 当动态 PPT 触发音视频操作时，如果
+ * `AudioMixerBridge` 接口，用于桥接 RTC SDK 的混音方法和白板 SDK。// TODO 确认一下是否正确？
+ *
+ * @since 2.9.15
+ *
+ * 当用户同时使用音视频功能和互动白板，且在互动白板中展示的动态 PPT 包含音频文件时，可能遇到以下问题：
+ * - 播放 PPT 内的音频时声音很小
+ * - 播放 PPT 内的音频时有回声
+ *
+ * 为解决上述问题，你可以使用 `AudioMixerBridge` 接口，以调用 RTC SDK 的混音方法播放动态 PPT 中的音频文件。
+ *
+ * @note
+ * 仅当用户使用的 RTC SDK 支持混音方法时，该方法才会生效。
+ * // TODO 这个方法是否只在 Agora RTC SDK 上做过验证？如果是，这里直接改成 Agora RTC SDK 比较好。
  */
 public interface AudioMixerBridge {
 
+    // TODO 以下接口是否仅为内部调用，可以在文档中隐藏？
     /**
      * 进行混音，在混音后，需要将混音结果通过 {@link AudioMixerImplement#setMediaState(long, long)} 传递给动态 ppt 内部。
      * @param filepath 文件路径，可以是本地文件或者网络地址

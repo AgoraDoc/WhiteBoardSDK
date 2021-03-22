@@ -868,7 +868,7 @@ public class Room extends Displayer {
      * 方法调用成功后，房间内的所有用户看到的白板都会切换到指定场景。
      * 指定的场景必须在当前场景组中，否则，方法调用会失败。
      *
-     * @param index 目标场景在当前场景组下的 index。// TODO 这个 index 是怎么定义的？
+     * @param index 目标场景在当前场景组下的索引号。// TODO 如何获取这个索引号？
      * @param promise `Promise<Boolean>` 接口，详见 {@link Promise<T> Promise<T>}。你可以通过该接口获取 `setSceneIndex` 的调用结果：
      * - 如果方法调用成功，则返回 `true`.
      * - 如果方法调用失败，则返回错误信息。
@@ -891,10 +891,10 @@ public class Room extends Displayer {
     }
 
     /**
-     * 插入场景API，该 API 并不会自动切换到对应场景
+     * 在指定场景组下插入多个场景。
      *
-     * 向特定场景目录中，插入多个场景。
-     * 插入场景后，如果要将显示插入的场景，需要调用 {@link #setScenePath(String)} API，设置当前插入场景。
+     * @note
+     * 调用该方法插入多个场景后不会切换到新插入的场景。如果要切换至新插入的场景，需要调用 {@link #setScenePath(String)}。
      *
      * <pre>
      * {@code
@@ -903,54 +903,66 @@ public class Room extends Displayer {
      * }
      * </pre>
      *
-     * @param dir    场景目录，不能为场景路径（不能向文件中插入文件）
-     * @param scenes 插入的场景数组，单个场景为 {@link Scene}
-     * @param index  插入的场景数组中，第一个场景在该目录中的索引位置；填写的数字，超出该场景目录中已有场景的个数时，
-     *               会排在最后。
+     * @param dir    场景组名称，必须以 `/` 开头。不能为场景路径。
+     * @param scenes 由多个场景构成的数组。单个场景的字段详见 {@link Scene Scene}。
+     * @param index  待插入的场景数组中，第一个场景在该场景组的索引号。如果传入的索引号大于该场景组已有场景总数，新插入的场景会排在现有场景的最后。
+     * // TODO 是从传入的索引号之后开始插入新场景，还是新插入的场景就是这个传入的索引号？该数组中的其他场景会顺序排列在第一个场景之后？
      */
     public void putScenes(String dir, Scene[] scenes, int index) {
         bridge.callHandler("room.putScenes", new Object[]{dir, scenes, index});
     }
 
     /**
-     * 移动/重命名场景
+     * 移动场景。
      *
-     * 当移动的当前场景目录时，当前场景路径也会自动改变。
-     * targetDirOrPath 情况：
-     *  1. 目录：将 sourcePath 场景 移动至该目录中，场景名称不变。
-     *  2. 场景路径：将 sourcePath 场景，移动到该场景路径对应的目录中，并将 sourcePath 场景改名。
+     * 成功移动场景后，场景路径也会改变。
      *
-     * @param sourcePath 需要移动的场景路径(只接受场景路径，无法移动目录)
-     * @param targetDirOrPath 场景目录或场景路径
+     * @note
+     * - 该方法只能移动场景，不能移动场景组，即 `sourcePath` 只能是场景路径，不能是场景组路径。
+     * - 该方法支持改变指定场景在当前所属场景组下的位置，也支持将指定场景移至其他场景组。
+     *
+     * @param sourcePath 需要移动的场景原路径。必须为场景路径，不能是场景组的路径。
+     * @param targetDirOrPath 目标场景组路径或目标场景路径：
+     * - 当 `targetDirOrPath`设置为目标场景组时，表示将指定场景移至其他场景组中，场景路径会发生改变，但是场景名称不变。
+     * - 当 `targetDirOrPath`设置为目标场景路径时，表示改变指定场景在当前场景组的位置，场景路径和场景名都会发生改变。（// TODO 实质是重命名？）
      */
     public void moveScene(String sourcePath, String targetDirOrPath) {
         bridge.callHandler("room.moveScene", new Object[]{sourcePath, targetDirOrPath});
     }
 
     /**
-     * 移除场景或者场景组。房间中至少会存在一个场景。删除时，会自动清理不存在任何场景的场景目录。
+     * 删除场景或者场景组。
      *
-     * 1. 删光房间内的场景：自动生成一个名为 init，场景路径为 "/init" 的初始场景（房间初始化时的默认场景）
-     * 2. 删除当前场景：场景会指向被删除场景同级目录中后一个场景（即 index 不发生改变）。
-     * 3. 删除包含当前场景的场景目录 dirA：向上递归，寻找场景目录同级的场景目录。
+     * @note
+     * - 互动白板实时房间内必须至少有一个场景。当删除所有的场景后，SDK 会自动生成一个路径为 `/init` 初始场景（房间初始化时的默认场景）。
+     * // TODO 是删除所有场景后，会自动生成一个初始场景？还是默认的初始场景根本无法删除？
+     * - 如果删除白板当前所在场景，白板会指向被删除场景所在场景组的最后一个场景（即 index 不发生改变）。
+     * // TODO 指向最后一个场景，是在白板中展示最后一个场景的意思吗？
+     * // TODO 为什么指向最后一个场景，index 不会变？例如，场景组中有 6 个场景，删除的是 3，后面的场景的 index 不会前移吗？
+     * - 如果删除的是场景组，则该场景组下的所有场景都会被删除。
+     * - 如果删除的是当前场景所在的场景组，SDK 会向上递归，寻找与该场景组同级的场景组：
+     * // TODO 下面的内容不是特别理解，能否解释一下？
+     * 删除包含当前场景的场景目录 dirA：向上递归，寻找场景目录同级的场景目录。
      *      3.1 如果上一级目录中，还有其他场景目录 dirB（可映射文件夹概念），排在被删除的场景目录 dirA 后面，则当前场景会变成
      *      dirB 中的第一个场景（index 为 0）；
      *      3.2 如果上一级目录中，在 dirA 后不存在场景目录，则查看当前目录是否存在场景；
-     *          如果存在，则该场景成为当前目录（index 为 0 的场景目录）。
+     *          如果存在，则该场景成为当前目录（index 为 0 的场景目录）。// TODO 如果存在多个场景组，优先选择哪个场景？
      *      3.3 如果上一级目录中，dirA 后没有场景目录，当前上一级目录，也不存在任何场景；
      *          则查看是否 dirA 前面是否存在场景目录 dirC，选择 dir C 中的第一顺位场景
      *      3.4 以上都不满足，则继续向上递归执行该逻辑。
      *
-     * @param dirOrPath 场景目录，或者场景路径。传入目录会删除目录下所有场景。
+     * @param dirOrPath 场景组路径或者场景路径。如果传入的是场景组，则会删除该场景组下的所有场景。
      */
     public void removeScenes(String dirOrPath) {
         bridge.callHandler("room.removeScenes", new Object[]{dirOrPath});
     }
 
     /**
-     * 清屏 API，清理当前场景的所有内容
+     * 清除当前场景的所有内容。
      *
-     * @param retainPpt 是否保留 ppt 内容。true:保留 ppt；false：连 ppt 一起清空。
+     * @param retainPpt 是否保留 PPT 内容：
+     * - `true`：保留 PPT。
+     * - `false`：连 PPT 一起清空。
      */
     public void cleanScene(boolean retainPpt) {
         bridge.callHandler("room.cleanScene", new Object[]{retainPpt});
@@ -959,16 +971,24 @@ public class Room extends Displayer {
 
     //region PPT
     /**
-     * 动态 PPT 下一步操作。当前 ppt 页面的动画已全部执行完成时，会进入下一页 ppt 页面（场景）
+     * 播放动态 PPT 下一页。
+     *
      * @since 2.2.0
+     *
+     * 当前 PPT 页面的动画已全部执行完成时，切换至下一页 PPT。
+     *
      */
     public void pptNextStep() {
         bridge.callHandler("ppt.nextStep", new Object[]{});
     }
 
     /**
-     * 动态 PPT 上一步操作。当前 ppt 页面的动画全部回退完成时，会回滚至上一页 ppt 页面（场景）
+     * 返回动态 PPT 上一页。
+     *
      * @since 2.2.0
+     *
+     * 当前 PPT 页面的动画全部回退完成时，返回至上一页 PPT。// TODO 为什么是回退完成，而不是执行完成？
+     *
      */
     public void pptPreviousStep() {
         bridge.callHandler("ppt.previousStep", new Object[]{});
@@ -976,9 +996,10 @@ public class Room extends Displayer {
     //endregion
 
     /**
-     * 改变房间缩放比例
-     * @deprecated 使用 {@link #moveCamera(CameraConfig)} 调整缩放比例，新 API 同时支持动画选项
-     * @param scale 缩放比例，2x 表示内容放大两倍。
+     * 更新房间缩放比例。
+     *
+     * @deprecated 该方法已经废弃。请使用 {@link #moveCamera(CameraConfig)}。
+     * @param scale 缩放比例。// TODO 与 Web 研发确认取值范围。（Android 研发不确定）
      */
     @Deprecated
     public void zoomChange(double scale) {
@@ -988,9 +1009,13 @@ public class Room extends Displayer {
     }
 
     /**
-     * 返回 debug 用信息
-     * @param promise
+     * 获取 debug 信息。
+     *
      * @since 2.6.2
+     *
+     * @param promise `Promise<JSONObject>` 接口实例，详见 {@link Promise<T> Promise<T>}。你可以通过该接口获取 `debugInfo` 的调用结果：
+     * - 如果方法调用成功，则返回 debug 信息。
+     * - 如果方法调用失败，则返回错误信息。
      */
     public void debugInfo(final Promise<JSONObject> promise) {
         bridge.callHandler("room.state.debugInfo", new OnReturnValue<JSONObject>() {
@@ -1004,9 +1029,15 @@ public class Room extends Displayer {
 
     //region Disable
     /**
-     * 禁止操作，不响应用户任何操作。
+     * 允许/禁止白板响应用户任何操作。
      *
-     * @param disableOperations true:不响应用户操作；false:响应用户操作。默认:false。
+     * 该方法设置是否禁止白板响应用户的操作，包括：
+     * - `CameraTransform`：移动、缩放视野。
+     * - `DeviceInputs`：使用教具输入。
+     *
+     * @param disableOperations 允许/禁止白板响应用户任何操作。
+     * - `true`：不响应用户操作。
+     * - `false`：（默认）响应用户操作。
      */
     public void disableOperations(final boolean disableOperations) {
         disableCameraTransform(disableOperations);
@@ -1014,10 +1045,17 @@ public class Room extends Displayer {
     }
 
     /**
-     * 设置读写模式
-     * @param writable 是否可写
-     * @param promise 完成回调，并同时返回房间的读写状态
+     * 设置用户在房间中是否为互动模式。
+     * // TODO 这是是不是写更新或修改更合适？因为初始化房间实例的时候，设置过 setWritable，加入房间后在调用 setWritable 应该是修改或更新？
+     *
      * @since 2.6.1
+     *
+     * @param writable 用户在房间中是否为互动模式：
+     * - `true`：互动模式，即具有读写权限。
+     * - `false`：订阅模式，即具有只读权限。
+     * @param promise `Promise<Boolean>` 接口实例，详见 {@link Promise<T> Promise<T>}。你可以通过该接口获取 `setWritable` 的调用结果：
+     * - 如果方法调用成功，则返回用户在房间中的读写状态。
+     * - 如果方法调用失败，则返回错误信息。
      */
     public void setWritable(final boolean writable, @Nullable final Promise<Boolean> promise) {
         bridge.callHandler("room.setWritable", new Object[]{writable}, new OnReturnValue<String>() {
@@ -1043,29 +1081,41 @@ public class Room extends Displayer {
     }
 
     /**
-     * 中途切换橡皮对图片擦除的逻辑
-     * @param disable true 时，禁止擦除橡皮；false 时允许擦除。
+     * 关闭/开启橡皮擦擦除图片功能。
+     *
      * @since 2.9.3
+     *
+     * @param disable 是否关闭橡皮擦擦除图片功能：
+     * - `true`：禁止橡皮擦擦除图片。
+     * - `false`：（默认）允许橡皮擦擦除图片。
      */
     public void disableEraseImage(boolean disable) {
         bridge.callHandler("room.sync.disableEraseImage", new Object[]{disable});
     }
 
     /**
-     * 禁止用户视角变化（缩放，移动）。禁止后，开发者仍然可以通过 SDK API 移动视角。
+     * 禁止/允许用户改变（移动或缩放）视角。
      *
-     * @param disableCameraTransform true:禁止用户主动改变视角；false:允许用户主动改变视角。默认:false。
      * @since 2.2.0
+     *
+     * 禁止用户视角变化（缩放，移动）。禁止后，开发者仍然可以通过 SDK API 移动视角。// TODO 开发者通过什么 API 移动视角？
+     *
+     * @param disableCameraTransform 是否禁止用户移动或缩放视角：
+     * - `true`：禁止用户改变视角。
+     * - `false`：（默认）允许用户改变视角。
      */
     public void disableCameraTransform(final boolean disableCameraTransform) {
         bridge.callHandler("room.disableCameraTransform", new Object[]{disableCameraTransform});
     }
 
     /**
-     * 禁止用户教具操作
+     * 禁止/允许用户操作教具。// TODO 是用户任然可以点击选择教具，但是教具不响应，还是用户根本不能点击教具？
      *
-     * @param disableOperations true:禁止用户教具操作；false:响应用户教具输入操作。默认:false。
      * @since 2.2.0
+     *
+     * @param disableOperations 是否禁止用户操作教具：
+     * - `true`：禁止用户操作教具操作。
+     * - `false`：（默认）允许用户操作教具输入操作。
      */
     public void disableDeviceInputs(final boolean disableOperations) {
         bridge.callHandler("room.disableDeviceInputs", new Object[]{disableOperations});
@@ -1074,9 +1124,16 @@ public class Room extends Displayer {
 
     //region Delay API
     /**
-     * 主动延时 API，延迟播放远端白板同步画面（自己画的内容，会立即显示。防止用户感知错位）
+     * 设置远端白板画面同步延时。
      *
-     * @param delaySec 延时秒数
+     * 调用该方法后，SDK 会延迟同步远端白板画面。
+     *
+     * 设置远端白板画面同步延时，可以防止用户感知错位。（// TODO 音画同步？)
+     *
+     * @note
+     * 该方法不影响本地白板画面的显示，即用户在本地白板上的操作，会立即在本地白板显示。
+     *
+     * @param delaySec 延时时长，单位为秒。
      */
     public void setTimeDelay(Integer delaySec) {
         bridge.callHandler("room.setTimeDelay", new Object[]{delaySec * 1000});
@@ -1084,9 +1141,9 @@ public class Room extends Displayer {
     }
 
     /**
-     * 获取当前主动延时秒数
+     * 获取设置得远端白板画面同步延时。
      *
-     * @return 延时秒数
+     * @return 延时时长，单位为秒。
      */
     public Integer getTimeDelay() {
         return this.timeDelay;
@@ -1096,7 +1153,7 @@ public class Room extends Displayer {
     //region Event API
     /**
      * 自定义事件回调
-     *
+     * 文档中隐藏
      * @param eventEntry {@link EventEntry} 自定义事件内容，相对于 {@link AkkoEvent} 多了发送者的 memberId
      */
     void fireMagixEvent(EventEntry eventEntry) {
@@ -1112,6 +1169,10 @@ public class Room extends Displayer {
         }
     }
 
+    /**
+     * 文档中隐藏。
+     * @param eventEntries
+     */
     void fireHighFrequencyEvent(EventEntry[] eventEntries) {
         FrequencyEventListener eventListener = frequencyEventListenerConcurrentHashMap.get(eventEntries[0].getEventName());
         if (eventListener != null) {
@@ -1126,9 +1187,12 @@ public class Room extends Displayer {
     }
 
     /**
-     * 发送自定义事件，所有注册监听事件的客户端，都会收到通知。
+     * 发送自定义事件。
      *
-     * @param eventEntry 自定义事件内容，{@link AkkoEvent}
+     * @note
+     * 所有注册监听该事件的用户都会收到通知。
+     *
+     * @param eventEntry 自定义事件内容，详见 {@link AkkoEvent}。
      */
     public void dispatchMagixEvent(AkkoEvent eventEntry) {
         bridge.callHandler("room.dispatchMagixEvent", new Object[]{eventEntry});
