@@ -2,31 +2,45 @@ package com.herewhite.sdk.domain;
 
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * 输出日志选项。
+ */
 public class LoggerOptions extends WhiteObject {
 
     /**
+     * 日志等级。
+     *
+     * 日志级别顺序依次为 `error`、`warn`、`info`、和 `debug`。选择一个级别，你就可以看到在该级别之前所有级别的日志信息。
+     * 例如，你选择 `info` 级别，就可以看到在 `error`、`warn`、`info` 级别上的所有日志信息。
      * 最底层的 level，会包含上层日志信息
      * @since 2.11.10
      */
     public enum Level {
-        /** 调试日志：最详细的日志，目前内容与 info 一致 */
+        /** 调试日志：最详细的日志，目前内容与 `info` 一致。 */
         debug,
         /** 信息日志：主要为连接状态 */
         info,
-        /** 警告日志：主要为对开发者传入的部分不符合 sdk 参数时，进行自动调整的警告（API 弃用警告不会在上报） */
+        /**
+         * 警告日志：当传入的参数不符合 SDK 要求时，SDK 会自动调整并发出警告。
+         *
+         * @note
+         * 如果调用废弃 API，SDK 不会发出警告信息。
+         */
         warn,
-        /** 报错日志：直接导致 sdk 无法正常运行的信息 */
+        /** 报错日志：直接导致 SDK 无法正常运行的错误。*/
         error,
     }
 
     /**
+     * 上报模式。
+     *
      * @since 2.11.10
      */
     public enum ReportMode {
-        /** 总是上报 */
+        /** （默认）总是上报。 */
         @SerializedName("alwaysReport")
         always,
-        /** 不上报 */
+        /** 禁止上报。 */
         @SerializedName("banReport")
         ban,
     }
@@ -38,9 +52,13 @@ public class LoggerOptions extends WhiteObject {
     }
 
     /**
-     * 日志上报系统开关
-     * @deprecated 已弃用，请使用 {@link #getReportDebugLogMode()} {@link #getReportQualityMode()} 以及 {@link #getReportLevelMask()}
-     * @param disableReportLog 是否关闭日志上报。默认 false，即上报错误日志
+     * 开启/关闭日志上报。
+     *
+     * @deprecated 该方法已废弃。请使用 {@link #getReportDebugLogMode()}、{@link #getReportQualityMode()} 和 {@link #getReportLevelMask()}。
+     *
+     * @param disableReportLog 是否关闭日志上报；
+     * - `true`：关闭。
+     * - `false`：（默认）开启错误日志上报。
      */
     public void setDisableReportLog(Boolean disableReportLog) {
         if (disableReportLog) {
@@ -49,38 +67,63 @@ public class LoggerOptions extends WhiteObject {
         }
     }
 
+    /**
+     * 获取日志打印等级。
+     *
+     * @return 日志打印等级。详见 {@link LoggerOptions#Level Level}。
+     */
     public Level getPrintLevelMask() {
         return printLevelMask;
     }
 
     /**
-     * webview 中，日志打印等级（默认 info）
+     * 设置日志打印等级。
+     *
      * @since 2.11.10
+     *
+     * @note
+     * 该方法仅在 webview 中生效。// TODO 是只在 webview 中生效吗？
+     *
+     * @param printLevelMask 日志打印等级，详见 {@link LoggerOptions#Level Level}。默认等级为 `info`。
      */
     public void setPrintLevelMask(Level printLevelMask) {
         this.printLevelMask = printLevelMask;
     }
 
+    /**
+     * 获取 SDK 的日志上报等级。
+     *
+     * @return 日志上报等级，详见 {@link LoggerOptions#Level Level}。
+     */
     public Level getReportLevelMask() {
         return reportLevelMask;
     }
 
     /**
-     * sdk 日志信息上报等级（默认 info）
+     * 设置 SDK 上报的日志等级。// TODO 这个方法和 setPrintLevelMask 的区别是？上报的等级是否要大于等于打印等级？
      * @since 2.11.10
+     *
+     * @param reportLevelMask 日志上报等级，详见 {@link LoggerOptions#Level Level}。默认等级为 `info`。
      */
     public void setReportLevelMask(Level reportLevelMask) {
         this.reportLevelMask = reportLevelMask;
     }
 
+    /**
+     * 获取 SDK 上报日志信息的模式。
+     *
+     * @return 上报模式，详见 {@link ReportMode ReportMode}。
+     */
     public ReportMode getReportDebugLogMode() {
         return reportDebugLogMode;
     }
 
     /**
-     * sdk 日志信息上报
-     * 默认上报
+     * 设置 SDK 上报日志信息的模式。// TODO DebugLog 是指 Debug 等级的日志？
+     *
      * @since 2.11.10
+     *
+     * @param reportDebugLogMode 上报模式，详见 {@link ReportMode ReportMode}。默认为总是上报。
      */
     public void setReportDebugLogMode(ReportMode reportDebugLogMode) {
         this.reportDebugLogMode = reportDebugLogMode;
@@ -91,9 +134,11 @@ public class LoggerOptions extends WhiteObject {
     }
 
     /**
-     * 质量连接日志上报配置
-     * 默认上报
+     * 设置上报质量数据的模式。// TODO quality 是质量数据？
+     *
      * @since 2.11.10
+     *
+     * @param reportQualityMode 上报模式，详见 {@link ReportMode ReportMode}。默认为总是上报。
      */
     public void setReportQualityMode(ReportMode reportQualityMode) {
         this.reportQualityMode = reportQualityMode;

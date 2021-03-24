@@ -9,7 +9,7 @@ import com.herewhite.sdk.domain.RoomState;
  */
 
 /**
- * // TODO 是否在文档中隐藏？
+ * `RoomCallbacks` 接口的缺省（空）实现。详见 {@link RoomCallbacks RoomCallbacks}。
  */
 public abstract class AbstractRoomCallbacks implements RoomCallbacks {
     @Override

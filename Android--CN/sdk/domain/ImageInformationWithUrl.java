@@ -9,10 +9,10 @@ public class ImageInformationWithUrl extends WhiteObject {
     }
 
     /**
-     * `ImageInformationWithUrl` 构造方法。// TODO 是构造方法吗？
+     * `ImageInformationWithUrl` 构造方法，用于初始化 `ImageInformationWithUrl` 实例。
      *
-     * @param centerX 图片的中心在世界坐标系中的横向坐标
-     * @param centerY 图片的中心在世界坐标系中的纵向坐标
+     * @param centerX 图片的中心在世界坐标系中的横向坐标。
+     * @param centerY 图片的中心在世界坐标系中的纵向坐标。
      * @param width 图片的宽度，单位为像素。
      * @param height 图片的高度，单位为像素。
      * @param url 图片的 URL 地址。必须确保 app 客户端能访问该 URL，否则无法正常展示图片。

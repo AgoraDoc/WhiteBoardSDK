@@ -5,7 +5,9 @@ import android.webkit.JavascriptInterface;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
+/**
+ * `AudioMixerImplement` 类。// TODO 这个类的作用是？
+ */
 public class AudioMixerImplement {
 
     AudioMixerImplement(WhiteboardView bridge, AudioMixerBridge mixerBridge) {
@@ -14,7 +16,14 @@ public class AudioMixerImplement {
     }
 
     /**
-     * 混音 API 完成后的状态回调
+     * 设置音乐文件播放状态。
+     *
+     * 你需要在 RTC SDK 触发的 `onAudioMixingStateChanged` 回调中调用该方法，将音乐文件播放状态传递给白板 SDK。
+     * 通知白板 SDK 是否播放 PPT 中的视频，以确保 PPT 的音画同步。
+     * // TODO 是将音乐文件播放状态传递给白板 SDK，还是 PPT？这样做的目的是通知 PPT 播放视频吗？
+     * @note
+     * 如果 RTC SDK 没有混音状态回调方法，会导致播放的 PPT音画不同步。
+     *
      * @param state 音乐文件播放状态：
      *  - MEDIA_ENGINE_AUDIO_EVENT_MIXING_PLAY(710): RTC SDK 成功调用 `startAudioMixing` 播放音乐文件或 `resumeAudioMixing`  恢复播放音乐文件。
      *  - MEDIA_ENGINE_AUDIO_EVENT_MIXING_PAUSED(711)：RTC SDK 成功调用 `pauseAudioMixing` 暂停播放音乐文件。

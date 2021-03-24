@@ -4,6 +4,9 @@ package com.herewhite.sdk.domain;
  * Created by buhe on 2018/8/13.
  */
 
+ /**
+  * // TODO ???
+  */
 public class LinearTransformationDescription extends WhiteObject {
     private Double deltaX;
     private Double deltaY;

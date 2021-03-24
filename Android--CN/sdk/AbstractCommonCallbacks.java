@@ -4,6 +4,9 @@ import com.herewhite.sdk.domain.SDKError;
 
 import org.json.JSONObject;
 
+/**
+ * `CommonCallbacks` 接口的缺省（空）实现。详见 {@link CommonCallbacks CommonCallbacks}。
+ */
 public class AbstractCommonCallbacks implements CommonCallbacks {
 
     /**

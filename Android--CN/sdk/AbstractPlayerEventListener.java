@@ -10,7 +10,7 @@ import com.herewhite.sdk.domain.SDKError;
  */
 
  /**
-  * // TODO 是否在文档中隐藏？
+  * `PlayerEventListener` 接口的缺省（空）实现。详见 {@link PlayerEventListener PlayerEventListener}。
   */
 public abstract class AbstractPlayerEventListener implements PlayerEventListener {
 

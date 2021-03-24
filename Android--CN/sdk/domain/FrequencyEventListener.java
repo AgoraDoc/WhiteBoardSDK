@@ -1,7 +1,7 @@
 package com.herewhite.sdk.domain;
 
 /**
- * FrequencyEventListener 接口类。该类包含你想要注册监听的高频事件回调。
+ * `FrequencyEventListener` 接口类。该类包含你想要注册监听的高频事件回调。
  */
 public interface FrequencyEventListener {
     /**
