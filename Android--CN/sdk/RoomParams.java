@@ -14,7 +14,11 @@ import java.util.concurrent.TimeUnit;
 /**
  * `RoomParams` 类，用于配置实时房间的参数。
  *
- * @note 在加入房间前调用。// TODO 是必须在调用 `joinRoom' 前调用吗？// 是的，在 joinRoom 后调用不生效。
+ * @note
+ * 成功初始化 `whiteSDK` 后，无法再调用 `WhiteSdkConfiguration` 类中的任何方法修改 `whiteSDK` 的配置。
+ *
+ * @note
+ * `RoomParams` 类中所有的方法都必须在 `joinRoom` 前调用；成功加入房间后，调用该类中的任何方法都不会生效。
  */
 public class RoomParams extends WhiteObject {
 
@@ -67,9 +71,6 @@ public class RoomParams extends WhiteObject {
      * 以互动模式加入白板房间的用户可以操作白板。
      * 如果设置为 `false`，则用户以订阅模式加入房间，在房间内具有只读权限，将不会出现在房间的成员列表中，其他用户无法得知该用户的存在。
      *
-     * @note
-     * 互动模式API，设置为订阅（false）的房间，无法操作影响房间的 API。// TODO 这句话的意思是如果白板房间为订阅模式（即只读模式），则该方法不生效？// 白板房间本身没有互动和只读模式
-     *
      * @param writable 用户是否以互动模式加入白板房间：
      * - `true`：（默认）以互动模式加入白板房间。
      * - `false`：以订阅模式加入白板房间。
@@ -108,7 +109,7 @@ public class RoomParams extends WhiteObject {
      * 设置加入房间的超时时间。
      *
      * @param timeout 超时时长。
-     * @param timeUnit 时长单位。// TODO java 基础类 查看 Android API 文档
+     * @param timeUnit 时长单位。
      */
     public void setTimeout(long timeout, TimeUnit timeUnit) {
         this.timeout = TimeUnit.MILLISECONDS.convert(timeout, timeUnit);
@@ -128,7 +129,7 @@ public class RoomParams extends WhiteObject {
     }
 
     /**
-     * 开启/禁止教具响应用户输入。 // TODO 禁止用户使用教具在白板上输入？一样的意思
+     * 开启/禁止教具响应用户输入。
      *
      * @since 2.5.0
      *
@@ -156,7 +157,7 @@ public class RoomParams extends WhiteObject {
     }
 
     /**
-     * 允许/禁止白板响应用户任何操作。// TODO 禁止用户在白板房间内进行任何操作？
+     * 允许/禁止白板响应用户任何操作。
      *
      * @since 2.5.0
      *
@@ -312,10 +313,7 @@ public class RoomParams extends WhiteObject {
      *
      * @param uuid 房间 UUID， 即房间唯一标识符。
      * @param roomToken 用于鉴权的 Room Token。生成该 Room Token 的房间 UUID 必须和上面传入的房间 UUID 一致。
-     * @param userPayload 自定义用户信息，必须为 key-value 结构。
-     * 参考 {@link #setUserPayload(Object)} key-value 结构，请使用自定义后的 {@link WhiteObject} 子类。// TODO ???
-     * // TODO 初始化房间配置参数时传入自定义用户信息 调用 setUserPayload 什么关系？初始化的时候传入了 userPayload，就不需要再调用 setUserPayload 了？如果调用了，会怎样？// 初始化后调用 setUserPayload 可以更新用户信息
-     *
+     * @param userPayload 自定义用户信息，必须为 {@link WhiteObject} 子类。
      */
     public RoomParams(String uuid, String roomToken, Object userPayload) {
         this.uuid = uuid;

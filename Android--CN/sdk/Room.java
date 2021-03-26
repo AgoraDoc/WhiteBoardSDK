@@ -55,9 +55,11 @@ public class Room extends Displayer {
     /**
      * 获取当前实时房间是否为互动模式。
      *
+     * // TODO CT 是获取用户是否为互动模式，还是房间为互动模式？上次说互动模式不是针对房间设的，是对用户设的，但是这里，还有 Web 的 API 中写的是房间。
+     *
      * @return 获取当前实时房间是否为互动模式：
      * - `true`：当前实时房间为互动模式
-     * - `false`: 当前实时房间为为订阅模式。// TODO 所有加入该房间的用户都只能进行读取操作？
+     * - `false`: 当前实时房间为为订阅模式。
      */
     public Boolean getWritable() {
         return writable;
@@ -111,7 +113,7 @@ public class Room extends Displayer {
      *
      * 实时房间的 `globalState` 属性为公共全局变量，房间内所有用户看到的都是相同的 `globalState`，所有互动模式用户都可以读写。修改 `globalState` 属性会立即生效并同步给所有用户。
      *
-     * @param globalState 房间公共全局状态，自定义字段，可以传入 {@link GlobalState GlobalState} 子类。// TODO {@link GlobalState GlobalState} 子类是什么？{@link GlobalState GlobalState} 类下面什么都没有。
+     * @param globalState 房间公共全局状态，自定义字段，可以传入 {@link GlobalState GlobalState} 子类。
      */
     public void setGlobalState(GlobalState globalState) {
         syncRoomState.putDisplayerStateProperty("globalState", globalState);
@@ -157,7 +159,6 @@ public class Room extends Displayer {
      *
      * @note
      * - 该方法仅当 {@link disableSerialization disableSerialization} 设为 `false` 时生效。
-     * // TODO Web 的 copy、paste、duplicate 方法有这条限制，Android 和 iOS 的也是吗？还有其他方法有这条限制吗？
      * - 多次调用该方法时，不能保证粘贴的内容每次都在用户当前的视野中间，可能会出现随机偏移。
      */
     public void paste() {
@@ -193,7 +194,7 @@ public class Room extends Displayer {
      *
      * @since 2.9.3
      *
-     * 设置 `disableSerialization(true)` 后，以下方法将不生效：// TODO 以下这些方法是可以调用，但是不生效，还是调用时会报错？
+     * 设置 `disableSerialization(true)` 后，以下方法将不生效：// TODO 设置 `disableSerialization(true)` 后，以下这些方法是可以调用，但是不生效，还是调用时会报错？
      * - `redo`
      * - `undo`
      * - `duplicate`
@@ -285,8 +286,8 @@ public class Room extends Displayer {
      * 你可以在该方法中传入 'Promise<Object>' 接口实例，以获取方法调用结果。
      *
      * @param promise 'Promise<Object>' 接口实例，详见 {@link Promise<T> Promise<T>}。你可以通过该接口获取 `disconnect` 的调用结果：
-     * - 如果方法调用成功，则返回房间对象。// TODO 方法调用成功，返回什么？
-     * - 如果方法调用失败，则返回错误信息。// TODO 方法调用失败，是返回错误信息，还是错误信息？
+     * - 如果方法调用成功，则返回房间对象。// TODO 这里方法调用成功，返回的是什么？GlobalState 吗？
+     * - 如果方法调用失败，则返回错误信息。
      */
     public void disconnect(@Nullable final Promise<Object> promise) {
         setDisconnectedBySelf(true);
@@ -676,7 +677,7 @@ public class Room extends Displayer {
      *
      * @since 2.4.0
      *
-     * // TODO 是不是已经废弃了？ Web 的已经废弃。改用什么？
+     * // TODO 是不是已经废弃了？ Web 端已经废弃了。改用什么方法？
      *
      * @note
      * - 该方法为同步调用。
@@ -868,7 +869,7 @@ public class Room extends Displayer {
      * 方法调用成功后，房间内的所有用户看到的白板都会切换到指定场景。
      * 指定的场景必须在当前场景组中，否则，方法调用会失败。
      *
-     * @param index 目标场景在当前场景组下的索引号。// TODO 如何获取这个索引号？
+     * @param index 目标场景在当前场景组下的索引号。
      * @param promise `Promise<Boolean>` 接口，详见 {@link Promise<T> Promise<T>}。你可以通过该接口获取 `setSceneIndex` 的调用结果：
      * - 如果方法调用成功，则返回 `true`.
      * - 如果方法调用失败，则返回错误信息。
@@ -987,7 +988,7 @@ public class Room extends Displayer {
      *
      * @since 2.2.0
      *
-     * 当前 PPT 页面的动画全部回退完成时，返回至上一页 PPT。// TODO 为什么是回退完成，而不是执行完成？
+     * 当前 PPT 页面的动画全部回退完成时，返回至上一页 PPT。
      *
      */
     public void pptPreviousStep() {
@@ -999,7 +1000,7 @@ public class Room extends Displayer {
      * 更新房间缩放比例。
      *
      * @deprecated 该方法已经废弃。请使用 {@link #moveCamera(CameraConfig)}。
-     * @param scale 缩放比例。// TODO 与 Web 研发确认取值范围。（Android 研发不确定）
+     * @param scale 缩放比例。// TODO 与 Web 研发确认取值范围。
      */
     @Deprecated
     public void zoomChange(double scale) {
@@ -1109,7 +1110,7 @@ public class Room extends Displayer {
     }
 
     /**
-     * 禁止/允许用户操作教具。// TODO 是用户任然可以点击选择教具，但是教具不响应，还是用户根本不能点击教具？
+     * 禁止/允许用户操作教具。
      *
      * @since 2.2.0
      *
@@ -1128,10 +1129,10 @@ public class Room extends Displayer {
      *
      * 调用该方法后，SDK 会延迟同步远端白板画面。
      *
-     * 设置远端白板画面同步延时，可以防止用户感知错位。（// TODO 音画同步？)
+     * 设置远端白板画面同步延时，可以防止用户感知错位。（// TODO 这个 API 是用于音画同步？一般在什么情况下使用？)
      *
      * @note
-     * 该方法不影响本地白板画面的显示，即用户在本地白板上的操作，会立即在本地白板显示。
+     * 该方法不影响本地白板画面的显示，即用户在本地白板上的操作，会立即在本地白板上显示。
      *
      * @param delaySec 延时时长，单位为秒。
      */

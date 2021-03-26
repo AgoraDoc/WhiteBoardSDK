@@ -12,7 +12,9 @@ import java.util.HashMap;
 
 /**
  * `WhiteSdkConfiguration` 类，用于初始化 `whiteSDK` 配置参数。
- * 成功初始化 `whiteSDK` 后，无法再通过 `WhiteSdkConfiguration` 类修改 `whiteSDK` 的配置。
+ *
+ * @note
+ * 成功初始化 `whiteSDK` 后，无法再调用 `WhiteSdkConfiguration` 类中的任何方法修改 `whiteSDK` 的配置。
  */
 public class WhiteSdkConfiguration extends WhiteObject {
 
@@ -24,22 +26,18 @@ public class WhiteSdkConfiguration extends WhiteObject {
     public enum RenderEngineType {
         /**
          * SVG 渲染模式。
-         * 2.8.0 及之前版本的 `whiteSDK` 默认使用的渲染模式，兼容性较好，但性能较差。
-         * 2.8.0
-         * Android 6.1 ~ Android 8.1 有部分机器无法渲染 canvas 模式，只能用这个，默认 sdk 中会使用 svg 模式
-         * // TODO 这个默认是指 2.8.0 之前版本的 `whiteSDK` 默认为 svg，还是指 Android 6.1 ~ Android 8.1 有部分机器上默认就是 SVG？
-         * Android 6.1 ~ Android 8.1 根据版本判断。
+         * 2.8.0 及之前版本的 `whiteSDK` 默认使用的渲染模式，该模式兼容性较好，但性能较差。
          */
         @SerializedName("svg")
         svg,
         /**
          * Canvas 渲染模式。
          *
-         * 2.8.0 版本起新增 Canvas 渲染模式，其性能较好，但兼容性较差。
-         * 2.9.0 及之后版本的 `whiteSDK` 默认使用 Canvas 渲染模式。// TODO 根据 Android 版本 （6.1 ~ Android 8.1） 自动切换为 SVG。
+         * 2.8.0 版本起新增 Canvas 渲染模式，该模式性能较好，但兼容性较差。
+         * 2.9.0 及之后版本的 `whiteSDK` 默认使用 Canvas 渲染模式。
          *
          * @note
-         * 部分 Android 6.1 至 Android 8.1 设备无法支持 canvas 渲染模式，请设置为 svg 渲染模式。（例外）
+         * 由于部分 Android 6.1 至 Android 8.1 设备无法支持 Canvas 渲染模式，SDK 会自动将默认的渲染模式切换为 SVG。
          */
         @SerializedName("canvas")
         canvas,
@@ -84,7 +82,7 @@ public class WhiteSdkConfiguration extends WhiteObject {
          * @since 2.11.16
          *
          * 自 2021 年 02 月 10 起，Agora 服务端支持对转换的动态 PPT 排版，以确保转换后的 PPT 在不同平台排版一致。
-         * // TODO 是这个意思吗？
+         *
          * @param useServerWrap 是否开启服务端排版功能：
          *  - 'true'：开启。
          *  - 'false'：（默认）关闭。
@@ -168,12 +166,11 @@ public class WhiteSdkConfiguration extends WhiteObject {
      *
      * @note
      * 初始化 `WhiteSdk` 时，如果你实现并传入 {@link AudioMixerBridge AudioMixerBridge} 类，SDK 会自动设置 'setEnableRtcIntercept(true)'。你无需主动调用该方法。
-     * // TODO 如果初始化 `WhiteSdk` 时传入了 {@link AudioMixerBridge AudioMixerBridge} 类，SDK 会自动设置了 'setEnableRtcIntercept(true)'，然后再调用 'setEnableRtcIntercept(false)' 会怎样？
-     * //  Answer: 初始化之后，调用 sdk 配置类里的任何方法都不生效。
+     *
      * @param enableRtcIntercept 是否启用 RTC SDK 的混音方法播放动态 PPT 中的音频：
      * - `true`：启用。
      * - `false`：（默认）不启用。
-     * 文档中隐藏
+     * 可以在文档中隐藏
      */
     void setEnableRtcIntercept(boolean enableRtcIntercept) {
         this.enableRtcIntercept = enableRtcIntercept;

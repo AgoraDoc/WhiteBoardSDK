@@ -8,7 +8,6 @@ import org.json.JSONObject;
  * 通用回调，用于 SDK 向 app 发送回调事件通知。
  *
  * 实时房间和回放房间都可以继承该接口下的回调方法。
- * // TODO 确认表述是否正确? 是可以继承，还是自动继承？该接口下的回调方法是否需要注释？好像不是 public。
  *
  * @since 2.9.13
  */
@@ -31,7 +30,7 @@ public interface CommonCallbacks {
      * @note
      * 由于该回调过于频繁，Agora 不推荐使用；在 Android 平台，可以使用 WebView 的拦截功能进行图片拦截。
      *
-     * // TODO 是不建议监听该回调，还是不推荐开启图片拦截替换功能 setEnableInterrupterAPI(true)？
+     * // TODO 是不建议监听该回调，还是不推荐开启图片拦截替换功能，即 setEnableInterrupterAPI(true)？
      * 由于该 API 存在性能问题（调用过于频繁），我们不推荐使用；Android 端，可以使用 WebView 的拦截功能进行拦截
      *
      * @param sourceUrl 图片原地址。

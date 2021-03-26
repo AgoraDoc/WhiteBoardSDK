@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName;
  */
 public enum WhiteScenePathType {
     /**
-     * 查询路径不存在。// TODO 是路径不存在的意思吗？
+     * 查询路径不存在。
      */
     @SerializedName("none")
     Empty,

@@ -61,7 +61,7 @@ public class Player extends Displayer {
      * @note 该方位为异步调用。我们推荐你仅在调试或问题排查时使用。一般情况下可以使用同步方法 {@link #getPlaybackSpeed()} 进行获取。
      * @param promise Promise<Double> 接口实例，详见 {@link Promise}。你可以通过该接口了解获取白板回放倍速的结果：
      * - 如果获取成功，将返回白板回放的倍速。
-     * - 如果获取失败，将返回错误码。
+     * - 如果获取失败，将返回错误信息。
      * @since 2.5.2
      */
     public void getPlaybackSpeed(final Promise<Double> promise) {
@@ -208,7 +208,7 @@ public class Player extends Displayer {
      *
      * @param promise `Promise<PlayerPhase>` 接口实例，详见 {@link Promise 类}。你可以通过该接口了解获取白板回放阶段的结果：
      * - 如果获取成功，将返回白板回放的阶段。
-     * - 如果获取失败，将返回错误码。
+     * - 如果获取失败，将返回错误信息。
      */
     public void getPhase(final Promise<PlayerPhase> promise) {
         bridge.callHandler("player.getBroadcastState", new Object[]{}, new OnReturnValue<Object>() {
@@ -251,7 +251,7 @@ public class Player extends Displayer {
      *
      * @param promise `Promise<PlayerState>` 接口实例，详见 {@link Promise}。你可以通过该接口了解获取白板回放状态的结果：
      * - 如果获取成功，将返回具体的白板回放状态。
-     * - 如果获取失败，将返回错误码。
+     * - 如果获取失败，将返回错误信息。
      */
     public void getPlayerState(final Promise<PlayerState> promise) {
         bridge.callHandler("player.state.playerState", new Object[]{}, new OnReturnValue<Object>() {
@@ -296,7 +296,7 @@ public class Player extends Displayer {
      *
      * @param promise `Promise<PlayerTimeInfo>` 接口实例，详见 {@link Promise}。你可以通过该接口了解获取白板回放时间信息的结果：
      * - 如果获取成功，将返回白板回放的时间信息。
-     * - 如果获取失败，将返回错误码。
+     * - 如果获取失败，将返回错误信息。
      */
     public void getPlayerTimeInfo(final Promise<PlayerTimeInfo> promise) {
         bridge.callHandler("player.state.timeInfo", new Object[]{}, new OnReturnValue<Object>() {

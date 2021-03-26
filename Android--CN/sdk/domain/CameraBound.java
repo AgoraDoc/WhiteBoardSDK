@@ -9,7 +9,7 @@ public class CameraBound extends WhiteObject {
 
     /**
      * 获取用户视野范围的原点在世界坐标系的 x 轴坐标。
-     * 
+     *
      * 世界坐标系指白板内部坐标系，即以白板初始化时的中心点为原点的坐标系。
      *
      * @return 用户视野范围的原点在世界坐标系的 x 轴坐标。
@@ -20,7 +20,7 @@ public class CameraBound extends WhiteObject {
 
     /**
      * 设置用户视野范围的原点相对于世界坐标系的 x 轴坐标。
-     * 
+     *
      * 世界坐标系指白板内部坐标系，即以白板初始化时的中心点为原点的坐标系。
      *
      * @param centerX 用户视野范围的原点在世界坐标系的 x 轴坐标。默认值为 0，即与世界坐标系的 x 轴坐标相同。

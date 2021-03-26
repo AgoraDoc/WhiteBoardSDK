@@ -20,7 +20,7 @@ public class AudioMixerImplement {
      *
      * 你需要在 RTC SDK 触发的 `onAudioMixingStateChanged` 回调中调用该方法，将音乐文件播放状态传递给白板 SDK。
      * 通知白板 SDK 是否播放 PPT 中的视频，以确保 PPT 的音画同步。
-     * // TODO 是将音乐文件播放状态传递给白板 SDK，还是 PPT？这样做的目的是通知 PPT 播放视频吗？
+     * // TODO 是将音乐文件播放状态传递给白板 SDK，还是传递给 PPT？这样做的目的是通知 PPT 播放视频吗？
      * @note
      * 如果 RTC SDK 没有混音状态回调方法，会导致播放的 PPT音画不同步。
      *

@@ -74,7 +74,7 @@ public class Displayer {
      * 向 iframe 插件发送 key-value 格式的信息。
      *
      * 你可以通过创建 WhiteObject 的子类来创建一个 ley-value 格式的信息。
-     * 
+     *
      * @param object `Whiteobject` 的子类，详见 {@link WhiteObject}。
      * @since 2.11.4
      */
@@ -84,12 +84,12 @@ public class Displayer {
 
     /**
      * 查询场景路径类型。
-     * 
+     *
      * 你可以在该方法中指定想要查询的场景路径，SDK 会返回该路径对应的场景类型，是场景，还是场景目录，或者不存在任何内容。
      * @param path 想要查询的场景类型。
      * @param promise `Promise<WhiteScenePathType>` 接口实例，详见 {@link WhiteScenePathTType}。你可以通过该接口获取查询场景路径类型的结果：
      * - 如果查询成功，将返回场景路径类型。
-     * - 如果查询失败，将返回错误码。
+     * - 如果查询失败，将返回错误信息。
      */
     public void getScenePathType(String path, final Promise<WhiteScenePathType> promise) {
         bridge.callHandler("displayer.scenePathType", new Object[]{path},new OnReturnValue<String>() {
@@ -107,7 +107,7 @@ public class Displayer {
      * @param promise `Promise<Map<String, Scene[]>>` 接口实例，详见 {@link Promise<Map<String, Scene[]>>}。你可以通过该接口查询获取当前房间
      * 内所有白板页面信息的结果：
      * - 如果查询成功，将返回当前房间内所有的白板页面信息。该返回值为 map 格式，其中 key 为场景路径，value 为该路径下所有的场景数据。
-     * - 如果查询失败，将返回错误码。
+     * - 如果查询失败，将返回错误信息。
      */
     public void getEntireScenes(final Promise<Map<String, Scene[]>> promise) {
         bridge.callHandler("displayer.entireScenes", new OnReturnValue<JSONObject>() {
@@ -122,7 +122,7 @@ public class Displayer {
 
     /**
      * 刷新当前白板的视觉矩形。
-     * 
+     *
      * 当 WhiteboardView 大小出现改变时，需要手动调用该方法。
      */
     public void refreshViewSize() {
@@ -131,7 +131,7 @@ public class Displayer {
 
     /**
      * 以连续动画的形式等比例缩放 PPT。
-     * 
+     *
      * 该方法确保 PPT 页面的所有内容都在视野范围内。
      * @since 2.4.22
      */
@@ -142,7 +142,7 @@ public class Displayer {
 
     /**
      * 等比例缩放 PPT。
-     * 
+     *
      * 该方法确保 PPT 页面的内容都在视野内。
      * @param mode PPT 缩放时的动画行为，详见 {@link AnimationMode}。
      * @since 2.4.28
@@ -169,7 +169,7 @@ public class Displayer {
      * 注册高频自定义事件监听。成功注册后，你可以接收到对应的自定义事件通知。
      *
      * @note 对于同名的自定义事件，SDK 仅支持触发一个回调。
-     * 
+     *
      * @param eventName 想要监听的自定义事件名称。
      * @param eventListener 自定义事件回调，详见 {@link FrequencyEventListener}。如果添加多个事件回调，则之前添加的回调会被覆盖。
      * @param fireInterval SDK 触发回调的频率，单位为毫秒。该参数最小值为 500ms；低于该值会被传入重置为 500ms。
@@ -265,7 +265,7 @@ public class Displayer {
 
     /**
      * 获取特定场景的预览图。
-     * 
+     *
      * 该方法可用于实现用户切换到对应场景时，能立刻看到该场景内容的功能。
      *
      * @param scenePath 指定的场景路径。
@@ -299,7 +299,7 @@ public class Displayer {
      * @param scenePath 指定的场景路径。
      * @param promise `Promise<Bitmap>` 接口实例，详见 {@link Promise}。你可以通过该接口了解获取场景截图的结果：
      * - 如果获取成功，将返回获取的截图。
-     * - 如果获取失败，将返回错误码。
+     * - 如果获取失败，将返回错误信息。
      * @since 2.3.0
      */
     public void getSceneSnapshotImage(String scenePath, final Promise<Bitmap>promise) {
@@ -343,7 +343,7 @@ public class Displayer {
 
     /**
      * 移动视角。
-     * 
+     *
      * 该方法可用于实现用户通过触屏手势对白板视野进行缩放操作的功能。
      *
      * @param camera 移动视角的具体参数配置，详见 {@link CameraConfig}。

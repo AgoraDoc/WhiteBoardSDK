@@ -54,9 +54,6 @@ public class WhiteboardView extends DWebView {
     }
 
     /**
-     * 获取安卓活动 (Android Activity) 的上下文。// TODO ??? 什么意思？是否要对外暴露？
-     * @param context
-     * @return
      * 兼容 API 文档中隐藏
      */
     public static Context getFixedContext(Context context) {
@@ -88,11 +85,6 @@ public class WhiteboardView extends DWebView {
 
 
     /**
-     * // TODO ？？？
-     * @param <T>
-     * @param method
-     * @param args
-     * @param handler
      * 内部调用，文档中隐藏
      */
     public <T> void callHandler(String method, Object[] args, OnReturnValue<T> handler) {
@@ -100,9 +92,6 @@ public class WhiteboardView extends DWebView {
     }
 
     /**
-     * // TODO ？？？
-     * @param method
-     * @param args
      * 内部调用，文档中隐藏
      */
     public void callHandler(String method, Object[] args) {
@@ -110,10 +99,6 @@ public class WhiteboardView extends DWebView {
     }
 
     /**
-     * // TODO？？？
-     * @param <T>
-     * @param method
-     * @param handler
      * 内部调用，文档中隐藏
      */
     public <T> void callHandler(String method, OnReturnValue<T> handler) {
