@@ -50,8 +50,8 @@ public class Displayer {
     /**
      * Displayer 类的构造函数。
      * @param uuid 用户 ID。
-     * @param bridge 白板界面，详见 {@link WhoteboardView}。
-     * @param context
+     * @param bridge 白板界面，详见 {@link WhiteboardView}。
+     * @param context Android 的 Context。
      * @param sdk White SDK 的初始化设置，详见 {@link WhiteSdk}。
      */
     public Displayer(String uuid, WhiteboardView bridge, Context context, WhiteSdk sdk) {

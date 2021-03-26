@@ -3,11 +3,11 @@ package com.herewhite.sdk.domain;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * 白板回放房间的播放状态。
+ * 白板回放房间的阶段。
  */
 public enum PlayerPhase {
     /**
-     * 正在等待白板回放的第一帧。这是白板回放的初始状态。
+     * 正在等待白板回放的第一帧。这是白板回放的初始阶段。
      */
     waitingFirstFrame,
     /**

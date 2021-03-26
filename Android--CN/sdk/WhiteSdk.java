@@ -386,6 +386,7 @@ public class WhiteSdk {
      *
      * @param uuid 房间 UUID。该参数无实际意义，因为一个 WhiteSDK 实例只能对应一个实时房间，不需要使用 UUID 指定房间。
      */
+    @Deprecated
     public void releaseRoom(String uuid) {
         releaseRoom();
     }
@@ -406,6 +407,7 @@ public class WhiteSdk {
      *
      * @param uuid 回放房间的 UUID。该参数无实际意义，由于一个 WhiteSDK 实例只能对应一个回放房间，不需要使用 UUID 指定回放房间。
      */
+    @Deprecated
     public void releasePlayer(String uuid) {
         releasePlayer();
     }

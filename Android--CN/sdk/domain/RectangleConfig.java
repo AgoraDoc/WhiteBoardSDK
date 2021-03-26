@@ -1,7 +1,9 @@
 package com.herewhite.sdk.domain;
 
 /**
- * RectangleConfig 类。该类配置白板的视觉矩形。
+ * RectangleConfig 类。该类配置白板的视觉矩形。通过视觉矩形，你可以设置视野范围内需要关注的内容。
+ * 该方法可用于保证同样的内容在不同的设备上都可以显示完整。
+ * 
  * @since 2.2.0
  */
 public class RectangleConfig extends WhiteObject {
@@ -11,7 +13,7 @@ public class RectangleConfig extends WhiteObject {
     private Double height;
 
     /**
-     * RectangleConfig 构造函数。该函数通过宽、高和动画模式提供视觉矩形的构建方法。
+     * RectangleConfig 构造函数。该函数通过宽、高和动画模式定义视觉矩形。
      *
      * SDK 将白板初始化时的中点固定视为白板的视角中心，然后根据传入的宽高，计算白板视觉矩形相对于场景左上角的 x 和 y 坐标。
      * 该方法适用于需要快速显示完整 PPT 内容的场景。
