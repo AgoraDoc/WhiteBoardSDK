@@ -1,9 +1,10 @@
 package com.herewhite.sdk.domain;
 
 /**
- * RectangleConfig 类。该类配置白板的视觉矩形。通过视觉矩形，你可以设置视野范围内需要关注的内容。
+ * `RectangleConfig` 类。该类配置白板的视觉矩形。
+ * 通过视觉矩形，你可以设置视野范围内需要关注的内容。
  * 该方法可用于保证同样的内容在不同的设备上都可以显示完整。
- * 
+ *
  * @since 2.2.0
  */
 public class RectangleConfig extends WhiteObject {
@@ -13,16 +14,17 @@ public class RectangleConfig extends WhiteObject {
     private Double height;
 
     /**
-     * RectangleConfig 构造函数。该函数通过宽、高和动画模式定义视觉矩形。
+     * `RectangleConfig` 构造函数。
      *
-     * SDK 将白板初始化时的中点固定视为白板的视角中心，然后根据传入的宽高，计算白板视觉矩形相对于场景左上角的 x 和 y 坐标。
+     * 在该函数中，你需要传入 `width`，`height` 和 `mode`。SDK 会根据你传入 `width` 和 `height` 计算视觉矩形左上角原点
+     * 在世界坐标系中的位置 `originX` 和 `originY`, 即 `originX = - width / 2.0d`，`originY = - height / 2.0d`。
+     *
      * 该方法适用于需要快速显示完整 PPT 内容的场景。
      *
-     * @param width 白板视觉矩形的宽度。该参数的值为实际展示内容的最小宽度。
-     * @param height 白板视觉矩形的高度。该参数的值为实际展示内容的最小高度。
+     * @param width 白板视觉矩形的宽度。视觉矩形的宽度不能小于实际展示内容的宽度，否则用户将看不见超出的部分。
+     * @param height 白板视觉矩形的高度。视觉矩形的高度不能小于实际展示内容的宽度，否则用户将看不见超出的部分。
      * @param mode 白板的动画模式，详见 {@link AnimationMode}。
      */
-    // TODO width 的参数解释感觉不太好懂，需要优化。
     public RectangleConfig(Double width, Double height, AnimationMode mode) {
         this.width = width;
         this.height = height;
@@ -32,27 +34,33 @@ public class RectangleConfig extends WhiteObject {
     }
 
     /**
-     * RectangleConfig 构造函数。该函数通过宽和高提供视觉矩形的构建方法。
+     * `RectangleConfig` 构造函数。
      *
-     * SDK 将白板初始化时的中点固定视为白板的视角中心，然后根据传入的宽高，计算白板视觉矩形相对于场景左上角的 x 和 y 坐标。
-     * 该方法不支持设置动画模式，而是使用默认的连续动画 `Continuous` 模式。适用于需要快速显示完整 PPT 内容的场景。
+     * 在该函数中，你需要传入 `width` 和 `height`。SDK 会根据你传入 `width` 和 `height` 计算视觉矩形左上角原点
+     * 在世界坐标系中的位置 `originX` 和 `originY`, 即 `originX = - width / 2.0d`，`originY = - height / 2.0d`。
      *
-     * @param width  视觉矩形宽度（实际展示内容的最小宽度）
-     * @param height 视觉矩形高度（实际展示内容的最小高度）
+     * 该方法不支持设置动画模式，SDK 会默认将动画模式设置为 `Continuous`。
+     *
+     * 该方法适用于需要快速显示完整 PPT 内容的场景。
+     *
+     * @param width  视觉矩形宽度。视觉矩形的宽度不能小于实际展示内容的宽度，否则用户将看不见超出的部分。
+     * @param height 视觉矩形高度。视觉矩形的高度不能小于实际展示内容的宽度，否则用户将看不见超出的部分。
      */
-    // TODO 2个 RectangleConfig 构造都有适用于快速显示完成 ppt 的描述，是不是手抖了。
     public RectangleConfig(Double width, Double height) {
         this(width, height, AnimationMode.Continuous);
     }
 
     /**
-     * RectangleConfig 构造函数。该函数通过相对于场景左上角的 x 坐标、y 坐标，以及宽和高提供视觉矩形的构建方法。
+     * `RectangleConfig` 构造函数。
+     *
+     * 在该函数中，你需要传入 `originX`、`originY`、`width` 和 `height`。SDK 会根据你传入的 `originX`、`originY`、`width` 和 `height` 确定视觉矩形在世界坐标系（即白板内部坐标系）中的位置和大小。
      *
      * 该方法不支持设置动画模式，而是使用默认的连续动画 `Continuous` 模式。
-     * @param originX  视觉矩形相对于场景左上角的 x 坐标。
-     * @param originY 视觉矩形相对于场景左上角的 y 坐标。
-     * @param width 视觉矩形的宽度。
-     * @param height 视觉矩形的高度。
+     *
+     * @param originX  视觉矩形左上角原点在世界坐标系（即白板内部坐标系）中的 X 轴坐标。
+     * @param originY 视觉矩形左上角原点在世界坐标系（即白板内部坐标系）中的 Y 轴坐标。
+     * @param width 视觉矩形的宽度。视觉矩形的宽度不能小于实际展示内容的宽度，否则用户将看不见超出的部分。
+     * @param height 视觉矩形的高度。视觉矩形的高度不能小于实际展示内容的宽度，否则用户将看不见超出的部分。
      */
     // 注意，originX，originY 为白板内部坐标系坐标。白板内部坐标系 这句话是什么意思。
     public RectangleConfig(Double originX, Double originY, Double width, Double height) {
@@ -60,12 +68,15 @@ public class RectangleConfig extends WhiteObject {
     }
 
     /**
-     * RectangleConfig 构造函数。该函数通过相对于场景左上角的 x 坐标、y 坐标、宽、高以及动画模式提供视觉矩形的构造方法。
+     * `RectangleConfig` 构造函数。
      *
-     * @param originX  视觉矩形相对于场景左上角的 x 坐标。
-     * @param originY 视觉矩形相对于场景左上角的 y 坐标。
-     * @param width 视觉矩形的宽度。
-     * @param height 视觉矩形的高度。
+     * 在该函数中，你需要传入 `originX`、`originY`、`width`、`height` 和 `mode`。
+     * SDK 会根据你传入的 `originX`、`originY`、`width`、`height` 和 `mode` 确定视觉矩形在世界坐标系（即白板内部坐标系）中的位置、大小和动画模式。
+     *
+     * @param originX  视觉矩形左上角原点在世界坐标系（即白板内部坐标系）中的 X 轴坐标。
+     * @param originY 视觉矩形左上角原点在世界坐标系（即白板内部坐标系）中的 Y 轴坐标。
+     * @param width 视觉矩形的宽度。视觉矩形的宽度不能小于实际展示内容的宽度，否则用户将看不见超出的部分。
+     * @param height 视觉矩形的高度。视觉矩形的高度不能小于实际展示内容的宽度，否则用户将看不见超出的部分。
      * @param mode 视觉矩形的动画模式，详见 {@link AnimationMode}。
      */
     public RectangleConfig(Double originX, Double originY, Double width, Double height, AnimationMode mode) {
@@ -77,30 +88,35 @@ public class RectangleConfig extends WhiteObject {
     }
 
     /**
-     * 获取视觉矩形相对于场景左上角的 x 坐标。
-     * @return 视觉矩形相对于场景左上角的 x 坐标。
+     * 获取视觉矩形左上角原点在世界坐标系（即白板内部坐标系）中的 X 轴坐标。
+     * @return 视觉矩形左上角原点在世界坐标系（即白板内部坐标系）中的 X 轴坐标。
      */
     public Double getOriginX() {
         return originX;
     }
 
     /**
-     * 设置视觉矩形相对于场景左上角的 x 坐标。
+     * 设置视觉矩形左上角原点在世界坐标系（即白板内部坐标系）中的 X 轴坐标。
+     *
+     * @param originX 视觉矩形左上角原点在世界坐标系（即白板内部坐标系）中的 X 轴坐标。
      */
     public void setOriginX(Double originX) {
         this.originX = originX;
     }
 
     /**
-     * 获取视觉矩形相对于场景左上角的 y 坐标。
-     * @return 视觉矩形相对于场景左上角的 y 坐标。
+     * 获取视觉矩形左上角原点在世界坐标系（即白板内部坐标系）中的 Y 轴坐标。
+     *
+     * @return 视觉矩形左上角原点在世界坐标系（即白板内部坐标系）中的 Y 轴坐标。
      */
     public Double getOriginY() {
         return originY;
     }
 
     /**
-     * 设置视觉矩形相对于场景左上角的 y 坐标。
+     * 设置视觉矩形左上角原点在世界坐标系（即白板内部坐标系）中的 Y 轴坐标。
+     *
+     * @param originY 视觉矩形左上角原点在世界坐标系（即白板内部坐标系）中的 Y 轴坐标。
      */
     public void setOriginY(Double originY) {
         this.originY = originY;
@@ -108,6 +124,7 @@ public class RectangleConfig extends WhiteObject {
 
     /**
      * 获取视觉矩形的宽度。
+     *
      * @return 视觉矩形的宽度。
      */
     public Double getWidth() {
@@ -115,7 +132,9 @@ public class RectangleConfig extends WhiteObject {
     }
 
     /**
-     * 设置视觉决定的宽度。
+     * 设置视觉矩形的宽度。
+     *
+     * @param width 视觉矩形的宽度。
      */
     public void setWidth(Double width) {
         this.width = width;
@@ -123,6 +142,7 @@ public class RectangleConfig extends WhiteObject {
 
     /**
      * 获取视觉矩形的高度。
+     *
      * @return 视觉矩形的高度。
      */
     public Double getHeight() {
@@ -131,6 +151,8 @@ public class RectangleConfig extends WhiteObject {
 
     /**
      * 设置视觉矩形的高度。
+     *
+     * @param height 视觉矩形的高度。
      */
     public void setHeight(Double height) {
         this.height = height;
@@ -138,6 +160,7 @@ public class RectangleConfig extends WhiteObject {
 
     /**
      * 获取视觉矩形的动画模式。
+     *
      * @return 视觉矩形的动画模式，详见 {@link AnimationMode}。
      */
     public AnimationMode getAnimationMode() {
@@ -146,6 +169,8 @@ public class RectangleConfig extends WhiteObject {
 
     /**
      * 设置视觉矩形的动画模式。
+     *
+     * @param animationMode 视觉矩形的动画模式，详见 {@link AnimationMode}。
      */
     public void setAnimationMode(AnimationMode animationMode) {
         this.animationMode = animationMode;

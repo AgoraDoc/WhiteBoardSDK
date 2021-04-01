@@ -30,39 +30,35 @@ public interface CommonCallbacks {
      * @note
      * 由于该回调过于频繁，Agora 不推荐使用；在 Android 平台，可以使用 WebView 的拦截功能进行图片拦截。
      *
-     * // TODO 是不建议监听该回调，还是不推荐开启图片拦截替换功能，即 setEnableInterrupterAPI(true)？
-     * 由于该 API 存在性能问题（调用过于频繁），我们不推荐使用；Android 端，可以使用 WebView 的拦截功能进行拦截
-     *
      * @param sourceUrl 图片原地址。
      * @return 替换后的图片地址。
      */
     String urlInterrupter(String sourceUrl);
     /**
-     * 播放动态 ppt 中的音视频回调。
+     * 播放动态 PPT 中的音视频回调。
      *
      * @since 2.9.13
      */
     void onPPTMediaPlay();
 
     /**
-     * 暂停播放动态 ppt 中的音视频回调。
+     * 暂停播放动态 PPT 中的音视频回调。
      *
      * @since 2.9.13
      */
     void onPPTMediaPause();
 
     /**
-     * 接收到自定义消息回调。
+     * 接收到网页发送的消息回调。
      *
      * @since 2.11.4
      *
-     * 该回调表述本地用户收到了 bridge 网页发送的消息。// TODO 什么是 bridge 网页？
+     * 当本地用户收到了网页，如 iframe 插件，动态 PPT 发送的消息时会触发该回调。
      *
      * @note
-     * 不保证所有用户都能接收到该回调。// TODO ???
+     * 不保证所有用户都能接收到该回调。
      *
-     * @param object 内容格式会根据情况发送。发送时，均为 JSON 格式
-     * // TODO bridge 网页发送的消息都是 JSON 格式？内容格式会根据情况发送是什么意思？
+     * @param object JSON 格式的消息。只有当消息为 JSON 格式时，本地用户才能收到。
      */
     void onMessage(JSONObject object);
 

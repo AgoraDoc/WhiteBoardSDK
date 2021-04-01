@@ -53,13 +53,11 @@ public class Room extends Displayer {
     private Boolean disconnectedBySelf = false;
 
     /**
-     * 获取当前实时房间是否为互动模式。
+     * 获取本地用户在当前互动白板实时房间是否为互动模式。
      *
-     * // TODO CT 是获取用户是否为互动模式，还是房间为互动模式？上次说互动模式不是针对房间设的，是对用户设的，但是这里，还有 Web 的 API 中写的是房间。
-     *
-     * @return 获取当前实时房间是否为互动模式：
-     * - `true`：当前实时房间为互动模式
-     * - `false`: 当前实时房间为为订阅模式。
+     * @return 获取本地用户是否为互动模式：
+     * - `true`：本地用户在当前互动白板实时房间为互动模式，即可对白板进行读写操作。
+     * - `false`: 本地用户在当前互动白板实时房间为订阅模式，即对白板只能进行读取操作。
      */
     public Boolean getWritable() {
         return writable;
@@ -194,7 +192,7 @@ public class Room extends Displayer {
      *
      * @since 2.9.3
      *
-     * 设置 `disableSerialization(true)` 后，以下方法将不生效：// TODO 设置 `disableSerialization(true)` 后，以下这些方法是可以调用，但是不生效，还是调用时会报错？
+     * 设置 `disableSerialization(true)` 后，以下方法将不生效：
      * - `redo`
      * - `undo`
      * - `duplicate`
@@ -202,10 +200,10 @@ public class Room extends Displayer {
      * - `paste`
      *
      * @warning
-     * 如果你使用以下版本的白板 SDK，请勿调用该方法，否则会导致 app 客户端崩溃。(房间内有任何一个用户使用以下版本的白板 SDK，都请勿调用该方法，否则会到 app 客户端崩溃。)
-     * - Web 2.9.2 以下版本
-     * - Android 2.9.3 以下版本
-     * - iOS 2.9.3 以下版本
+     * 如果要设置 `disableSerialization(false)`，必须确保同一房间内所有用户使用的 SDK 满足以下版本要求，否则会导致 app 客户端崩溃。
+     * - Web SDK 2.9.2 或之后版本
+     * - Android SDK 2.9.3 或之后版本
+     * - iOS SDK 2.9.3 或之后版本
      *
      * @param disable 是否禁止本地序列化：
      * - `true`：（默认）禁止开启本地序列化；
@@ -256,7 +254,7 @@ public class Room extends Displayer {
      *
      *
      * 切换视角后，需要等待服务器更新 `BroadcastState` 属性，才能通过 {@link getBroadcastState() getBroadcastState} 获取最新设置的视角模式。
-     * 你可以使用 {@link getBroadcastState(Promise) getBroadcastState} 强制更新信息。// TODO 不是很理解，怎么强制更新？
+     * 这种情况下，你可以使用 {@link getBroadcastState(Promise) getBroadcastState} 获取最新设置的视角模式。
      *
      * @param viewMode 视角模式，详见 {@link ViewMode ViewMode}。
      */
@@ -286,7 +284,7 @@ public class Room extends Displayer {
      * 你可以在该方法中传入 'Promise<Object>' 接口实例，以获取方法调用结果。
      *
      * @param promise 'Promise<Object>' 接口实例，详见 {@link Promise<T> Promise<T>}。你可以通过该接口获取 `disconnect` 的调用结果：
-     * - 如果方法调用成功，则返回房间对象。// TODO 这里方法调用成功，返回的是什么？GlobalState 吗？
+     * - 如果方法调用成功，则返回房间的全局状态。
      * - 如果方法调用失败，则返回错误信息。
      */
     public void disconnect(@Nullable final Promise<Object> promise) {
@@ -380,7 +378,7 @@ public class Room extends Displayer {
     }
 
     /**
-     * 强制获取房间全局状态。该方法为异步调用。// TODO 这里为什么是强制获取？
+     * 获取房间全局状态。该方法为异步调用。
      *
      * @deprecated 该方法已废弃。请使用 {@link #getGlobalState()}。
      *
@@ -677,8 +675,6 @@ public class Room extends Displayer {
      *
      * @since 2.4.0
      *
-     * // TODO 是不是已经废弃了？ Web 端已经废弃了。改用什么方法？
-     *
      * @note
      * - 该方法为同步调用。
      * - 调用 {@link #zoomChange(double)} 或 {@link #moveCamera(CameraConfig)} 调整视野缩放比例后，无法通过 {@link getZoomScale() getZoomScale} 立即获取最新的缩放比例。此时，如果需要立即获取最新的缩放比例，可以调用 {@link #getZoomScale(Promise)}。
@@ -692,7 +688,6 @@ public class Room extends Displayer {
     /**
      * 获取当前用户的视野缩放比例。
      *
-     * // TODO 是否已废弃？改用什么？
      * @note
      * - 该方法为异步调用。
      * - 调用 {@link #zoomChange(double)} 或 {@link #moveCamera(CameraConfig)} 调整视野缩放比例后，如果需要立即获取最新的缩放比例，可以调用 {@link #getZoomScale(Promise)}。
@@ -906,8 +901,8 @@ public class Room extends Displayer {
      *
      * @param dir    场景组名称，必须以 `/` 开头。不能为场景路径。
      * @param scenes 由多个场景构成的数组。单个场景的字段详见 {@link Scene Scene}。
-     * @param index  待插入的场景数组中，第一个场景在该场景组的索引号。如果传入的索引号大于该场景组已有场景总数，新插入的场景会排在现有场景的最后。
-     * // TODO 是从传入的索引号之后开始插入新场景，还是新插入的场景就是这个传入的索引号？该数组中的其他场景会顺序排列在第一个场景之后？
+     * @param index  待插入的多个场景中，第一个场景在该场景组的索引号。如果传入的索引号大于该场景组已有场景总数，新插入的场景会排在现有场景的最后。
+     *
      */
     public void putScenes(String dir, Scene[] scenes, int index) {
         bridge.callHandler("room.putScenes", new Object[]{dir, scenes, index});
@@ -925,7 +920,7 @@ public class Room extends Displayer {
      * @param sourcePath 需要移动的场景原路径。必须为场景路径，不能是场景组的路径。
      * @param targetDirOrPath 目标场景组路径或目标场景路径：
      * - 当 `targetDirOrPath`设置为目标场景组时，表示将指定场景移至其他场景组中，场景路径会发生改变，但是场景名称不变。
-     * - 当 `targetDirOrPath`设置为目标场景路径时，表示改变指定场景在当前场景组的位置，场景路径和场景名都会发生改变。（// TODO 实质是重命名？）
+     * - 当 `targetDirOrPath`设置为目标场景路径时，表示改变指定场景在当前场景组的位置，场景路径和场景名都会发生改变。
      */
     public void moveScene(String sourcePath, String targetDirOrPath) {
         bridge.callHandler("room.moveScene", new Object[]{sourcePath, targetDirOrPath});
@@ -936,21 +931,16 @@ public class Room extends Displayer {
      *
      * @note
      * - 互动白板实时房间内必须至少有一个场景。当删除所有的场景后，SDK 会自动生成一个路径为 `/init` 初始场景（房间初始化时的默认场景）。
-     * // TODO 是删除所有场景后，会自动生成一个初始场景？还是默认的初始场景根本无法删除？
-     * - 如果删除白板当前所在场景，白板会指向被删除场景所在场景组的最后一个场景（即 index 不发生改变）。
-     * // TODO 指向最后一个场景，是在白板中展示最后一个场景的意思吗？
-     * // TODO 为什么指向最后一个场景，index 不会变？例如，场景组中有 6 个场景，删除的是 3，后面的场景的 index 不会前移吗？
+     * - 如果删除白板当前所在场景，白板会展示被删除场景所在场景组的最后一个场景
      * - 如果删除的是场景组，则该场景组下的所有场景都会被删除。
-     * - 如果删除的是当前场景所在的场景组，SDK 会向上递归，寻找与该场景组同级的场景组：
-     * // TODO 下面的内容不是特别理解，能否解释一下？
-     * 删除包含当前场景的场景目录 dirA：向上递归，寻找场景目录同级的场景目录。
-     *      3.1 如果上一级目录中，还有其他场景目录 dirB（可映射文件夹概念），排在被删除的场景目录 dirA 后面，则当前场景会变成
+     * - 如果删除的是当前场景所在的场景组 dirA，SDK 会向上递归，寻找与该场景组同级的场景组：
+     *      1. 如果上一级目录中，还有其他场景目录 dirB（可映射文件夹概念），排在被删除的场景目录 dirA 后面，则当前场景会变成
      *      dirB 中的第一个场景（index 为 0）；
-     *      3.2 如果上一级目录中，在 dirA 后不存在场景目录，则查看当前目录是否存在场景；
-     *          如果存在，则该场景成为当前目录（index 为 0 的场景目录）。// TODO 如果存在多个场景组，优先选择哪个场景？
-     *      3.3 如果上一级目录中，dirA 后没有场景目录，当前上一级目录，也不存在任何场景；
+     *      2. 如果上一级目录中，在 dirA 后不存在场景目录，则查看当前目录是否存在场景；
+     *          如果存在，则该场景成为当前目录（index 为 0 的场景目录）。
+     *      3. 如果上一级目录中，dirA 后没有场景目录，当前上一级目录，也不存在任何场景；
      *          则查看是否 dirA 前面是否存在场景目录 dirC，选择 dir C 中的第一顺位场景
-     *      3.4 以上都不满足，则继续向上递归执行该逻辑。
+     *      4. 以上都不满足，则继续向上递归执行该逻辑。
      *
      * @param dirOrPath 场景组路径或者场景路径。如果传入的是场景组，则会删除该场景组下的所有场景。
      */
@@ -1000,7 +990,7 @@ public class Room extends Displayer {
      * 更新房间缩放比例。
      *
      * @deprecated 该方法已经废弃。请使用 {@link #moveCamera(CameraConfig)}。
-     * @param scale 缩放比例。// TODO 与 Web 研发确认取值范围。
+     * @param scale 缩放比例。
      */
     @Deprecated
     public void zoomChange(double scale) {
@@ -1046,8 +1036,7 @@ public class Room extends Displayer {
     }
 
     /**
-     * 设置用户在房间中是否为互动模式。
-     * // TODO 这是是不是写更新或修改更合适？因为初始化房间实例的时候，设置过 setWritable，加入房间后在调用 setWritable 应该是修改或更新？
+     * 设置用户在房间中是否为互动模式
      *
      * @since 2.6.1
      *
@@ -1099,7 +1088,7 @@ public class Room extends Displayer {
      *
      * @since 2.2.0
      *
-     * 禁止用户视角变化（缩放，移动）。禁止后，开发者仍然可以通过 SDK API 移动视角。// TODO 开发者通过什么 API 移动视角？
+     * 禁止用户视角变化（缩放，移动）。
      *
      * @param disableCameraTransform 是否禁止用户移动或缩放视角：
      * - `true`：禁止用户改变视角。
@@ -1129,7 +1118,7 @@ public class Room extends Displayer {
      *
      * 调用该方法后，SDK 会延迟同步远端白板画面。
      *
-     * 设置远端白板画面同步延时，可以防止用户感知错位。（// TODO 这个 API 是用于音画同步？一般在什么情况下使用？)
+     * 在 CDN 直播场景，设置远端白板画面同步延时，可以防止用户感知错位。
      *
      * @note
      * 该方法不影响本地白板画面的显示，即用户在本地白板上的操作，会立即在本地白板上显示。

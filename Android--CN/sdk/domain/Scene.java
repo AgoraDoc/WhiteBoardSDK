@@ -56,8 +56,9 @@ public class Scene extends WhiteObject {
     }
 
     /**
-     * // TODO ???
-     * @return
+     * 获取场景的笔画数。
+     *
+     * @return 场景的笔画数。
      */
     public Long getComponentsCount() {
         return componentsCount;

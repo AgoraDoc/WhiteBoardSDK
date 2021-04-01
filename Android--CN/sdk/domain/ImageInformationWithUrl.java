@@ -41,9 +41,11 @@ public class ImageInformationWithUrl extends WhiteObject {
     }
 
     /**
-     * 设置图片的中心在世界坐标系中的横向坐标。// TODO 世界坐标系以什么为基准？基准坐标系是什么？
+     * 设置图片的中心在世界坐标系中的横向坐标。
      *
-     * @param centerX 横向坐标。// TODO 取值范围？？
+     * 世界坐标系指白板内部坐标系，即以白板初始化时的中心点为原点的坐标系。
+     *
+     * @param centerX 横向坐标。
      */
     public void setCenterX(double centerX) {
         this.centerX = centerX;
@@ -59,9 +61,11 @@ public class ImageInformationWithUrl extends WhiteObject {
     }
 
     /**
-     * 设置图片的中心在世界坐标系中的纵向坐标。// TODO 世界坐标系以什么为基准？基准坐标系是什么？
+     * 设置图片的中心在世界坐标系中的纵向坐标。
      *
-     * @param centerX 纵向坐标。// TODO 取值范围？？
+     * 世界坐标系指白板内部坐标系，即以白板初始化时的中心点为原点的坐标系。
+     *
+     * @param centerX 纵向坐标。
      */
     public void setCenterY(double centerY) {
         this.centerY = centerY;
@@ -79,7 +83,7 @@ public class ImageInformationWithUrl extends WhiteObject {
     /**
      * 设置图片的宽度。
      *
-     * @param width 图片的宽度，单位为像素。// TODO 取值范围？？不能大于视野范围的宽度?
+     * @param width 图片的宽度，单位为像素。如果图片的宽度超出视野范围的边界，用户将看不到超出部分。
      */
     public void setWidth(double width) {
         this.width = width;
@@ -97,7 +101,7 @@ public class ImageInformationWithUrl extends WhiteObject {
     /**
      * 设置图片的高度。
      *
-     * @param width 图片的高度，单位为像素。// TODO 取值范围？？不能大于视野范围的高度?
+     * @param width 图片的高度，单位为像素。如果图片的高度超出视野范围的边界，用户将看不到超出部分。
      */
     public void setHeight(double height) {
         this.height = height;

@@ -23,36 +23,40 @@ public class ContentModeConfig extends WhiteObject {
      */
     public enum ScaleMode {
         /**
-         * （默认）基于白板 `zoomScale` 的缩放比例。// TODO 白板 `zoomScale` 在哪里设置的？Web 端写的 `WhiteSdkConfiguration`。
+         * （默认）基于白板的 `zoomScale` 缩放视野，保证视野在屏幕上居中。
+         * Center the image in the view, but perform no scaling.
          */
         @SerializedName("Scale")
         CENTER,
         /**
-         * 图像等比缩放，填满视野范围。
-         * // TODO
-         * 与 {@link android.widget.ImageView.ScaleType#CENTER_INSIDE} 相似，按比例缩放，将设置的宽高范围，铺满视野
-         * Android CenterInside: 图片大小<=View大小&&图片大小<=原始图片大小；和上面的意思不太一样。
+         * 等比例缩放视野，使视野的长边（宽或高）正好等于屏幕宽或高，并保证视野在屏幕上居中。
+         * Scale the image uniformly (maintain the image’s aspect ratio) so that both dimensions (width and height) of the image will be equal to or less than the corresponding dimension of the view (minus padding).
          */
         @SerializedName("AspectFit")
         CENTER_INSIDE,
         /**
-         * 与 AspectFit 相似。处理时的宽高，为 基准宽高 * scale */
+         * 根据指定的倍数等比例缩放视野，使视野的长边（宽或高）正好等于屏幕宽或高，并保证视野在屏幕上居中。
+         * Compute a scale that will maintain the original src aspect ratio, but will also ensure that src fits entirely inside dst. At least one axis (X or Y) will fit exactly. The result is centered inside dst.
+         */
         @SerializedName("AspectFitScale")
         CENTER_INSIDE_SCALE,
         /**
-         * CENTER_INSIDE_SPACE 模式，表示与 AspectFit 相似。处理时的宽高，为 基准宽高 + space。
+         * 将视野范围的长边（高或宽）拉伸一定的空间，使其正好等于屏幕宽或高，并保证视野在屏幕上居中。
+         *
+         * Scale the image uniformly (maintain the image’s aspect ratio) so that both dimensions (width and height) of the image will be equal to or larger than the corresponding dimension of the view (minus padding).
          */
         @SerializedName("AspectFitSpace")
         CENTER_INSIDE_SPACE,
         /**
-         * 与 {@link android.widget.ImageView.ScaleType#CENTER_CROP} 相似，按比例缩放，视野内容会在设置的宽高范围内
+         * 等比例缩放视野，使视野的短边（宽或高）正好等于屏幕宽或高，以铺满整个屏幕，并保证视野在屏幕上居中。
+         *
+         * Scale the image uniformly (maintain the image’s aspect ratio) so that both dimensions (width and height) of the image will be equal to or larger than the corresponding dimension of the view (minus padding).
          */
         @SerializedName("AspectFill")
         CENTER_CROP,
         /**
-         * 与 AspectFill 相似，处理时的宽高，为 基准宽高 + space
+         * 将视野范围的短边（高或宽）拉伸一定的空间，使其正好等于屏幕宽或高，以铺满整个屏幕，并保证视野在屏幕上居中。
          *
-         * // TODO 这个不是剪裁？如果不是，和上面的 CENTER_INSIDE_SPACE 有什么差别？
          */
         @SerializedName("AspectFillScale")
         CENTER_CROP_SPACE,
@@ -76,7 +80,7 @@ public class ContentModeConfig extends WhiteObject {
      * - {@link ScaleMode#CENTER_INSIDE_SCALE}
      * - {@link ScaleMode#CENTER_INSIDE_SCALE}
      *
-     * @param scale 缩放比例，默认值为 1，即保存图像原始尺寸。
+     * @param scale 缩放比例，默认值为 1，即保持视野范围原始大小。
      */
     // 取值范围
     public void setScale(Double scale) {
@@ -93,16 +97,14 @@ public class ContentModeConfig extends WhiteObject {
     }
 
     /**
-     * 设置视野范围的填充空间。// 参考 android API
-     *
-     * // TODO 相对于基准视野范围额外在两边多出来的空间？
+     * 设置视野范围的填充空间。
      *
      * @note
      * 该方法仅在以下缩放模式下生效：
      * - {@link ScaleMode#CENTER_INSIDE_SPACE}
      * - {@link ScaleMode#CENTER_CROP_SPACE}
      *
-     * @param space 图像相对于视野范围的剪裁或填充空间，单位为像素，默认值为 0。// TODO 取值范围？单位？
+     * @param space 视野范围的填充空间，单位为像素，默认值为 0。
      */
     public void setSpace(Double space) {
         this.space = space;

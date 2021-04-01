@@ -10,18 +10,19 @@ public class EventEntry extends WhiteObject {
     private long authorId;
 
     /**
-     * // TODO???
-     * @return
+     * 文档中隐藏
+     * 对外能修改，用户只应该查看 eventName 和 payload
      */
     public String getScope() {
         return scope;
     }
 
     /**
-     * 获取事件触发者的用户 ID。// TODO 事件触发者一般指谁？
+     * 获取事件触发者的用户 ID。
      *
      * 若是系统事件，则为 `AdminObserverId`。
-     * @return
+     *
+     * @return 事件触发者的用户 ID。
      */
     public long getAuthorId() {
         return authorId;

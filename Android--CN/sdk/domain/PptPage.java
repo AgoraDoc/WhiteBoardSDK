@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  */
 
 /**
- * `PptPage` 类，用于在初始化场景时配置场景的背景图。// TODO 这个 PPT 是场景初始化的时候作为背景图插入的吗？
+ * `PptPage` 类，用于在初始化场景时配置场景的背景图。
  */
 public class PptPage extends WhiteObject {
 

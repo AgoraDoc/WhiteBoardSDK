@@ -81,9 +81,6 @@ public class LoggerOptions extends WhiteObject {
      *
      * @since 2.11.10
      *
-     * @note
-     * 该方法仅在 webview 中生效。// TODO 是只在 webview 中生效吗？
-     *
      * @param printLevelMask 日志打印等级，详见 {@link LoggerOptions#Level Level}。默认等级为 `info`。
      */
     public void setPrintLevelMask(Level printLevelMask) {
@@ -100,7 +97,8 @@ public class LoggerOptions extends WhiteObject {
     }
 
     /**
-     * 设置 SDK 上报的日志等级。// TODO 这个方法和 setPrintLevelMask 的区别是？上报的等级是否要大于等于打印等级？
+     * 设置 SDK 上报的日志等级。
+     *
      * @since 2.11.10
      *
      * @param reportLevelMask 日志上报等级，详见 {@link LoggerOptions#Level Level}。默认等级为 `info`。
@@ -119,7 +117,7 @@ public class LoggerOptions extends WhiteObject {
     }
 
     /**
-     * 设置 SDK 上报日志信息的模式。// TODO DebugLog 是指 Debug 等级的日志？
+     * 设置 SDK 上报 `debug` 等级日志的模式。
      *
      * @since 2.11.10
      *
@@ -129,12 +127,19 @@ public class LoggerOptions extends WhiteObject {
         this.reportDebugLogMode = reportDebugLogMode;
     }
 
+    /**
+     * 获取 SDK 上报连接质量数据的模式。
+     *
+     * @return SDK 上报连接质量数据的模式。
+     */
     public ReportMode getReportQualityMode() {
         return reportQualityMode;
     }
 
     /**
-     * 设置上报质量数据的模式。// TODO quality 是质量数据？
+     * 设置 SDK 上报连接质量数据的模式。
+     *
+     * 连接质量数据包括连接时长和连接稳定性等。
      *
      * @since 2.11.10
      *

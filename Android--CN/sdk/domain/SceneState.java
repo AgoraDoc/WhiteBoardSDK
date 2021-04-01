@@ -10,9 +10,9 @@ public class SceneState extends WhiteObject {
     private int index;
 
     /**
-     * 获取房间内所有场景列表。// TODO 是房间内的所有场景吗？还是当前场景组下的所有场景？Web 写的是房间内的所有场景。
+     * 获取当前场景组下所有场景的列表。
      *
-     * @return 房间内所有场景列表。
+     * @return 当前场景组下所有场景的列表。
      */
     public Scene[] getScenes() {
         return scenes;

@@ -54,8 +54,8 @@ public class CameraBound extends WhiteObject {
     /**
      * 设置用户视野范围的宽度。
      *
-     * 该方法可以搭配 {@link #setMinContentMode(ContentModeConfig)} 或 {@link #setMaxContentMode(ContentModeConfig)} 使用，
-     * 用来限制用户视野的最小或最大的缩放比例。
+     * 该方法可以搭配 {@link #setMinContentMode(ContentModeConfig)} 和 {@link #setMaxContentMode(ContentModeConfig)} 使用，
+     * 用来限制用户视野范围的边界。
      *
      * @param width 用户视野范围的宽度。如果不设，则表示视野宽度无限制。
      */
@@ -97,10 +97,7 @@ public class CameraBound extends WhiteObject {
     /**
      * 设置用户视野范围的最大缩放比例。
      *
-     * 不传则不会限制最大比例 // TODO 和 Web 开发确认一下
-     *
-     * @param maxContentMode 用户视野范围的最大缩放比例，详见 {@link ContentModeConfig ContentModeConfig}。如果不设置该参数，则表示
-     * 对用户视野范围的最大缩放比例无限制。
+     * @param maxContentMode 用户视野范围的最大缩放比例，详见 {@link ContentModeConfig ContentModeConfig}。
      */
     public void setMaxContentMode(ContentModeConfig maxContentMode) {
         this.maxContentMode = maxContentMode;
@@ -119,8 +116,6 @@ public class CameraBound extends WhiteObject {
     /**
      * 设置用户视野范围的最小缩放比例。
      *
-     * 不传则不会限制最小比例 // TODO 不传可能会有 bug 默认最小 0.1 和 Web 开发确认一下
-     *
      * @param minContentMode 用户视野范围的最小缩放比例，详见 {@link ContentModeConfig ContentModeConfig}。如果不设置该参数，则表示
      * 对用户视野范围的最小缩放比例无限制。
      */
@@ -138,14 +133,14 @@ public class CameraBound extends WhiteObject {
     }
 
     /**
-     * 设置用户将视野移出视野范围时感受到的阻力。
+     * 设置用户将视野移出视野范围边界时感受到的阻力。
      *
      * 该方法仅在用户使用手指触碰方式移动视野时生效。
-     * 设置为 0 的时候，可以缩放，但是手松开的时候，会弹回去；设置为 1，完全不能超过边界。
+     * 设置为 `0.0` 的时候，可以缩放，但是手松开的时候，视野会弹回去；设置为 `1.0`，完全不能将视野移动超过边界。
      *
      * @param damping 阻力大小，取值范围为 [0.0,1.0]。取值越大，用户感受到的阻力越大。
      * - 0.0: 设置为 0 时，表示视野缩放完全无阻力；当用户手指离开屏幕时，视野会恢复。
-     * - 1.0: 用户完全无法将视野移出视野范围。
+     * - 1.0: 用户完全无法将视野移出视野范围的边界。
      */
     public void setDamping(Double damping) {
         this.damping = damping;
@@ -164,7 +159,7 @@ public class CameraBound extends WhiteObject {
     }
 
     /**
-     * 初始化视野范围。// 仅设置最大最小缩放比例，其他参数不让设，简便方法
+     * 初始化视野范围。
      * @param miniScale 视野范围最小缩放比例。
      * @param maxScale 视野范围最大缩放比例。
      */

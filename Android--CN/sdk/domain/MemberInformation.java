@@ -22,25 +22,29 @@ public class MemberInformation extends WhiteObject {
     /**
      * `MemberInformation` 构造方法，用于初始化用户信息实例。
      *
-     * @param userId 用户 ID.
+     * @param userId 用户 ID。
      */
     public MemberInformation(String userId) {
         this.userId = userId;
     }
 
     /**
-     * 获取整型的用户 ID。// TODO 这里获取的是什么 ID？ 和 getUserID 什么差别？数据类型不同？
+     * 获取 long 型的用户 ID。
      *
-     * @return 整型的用户 ID。
+     * 该方法用于自定义的用户 ID。
+     *
+     * @return long 型的用户 ID。
      */
     public long getId() {
         return id;
     }
 
     /**
-     * 设置整型的用户 ID。
+     * 设置 long 型的用户 ID。
      *
-     * @param id 整型的用户 ID。
+     * 该方法用于设置自定义的用户 ID。
+     *
+     * @param id long 型的用户 ID。
      */
     public void setId(long id) {
         this.id = id;
@@ -80,7 +84,7 @@ public class MemberInformation extends WhiteObject {
     /**
      * 获取用户头像。
      *
-     * @return 用户头像。
+     * @return 用户头像的 URL 地址。
      */
     public String getAvatar() {
         return avatar;
@@ -89,7 +93,8 @@ public class MemberInformation extends WhiteObject {
     /**
      * 设置用户头像。
      *
-     * @param avatar 用户头像。// TODO 用户头像的 URL 地址？
+     * @param avatar 用户头像 URL 地址。
+     *
      */
     public void setAvatar(String avatar) {
         this.avatar = avatar;

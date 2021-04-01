@@ -10,9 +10,8 @@ public class BroadcastState extends WhiteObject {
     private RoomMember broadcasterInformation;
 
     /**
-     * 获取视角模式。// TODO 这个方法获取的是整个房间的视角模式，还是某个用户的视角模式？
-     *
-     * @return 视角模式。
+     * 获取用户的视角模式。
+     * @return 用户的视角模式。
      */
     public ViewMode getMode() {
         return mode;
@@ -21,8 +20,8 @@ public class BroadcastState extends WhiteObject {
     /**
      * 获取主播模式用户在房间中的用户 ID。
      *
-     * 2.4.6 前，当房间中没有主播时，错误的返回了 0。
-     * 2.4.8 修复了该问题。// TODO 修复后，当房间内没有主播时，返回什么？
+     * 2.4.6 版本前，当房间中没有主播时，错误地返回了 0。
+     * 2.4.8 版本修复了该问题。修复后，当房间内没有主播时，返回值为空。
      *
      * @return 主播模式用户的用户 ID。
      */
@@ -33,7 +32,7 @@ public class BroadcastState extends WhiteObject {
     /**
      * 获取主播模式用户的用户信息。
      *
-     * @return 用户信息。// TODO `RoomMember` 哪个是 `broadcasterInformation`？
+     * @return 用户信息。详见 {@link RoomMember RoomMember}。
      */
     public RoomMember getBroadcasterInformation() {
         return broadcasterInformation;

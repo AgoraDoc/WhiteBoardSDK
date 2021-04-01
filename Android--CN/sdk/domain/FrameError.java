@@ -5,7 +5,7 @@ package com.herewhite.sdk.domain;
  */
 
 /**
- * // TODO ???
+ * 文档中隐藏
  */
 public class FrameError extends WhiteObject {
 

@@ -5,7 +5,7 @@ import com.herewhite.sdk.domain.ConvertException;
 import com.herewhite.sdk.domain.ConvertedFiles;
 
 /**
- * // TODO 是否在文档中隐藏？
+ * 文档中隐藏
  */
 public class AbstractConverterCallbacks implements ConverterCallbacks {
     @Override

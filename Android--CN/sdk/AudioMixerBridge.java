@@ -1,7 +1,7 @@
 package com.herewhite.sdk;
 
 /**
- * `AudioMixerBridge` 接口，用于桥接 RTC SDK 的混音方法和白板 SDK。// TODO 确认一下是否正确？
+ * `AudioMixerBridge` 接口，用于桥接 RTC SDK 的混音方法和白板 SDK。
  *
  * @since 2.9.15
  *
@@ -13,11 +13,8 @@ package com.herewhite.sdk;
  *
  * @note
  * 仅当用户使用的 RTC SDK 支持混音方法时，该方法才会生效。
- * // TODO 这个方法是否只在 Agora RTC SDK 上做过验证？如果是，这里是不是直接改成 Agora RTC SDK 比较好。
  */
 public interface AudioMixerBridge {
-
-    // TODO 以下接口是否在文档中隐藏？
     /**
      * 开始播放音乐文件及混音。
      *

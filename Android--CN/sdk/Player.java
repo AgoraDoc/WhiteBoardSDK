@@ -44,10 +44,11 @@ public class Player extends Displayer {
 
     /**
      * 设置白板回放的倍速。
-     * @param playbackSpeed 白板回放的倍速。
+     *
+     * @param playbackSpeed 白板回放的倍速。取值必须大于 0，设为 1 表示按原速播放。
+     *
      * @since 2.5.2
      */
-    // TODO 需要补充取值范围，及各取值代表什么意思。
     public void setPlaybackSpeed(double playbackSpeed) {
         this.playbackSpeed = playbackSpeed;
         bridge.callHandler("player.setPlaybackSpeed", new Object[]{playbackSpeed});
@@ -112,6 +113,8 @@ public class Player extends Displayer {
 
     /**
      * 开始白板回放。
+     *
+     * 暂停回放后，也可以调用该方法继续白板回放。
      */
     public void play() {
         bridge.callHandler("player.play", new Object[]{});
@@ -120,7 +123,6 @@ public class Player extends Displayer {
     /**
      * 暂停白板回放。
      */
-    // TODO 暂停后想恢复播放怎么整。
     public void pause() {
         bridge.callHandler("player.pause", new Object[]{});
     }

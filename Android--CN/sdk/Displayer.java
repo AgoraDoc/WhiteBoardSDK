@@ -132,10 +132,9 @@ public class Displayer {
     /**
      * 以连续动画的形式等比例缩放 PPT。
      *
-     * 该方法确保 PPT 页面的所有内容都在视野范围内。
+     * 该方法用于确保 PPT 页面的所有内容都在视野范围内。
      * @since 2.4.22
      */
-    // TODO 是这个方法保证，还是调用这个方法的时候需要自己保证？
     public void scalePptToFit() {
         bridge.callHandler("displayer.scalePptToFit", new Object[]{});
     }
@@ -143,7 +142,8 @@ public class Displayer {
     /**
      * 等比例缩放 PPT。
      *
-     * 该方法确保 PPT 页面的内容都在视野内。
+     * 该方法用于确保 PPT 页面的内容都在视野内。
+     *
      * @param mode PPT 缩放时的动画行为，详见 {@link AnimationMode}。
      * @since 2.4.28
      */
@@ -156,10 +156,10 @@ public class Displayer {
      * 注册自定义事件监听。成功注册后，你可以接收到对应的自定义事件通知。
      *
      * @note 对于同名的自定义事件，SDK 仅支持触发一个回调。
+     *
      * @param eventName 想要监听的自定义事件名称。
      * @param eventListener 自定义事件回调，详见 {@link EventListener}。如果添加多个事件回调，则之前添加的回调会被覆盖。
      */
-    // TODO 原文：同一个自定义事件（名），只支持单个回调，到底是啥意思。以及（包括自己发送的），是什么意思。EventEntry 类整个是什么意思。
     public void addMagixEventListener(String eventName, EventListener eventListener) {
         this.eventListenerConcurrentHashMap.put(eventName, eventListener);
         bridge.callHandler("displayer.addMagixEventListener", new Object[]{eventName});
@@ -174,7 +174,6 @@ public class Displayer {
      * @param eventListener 自定义事件回调，详见 {@link FrequencyEventListener}。如果添加多个事件回调，则之前添加的回调会被覆盖。
      * @param fireInterval SDK 触发回调的频率，单位为毫秒。该参数最小值为 500ms；低于该值会被传入重置为 500ms。
      */
-    // TODO interval 的取值范围
     public void addHighFrequencyEventListener(String eventName, FrequencyEventListener eventListener, Integer fireInterval) {
         if (fireInterval < 500) {
             fireInterval = 500;
@@ -195,11 +194,15 @@ public class Displayer {
     }
 
     /**
-     * 将以白板左上角为原点的 Android 坐标系坐标，转换为白板内部坐标系（坐标原点为白板初始化时中点位置，坐标轴方向相同）坐标
+     * 转换白板上点的坐标。
      *
-     * @param x       the Android 端 x 坐标
-     * @param y       the Android 端 y 坐标
-     * @param promise 完成回调
+     * 该方法可以将 Android 内部坐标系（以屏幕左上角为原点，横轴为 X 轴，正方向向右，纵轴为 Y 轴，正方向向下）中的坐标转换为白板内部坐标系（以白板初始化时的中点为原点，横轴为 X 轴，正方向向右，纵轴为 Y 轴，正方向向下）坐标。
+     *
+     * @param x 点在 Android 坐标系中的 X 轴坐标。
+     * @param y 点在 Android 坐标系中的 Y 轴坐标。
+     * @param promise 'Promise<Point>' 接口实例，详见 {@link Promise<T> Promise<T>}。你可以通过该接口获取 `convertToPointInWorld` 的调用结果：
+     *   - 如果方法调用成功，将返回点在白板内部坐标系上的坐标。
+     *   - 如果方法调用失败，将返回错误信息。
      */
     public void convertToPointInWorld(double x, double y, final Promise<Point> promise) {
         bridge.callHandler("displayer.convertToPointInWorld", new Object[]{x, y}, new OnReturnValue<Object>() {
@@ -221,10 +224,12 @@ public class Displayer {
     }
 
     /**
-     * 设置白板视野范围。
+     * 设置视野范围。
      *
-     * @param bound 白板视野范围，详见 {@link CameraBound}。
      * @since 2.5.0
+     *
+     * @param bound 视野范围，详见 {@link CameraBound}。
+     *
      */
     public void setCameraBound(CameraBound bound) {
         this.bridge.callHandler("displayer.setCameraBound", new Object[]{bound});
@@ -232,11 +237,15 @@ public class Displayer {
 
     /**
      * 设置白板背景色。
+     *
+     * @since 2.4.14
+     *
      * @deprecated 该方法已废弃，请改用 {@link WhiteboardView#setBackgroundColor(int)}。
+     *
      * @note 该方法仅对本地显示有效，不会同步到频道内其他用户。
      *
      * @param intColor 白板的背景色，格式为 16 进制，ARGB 定义下的 Hex 值。注意 A 属性不能达到使白板透明的效果。
-     * @since 2.4.14
+     *
      */
     @Deprecated
     public void setBackgroundColor(@ColorInt int intColor) {
@@ -254,10 +263,11 @@ public class Displayer {
     }
 
     /**
-     * 获取白板房间本地显示的背景色。
+     * 获取本地白板的背景色。
      *
-     * @return 本地显示的白板房间的背景色，格式为 16 进制 ARGB 定义下的 Hex 值。
      * @since 2.4.0
+     *
+     * @return 本地白板的背景色。，格式为 16 进制 ARGB 定义下的 Hex 值。
      */
     public int getBackgroundColor() {
         return backgroundColor;
