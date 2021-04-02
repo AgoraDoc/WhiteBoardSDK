@@ -200,7 +200,7 @@ public class Displayer {
      *
      * @param x 点在 Android 坐标系中的 X 轴坐标。
      * @param y 点在 Android 坐标系中的 Y 轴坐标。
-     * @param promise 'Promise<Point>' 接口实例，详见 {@link Promise<T> Promise<T>}。你可以通过该接口获取 `convertToPointInWorld` 的调用结果：
+     * @param promise `Promise<Point>` 接口实例，详见 {@link Promise<T> Promise<T>}。你可以通过该接口获取 `convertToPointInWorld` 的调用结果：
      *   - 如果方法调用成功，将返回点在白板内部坐标系上的坐标。
      *   - 如果方法调用失败，将返回错误信息。
      */

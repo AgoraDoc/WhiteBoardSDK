@@ -245,7 +245,7 @@ public class Room extends Displayer {
      * 互动白板实时房间支持对用户设置以下视角：
      * - `Broadcaster`: 主播模式。
      * - `Follower`：跟随模式。
-     * - `Freedom'：（默认）自由模式。
+     * - `Freedom`：（默认）自由模式。
      *
      * 该方法的设置会影响房间内所有用户的视角：
      * - 当房间内不存在视角为主播模式的用户时，所有用户的视角都默认为自由模式。
@@ -281,9 +281,9 @@ public class Room extends Displayer {
      *
      * 该方法会把与当前房间实例相关的所有资源释放掉。如果要再次加入房间，需要重新调用 `joinRoom`。
      *
-     * 你可以在该方法中传入 'Promise<Object>' 接口实例，以获取方法调用结果。
+     * 你可以在该方法中传入 `Promise<Object>` 接口实例，以获取方法调用结果。
      *
-     * @param promise 'Promise<Object>' 接口实例，详见 {@link Promise<T> Promise<T>}。你可以通过该接口获取 `disconnect` 的调用结果：
+     * @param promise `Promise<Object>` 接口实例，详见 {@link Promise<T> Promise<T>}。你可以通过该接口获取 `disconnect` 的调用结果：
      * - 如果方法调用成功，则返回房间的全局状态。
      * - 如果方法调用失败，则返回错误信息。
      */

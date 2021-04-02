@@ -68,8 +68,8 @@ public class WhiteSdkConfiguration extends WhiteObject {
          * 查询动态 PPT 服务端排版功能是否开启。
          *
          * @return 动态 PPT 服务端排版功能的开启状态：
-         *  - 'true'：开启。
-         *  - 'false'：关闭。
+         *  - `true`：开启。
+         *  - `false`：关闭。
          */
 
         public boolean isUseServerWrap() {
@@ -84,8 +84,8 @@ public class WhiteSdkConfiguration extends WhiteObject {
          * 自 2021 年 02 月 10 起，Agora 服务端支持对转换的动态 PPT 排版，以确保转换后的 PPT 在不同平台排版一致。
          *
          * @param useServerWrap 是否开启服务端排版功能：
-         *  - 'true'：开启。
-         *  - 'false'：（默认）关闭。
+         *  - `true`：开启。
+         *  - `false`：（默认）关闭。
          *
          */
         public void setUseServerWrap(boolean useServerWrap) {
@@ -114,8 +114,8 @@ public class WhiteSdkConfiguration extends WhiteObject {
      * 查询是否启用 iframe 插件。
      *
      * @return 是否启用 iframe 插件：
-     *  - 'true'：开启。
-     *  - 'false'：未启用。
+     *  - `true`：开启。
+     *  - `false`：未启用。
      */
     public boolean isEnableIFramePlugin() {
         return enableIFramePlugin;
@@ -126,8 +126,8 @@ public class WhiteSdkConfiguration extends WhiteObject {
      * iframe 插件的功能，详见 https://github.com/netless-io/netless-iframe-bridge。
      *
      * @param enableIFramePlugin 是否启用 iframe 插件：
-     *  - 'true'：开启。
-     *  - 'false'：（默认）不启用。
+     *  - `true`：开启。
+     *  - `false`：（默认）不启用。
      */
     public void setEnableIFramePlugin(boolean enableIFramePlugin) {
         this.enableIFramePlugin = enableIFramePlugin;
@@ -165,7 +165,7 @@ public class WhiteSdkConfiguration extends WhiteObject {
      * 当同时使用 Agora RTC SDK 和互动白板 SDK, 且互动白板中展示的动态 PPT 中包含音频文件时，你可以启用 RTC SDK 的混音方法播放动态 PPT 中的音频，以
      *
      * @note
-     * 初始化 `WhiteSdk` 时，如果你实现并传入 {@link AudioMixerBridge AudioMixerBridge} 类，SDK 会自动设置 'setEnableRtcIntercept(true)'。你无需主动调用该方法。
+     * 初始化 `WhiteSdk` 时，如果你实现并传入 {@link AudioMixerBridge AudioMixerBridge} 类，SDK 会自动设置 `setEnableRtcIntercept(true)`。你无需主动调用该方法。
      *
      * @param enableRtcIntercept 是否启用 RTC SDK 的混音方法播放动态 PPT 中的音频：
      * - `true`：启用。
@@ -205,7 +205,7 @@ public class WhiteSdkConfiguration extends WhiteObject {
      *
      * @since 2.8.0
      *
-     * 为优化渲染，自 2.8.0 版本起，白板 SDK 新增 'canvas' 渲染模式，并从 2.9.0 版本起，将 'canvas' 渲染模式作为默认的渲染模式。
+     * 为优化渲染，自 2.8.0 版本起，白板 SDK 新增 `canvas` 渲染模式，并从 2.9.0 版本起，将 `canvas` 渲染模式作为默认的渲染模式。
      *
      * @param renderEngine 画笔教具的渲染引擎模式，详见 {@link RenderEngineType RenderEngineType}。
      *

@@ -22,8 +22,8 @@ public class WhiteDisplayerState extends WhiteObject {
      *
      * @since 2.4.8
      *
-     * @param <T> 类型约束，自定义的 'GlobalState' 类必须继承 {@link GlobalState GlobalState} 类。
-     * @param classOfT 自定义的 'GlobalState' 类。
+     * @param <T> 类型约束，自定义的 `GlobalState` 类必须继承 {@link GlobalState GlobalState} 类。
+     * @param classOfT 自定义的 `GlobalState` 类。
      *
      */
     public static <T extends GlobalState> void setCustomGlobalStateClass(Class<T> classOfT) {
