@@ -33,7 +33,7 @@ public class WhiteboardView extends DWebView {
 
 
     /**
-     * 初始化白板界面。
+     * 初始化白板界面。//TODO WL 这里要不要提一下就是 Android 的 WebView
      *
      * @param context 安卓活动 (Android Activity) 的上下文。
      */
@@ -46,7 +46,7 @@ public class WhiteboardView extends DWebView {
      * 初始化白板界面。
      *
      * @param context 安卓活动 (Android Activity) 的上下文。
-     * @param attrs 自定义控件属性，详见 Android 文档。
+     * @param attrs 自定义控件属性，详见 Android 文档。//TODO WL 这里要不要提一下就是 Android 的 WebView
      */
     public WhiteboardView(Context context, AttributeSet attrs) {
         super(getFixedContext(context), attrs);

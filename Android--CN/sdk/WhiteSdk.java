@@ -75,6 +75,7 @@ public class WhiteSdk {
      * 请确保在调用其他 API 前先调用 `WhiteSdk` 创建并初始化白板 SDK 实例。
      *
      * @note
+     * //TODO WL 每个 app 可以初始化多个 SDK 实例。你可以通过多实例创建多个 `WhiteboardView`。
      * 每个 app 可以创建多个 `Whiteboardview`，并初始化多个 SDK 实例。
      *
      * @param bridge 白板界面，详见 {@link WhiteboardView WhiteboardView}。
@@ -90,6 +91,8 @@ public class WhiteSdk {
      * 初始化白板 SDK。
      *
      * 请确保在调用其他 API 前先调用 `WhiteSdk` 创建并初始化白板 SDK 实例。
+     *
+     * //TODO WL 多实例 note 这里不需要加吗？
      *
      * @param bridge 白板界面，详见 {@link WhiteboardView WhiteboardView}。
      * @param context 安卓活动 (Android Activity) 的上下文。
@@ -128,6 +131,9 @@ public class WhiteSdk {
      * 初始化白板 SDK。
      *
      * 请确保在调用其他 API 前先调用 `WhiteSdk` 创建并初始化白板 SDK 实例。
+     *
+     * //TODO WL 多实例 note 这里不需要加吗？
+     *
      * @param bridge 白板界面，详见 {@link WhiteboardView WhiteboardView}。
      * @param context 安卓活动 (Android Activity) 的上下文。
      * @param whiteSdkConfiguration SDK 实例的配置，详见 {@link WhiteSdkConfiguration WhiteSdkConfiguration}。
@@ -140,6 +146,8 @@ public class WhiteSdk {
      * 初始化白板 SDK。
      *
      * 请确保在调用其他 API 前先调用 `WhiteSdk` 创建并初始化白板 SDK 实例。
+     *
+     * //TODO WL 多实例 note 这里不需要加吗？
      *
      * @param bridge 白板界面，详见 {@link WhiteboardView WhiteboardView}。
      * @param context 安卓活动 (Android Activity) 的上下文。

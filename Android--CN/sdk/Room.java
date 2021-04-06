@@ -188,7 +188,8 @@ public class Room extends Displayer {
     }
 
     /**
-     * 开启/禁止本地序列化。
+     * 开启/禁止本地序列化。 // TODO WL 建议：开启/禁止本地序列化。禁止之后，白板服务端将无法操作白板数据，因此你无法进行 redo、undo、duplicate、copy 和 paste 操作。
+     * // TODO WL 这个接口命名不太接地气。序列化和 redo、copy 等操作的颗粒度是不一样的。
      *
      * @since 2.9.3
      *
@@ -311,7 +312,7 @@ public class Room extends Displayer {
     }
     //region image
     /**
-     * 插入图片显示区域
+     * 插入图片显示区域。
      *
      * SDK 会根据你传入的 `ImageInformation` 在白板上设置并插入图片的显示区域。
      * 调用该方法后，还需要调用 {@link completeImageUpload(String, String) completeImageUpload} 传入图片的 Url 地址，以在该显示区域插入并展示图片。
@@ -341,7 +342,7 @@ public class Room extends Displayer {
     }
 
     /**
-     * 插入并展示图片
+     * 插入并展示图片。
      *
      * 该方法封装了 {@link insertImage(imageInfo) insertImage} 和 {@link completeImageUpload(String, String) completeImageUpload} 方法。
      * 你可以在该方法中同时传入图片信息和图片的 URL，直接在白板中插入图片的显示区域并展示图片。
@@ -901,7 +902,7 @@ public class Room extends Displayer {
      *
      * @param dir    场景组名称，必须以 `/` 开头。不能为场景路径。
      * @param scenes 由多个场景构成的数组。单个场景的字段详见 {@link Scene Scene}。
-     * @param index  待插入的多个场景中，第一个场景在该场景组的索引号。如果传入的索引号大于该场景组已有场景总数，新插入的场景会排在现有场景的最后。
+     * @param index  待插入的多个场景中，第一个场景在该场景组的索引号。如果传入的索引号大于该场景组已有场景总数，新插入的场景会排在现有场景的最后。// TODO WL 从 0 开始还是从 1 开始？
      *
      */
     public void putScenes(String dir, Scene[] scenes, int index) {
@@ -966,7 +967,7 @@ public class Room extends Displayer {
      *
      * @since 2.2.0
      *
-     * 当前 PPT 页面的动画已全部执行完成时，切换至下一页 PPT。
+     * 当前 PPT 页面的动画已全部执行完成时，切换至下一页 PPT。// TODO WL 这一句话是描述 API 行为的吗？当前页面动画没有执行完成则不会切换？
      *
      */
     public void pptNextStep() {
@@ -978,7 +979,7 @@ public class Room extends Displayer {
      *
      * @since 2.2.0
      *
-     * 当前 PPT 页面的动画全部回退完成时，返回至上一页 PPT。
+     * 当前 PPT 页面的动画全部回退完成时，返回至上一页 PPT。// TODO WL 这一句话是描述 API 行为的吗？当前页面动画没有执行完成则不会切换？
      *
      */
     public void pptPreviousStep() {
@@ -1036,7 +1037,7 @@ public class Room extends Displayer {
     }
 
     /**
-     * 设置用户在房间中是否为互动模式
+     * 设置用户在房间中是否为互动模式。
      *
      * @since 2.6.1
      *
