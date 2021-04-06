@@ -31,7 +31,7 @@ public class WhiteDisplayerState extends WhiteObject {
     }
 
     /**
-     * 全局状态，所有用户可见，实时房间时，可读可写；回放房间只读。返回内容为 sdk 默认全局状态
+     * 全局状态，所有用户可见，实时房间时，可读可写；回放房间只读。返回内容为 sdk 默认全局状态 //TODO WJ 这里的描述需要确认
      *
      * @return 全局状态
      */
@@ -51,20 +51,18 @@ public class WhiteDisplayerState extends WhiteObject {
     }
 
     /**
-     * 获取房间中所有用户列表
+     * 获取房间中所有的用户。
      *
-     * @return 用户成员状态列表 [ ]
-     * @see RoomMember
+     * @return 用户成员列表，详见 {@link RoomMember}。
      */
     public RoomMember[] getRoomMembers() {
         return roomMembers;
     }
 
     /**
-     * 获取当前场景目录下的场景状态
+     * 获取当前场景目录下的场景状态。
      *
-     * @return 当前场景目录下的场景状态
-     * @see SceneState
+     * @return 当前场景目录下的场景状态，详见 {@link SceneState}。
      */
     public SceneState getSceneState() {
         return sceneState;

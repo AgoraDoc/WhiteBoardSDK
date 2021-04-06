@@ -45,7 +45,7 @@ public class Player extends Displayer {
     /**
      * 设置白板回放的倍速。
      *
-     * @param playbackSpeed 白板回放的倍速。取值必须大于 0，设为 1 表示按原速播放。
+     * @param playbackSpeed 白板回放的倍速。取值必须大于 0，设为 1 表示按原速播放。//TODO WJ 这个取值没有上限吗？
      *
      * @since 2.5.2
      */
@@ -139,9 +139,9 @@ public class Player extends Displayer {
     /**
      * 设置白板回放的开始时间。
      *
-     * 由于 SDK 会录制实时房间的全部过程，因此默认情况下，回放会播放从房间构造开始直到最后一次活跃结束的全部过程。
+     * 由于 SDK 会录制实时房间的全部过程，因此默认情况下，回放会播放从房间构造开始直到最后一次活跃结束的全部过程。//TODO WJ 最后一次活跃？
      * 因此在进行回放时，需要调用该方法设置开始回放的时间点。
-     * @param seekTime 白板回放的开始时间，单位为毫秒。
+     * @param seekTime 白板回放的开始时间，单位为毫秒。//TODO WJ 这个是 UTC 时间吗？
      */
     public void seekToScheduleTime(long seekTime) {
         bridge.callHandler("player.seekToScheduleTime", new Object[]{seekTime});
@@ -186,7 +186,7 @@ public class Player extends Displayer {
     //region Get API
 
     /**
-     * 获取白板回放房间的阶段。该方法为同步调用。
+     * 获取白板回放房间的阶段。该方法为同步调用。//TODO WJ 上面几个方法都是“白板回放”，这里是“白板回放房间”，下面又变成“回放房间”，不知道是不是一回事。
      *
      * 在 Player 生命周期内，你可以调用该方法获取当前回放房间的阶段。其中初始阶段为 `waitingFirstFrame`，表示正在等待白板回放的第一帧。
      *
@@ -206,7 +206,7 @@ public class Player extends Displayer {
      *
      * @note
      * - 成功调用 {@link #stop()}、{@link #play()}、{@link #pause()} 等方法均会影响回放房间的阶段，但是该阶段不会立即更新。
-     * - 该方位为异步调用。我们推荐你仅在调试或问题排查时使用。一般情况下可以使用同步方法 {@link #getPlayerPhase()} 进行获取。
+     * - 该方位为异步调用。我们推荐你仅在调试或问题排查时使用。一般情况下可以使用同步方法 {@link #getPlayerPhase()} 获取回放阶段。
      *
      * @param promise `Promise<PlayerPhase>` 接口实例，详见 {@link Promise 类}。你可以通过该接口了解获取白板回放阶段的结果：
      * - 如果获取成功，将返回白板回放的阶段。
@@ -234,7 +234,7 @@ public class Player extends Displayer {
     /**
      * 获取回放房间的状态。该方法为同步调用。
      *
-     * 如果回放房间的状态 Player phase 为 `waitingFirstFrame`，则该方法返回 Null。
+     * 如果回放房间的状态为 `waitingFirstFrame`，则该方法返回 `null`。
      *
      * @return 回放房间状态，详见 {@link PlayerState}。
      * @since 2.4.0
@@ -278,7 +278,7 @@ public class Player extends Displayer {
     /**
      * 获取白板回放的时间信息，该方法为同步调用。
      *
-     * 该方法获取的时间信息，包含当前的播放时间，回放文件的总时长，以及开始播放的 UTC 时间戳，单位为毫秒。
+     * 该方法获取的时间信息，包含当前的播放时间，回放文件的总时长，以及开始播放的 UTC 时间戳，单位为毫秒。//TODO WJ 当前的播放时间是指当前播放到哪里了？
      *
      * @note 该方法获取的当前播放时间可能不准确。
      *

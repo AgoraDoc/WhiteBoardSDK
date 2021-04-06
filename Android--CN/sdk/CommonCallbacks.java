@@ -15,7 +15,7 @@ public interface CommonCallbacks {
 
     /**
      *  SDK 出现未捕获的全局错误回调。
-     * @param args
+     * @param args //TODO WJ 缺注释
      */
     void throwError(Object args);
 
@@ -30,7 +30,7 @@ public interface CommonCallbacks {
      * @note
      * 由于该回调过于频繁，Agora 不推荐使用；在 Android 平台，可以使用 WebView 的拦截功能进行图片拦截。
      *
-     * @param sourceUrl 图片原地址。
+     * @param sourceUrl 图片源地址。
      * @return 替换后的图片地址。
      */
     String urlInterrupter(String sourceUrl);
@@ -53,7 +53,7 @@ public interface CommonCallbacks {
      *
      * @since 2.11.4
      *
-     * 当本地用户收到了网页，如 iframe 插件，动态 PPT 发送的消息时会触发该回调。
+     * 当本地用户收到了网页（如 iframe 插件、动态 PPT）发送的消息时会触发该回调。
      *
      * @note
      * 不保证所有用户都能接收到该回调。
@@ -67,8 +67,8 @@ public interface CommonCallbacks {
      *
      * @since 2.9.14
      *
-     * 如果 SDK 初始化失败，调用加入实时房间或回放房间时会处于一直无响应状态，需要重新初始化 SDK。
-     * - 初始化 SDK 时候，网络异常，导致获取配置信息失败。
+     * 如果 SDK 初始化失败，调用加入实时房间或回放房间的方法时会处于一直无响应状态，需要重新初始化 SDK。
+     * - 初始化 SDK 时候，网络异常，导致获取配置信息失败。//TODO WJ 这里是列了两个可能的失败原因？需要在前面加一些文字连起来。
      * - 传入了不合法的 App Identifier。
      * @since 2.9.14
      */

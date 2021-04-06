@@ -3,7 +3,7 @@ package com.herewhite.sdk.domain;
 /**
  * `RectangleConfig` 类。该类配置白板的视觉矩形。
  * 通过视觉矩形，你可以设置视野范围内需要关注的内容。
- * 该方法可用于保证同样的内容在不同的设备上都可以显示完整。
+ * 该方法可用于保证同样的内容在不同的设备上都可以显示完整。//TODO WJ 这里的描述是不是应该放到设置视觉矩形的方法里？
  *
  * @since 2.2.0
  */
@@ -14,7 +14,7 @@ public class RectangleConfig extends WhiteObject {
     private Double height;
 
     /**
-     * `RectangleConfig` 构造函数。
+     * `RectangleConfig` 构造函数。//TODO WJ 这几个 RectangleConfig 构造函数是对外的吗？这几个方法里的参数都可以通过下面提供的方法进行设置
      *
      * 在该函数中，你需要传入 `width`，`height` 和 `mode`。SDK 会根据你传入 `width` 和 `height` 计算视觉矩形左上角原点
      * 在世界坐标系中的位置 `originX` 和 `originY`, 即 `originX = - width / 2.0d`，`originY = - height / 2.0d`。
@@ -23,7 +23,7 @@ public class RectangleConfig extends WhiteObject {
      *
      * @param width 白板视觉矩形的宽度。视觉矩形的宽度不能小于实际展示内容的宽度，否则用户将看不见超出的部分。
      * @param height 白板视觉矩形的高度。视觉矩形的高度不能小于实际展示内容的宽度，否则用户将看不见超出的部分。
-     * @param mode 白板的动画模式，详见 {@link AnimationMode}。
+     * @param mode 白板视觉矩形的动画模式，详见 {@link AnimationMode}。
      */
     public RectangleConfig(Double width, Double height, AnimationMode mode) {
         this.width = width;
@@ -39,7 +39,7 @@ public class RectangleConfig extends WhiteObject {
      * 在该函数中，你需要传入 `width` 和 `height`。SDK 会根据你传入 `width` 和 `height` 计算视觉矩形左上角原点
      * 在世界坐标系中的位置 `originX` 和 `originY`, 即 `originX = - width / 2.0d`，`originY = - height / 2.0d`。
      *
-     * 该方法不支持设置动画模式，SDK 会默认将动画模式设置为 `Continuous`。
+     * 该方法不支持设置动画模式，SDK 会默认将动画模式设置为 `Continuous`，即连续动画模式。
      *
      * 该方法适用于需要快速显示完整 PPT 内容的场景。
      *

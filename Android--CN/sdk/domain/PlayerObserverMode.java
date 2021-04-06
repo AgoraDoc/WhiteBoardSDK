@@ -11,7 +11,7 @@ public enum  PlayerObserverMode {
     directory,
 
     /**
-     * 自由模式。
+     * 自由模式。//TODO WJ 自由模式啥意思？
      */
     freedom
 }
