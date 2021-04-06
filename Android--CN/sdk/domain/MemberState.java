@@ -27,7 +27,7 @@ public class MemberState extends WhiteObject {
     /**
      * 设置互动白板实时房间内使用的教具。
      *
-     * @param 教具名称，详见 {@link Appliance Appliance}。
+     * @param currentApplianceName 教具名称，详见 {@link Appliance Appliance}。
      */
     public void setCurrentApplianceName(String currentApplianceName) {
         this.currentApplianceName = currentApplianceName;
@@ -36,7 +36,7 @@ public class MemberState extends WhiteObject {
     /**
      * 获取用户设置的线条颜色。
      *
-     * @return 线条颜色，为 RGB 格式，例如，[0, 0, 255] 表示蓝色。
+     * @return 线条颜色，为 RGB 格式，例如，[0, 0, 255] 表示蓝色。//TODO WJ rgb 格式的写法好像应该是 (0,0,255)
      */
     public int[] getStrokeColor() {
         return strokeColor;
@@ -45,7 +45,7 @@ public class MemberState extends WhiteObject {
     /**
      * 设置线条颜色。
      *
-     * @param 线条颜色，为 RGB 格式，例如，[0, 0, 255] 表示蓝色。
+     * @param strokeColor 线条颜色，为 RGB 格式，例如，[0, 0, 255] 表示蓝色。
      */
     public void setStrokeColor(int[] strokeColor) {
         this.strokeColor = strokeColor;
@@ -64,7 +64,7 @@ public class MemberState extends WhiteObject {
     /**
      * 设置线条粗细。
      *
-     * @param strokeWidth 线条粗细。
+     * @param strokeWidth 线条粗细。//TODO WJ 单位是啥？
      */
     public void setStrokeWidth(double strokeWidth) {
         this.strokeWidth = strokeWidth;
@@ -83,7 +83,7 @@ public class MemberState extends WhiteObject {
     /**
      * 设置字体大小。
      *
-     * @param textSize 字体大小。Chrome 浏览器对于小于 12 的字体会自动调整为 12。
+     * @param textSize 字体大小。Chrome 浏览器对于小于 12 的字体会自动调整为 12。//TODO WJ 单位是 pt 吗？
      */
     public void setTextSize(double textSize) {
         this.textSize = textSize;

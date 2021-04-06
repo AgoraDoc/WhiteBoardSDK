@@ -3,7 +3,7 @@ package com.herewhite.sdk.domain;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * 白板回放房间的阶段。
+ * 白板回放的阶段。
  */
 public enum PlayerPhase {
     /**
@@ -18,17 +18,17 @@ public enum PlayerPhase {
      * 白板回放已暂停。
      */
     pause,
-    @SerializedName("stop")
     /**
      * 白板回放已停止。
      */
+    @SerializedName("stop")
     stopped,
     /**
      * 白板回放已结束。
      */
     ended,
     /**
-     * 白板回放正在缓存中。
+     * 白板回放正在缓存。
      */
     buffering,
 }

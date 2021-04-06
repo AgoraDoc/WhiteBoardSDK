@@ -3,7 +3,7 @@ package com.herewhite.sdk.domain;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * 路径类型。
+ * 白板场景的路径类型。
  *
  * @since 2.6.4
  */

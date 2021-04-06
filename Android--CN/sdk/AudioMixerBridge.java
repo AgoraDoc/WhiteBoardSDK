@@ -12,7 +12,7 @@ package com.herewhite.sdk;
  * 为解决上述问题，你可以使用 `AudioMixerBridge` 接口，以调用 RTC SDK 的混音方法播放动态 PPT 中的音频文件。
  *
  * @note
- * 仅当用户使用的 RTC SDK 支持混音方法时，该方法才会生效。
+ * 仅当用户使用的 RTC SDK 支持混音方法时，该接口的方法才会生效。//TODO WJ 这个支持是指 SDK 版本要求吗？RTC SDK 很早就支持混音了吧
  */
 public interface AudioMixerBridge {
     /**
@@ -24,10 +24,10 @@ public interface AudioMixerBridge {
      * - `true`：只有本地可以听到混音的音频流。
      * - `false`：本地和对方都可以听到混音的音频流。
      * @param replace 是否播放麦克风采集的音频：
-     * - `true`： 只播音频文件，不播麦克风采集的音频。
-     * - `false`: 将音频文件和麦克风采集的音频混音。
+     * - `true`： 只播放音频文件，不播放麦克风采集的音频。
+     * - `false`: 将音频文件和麦克风采集的音频混音后播放。
      * @param cycle 音频文件循环播放的次数：
-     * - 正整数：循环的次数。
+     * - 正整数：循环的次数。//TODO WJ 这里的描述要跟着 RTC 修改，主要是 0 的问题。
      * - -1：无限循环。
     void startAudioMixing(String filepath, boolean loopback, boolean replace, int cycle);
 
