@@ -4,7 +4,7 @@ package com.herewhite.sdk.domain;
  * Created by buhe on 2018/8/11.
  */
 /**
- * `MemberState` 类，用于设置互动白板实时房间的教具状态。
+ * `MemberState` 类，用于设置互动白板实时房间的教具状态。// TODO WL 要不要说明一下成员函数可以多次调用？
  */
 public class MemberState extends WhiteObject {
     private String currentApplianceName;

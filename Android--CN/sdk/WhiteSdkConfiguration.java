@@ -387,6 +387,7 @@ public class WhiteSdkConfiguration extends WhiteObject {
 
     /**
      * 查询是否开启仅接收远端用户状态改变回调。
+     * //TODO WL 有歧义，是把状态改变回调设置为仅接收远端用户状态还是开启一个回调，这个回调只接收远端用户状态改变？
      *
      * @return 是否开启仅接收远端用户状态改变回调：
      * - `true`：是。

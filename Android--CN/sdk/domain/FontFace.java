@@ -39,6 +39,7 @@ public class FontFace extends WhiteObject {
      * - `normal`：（默认）常规。
      * - `italic`：斜体。
      * - `bold`：加粗。（mozilla 上写的是 oblique https://developer.mozilla.org/zh-CN/docs/Web/CSS/@font-face/font-style）
+     * //TODO WL Oblique 还是 bold? 标准的 CSS 应该是 Oblique
      */
     public void setFontStyle(String fontStyle) {
         this.fontStyle = fontStyle;

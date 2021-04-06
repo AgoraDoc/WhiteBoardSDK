@@ -50,6 +50,7 @@ public class PlayerConfiguration extends WhiteObject {
 
     /**
      * 回放时，时间进度的调用频率 //TODO WJ 什么意思？
+     * // TODO WL 什么叫时间进度的调用频率？调用的是什么？
      * @param duration 时长长度
      * @param timeUnit 时间单位
      */
@@ -59,6 +60,7 @@ public class PlayerConfiguration extends WhiteObject {
 
     /*
       音频地址，暂不支持视频。
+      // TODO WL 本地地址还是 URL 地址？
       Player 会自动与音视频播放做同步，保证同时播放，当一方缓冲时，会暂停。
     */
     private String mediaURL;
@@ -97,7 +99,7 @@ public class PlayerConfiguration extends WhiteObject {
     }
 
     /**
-     * 设置回放的起始时间。
+     * 设置回放的起始时间。// TODO 是标准的 Unix 时间戳吗？
      * @param beginTimestamp 回放房间的起始 UTC 时间戳(毫秒）。例如，想要回放 Wed Mar 10 2021 18:03:34 GMT+0800 (中国标准时间) 的话，需要传入 1615370614269。
      */
     public void setBeginTimestamp(Long beginTimestamp) {
@@ -111,7 +113,7 @@ public class PlayerConfiguration extends WhiteObject {
 
     /**
      * 设置持续时长（毫秒）//TODO WJ 设置什么的时长？参数缺注释。下面的方法都不需要注释？
-     * @param duration
+     * @param duration // TODO WL 缺少参数解释
      */
     public void setDuration(Long duration) {
         this.duration = duration;

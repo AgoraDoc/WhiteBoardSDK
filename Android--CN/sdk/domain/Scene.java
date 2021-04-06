@@ -56,7 +56,7 @@ public class Scene extends WhiteObject {
     }
 
     /**
-     * 获取场景的笔画数。
+     * 获取场景的笔画数。// TODO WL 如何定义笔画数？
      *
      * @return 场景的笔画数。
      */

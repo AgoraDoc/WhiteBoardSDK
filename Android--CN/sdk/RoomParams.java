@@ -15,6 +15,7 @@ import java.util.concurrent.TimeUnit;
  * `RoomParams` 类，用于配置实时房间的参数。
  *
  * @note
+ * // TODO WL whiteSDK 应写为 whiteSdk
  * 成功初始化 `whiteSDK` 后，无法再调用 `WhiteSdkConfiguration` 类中的任何方法修改 `whiteSDK` 的配置。
  *
  * @note
@@ -38,6 +39,7 @@ public class RoomParams extends WhiteObject {
     }
 
     /**
+     * // TODO WL 获取设置的数据中心。
      * 设置设置的数据中心。
      *
      * @return 设置的数据中心。
@@ -109,7 +111,7 @@ public class RoomParams extends WhiteObject {
      * 设置加入房间的超时时间。
      *
      * @param timeout 超时时长。
-     * @param timeUnit 时长单位。
+     * @param timeUnit 时长单位。// TODO WL 默认值是啥？
      */
     public void setTimeout(long timeout, TimeUnit timeUnit) {
         this.timeout = TimeUnit.MILLISECONDS.convert(timeout, timeUnit);
@@ -271,7 +273,7 @@ public class RoomParams extends WhiteObject {
      * 如果要在白板房间中显示用户头像，请在 `userPayload` 中传入 `avatar` 字段并添加用户头像的地址，例如 `"avatar", "https://example.com/user.png")`。
      * 从 {@link MemberInformation MemberInformation} 迁移，只需要在 `userPayload` 中，传入相同字段即可。
      *
-     * @param userPayload 自定义的用户信息，必须为 key-value 结构。
+     * @param userPayload 自定义的用户信息，必须为 key-value 结构。// TODO WL 此处举个例子会更好。
      */
     public void setUserPayload(Object userPayload) {
         this.userPayload = userPayload;
@@ -291,6 +293,7 @@ public class RoomParams extends WhiteObject {
 
     /**
      * 初始化房间配置参数并传入用户信息。
+     * // TODO WL 是不是说这个方法已经废弃了？
      *
      * @deprecated 该方法已经废弃。请使用 {@link RoomParams(String, String, Object) RoomParams}。
      *

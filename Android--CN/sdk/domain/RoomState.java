@@ -23,7 +23,7 @@ public class RoomState extends WhiteDisplayerState {
     }
     /**
      * 获取房间的视角状态。
-     * @return
+     * @return //TODO WL 返回值没写
      */
     public BroadcastState getBroadcastState() {
         return broadcastState;
@@ -31,7 +31,7 @@ public class RoomState extends WhiteDisplayerState {
     /**
      * 获取房间的缩放比例。
      *
-     * @return 房间的缩放比例。
+     * @return 房间的缩放比例。// TODO 有值域吗？
      */
     public Double getZoomScale() {
         return zoomScale;

@@ -38,6 +38,7 @@ public interface RoomCallbacks {
      *
      * 该回调仅返回发生变化的房间状态属性，未发生变化的房间状态字段，均未空。
      * @param modifyState 发生变化的房间状态属性，详见 {@link RoomState RoomState}。
+     * // TODO WL 发生变化后的房间状态属性？
      */
     void onRoomStateChanged(RoomState modifyState);
 

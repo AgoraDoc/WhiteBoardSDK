@@ -15,7 +15,7 @@ public class ImageInformation extends WhiteObject {
     private Double height;xian
 
     /**
-     * 获取是否锁定图片。
+     * 获取是否锁定图片。// TODO WL 获取 SDK 是否锁定图片。问题：什么叫锁定图片？锁定之后，图片的状态变化是什么？
      *
      * @return 是否锁定图片：
      * - `true`：锁定。
@@ -27,7 +27,7 @@ public class ImageInformation extends WhiteObject {
     }
 
     /**
-     * 设置锁定图片。
+     * 设置锁定图片。// TODO WL 设置图片锁定状态
      *
      * @param locked 是否锁定图片：
      * - `true`：锁定。
@@ -62,7 +62,7 @@ public class ImageInformation extends WhiteObject {
     }
 
     /**
-     * 获取图片的中心在世界坐标系中的横向坐标。
+     * 获取图片的中心在世界坐标系中的横向坐标。 // TODO WL 直接说白板内部坐标系？
      *
      * @return 横向坐标。
      */
@@ -71,7 +71,7 @@ public class ImageInformation extends WhiteObject {
     }
 
     /**
-     * 设置图片的中心在世界坐标系中的横向坐标。
+     * 设置图片的中心在世界坐标系中的横向坐标。// TODO WL 直接说白板内部坐标系？
      *
      * 世界坐标系指白板内部坐标系，即以白板初始化时的中心点为原点的坐标系。
      *
