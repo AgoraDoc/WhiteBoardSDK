@@ -16,8 +16,8 @@ public class PlayerConfiguration extends WhiteObject {
     }
 
     /**
-     * 类似 {@link com.herewhite.sdk.RoomParams#setRegion(Region)}
-     * @param region
+     * 类似 {@link com.herewhite.sdk.RoomParams#setRegion(Region)} //TODO WJ 类似？？？需要更具体的描述。
+     * @param region //TODO WJ 缺注释
      */
     public void setRegion(Region region) {
         this.region = region;
@@ -26,7 +26,7 @@ public class PlayerConfiguration extends WhiteObject {
     private Region region;
 
     /**
-     * player 初始化方法
+     * player 初始化方法 //TODO WJ 这是 SDK 内部调用的吗？
      * @param room 需要回放的房间 uuid
      * @param roomToken 房间 roomToken
      */
@@ -35,11 +35,12 @@ public class PlayerConfiguration extends WhiteObject {
         this.roomToken = roomToken;
     }
 
+    //TODO WJ 这个方法不需要注释？
     public CameraBound getCameraBound() {
         return cameraBound;
     }
 
-    /**
+    /** //TODO WJ 缺注释
      * {@link com.herewhite.sdk.Room#setCameraBound(CameraBound)}
      * @param cameraBound
      */
@@ -48,7 +49,7 @@ public class PlayerConfiguration extends WhiteObject {
     }
 
     /**
-     * 回放时，时间进度的调用频率
+     * 回放时，时间进度的调用频率 //TODO WJ 什么意思？
      * // TODO WL 什么叫时间进度的调用频率？调用的是什么？
      * @param duration 时长长度
      * @param timeUnit 时间单位
@@ -92,25 +93,26 @@ public class PlayerConfiguration extends WhiteObject {
         this.slice = slice;
     }
 
+    //TODO WJ 这个不需要注释？
     public Long getBeginTimestamp() {
         return beginTimestamp;
     }
 
-    /***
-     * 回放房间的起始 UTC 时间戳(毫秒） // TODO 是标准的 Unix 时间戳吗？
-     * 比如，想要回放 Wed Mar 10 2021 18:03:34 GMT+0800 (中国标准时间) 的话，需要传入 1615370614269
-     * @param beginTimestamp //TODO 缺少参数解释
+    /**
+     * 设置回放的起始时间。// TODO 是标准的 Unix 时间戳吗？
+     * @param beginTimestamp 回放房间的起始 UTC 时间戳(毫秒）。例如，想要回放 Wed Mar 10 2021 18:03:34 GMT+0800 (中国标准时间) 的话，需要传入 1615370614269。
      */
     public void setBeginTimestamp(Long beginTimestamp) {
         this.beginTimestamp = beginTimestamp;
     }
 
+    //TODO WJ 缺注释
     public Long getDuration() {
         return duration;
     }
 
     /**
-     * 设置持续时长（毫秒）
+     * 设置持续时长（毫秒）//TODO WJ 设置什么的时长？参数缺注释。下面的方法都不需要注释？
      * @param duration // TODO WL 缺少参数解释
      */
     public void setDuration(Long duration) {

@@ -1,7 +1,7 @@
 package com.herewhite.sdk.domain;
 
 /**
- * 视野范围配置类。
+ * 白板的视野配置。
  *
  * @since 2.2.0
  */

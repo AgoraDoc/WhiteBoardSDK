@@ -19,7 +19,7 @@ public class PlayerTimeInfo {
     }
 
     /**
-     * 当前时间进度（毫秒）。// TODO 已播放时长？
+     * 当前时间进度（毫秒）。//TODO WJ 当前播放进度？已播放时长？
      */
     public long getScheduleTime() {
         return scheduleTime;
@@ -39,7 +39,7 @@ public class PlayerTimeInfo {
     }
 
     /**
-     * 开始时间，UTC 时间戳（毫秒）。// TODO Unix 时间戳？
+     * 开始时间，UTC 时间戳（毫秒）。//TODO WJ 开始回放的时间？Unix 时间戳？
      */
     public long getBeginTimestamp() {
         return beginTimestamp;

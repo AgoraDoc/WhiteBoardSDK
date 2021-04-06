@@ -48,11 +48,11 @@ public class Displayer {
     protected ConcurrentHashMap<String, FrequencyEventListener> frequencyEventListenerConcurrentHashMap = new ConcurrentHashMap<>();
 
     /**
-     * Displayer 类的构造函数。
-     * @param uuid 用户 ID。
+     * Displayer 类的构造函数。 //TODO WJ SDK 内部调用的，可以不暴露在文档里
+     * @param uuid 白板房间的 UUID。
      * @param bridge 白板界面，详见 {@link WhiteboardView}。
      * @param context Android 的 Context。
-     * @param sdk White SDK 的初始化设置，详见 {@link WhiteSdk}。
+     * @param sdk 白板 SDK 的初始化设置，详见 {@link WhiteSdk}。
      */
     public Displayer(String uuid, WhiteboardView bridge, Context context, WhiteSdk sdk) {
         this.uuid = uuid;
@@ -73,10 +73,10 @@ public class Displayer {
     /**
      * 向 iframe 插件发送 key-value 格式的信息。
      *
-     * 你可以通过创建 WhiteObject 的子类来创建一个 ley-value 格式的信息。
+     * 你可以通过创建 WhiteObject 的子类来创建一个 key-value 格式的信息。
      *
      * @param object `Whiteobject` 的子类，详见 {@link WhiteObject}。
-     * @since 2.11.4
+     * @since 2.11.4 //TODO WJ 版本信息的 tag 位置要放到描述开头。
      */
     public void postIframeMessage(WhiteObject object) {
         bridge.callHandler("displayer.postMessage", new Object[]{object});
@@ -85,9 +85,9 @@ public class Displayer {
     /**
      * 查询场景路径类型。
      *
-     * 你可以在该方法中指定想要查询的场景路径，SDK 会返回该路径对应的场景类型，是场景，还是场景目录，或者不存在任何内容。
-     * @param path 想要查询的场景类型。
-     * @param promise `Promise<WhiteScenePathType>` 接口实例，详见 {@link WhiteScenePathTType}。你可以通过该接口获取查询场景路径类型的结果：
+     * 你可以在该方法中指定想要查询的场景路径，SDK 会返回该路径对应的场景类型。
+     * @param path 想要查询的场景路径。
+     * @param promise `Promise<WhiteScenePathType>` 接口实例，详见 {@link WhiteScenePathType}。你可以通过该接口获取查询场景路径类型的结果：
      * - 如果查询成功，将返回场景路径类型。
      * - 如果查询失败，将返回错误信息。
      */
@@ -130,7 +130,7 @@ public class Displayer {
     }
 
     /**
-     * 以连续动画的形式等比例缩放 PPT。
+     * 以连续动画的形式等比例缩放视角，以保证完整显示 PPT 的内容。//TODO WJ 这里的连续动画是指渐变模式吗？如果是的话，建议统一用词
      *
      * 该方法用于确保 PPT 页面的所有内容都在视野范围内。
      * @since 2.4.22
@@ -140,11 +140,11 @@ public class Displayer {
     }
 
     /**
-     * 等比例缩放 PPT。
+     * 等比例缩放视角，以保证完整显示 PPT 的内容。
      *
      * 该方法用于确保 PPT 页面的内容都在视野内。
      *
-     * @param mode PPT 缩放时的动画行为，详见 {@link AnimationMode}。
+     * @param mode PPT 缩放时的动画模式，详见 {@link AnimationMode}。
      * @since 2.4.28
      */
     public void scalePptToFit(AnimationMode mode) {
@@ -158,7 +158,7 @@ public class Displayer {
      * @note 对于同名的自定义事件，SDK 仅支持触发一个回调。
      *
      * @param eventName 想要监听的自定义事件名称。
-     * @param eventListener 自定义事件回调，详见 {@link EventListener}。如果添加多个事件回调，则之前添加的回调会被覆盖。
+     * @param eventListener 自定义事件回调，详见 {@link EventListener}。如果添加多个事件回调，则之前添加的回调会被覆盖。//TODO WJ 这里说的添加多个事件回调是指多个同名的事件回调吗？
      */
     public void addMagixEventListener(String eventName, EventListener eventListener) {
         this.eventListenerConcurrentHashMap.put(eventName, eventListener);
@@ -171,8 +171,8 @@ public class Displayer {
      * @note 对于同名的自定义事件，SDK 仅支持触发一个回调。
      *
      * @param eventName 想要监听的自定义事件名称。
-     * @param eventListener 自定义事件回调，详见 {@link FrequencyEventListener}。如果添加多个事件回调，则之前添加的回调会被覆盖。
-     * @param fireInterval SDK 触发回调的频率，单位为毫秒。该参数最小值为 500ms；低于该值会被传入重置为 500ms。
+     * @param eventListener 自定义事件回调，详见 {@link FrequencyEventListener}。如果添加多个事件回调，则之前添加的回调会被覆盖。//TODO WJ 这里说的添加多个事件回调是指多个同名的事件回调吗？
+     * @param fireInterval SDK 触发回调的频率，单位为毫秒。该参数最小值为 500 ms，如果设置为低于该值会被重置为 500 ms。
      */
     public void addHighFrequencyEventListener(String eventName, FrequencyEventListener eventListener, Integer fireInterval) {
         if (fireInterval < 500) {
@@ -267,7 +267,7 @@ public class Displayer {
      *
      * @since 2.4.0
      *
-     * @return 本地白板的背景色。，格式为 16 进制 ARGB 定义下的 Hex 值。
+     * @return 本地白板的背景色，格式为 16 进制 ARGB 定义下的 Hex 值。
      */
     public int getBackgroundColor() {
         return backgroundColor;
@@ -281,7 +281,7 @@ public class Displayer {
      * @param scenePath 指定的场景路径。
      * @param promise `Promise<Bitmap>` 接口实例，详见 {@link Promise}。你可以通过该接口了解获取场景预览图的结果：
      * - 如果获取成功，将返回获取的预览图。
-     * - 如果获取失败，将反馈错误码。
+     * - 如果获取失败，将返回错误码。
      * @since 2.3.0
      */
     public void getScenePreviewImage(String scenePath, final Promise<Bitmap>promise) {
@@ -304,7 +304,7 @@ public class Displayer {
     /**
      * 获取特定场景的截图。
      *
-     * 该方法可用于实现用户切换到对应场景时，能立刻看到该场景内容的功能。
+     * 该方法可用于实现用户切换到对应场景时，能立刻看到该场景内容的功能。//TODO WJ 这句话是不是应该删掉，怎么和预览的功能一模一样
      *
      * @param scenePath 指定的场景路径。
      * @param promise `Promise<Bitmap>` 接口实例，详见 {@link Promise}。你可以通过该接口了解获取场景截图的结果：
@@ -338,13 +338,13 @@ public class Displayer {
     }
 
     /**
-     * 禁止/允许用户移动视角。
+     * 禁止/允许用户缩放白板视野。
      *
-     * 移动视角是指用户可以通过触屏手势放大或缩小白板视野。
+     * 该方法可以设置是否允许用户通过触屏手势放大或缩小白板视野。
      *
-     * @param disable 是否禁止用户移动视角：
-     * - true: 禁止用户移动视角。
-     * - false: (默认) 允许用户移动视角。
+     * @param disable 是否禁止用户缩放白板视野：
+     * - true: 禁止用户缩放白板视野。
+     * - false: (默认) 允许用户缩放白板视野。
      * @since 2.11.0
      */
     public void disableCameraTransform(Boolean disable) {
@@ -352,11 +352,11 @@ public class Displayer {
     }
 
     /**
-     * 移动视角。
+     * 移动白板视野。
      *
-     * 该方法可用于实现用户通过触屏手势对白板视野进行缩放操作的功能。
+     * 该方法可用于实现用户通过触屏手势对白板视野进行缩放和移动操作的功能。//TODO WJ 缩放功能是不是要求 disableCameraTrannsform 设置为 true？
      *
-     * @param camera 移动视角的具体参数配置，详见 {@link CameraConfig}。
+     * @param camera 白板视野的具体参数配置，详见 {@link CameraConfig}。
      * @since 2.2.0
      */
     public void moveCamera(CameraConfig camera) {
@@ -364,7 +364,7 @@ public class Displayer {
     }
 
     /**
-     * 调整用户视野。
+     * 调整用户视野。//TODO WJ 这个方法的描述是不是应该提到视觉矩形？
      *
      * @param rectangle 能表示用户视野的视觉矩形设置，详见 {@link RectangleConfig}。
      * @since 2.2.0

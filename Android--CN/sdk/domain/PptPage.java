@@ -17,7 +17,7 @@ public class PptPage extends WhiteObject {
     private Double height;
 
     /**
-     * `PptPage` 构造方法，用于创建背景图实例。
+     * `PptPage` 构造方法，用于创建背景图实例。//TODO WJ 这个是开发者要调用的？
      *
      * 该方法只能在场景初始化的时候调用。
      *
@@ -43,7 +43,7 @@ public class PptPage extends WhiteObject {
     }
 
     /**
-     * 设置背景图的 URL 地址。
+     * 设置背景图的 URL 地址。 //TODO WJ 这个方法应该是通过设置 URL 指定背景图吧？
      *
      * @param src 背景图的 URL 地址。
      */

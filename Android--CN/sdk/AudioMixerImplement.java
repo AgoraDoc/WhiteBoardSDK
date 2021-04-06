@@ -22,7 +22,7 @@ public class AudioMixerImplement {
      * PPT 根据收到的音频播放状态判断是否显示画面，以确保音画同步。
      *
      * @note
-     * 如果 RTC SDK 没有混音状态回调方法，会导致播放的 PPT音画不同步。
+     * 如果 RTC SDK 没有混音状态回调方法，会导致播放的 PPT 音画不同步。//TODO WJ 什么叫 SDK 没有混音状态回调方法？
      *
      * @param state 音乐文件播放状态：
      *  - MEDIA_ENGINE_AUDIO_EVENT_MIXING_PLAY(710): RTC SDK 成功调用 `startAudioMixing` 播放音乐文件或 `resumeAudioMixing`  恢复播放音乐文件。

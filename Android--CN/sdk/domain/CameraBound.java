@@ -8,7 +8,7 @@ package com.herewhite.sdk.domain;
 public class CameraBound extends WhiteObject {
 
     /**
-     * 获取用户视野范围的原点在世界坐标系的 x 轴坐标。
+     * 获取用户视野范围的原点在世界坐标系的 x 轴坐标。//TODO WJ X 轴，X 大写，需要统一改
      *
      * 世界坐标系指白板内部坐标系，即以白板初始化时的中心点为原点的坐标系。
      *
@@ -76,7 +76,7 @@ public class CameraBound extends WhiteObject {
      * 设置用户视野范围的高度。
      *
      * 该方法可以搭配 {@link #setMinContentMode(ContentModeConfig)} 或 {@link #setMaxContentMode(ContentModeConfig)} 使用，
-     * 用来限制用户视野的最小或最大缩放比例。
+     * 用来限制用户视野的最小或最大缩放比例。//TODO WJ 应该是用来限制用户视野范围的边界？
      *
      * @param height 用户视野范围的高度。如果不设，则表示视野宽度无限制。
      */
@@ -136,7 +136,7 @@ public class CameraBound extends WhiteObject {
      * 设置用户将视野移出视野范围边界时感受到的阻力。
      *
      * 该方法仅在用户使用手指触碰方式移动视野时生效。
-     * 设置为 `0.0` 的时候，可以缩放，但是手松开的时候，视野会弹回去；设置为 `1.0`，完全不能将视野移动超过边界。
+     * 设置为 `0.0` 的时候，可以缩放，但是手松开的时候，视野会弹回去；设置为 `1.0`，完全不能将视野移动超过边界。//TODO WJ 这里的描述就是参数下面的描述，重复了。
      *
      * @param damping 阻力大小，取值范围为 [0.0,1.0]。取值越大，用户感受到的阻力越大。
      * - 0.0: 设置为 0 时，表示视野缩放完全无阻力；当用户手指离开屏幕时，视野会恢复。
