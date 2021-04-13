@@ -6,7 +6,7 @@ package com.herewhite.sdk.domain;
 public interface EventListener {
     /**
      * 收到监听的事件回调。
-     * @param eventEntry 监听的事件，详见 {@link EvrentEntry}。// TODO WL 链接错了
+     * @param eventEntry 监听的事件，详见 {@link EventEntry}。
      */
     void onEvent(EventEntry eventEntry);
 }

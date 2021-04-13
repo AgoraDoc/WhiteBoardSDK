@@ -31,9 +31,9 @@ public class WhiteDisplayerState extends WhiteObject {
     }
 
     /**
-     * 全局状态，所有用户可见，实时房间时，可读可写；回放房间只读。返回内容为 sdk 默认全局状态
+     * 获取房间的全局状态。
      *
-     * @return 全局状态
+     * @return 房间的全局状态。
      */
     public GlobalState getGlobalState() {
         String str = gson.toJson(globalState);

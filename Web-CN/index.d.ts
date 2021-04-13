@@ -761,35 +761,36 @@ export declare type LegacyPPTConvertParams = {
 };
 
 /**
- * 镜头拉近、拉远限定在特定值
+ * 镜头拉近、拉远限定在特定值 // TODO 和 camerabound 的宽高无关，缩放比例 调用两该方法，传 maxscale 和 minscale，限定上限和下限，也可以只传一个
+ *
  * @param scale 限定所在的特定值
  */
 export declare function contentModeScale(scale: number): ContentMode;
 
 /**
- * 镜头拉到让屏幕刚好能显示满限定区域
+ * 镜头拉到让屏幕刚好能显示满限定区域 //  TODO camera bound （视角边界）在屏幕中居中，确保长边先顶到屏幕的短边，正好完全显示，不进行拉伸，也没有裁剪
  */
 export declare function contentModeAspectFit(): ContentMode;
 
 /**
  * 镜头拉到让屏幕刚好能显示满限定区域
- * @param scale 再在次基础上放缩特定比例
+ * @param scale 再在次基础上放缩特定比例 // TODO 基于上一个方法，再进行一个放缩 （最后本身不带居中）
  */
 export declare function contentModeAspectFitScale(scale: number): ContentMode;
 
 /**
  * 镜头拉到让屏幕刚好能显示满限定区域
- * @param space 在此基础上再预留特定长度的空隙
+ * @param space 在此基础上再预留特定长度的空隙 // TODO 在 contentModeAspectFit 基础上，camera bound 上下左右加一定的空隙 多不减，少会加
  */
 export declare function contentModeAspectFitSpace(space: number): ContentMode;
 
 /**
- * 镜头拉到让限定区域刚好完整地现实在屏幕上
+ * 镜头拉到让限定区域刚好完整地现实在屏幕上 // TODO 按 camera bound 的宽高比缩放，填充满整个屏幕，多出的部分会采集，短边对屏幕的长边
  */
 export declare function contentModeAspectFill(): ContentMode;
 
 /**
- * 镜头拉到让限定区域刚好完整地现实在屏幕上
+ * 镜头拉到让限定区域刚好完整地现实在屏幕上 // 在 contentModeAspectFill 基础上缩放
  * @param scale 再在次基础上放缩特定比例
  */
 export declare function contentModeAspectFillScale(scale: number): ContentMode;

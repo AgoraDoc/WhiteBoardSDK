@@ -267,13 +267,11 @@ public class RoomParams extends WhiteObject {
      * @since 2.0.0
      *
      * @note
-     * - 必须使用 {@link WhiteObject} 子类，以保证字段结构正确
      * - 自定义的用户信息会被完整透传。
+     * - 如果要在白板房间中显示用户头像，请在 `userPayload` 中传入 `avatar` 字段并添加用户头像的地址，例如 `"avatar", "https://example.com/user.png")`。
+     * - 从 {@link MemberInformation MemberInformation} 迁移，只需要在 `userPayload` 中，传入相同字段即可。
      *
-     * 如果要在白板房间中显示用户头像，请在 `userPayload` 中传入 `avatar` 字段并添加用户头像的地址，例如 `"avatar", "https://example.com/user.png")`。
-     * 从 {@link MemberInformation MemberInformation} 迁移，只需要在 `userPayload` 中，传入相同字段即可。
-     *
-     * @param userPayload 自定义的用户信息，必须为 key-value 结构。// TODO WL 此处举个例子会更好。
+     * @param userPayload 自定义的用户信息，必须为 {@link WhiteObject} 子类，以保证字段结构正确。
      */
     public void setUserPayload(Object userPayload) {
         this.userPayload = userPayload;

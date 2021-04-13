@@ -25,7 +25,7 @@ public class PlayerTimeInfo {
         return scheduleTime;
     }
     /**
-     * 总时长(毫秒）。
+     * 总时长（毫秒）。
      */
     public long getTimeDuration() {
         return timeDuration;

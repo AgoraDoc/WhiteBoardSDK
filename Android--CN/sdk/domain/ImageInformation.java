@@ -62,40 +62,36 @@ public class ImageInformation extends WhiteObject {
     }
 
     /**
-     * 获取图片的中心在世界坐标系中的横向坐标。 // TODO WL 直接说白板内部坐标系？
+     * 获取图片的中心在白板内部坐标系（以白板初始化时的中心点为原点的坐标系）中的横向坐标。
      *
-     * @return 横向坐标。
+     * @return 图片的中心在白板内部坐标系中的横向坐标。
      */
     public double getCenterX() {
         return centerX;
     }
 
     /**
-     * 设置图片的中心在世界坐标系中的横向坐标。// TODO WL 直接说白板内部坐标系？
+     * 设置图片的中心在白板内部坐标系（以白板初始化时的中心点为原点的坐标系）中的横向坐标。
      *
-     * 世界坐标系指白板内部坐标系，即以白板初始化时的中心点为原点的坐标系。
-     *
-     * @param centerX 横向坐标。
+     * @param centerX 图片的中心在白板内部坐标系中的横向坐标。
      */
     public void setCenterX(double centerX) {
         this.centerX = centerX;
     }
 
     /**
-     * 获取图片的中心在世界坐标系中的纵向坐标。
+     * 获取图片的中心在白板内部坐标系（以白板初始化时的中心点为原点的坐标系）中的纵向坐标。
      *
-     * @return 纵向坐标。
+     * @return 图片的中心在白板内部坐标系中的纵向坐标。
      */
     public double getCenterY() {
         return centerY;
     }
 
     /**
-     * 设置图片的中心在世界坐标系中的纵向坐标。
+     * 设置图片的中心在白板内部坐标系（以白板初始化时的中心点为原点的坐标系）中的纵向坐标。
      *
-     * 世界坐标系指白板内部坐标系，即以白板初始化时的中心点为原点的坐标系。
-     *
-     * @param centerX 纵向坐标。
+     * @param centerX 图片的中心在白板内部坐标系中的纵向坐标。
      */
     public void setCenterY(double centerY) {
         this.centerY = centerY;

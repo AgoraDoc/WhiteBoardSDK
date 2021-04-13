@@ -55,8 +55,8 @@ public class LoggerOptions extends WhiteObject {
      * 开启/关闭日志上报。
      *
      * @deprecated 该方法已废弃。请使用 {@link #getReportDebugLogMode()}、{@link #getReportQualityMode()} 和 {@link #getReportLevelMask()}。
-     * // TODO WL 分号改冒号
-     * @param disableReportLog 是否关闭日志上报；
+     *
+     * @param disableReportLog 是否关闭日志上报：
      * - `true`：关闭。
      * - `false`：（默认）开启错误日志上报。
      */
