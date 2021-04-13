@@ -7,7 +7,7 @@ import org.json.JSONObject;
 /**
  * The default (empty) implementation of the `CommonCallbacks` interface. See {@link CommonCallbacks}.
  *
- * @deprecated This interface is deprecated.
+ * @deprecated This interface is deprecated. 
  */
 @Deprecated
 public class AbstractCommonCallbacks implements CommonCallbacks {
