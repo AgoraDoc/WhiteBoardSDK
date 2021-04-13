@@ -34,7 +34,7 @@ public class WhiteSdk {
     /**
      * Sets common event callbacks.
      *
-     * The SDK uses the {@link commonCallbacks} class to reports SDK runtime events to the application.
+     * The SDK uses the {@link commonCallbacks} class to report SDK runtime events to the application.
      *
      * @param commonCallbacks Common event callbacks. See {@link commonCallbacks commonCallbacks}.
      */
@@ -72,7 +72,7 @@ public class WhiteSdk {
      *
      * @param bridge The whiteboard view. See {@link WhiteboardView WhiteboardView}.
      * @param context The context of the Android Activity.
-     * @param whiteSdkConfiguration Configurations for the `WhiteSdk` instance. See {@link WhiteSdkConfiguration WhiteSdkConfiguration}.
+     * @param whiteSdkConfiguration Configurations for the `WhiteSdk` instance. See {@link WhiteSdkConfiguration WhiteSdkConfiguration}. 
      *
      */
     public WhiteSdk(JsBridgeInterface bridge, Context context, WhiteSdkConfiguration whiteSdkConfiguration) {
@@ -86,7 +86,7 @@ public class WhiteSdk {
      *
      * @param bridge The whiteboard view. See {@link WhiteboardView WhiteboardView}.
      * @param context The context of the Android Activity.
-     * @param whiteSdkConfiguration Configurations for the `WhiteSdk` instance. See {@link WhiteSdkConfiguration WhiteSdkConfiguration}.
+     * @param whiteSdkConfiguration Configurations for the `WhiteSdk` instance. See {@link WhiteSdkConfiguration WhiteSdkConfiguration}. 
      * @param commonCallbacks Common callback events. See {@link commonCallbacks commonCallbacks}.
      */
     public WhiteSdk(JsBridgeInterface bridge, Context context, WhiteSdkConfiguration whiteSdkConfiguration, @Nullable CommonCallback commonCallback) {
@@ -100,7 +100,7 @@ public class WhiteSdk {
      *
      * @param bridge The whiteboard view, see {@link WhiteboardView WhiteboardView}.
      * @param context The context of the Android Activity.
-     * @param whiteSdkConfiguration Configurations for the `WhiteSdk` instance. See {@link WhiteSdkConfiguration WhiteSdkConfiguration}.
+     * @param whiteSdkConfiguration Configurations for the `WhiteSdk` instance. See {@link WhiteSdkConfiguration WhiteSdkConfiguration}. 
      * @param urlInterrupter Sets the interception of image URL addresses. See {@link UrlInterrupter}. @deprecated This parameter is deprecated. Use the {@link CommonCallbacks#urlInterrupter(String) urlInterrupter} method of the `CommonCallbacks` interface instead.
      */
     public WhiteSdk(JsBridgeInterface bridge, Context context, WhiteSdkConfiguration whiteSdkConfiguration, UrlInterrupter urlInterrupter) {
@@ -115,9 +115,9 @@ public class WhiteSdk {
      *
      * @param bridge The whiteboard view, see {@link WhiteboardView WhiteboardView}.
      * @param context The context of the Android Activity.
-     * @param whiteSdkConfiguration Configurations for the `WhiteSdk` instance. See {@link WhiteSdkConfiguration WhiteSdkConfiguration}.
+     * @param whiteSdkConfiguration Configurations for the `WhiteSdk` instance. See {@link WhiteSdkConfiguration WhiteSdkConfiguration}. 
      * @param commonCallbacks Common callback events. See {@link commonCallbacks commonCallbacks}.
-     * @param audioMixerBridge Sets audio mixing. See {@link AudioMixerBridge AudioMixerBridge}. When you use Agora RTC SDK and interactive whiteboard SDK at the same time, and the dynamic PPT displayed in the whiteboard contains audio files, you can call the `AudioMixerBridge` interface to play the audio in the dynamic PPT using the Agora RTC SDK interface.
+     * @param audioMixerBridge Sets audio mixing. See {@link AudioMixerBridge AudioMixerBridge}. When you use the Agora RTC SDK and Interactive Whiteboard SDK at the same time, and the dynamic PPT displayed in the whiteboard contains audio files, you can call the `AudioMixerBridge` interface to play the audio in the dynamic PPT using the Agora RTC SDK interface.
      */
     public WhiteSdk(JsBridgeInterface bridge, Context context, WhiteSdkConfiguration whiteSdkConfiguration, @Nullable CommonCallback commonCallback, @Nullable AudioMixerBridge audioMixerBridge) {
         this.bridge = bridge;
@@ -149,7 +149,7 @@ public class WhiteSdk {
 
 
     /**
-     * Joins the live Interactive Whiteborad room.
+     * Joins the live Interactive Whiteboard room.
      *
      * @param roomParams Configurations for the `Room` instance. See {@link RoomParams RoomParams}.
      * @param roomPromise `Promise<Room>` interface instance. See {@link Promise Promise}. You can get the call result of `joinRoom` through this interface.
@@ -161,9 +161,9 @@ public class WhiteSdk {
     }
 
     /**
-     * Joins the live Interactive Whiteborad room.
+     * Joins the live Interactive Whiteboard room.
      *
-     * @param roomParams Configurations for the `Room` instance. See {@link RoomParams RoomParams}.
+     * @param roomParams Configurations for the `Room` instance. See {@link RoomParams RoomParams}. 
      * @param roomListener Sets room event callbacks. See {@link RoomListener RoomListener}. When the SDK reconnects to the Interactive Whiteboard server, if you do not pass in the `roomListener` parameter, the SDK uses the previously set `roomListener` parameter. To release the `roomListener`, call {@link #releaseRoom(String) releaseRoom}.
      * @param roomPromise `Promise<Room>` interface instance. See {@link Promise Promise}. You can get the call result of `joinRoom` through this interface:
      * - The `Room` instance, if the method call succeeds. See {@link Room}.
@@ -203,7 +203,7 @@ public class WhiteSdk {
     /**
      * Creates a `Player` instance, which is used to replay the whiteboard content of a live Interactive Whiteboard room.
      *
-     * @param playerConfiguration Configurations for the `Player` instance. See {@link PlayerConfiguration PlayerConfiguration}.
+     * @param playerConfiguration Configurations for the `Player` instance. See {@link PlayerConfiguration PlayerConfiguration}. 
      * @param playerPromise `Promise<Player>` interface instance. See {@link Promise Promise}. You can get the call result of `createPlayer` through this interface:
      * - The `Player` instance, if the method call succeeds.  See {@link Player}.
      * - An error message, if the method call fails.
@@ -269,21 +269,21 @@ public class WhiteSdk {
     }
 
     /**
-     * Declares the fonts that can be used in the local whiteborad.
+     * Declares the fonts that can be used in the local whiteboard.
      *
      * @since 2.11.2
      *
      * <p>
      * The fonts declared by this method can be used to render the characters in PPT and the characters entered by the text tool.
      * <p>
-     * Both this method and {@link WhiteSdk#loadFontFaces loadFontFaces} can declare the fonts to be used in the local whiteborad. The difference is that `setupFontFaces` has no callback to report whether the font declaration is successful; `loadFontFaces` triggers callbacks to report the preload result of each type of fonts.
+     * Both this method and {@link WhiteSdk#loadFontFaces loadFontFaces} can declare the fonts to be used in the local whiteboard. The difference is that `setupFontFaces` has no callback to report whether the font declaration is successful; `loadFontFaces` triggers callbacks to report the preload result of each type of font.
      *
      * @note
-     * - This method works only for the local whiteborad and does not affect the font display of the remote whiteborad.
+     * - This method works only for the local whiteboard and does not affect the font display of the remote whiteboard.
      * - Fonts declared by this method will be downloaded only when they are used.
      * - Font rendering may vary by device. For example, on some devices, the text will not be rendered until the font has finished loading, while on others, the text will be rendered first using the default font and then refreshed as a whole when the specified font has finished loading.
      * - Each time this method is called, it overrides the original font declaration.
-     * - Do not call this method and the `loadFontFaces` method at the same time. Otherwise, unexpected results may occur.
+     * - Do not call this method and the `loadFontFaces` method at the same time; otherwise, unexpected results may occur.
      *
      * @param fontFaces The specified fonts. See {@link FontFace FontFace}.
      */
@@ -292,21 +292,21 @@ public class WhiteSdk {
     }
 
     /**
-     * Declares the fonts that can be used in the local whiteborad and preloads them.
+     * Declares the fonts that can be used in the local whiteboard and preloads them.
      *
      * @since 2.11.2
      *
      * <p>
      * The fonts declared by this method can be used to render the characters in PPT and the characters entered by the text tool.
      * <p>
-     * Both this method and {@link WhiteSdk#setupFontFaces setupFontFaces} can declare the fonts to be used in the local whiteborad. The difference is that `setupFontFaces` has no callback to report whether the font declaration is successful; `loadFontFaces` triggers callbacks to report the preload result of each type of fonts.
+     * Both this method and {@link WhiteSdk#setupFontFaces setupFontFaces} can declare the fonts to be used in the local whiteboard. The difference is that `setupFontFaces` has no callback to report whether the font declaration is successful; `loadFontFaces` triggers callbacks to report the preload result of each type of fonts.
      *
      * @note
-     * - This method works only for the local whiteborad and does not affect the font display of the remote whiteborad.
+     * - This method works only for the local whiteboard and does not affect the font display of the remote whiteboard.
      * - Fonts declared by this method will be downloaded only when they are used.
      * - Font rendering may vary by device. For example, on some devices, the text will not be rendered until the font has finished loading, while on others, the text will be rendered first using the default font and then refreshed as a whole when the specified font has finished loading.
      * - Fonts declared and preloaded by this method cannot be deleted. Each method call adds the new fonts to the already preloaded fonts.
-     * - Do not call this method and the `setupFontFaces` method at the same time. Otherwise, unexpected results may occur.
+     * - Do not call this method and the `setupFontFaces` method at the same time; otherwise, unexpected results may occur.
      *
      * @param fontFaces The specified fonts. See {@link FontFace}.
      * @param loadPromise The `Promise` interface instance. See {@link Promise Promise}. You can get the call result of `loadFontFaces` through this interface:
@@ -323,15 +323,15 @@ public class WhiteSdk {
     }
 
     /**
-     * Sets the fonts used by the text tool in the local whiteborad.
+     * Sets the fonts used by the text tool in the local whiteboard.
      *
      * @since 2.11.2
      *
      * @note
-     * - This method only works for the local whiteborad and does not affect the font display of the remote whiteborad.
+     * - This method only works for the local whiteboard and does not affect the font display of the remote whiteboard.
      * - This method cannot set the fonts for rendering the characters in PPT.
      *
-     * @param names Names of the fonts. If the specified font does not exist in the user's system, the text tool cannot use the font. Ensure you call `setupFontFaces` or `loadFontFaces` to preload the specified font into the local whiteborad.
+     * @param names Names of the fonts. If the specified font does not exist in the user's system, the text tool cannot use the font. Ensure you call `setupFontFaces` or `loadFontFaces` to preload the specified font into the local whiteboard.
      *
      */
     public void updateTextFont(String[] names) {
@@ -352,8 +352,8 @@ public class WhiteSdk {
      *
      * @deprecated This method is deprecated. Use {@link WhiteSdk#releaseRoom() releaseRoom} instead.
      *
-     * @param uid Room UUID, the unique identifier of a room.
-     * You do not need to specify this parameter as a `WhiteSdk` instance supports joining only one live Interactive Whiteboard room.
+     * @param uid Room UUID, the unique identifier of a room. //TODO William Should this be "uuid"?
+     * You do not need to specify this parameter because a `WhiteSdk` instance supports joining only one live Interactive Whiteboard room. //TODO William "as" is not wrong, but "because" is less ambiguous (vs the other use of "as", for example, "You can set the mixedVideoLayout parameter as 3.")
      *
      */
     @Deprecated
@@ -376,7 +376,7 @@ public class WhiteSdk {
      * @deprecated This method is deprecated. Please use {@link releasePlayer() releasePlayer} instead.
      *
      * @param uuid Room UUID, the unique identifier of a room.
-     * You do not need to specify this parameter as a `WhiteSdk` instance supports creating only one `Player` instance.
+     * You do not need to specify this parameter because a `WhiteSdk` instance supports creating only one `Player` instance.
      *
      */
     @Deprecated
