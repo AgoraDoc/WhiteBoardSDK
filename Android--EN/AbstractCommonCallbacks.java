@@ -30,7 +30,7 @@ public class AbstractCommonCallbacks implements CommonCallbacks {
      * By default, this callback is disabled. You can enable it by calling {@link WhiteSdkConfiguration#setEnableInterrupterAPI setEnableInterrupterAPI}(true) when initializing the `WhiteSdk` instance.
      * Once this callback is enabled and users insert an image into the whiteboard scene, the SDK triggers this callback, which reports the original URL address of the image. You can replace the original URL address with a specified URL address in this callback.
      *
-     * @note Agora does not recommend enabling this callback, as after enabling, the SDK triggers the callback too frequently.
+     * @note Agora does not recommend enabling this callback because the SDK triggers this callback too frequently when it is enabled.
      *
      * @param sourceUrl The original URL address of an image.
      *
@@ -62,7 +62,7 @@ public class AbstractCommonCallbacks implements CommonCallbacks {
     }
 
     /**
-     * Occurs when the user receives the message from the webpage.
+     * Occurs when the user receives the message from the web page.
      *
      * @since 2.11.4
      *
@@ -82,7 +82,7 @@ public class AbstractCommonCallbacks implements CommonCallbacks {
      *
      * @since 2.9.14
      *
-     * You must initialize a `WhiteSdk` instance before calling any other APIs. You can try re-initializing the SDK.
+     * You must initialize a `WhiteSdk` instance before calling any other APIs. You can try reinitializing the SDK.
      *
      * The SDK initialization failure may be due to the following reasons:
      *  - Failure to obtain configuration information due to network connection issues.
