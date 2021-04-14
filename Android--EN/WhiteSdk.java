@@ -353,7 +353,7 @@ public class WhiteSdk {
      * @deprecated This method is deprecated. Use {@link WhiteSdk#releaseRoom() releaseRoom} instead.
      *
      * @param uuid Room UUID, the unique identifier of a room. 
-     * You do not need to specify this parameter because a `WhiteSdk` instance supports joining only one live Interactive Whiteboard room. //TODO William "as" is not wrong, but "because" is less ambiguous (vs the other use of "as", for example, "You can set the mixedVideoLayout parameter as 3.")
+     * You do not need to specify this parameter because a `WhiteSdk` instance supports joining only one live Interactive Whiteboard room.
      *
      */
     @Deprecated
