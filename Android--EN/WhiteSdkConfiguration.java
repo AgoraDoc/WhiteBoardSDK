@@ -14,9 +14,9 @@ import org.json.JSONObject;
 import java.util.HashMap;
 
 /**
- * Configurations for the `whiteSDK` instance.
+ * Configurations for the `whiteSDK` instance. //TODO William Should this be singular? Is it multiple configurations?
  *
- * @note After the `whiteSDK` instance is initialized, you cannot call any method in the `WhiteSdkConfiguration` class to modify the configurations for the `whiteSDK` instance.
+ * @note After the `WhiteSDK` instance is initialized, you cannot call any method in the `WhiteSdkConfiguration` class to modify the configurations for the `WhiteSDK` instance. //TODO William Perhaps "...modify the configuration of the 'WhiteSDK' instance." if configuration is singular. Also, so far the pattern is to capitalize 'WhiteSDK' I think?
  */
 public class WhiteSdkConfiguration extends WhiteObject {
 
@@ -29,14 +29,14 @@ public class WhiteSdkConfiguration extends WhiteObject {
         /**
          * SVG rendering mode.
          *
-         * The Interactive Whiteboard SDK v2.8.0 or earlier uses SVG rendering mode for drawings by default. This mode has better compatibility but poor performance.
+         * The Interactive Whiteboard SDK v2.8.0 or earlier uses SVG rendering mode for drawings by default. This mode has better compatibility but poorer performance. //TODO William I think "poorer" because it is a relative measure, unless you want to emphasize that it is very bad?
          */
         @SerializedName("svg")
         svg,
         /**
          * Canvas rendering mode.
          *
-         * As of v2.8.0, the Interactive Whiteboard SDK adds canvas rendering mode, which has better performance but poor compatibility.
+         * As of v2.8.0, the Interactive Whiteboard SDK adds canvas rendering mode, which has better performance but poorer compatibility.
          *
          * Since v2.9.0, the SDK uses canvas rendering mode for drawings by default.
          *
@@ -53,7 +53,7 @@ public class WhiteSdkConfiguration extends WhiteObject {
     public static class PptParams extends WhiteObject {
 
         /**
-         * Hidden in documentation.
+         * Hidden in documentation. 
          */
         public String getScheme() {
             return scheme;
@@ -162,7 +162,7 @@ public class WhiteSdkConfiguration extends WhiteObject {
      * Sets the data center.
      *
      * @note
-     * The data center set in this method must be the same as the data center of the live Interactive Whiteboard live room to be joined; otherwise the SDK fails to connects to the room.
+     * The data center set in this method must be the same as the data center of the live Interactive Whiteboard live room to be joined; otherwise, the SDK fails to connect to the room. //TODO William I think delete the second "live" from "live Interactive Whiteboard live room"? Do you need both? Is it a "live IW room," or an "IW live room"?
      *
      * @param region The data center. See {@link Region}.
      */
@@ -182,7 +182,7 @@ public class WhiteSdkConfiguration extends WhiteObject {
      *
      * When you use the Agora RTC SDK and Interactive Whiteboard SDK at the same time, and the dynamic PPT slides displayed in the whiteboard contain audio files, you can call this method to play the audio in the dynamic PPT slides using the audio mixing method of the Agora RTC SDK.
      *
-     * If you implement and pass in the {@link AudioMixerBridge} class when initializing the `WhiteSdk` instance, the SDK automatically sets `setEnableRtcIntercept(true)`. Then you do not need to call this method.
+     * If you implement and pass in the {@link AudioMixerBridge} class when initializing the `WhiteSdk` instance, the SDK automatically sets `setEnableRtcIntercept(true)`. Therefore you do not need to call this method.
      *
      * @param enableRtcIntercept Whether to play the audio in a dynamic PPT using the audio mixing method of the Agora RTC SDK:
      * - `true`: Play the audio in dynamic PPT slides using the audio mixing method of the Agora RTC SDK.
@@ -213,7 +213,7 @@ public class WhiteSdkConfiguration extends WhiteObject {
      *
      * @since 2.8.0
      *
-     * To optimize the rendering of drawings on the whiteboard, the SDK adds `canvas` rendering mode since v2.8.0, and sets `canvas` rendering mode as the default rendering mode since v 2.9.0.
+     * To optimize the rendering of drawings on the whiteboard, the SDK adds canvas rendering mode since v2.8.0 and sets canvas rendering mode as the default rendering mode since v 2.9.0.
      *
      * @note
      * The SDK automatically switches the default rendering mode to `svg` for devices running on Android 6.1 to Android 8.1, because these devices cannot support canvas rendering mode.
@@ -268,7 +268,7 @@ public class WhiteSdkConfiguration extends WhiteObject {
      * To display unconventional fonts in dynamic PPT slides, you can call this method to pass in the URL addresses of the font files when initializing the `WhiteSdk` instance.
      *
      * @note
-     * Before calling this method, you need to upload each font file to your app server or a third-party cloud storage, and generate a URL address.
+     * Before calling this method, you need to upload each font file to your app server or a third-party cloud storage and generate a URL address.
      *
      * @param fonts Custom fonts in key-value pairs. The `key` is the font name and the `value` is the URL address of the font file. For example, `"Calibri", "https://your-cdn.com /Calibri.ttf"`.
      */
@@ -291,7 +291,7 @@ public class WhiteSdkConfiguration extends WhiteObject {
      * Sets whether to preload all image resources in dynamic PPT slides when loading the homepage of the slides.
      *
      * @note
-     * Agora does not recommend setting `setPreloadDynamicPPT(true)`, because the setting slows down the PPT display.
+     * Agora does not recommend setting `setPreloadDynamicPPT(true)`, because the setting slows down the PPT display. //TODO William "may slow down"? Presumably a powerful enough device would take advantage of this option? Or is it almost always a problem? Why offer it if Agora doesn't recommend it? Perhaps "Agora recommends caution when setting `setPreloadDynamicPPT(true)`, because the setting may slow down the PPT display."
      *
      * @param preloadDynamicPPT Whether to preload all image resources in dynamic PPT slides when loading the homepage of the slides:
      * - `true`: Preload all image resources in dynamic PPT slides when loading the homepage of the slides.
@@ -314,7 +314,7 @@ public class WhiteSdkConfiguration extends WhiteObject {
      * - `true`: Enable debug logging.
      * - `false`: (Default) Disable debug logging.
      *
-     * Debug logs contains only logs of the following methods:
+     * Debug logs contain only the logs of the following methods:
      * <ul>
      * <li>WhiteSdk</li>
      * <li>joinRoom</li>
@@ -411,7 +411,7 @@ public class WhiteSdkConfiguration extends WhiteObject {
      * Gets whether to receive only callbacks of remote user state changes.
      *
      * @return Whether to receive only callbacks of remote user state changes:
-     * - `true`: The local user receives only callbacks of remote user state changes, and does not receive callbacks of their own state changes.
+     * - `true`: The local user receives only callbacks of remote user state changes and does not receive callbacks of their own state changes.
      * - `false`: The local user receives callbacks of remote user state changes as well as callbacks of their own state changes.
      */
     public boolean isOnlyCallbackRemoteStateModify() {
@@ -422,7 +422,7 @@ public class WhiteSdkConfiguration extends WhiteObject {
      * Enables/Disables receiving only callbacks of remote user state changes.
      *
      * @param onlyCallbackRemoteStateModify Whether to receive only callbacks of remote user state changes:
-     * - `true`:The local user receives only callbacks of remote user state changes, and does not receive callbacks of their own state changes.
+     * - `true`: The local user receives only callbacks of remote user state changes and does not receive callbacks of their own state changes.
      * - `false`: (Default) The local user receives callbacks of remote user state changes as well as callbacks of their own state changes.
      */
     public void setOnlyCallbackRemoteStateModify(boolean onlyCallbackRemoteStateModify) {
@@ -450,7 +450,7 @@ public class WhiteSdkConfiguration extends WhiteObject {
     /**
      * Enables/Disables debug logging.
      *
-     * Debug logs contains only logs of the following methods:
+     * Debug logs contains only the logs of the following methods:
      * - `WhiteSdk`
      * - `joinRoom`
      * - `createPlayer`
@@ -492,10 +492,10 @@ public class WhiteSdkConfiguration extends WhiteObject {
     }
 
     /**
-     * Gets whether listening for image loading failure events.
+     * Gets whether listening for image loading failure events. //TODO William What is listening? Perhaps specify? "Gets whether X is listening..."
      *
      * @return Whether listening for image loading failure events.
-     * - `true`: Listen for image loading failure events.
+     * - `true`: Listen for image loading failure events. //TODO William Is pair this not "Listening/Not listening for image loading failure events.'?
      * - `false`: Do not listen for image loading failure events.
      */
     public boolean isEnableImgErrorCallback() {
