@@ -14,9 +14,9 @@ import org.json.JSONObject;
 import java.util.HashMap;
 
 /**
- * Configurations for the `whiteSDK` instance. //TODO William Should this be singular? Is it multiple configurations?
+ * Configuration for the `WhiteSdk` instance. 
  *
- * @note After the `WhiteSDK` instance is initialized, you cannot call any method in the `WhiteSdkConfiguration` class to modify the configurations for the `WhiteSDK` instance. //TODO William Perhaps "...modify the configuration of the 'WhiteSDK' instance." if configuration is singular. Also, so far the pattern is to capitalize 'WhiteSDK' I think?
+ * @note After the `WhiteSdk` instance is initialized, you cannot call any method in the `WhiteSdkConfiguration` class to modify the configuration of the `WhiteSdk` instance. 
  */
 public class WhiteSdkConfiguration extends WhiteObject {
 
@@ -29,7 +29,7 @@ public class WhiteSdkConfiguration extends WhiteObject {
         /**
          * SVG rendering mode.
          *
-         * The Interactive Whiteboard SDK v2.8.0 or earlier uses SVG rendering mode for drawings by default. This mode has better compatibility but poorer performance. //TODO William I think "poorer" because it is a relative measure, unless you want to emphasize that it is very bad?
+         * The Interactive Whiteboard SDK v2.8.0 or earlier uses SVG rendering mode for drawings by default. This mode has better compatibility but poorer performance.
          */
         @SerializedName("svg")
         svg,
@@ -48,7 +48,7 @@ public class WhiteSdkConfiguration extends WhiteObject {
     }
 
     /**
-     * The `PptParams` class, which is used for setting dynamic PPT parameters.
+     * The `PptParams` class, which is used for setting parameters for dynamic PPT slides.
      */
     public static class PptParams extends WhiteObject {
 
@@ -87,8 +87,8 @@ public class WhiteSdkConfiguration extends WhiteObject {
          * As of February 10, 2021, when converting dynamic PPT slides to HTML web pages, the Agora Interactive Whiteboard server supports typesetting the dynamic PPT slides to ensure the presentation of the text in the dynamic PPT slides is consistent across platforms.
          *
          * @param useServerWrap Whether to enable server-side typesetting for dynamic PPT slides.
-         - `true`: Enable server-side typesetting.
-         - `false`: (Default) Disable server-side typesetting.
+         * - `true`: Enable server-side typesetting.
+         * - `false`: (Default) Disable server-side typesetting.
          */
         public void setUseServerWrap(boolean useServerWrap) {
             this.useServerWrap = useServerWrap;
@@ -162,7 +162,7 @@ public class WhiteSdkConfiguration extends WhiteObject {
      * Sets the data center.
      *
      * @note
-     * The data center set in this method must be the same as the data center of the live Interactive Whiteboard live room to be joined; otherwise, the SDK fails to connect to the room. //TODO William I think delete the second "live" from "live Interactive Whiteboard live room"? Do you need both? Is it a "live IW room," or an "IW live room"?
+     * The data center set in this method must be the same as the data center of the live Interactive Whiteboard room to be joined; otherwise, the SDK fails to connect to the room.
      *
      * @param region The data center. See {@link Region}.
      */
@@ -291,7 +291,7 @@ public class WhiteSdkConfiguration extends WhiteObject {
      * Sets whether to preload all image resources in dynamic PPT slides when loading the homepage of the slides.
      *
      * @note
-     * Agora does not recommend setting `setPreloadDynamicPPT(true)`, because the setting slows down the PPT display. //TODO William "may slow down"? Presumably a powerful enough device would take advantage of this option? Or is it almost always a problem? Why offer it if Agora doesn't recommend it? Perhaps "Agora recommends caution when setting `setPreloadDynamicPPT(true)`, because the setting may slow down the PPT display."
+     * Agora does not recommend setting `setPreloadDynamicPPT(true)`, because the setting may slow down the PPT display. 
      *
      * @param preloadDynamicPPT Whether to preload all image resources in dynamic PPT slides when loading the homepage of the slides:
      * - `true`: Preload all image resources in dynamic PPT slides when loading the homepage of the slides.
@@ -492,10 +492,10 @@ public class WhiteSdkConfiguration extends WhiteObject {
     }
 
     /**
-     * Gets whether listening for image loading failure events. //TODO William What is listening? Perhaps specify? "Gets whether X is listening..."
+     * Gets whether the SDK listens for image loading failure events.
      *
-     * @return Whether listening for image loading failure events.
-     * - `true`: Listen for image loading failure events. //TODO William Is pair this not "Listening/Not listening for image loading failure events.'?
+     * @return Whether the SDK listens for image loading failure events.
+     * - `true`: Listen for image loading failure events. 
      * - `false`: Do not listen for image loading failure events.
      */
     public boolean isEnableImgErrorCallback() {
