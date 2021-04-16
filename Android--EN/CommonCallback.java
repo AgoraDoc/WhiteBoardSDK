@@ -51,7 +51,7 @@ public interface CommonCallback {
     void onPPTMediaPause();
 
     /**
-     * Occurs when the user receives the message from the web page.
+     * Occurs when the user receives a message from the web page.
      *
      * @since 2.11.4
      *
