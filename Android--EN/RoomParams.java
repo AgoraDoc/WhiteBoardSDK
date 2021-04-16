@@ -119,55 +119,55 @@ public class RoomParams extends WhiteObject {
     private boolean disableEraseImage = false;
 
     /**
-     * 获取是否禁止教具响应用户输入。// TODO 是教具还是设备？
+     * Gets whether the whiteboard tools are disabled from responding to users' inputs.
      *
-     * @return 是否禁止教具响应用户输入：
-     * - `true`：禁止教具响应用户输入。
-     * - `false`：允许教具响应用户输入。
+     * @return Whether the whiteboard tools are disabled from responding to users' inputs.
+     * - `true`：The whiteboard tools are disabled from responding to users' inputs.
+     * - `false`：The whiteboard tools are enabled to respond to users' inputs.
      */
     public boolean isDisableDeviceInputs() {
         return disableDeviceInputs;
     }
 
     /**
-     * Disables the whiteboard tools from responding to the user's inputs.
+     * Disables the whiteboard tools from responding to users' inputs.
      *
      * @since 2.5.0
      *
-     * @note 该方法会覆盖 {@link WhiteSdkConfiguration#setDisableDeviceInputs(boolean) setDisableDeviceInputs} 的设置。
+     * @note
+     * You can call either this method or the {@link WhiteSdkConfiguration#setDisableDeviceInputs(boolean) setDisableDeviceInputs} method. This method call overrides the {@link WhiteSdkConfiguration#setDisableDeviceInputs(boolean) setDisableDeviceInputs} method.
      *
-     * @param disableDeviceInputs 是否禁止教具响应用户输入：
-     *   - `true`：禁止教具响应用户输入。
-     *   - `false`：（默认）允许教具响应用户输入。
+     * @param disableDeviceInputs Whether to disable the whiteboard tools from responding to users' inputs:
+     *   - `true`: Disable the whiteboard tools from responding to users' inputs.
+     *   - `false`: (Default) Enable the whiteboard tools to respond to users' inputs.
      */
     public void setDisableDeviceInputs(boolean disableDeviceInputs) {
         this.disableDeviceInputs = disableDeviceInputs;
     }
 
     /**
-     * 获取是否禁止白板响应用户的操作。
+     * Gets whether the whiteboard is disabled from responding to users' operations.
      *
-     * @return 是否禁止白板响应用户的操作。
-     * - `true`：禁止白板响应用户的操作。
-     * - `false`：允许白板响应用户的操作。
+     * @return Whether the whiteboard is disabled from responding to users' operations:
+     * - `true`: The whiteboard is disabled from responding to users' operations.
+     * - `false`: The whiteboard is enabled to respond to users' operations.
      */
     public boolean isDisableOperations() {
         return disableOperations;
     }
 
     /**
-     * Disables the whiteboard from responding to the user's operations.
-     *
+     * Disables the whiteboard from responding to users' operations.
      *
      * @since 2.5.0
      *
      * @deprecated This method is deprecated. Use {@link #setDisableDeviceInputs(boolean) setDisableDeviceInputs} and {@link #setDisableCameraTransform(boolean) setDisableCameraTransform} instead.
      *
-     * This method 禁止白板响应用户任何操作后，用户无法使用教具输入内容，也无法对白板进行视角缩放和视角移动。
+     * After calling `setDisableOperations(true)`, the users can neither use the whiteboard tools nor adjust the view of the whiteboard.
      *
-     * @param disableOperations 是否禁止白板响应用户的操作：
-     *  - `true`：禁止白板响应用户的操作。
-     *  - `false`：（默认）允许白板响应用户的操作。
+     * @param disableOperations Whether to disable the whiteboard from responding to users' operations:
+     *  - `true`: Disable the whiteboard from responding to users' operations.
+     *  - `false`: (Default) Enable the whiteboard to respond to users' operations.
      */
     public void setDisableOperations(boolean disableOperations) {
         this.disableCameraTransform = disableOperations;
@@ -176,11 +176,11 @@ public class RoomParams extends WhiteObject {
     }
 
     /**
-     * 获取是否关闭贝塞尔曲线优化。
+     * Gets whether the Bézier curve optimization is disabled.
      *
-     * @return 是否关闭贝塞尔曲线优化：
-     * - `true`: 关闭贝塞尔曲线优化。
-     * - `false`: 开启贝塞尔曲线优化。
+     * @return Whether the Bézier curve optimization is disabled:
+     * - `true`: The Bézier curve optimization is disabled.
+     * - `false`：The Bézier curve optimization is enabled.
      */
     public boolean isDisableBezier() {
         return disableBezier;
@@ -204,22 +204,23 @@ public class RoomParams extends WhiteObject {
     private boolean disableOperations = false;
 
     /**
-     * 获取是否禁止本地用户操作白板视角。
+     * Gets whether adjusting the view of the whiteboard by the local user is disabled.
      *
-     * @return 是否禁止本地用户操作白板视角：
-     * - `true`：禁止本地用户操作白板视角。
-     * - `false`：允许本地用户操作白板视角。
+     * @return Whether adjusting the view of the whiteboard by the local user is disabled:
+     * - `true`: Disable the local user from adjusting the view of the whiteboard.
+     * - `false`：Enable the local user to adjust the view of the whiteboard.
      */
     public boolean isDisableCameraTransform() {
         return disableCameraTransform;
     }
 
     /**
-     * 禁止/允许本地用户操作白板的视角，包括缩放和移动视角。
+     * Disables the local user from adjusting the view of the whiteboard, including moving and zooming the view.
      *
-     * @param disableCameraTransform 是否禁止本地用户操作白板视角：
-     *                               - `true`：禁止本地用户操作白板视角。
-     *                               - `false`：（默认）允许本地用户操作白板视角。
+     *
+     * @param disableCameraTransform Whether to disable the local user from adjusting the view of the whiteboard:
+     *  - `true`: Disable the local user from adjusting the view of the whiteboard.
+     *  - `false`: (Default) Enable the local user to adjust the view of the whiteboard.
      */
     public void setDisableCameraTransform(boolean disableCameraTransform) {
         this.disableCameraTransform = disableCameraTransform;
@@ -233,19 +234,24 @@ public class RoomParams extends WhiteObject {
     }
 
     /**
-     * 关闭/开启笔锋效果。
+     * Disables/Enables the stroke effect of the pencil.
+     * // TODO CT @William I see that "the stroke effect" is used in Interactive Whiteboard release notes, but I am not sure if "stroke effect" match with the original Chinese meaning.
+     * // Could you please explain the meaning of "stroke effect"
+     * // The original Chinese phrase is "笔锋效果", with which the text written with the pencil on the whiteboard looks more natural and close to handwriting text. Each stroke will end with a tip, rather than stop suddenly.
+     * // I am considering using the phrase "the handwriting effect", but not sure if it is proper here.
+     *
      * @since 2.12.2
      *
      * @note
-     * - 在 2.12.2 版本中，`setDisableNewPencil` 的默认值为 `false`，自 2.12.3 版本起，`setDisableNewPencil` 的默认值改为 `true`。
-     * - 为正常显示笔迹，在开启笔峰效果前，请确保该房间内的所有用户使用如下 SDK：
-     *      - Android SDK 2.12.3 版或之后
-     *      - iOS SDK 2.12.3 版或之后
-     *      - Web SDK 2.12.5 版或之后
+     * - In v2.12.2, the SDK sets the default value of `disableNewPencil` as `false`; as of v2.12.3, the SDK changes the default value of `disableNewPencil` to `true`.
+     * - To enable the stroke effect, ensure that every user in the room uses one of the following SDKs:
+     *      - Android SDK v2.12.3 or later
+     *      - iOS SDK v2.12.3 or later
+     *      - Web SDK v2.12.5 or later
      *
-     * @param disableNewPencil 是否关闭笔锋效果：
-     * - true: （默认）关闭笔锋效果。
-     * - false: 开启笔锋效果。
+     * @param disableNewPencil Whether to disable the handwriting effect of the pencil:
+     * - `true`: (Default) Disable the handwriting effect of the pencil.
+     * - `false`: Enable the handwriting effect of the pencil.
      */
     public void setDisableNewPencil(boolean disableNewPencil) {
         this.disableNewPencil = disableNewPencil;
@@ -255,20 +261,20 @@ public class RoomParams extends WhiteObject {
 
 
     /**
-     * 获取视角边界。
+     * Gets the boundary of the local user's view.
      *
-     * @return 视角边界。
+     * @return The boundary of the view.
      */
     public CameraBound getCameraBound() {
         return cameraBound;
     }
 
     /**
-     * 设置本地用户的视角边界。
+     * Sets the boundary of the local user's view.
      *
      * @since 2.5.0
      *
-     * @param cameraBound 视角边界，详见 {@link CameraBound CameraBound}。
+     * @param cameraBound The boundary of the view. See {@link CameraBound CameraBound}.
      */
     public void setCameraBound(CameraBound cameraBound) {
         this.cameraBound = cameraBound;
@@ -279,18 +285,17 @@ public class RoomParams extends WhiteObject {
     }
 
     /**
-     * 自定义用户信息。
+     * Sets the customized user information.
      *
      * @since 2.0.0
      *
-     * @note
-     * - 必须使用 {@link WhiteObject} 子类，以保证字段结构正确
-     * - 自定义的用户信息会被完整透传。
-     * <p>
-     * 如果要在白板房间中显示用户头像，请在 `userPayload` 中传入 `avatar` 字段并添加用户头像的地址，例如 `"avatar", "https://example.com/user.png")`。
-     * 从 {@link MemberInformation MemberInformation} 迁移，只需要在 `userPayload` 中，传入相同字段即可。
+     * You can pass in customized user information, such as user ID, nickname, and avatar in the `userPayload` and call this method to send the information to the application.
      *
-     * @param userPayload 自定义的用户信息，必须为 key-value 结构。
+     * @note
+     * To ensure the format of the customized user information is correct, the `userPayload` must extend the {@link WhiteObject} class.
+     *
+     * @param userPayload Customized user information in key-value pairs, for example, `"avatar", "https://example.com/user.png")`.
+     *
      */
     public void setUserPayload(Object userPayload) {
         this.userPayload = userPayload;
@@ -299,24 +304,23 @@ public class RoomParams extends WhiteObject {
     private Object userPayload;
 
     /**
-     * 初始化房间配置参数。
+     * Initializes an `RoomParams` instance.
      *
-     * @param uuid      房间 UUID， 即房间唯一标识符。
-     * @param roomToken 用于鉴权的 Room Token。生成该 Room Token 的房间 UUID 必须和上面传入的房间 UUID 一致。
+     * @param uuid      The UUID of the room, which is unique identifier of the room. Ensure that the room UUID is the same as the one you use to generate the Room Token.
+     * @param roomToken The Room Token for authentication.
      */
     public RoomParams(String uuid, String roomToken) {
         this(uuid, roomToken, (Object) null);
     }
 
     /**
-     * 初始化房间配置参数并传入用户信息。
+     * Initializes an `RoomParams` instance with customized user information.
      *
-     * @deprecated 该方法已经废弃。请使用 {@link RoomParams(String, String, Object) RoomParams}。
+     * @deprecated This method is deprecated. Use {@link RoomParams(String, String, Object) RoomParams} instead.
      *
-     * @param uuid       房间 UUID， 即房间唯一标识符。
-     * @param roomToken  用于鉴权的 Room Token。生成该 Room Token 的房间 UUID 必须和上面传入的房间 UUID 一致。
-     * @param memberInfo 用户信息。{@link MemberInformation MemberInformation} 类已经废弃。请使用 {@link #RoomParams(String, String, Object)} 传入用户信息。
-     * @deprecated 该方法已经废弃。请使用 {@link RoomParams(String, String, Object) RoomParams}。
+     * @param uuid       The UUID of the room, which is unique identifier of the room. Ensure that the room UUID is the same as the one you use to generate the Room Token.
+     * @param roomToken  The Room Token for authentication.
+     * @param memberInfo Customized user information. See {@link MemberInformation MemberInformation}.
      */
     @Deprecated
     public RoomParams(String uuid, String roomToken, MemberInformation memberInfo) {
@@ -326,13 +330,13 @@ public class RoomParams extends WhiteObject {
     }
 
     /**
-     * 初始化房间配置参数并传入自定义的用户信息。
+     * Initializes an `RoomParams` instance with customized user information.
      *
      * @since 2.0.0
      *
-     * @param uuid        房间 UUID， 即房间唯一标识符。
-     * @param roomToken   用于鉴权的 Room Token。生成该 Room Token 的房间 UUID 必须和上面传入的房间 UUID 一致。
-     * @param userPayload 自定义用户信息，必须为 {@link WhiteObject} 子类。
+     * @param uuid        The UUID of the room, which is unique identifier of the room. Ensure that the room UUID is the same as the one you use to generate the Room Token.
+     * @param roomToken   The Room Token for authentication.
+     * @param userPayload Customized user information, which must be a subclass of {@link WhiteObject} to ensure the data format is correct.
      */
     public RoomParams(String uuid, String roomToken, Object userPayload) {
         this.uuid = uuid;
@@ -341,11 +345,11 @@ public class RoomParams extends WhiteObject {
     }
 
     /**
-     * 获取自定义的用户信息。
+     * Gets customized user information.
      *
-     * @deprecated 该方法已废弃。请使用 {@link #getUserPayload() getUserPayload}。
+     * @deprecated This method is deprecated. Use {@link #getUserPayload() getUserPayload} instead.
      *
-     * @return 自定义用户信息，详见 {@link MemberInformation}。
+     * @return Customized user information. See {@link MemberInformation MemberInformation}.
      */
     @Deprecated
     public MemberInformation getMemberInfo() {
@@ -356,11 +360,11 @@ public class RoomParams extends WhiteObject {
     }
 
     /**
-     * 自定义用户信息。
+     * Sets customized user information.
      *
-     * @deprecated 该方法已废弃。请使用 {@link #getUserPayload() getUserPayload}。
+     * @deprecated This method is deprecated. Use {@link #getUserPayload() getUserPayload} instead.
      *
-     * @param memberInfo 用户信息，详见 {@link MemberInformation MemberInformation}。
+     * @param memberInfo Customized user information. See {@link MemberInformation MemberInformation}.
      */
     @Deprecated
     public void setMemberInfo(MemberInformation memberInfo) {
@@ -368,36 +372,36 @@ public class RoomParams extends WhiteObject {
     }
 
     /**
-     * 获取房间 UUID。
+     * Gets the UUID of the room.
      *
-     * @return 房间 UUID，即房间的唯一标识符。
+     * @return The UUID of the room, which is the unique identifier of the room.
      */
     public String getUuid() {
         return uuid;
     }
 
     /**
-     * 设置房间 UUID。
+     * Sets the UUID of the room.
      *
-     * @param uuid 房间 UUID，即房间的唯一标识符。
+     * @param uuid The UUID of the room, which is the unique identifier of the room.
      */
     public void setUuid(String uuid) {
         this.uuid = uuid;
     }
 
     /**
-     * 获取 Room Token。
+     * Gets the Room Token.
      *
-     * @return Room Token。
+     * @return The Room Token for authentication.
      */
     public String getRoomToken() {
         return roomToken;
     }
 
     /**
-     * 设置 Room Token。
+     * Sets the Room Token.
      *
-     * @param roomToken 用于鉴权的 Room Token。生成该 Room Token 的房间 UUID 必须和上面传入的房间 UUID 一致。
+     * @param roomToken The Room Token for authentication.
      */
     public void setRoomToken(String roomToken) {
         this.roomToken = roomToken;

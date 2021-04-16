@@ -14,9 +14,9 @@ import org.json.JSONObject;
 import java.util.HashMap;
 
 /**
- * Configuration for the `WhiteSdk` instance. 
+ * Configuration for the `WhiteSdk` instance.
  *
- * @note After the `WhiteSdk` instance is initialized, you cannot call any method in the `WhiteSdkConfiguration` class to modify the configuration of the `WhiteSdk` instance. 
+ * @note After the `WhiteSdk` instance is initialized, you cannot call any method in the `WhiteSdkConfiguration` class to modify the configuration of the `WhiteSdk` instance.
  */
 public class WhiteSdkConfiguration extends WhiteObject {
 
@@ -53,7 +53,7 @@ public class WhiteSdkConfiguration extends WhiteObject {
     public static class PptParams extends WhiteObject {
 
         /**
-         * Hidden in documentation. 
+         * Hidden in documentation.
          */
         public String getScheme() {
             return scheme;
@@ -291,7 +291,7 @@ public class WhiteSdkConfiguration extends WhiteObject {
      * Sets whether to preload all image resources in dynamic PPT slides when loading the homepage of the slides.
      *
      * @note
-     * Agora does not recommend setting `setPreloadDynamicPPT(true)`, because the setting may slow down the PPT display. 
+     * Agora does not recommend setting `setPreloadDynamicPPT(true)`, because the setting may slow down the PPT display.
      *
      * @param preloadDynamicPPT Whether to preload all image resources in dynamic PPT slides when loading the homepage of the slides:
      * - `true`: Preload all image resources in dynamic PPT slides when loading the homepage of the slides.
@@ -495,7 +495,7 @@ public class WhiteSdkConfiguration extends WhiteObject {
      * Gets whether the SDK listens for image loading failure events.
      *
      * @return Whether the SDK listens for image loading failure events.
-     * - `true`: Listen for image loading failure events. 
+     * - `true`: Listen for image loading failure events.
      * - `false`: Do not listen for image loading failure events.
      */
     public boolean isEnableImgErrorCallback() {
