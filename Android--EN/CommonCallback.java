@@ -5,22 +5,20 @@ import com.herewhite.sdk.domain.SDKError;
 import org.json.JSONObject;
 
 /**
- * The default (empty) implementation of the `CommonCallbacks` interface. See {@link CommonCallbacks}.
+ * The `RoomCallbacks` interface, which the SDK uses to send callback event notifications to the application.
  *
- * @deprecated This interface is deprecated.
+ * Both the {@link Room} instance and the {@link Player} instance can inherit the methods of this interface.
+ *
+ * @since 2.9.13
  */
-@Deprecated
-public class AbstractCommonCallbacks implements CommonCallbacks {
+public interface CommonCallback {
 
     /**
      * Reports an uncaught global error during SDK runtime.
      *
      * @param args Error message.
      */
-    @Override
-    public void throwError(Object args) {
-
-    }
+    void throwError(Object args);
 
     /**
      * Occurs when the SDK intercepts an image URL address.
@@ -36,30 +34,21 @@ public class AbstractCommonCallbacks implements CommonCallbacks {
      *
      * @return The URL address that you specify to replace the original one. Ensure that you set the return value.
      */
-    @Override
-    public String urlInterrupter(String sourceUrl) {
-        return sourceUrl;
-    }
+    String urlInterrupter(String sourceUrl);
 
     /**
      * Occurs when the audio and video in dynamic PPT slides start playing.
      *
      * @since 2.9.13
      */
-    @Override
-    public void onPPTMediaPlay(Object args) {
-
-    }
+    void onPPTMediaPlay();
 
     /**
      * Occurs when the audio and video in dynamic PPT slides pause playing.
      *
      * @since 2.9.13
      */
-    @Override
-    public void onPPTMediaPause() {
-
-    }
+    void onPPTMediaPause();
 
     /**
      * Occurs when the user receives the message from the web page.
@@ -72,10 +61,7 @@ public class AbstractCommonCallbacks implements CommonCallbacks {
      *
      * @param object Message in JSON format. Only when the message is in JSON format can the local user receive it.
      */
-    @Override
-    public void onMessage(JSONObject message) {
-
-    }
+    void onMessage(JSONObject object);
 
     /**
      * Reports the failure of the SDK initialization.
@@ -89,8 +75,5 @@ public class AbstractCommonCallbacks implements CommonCallbacks {
      *  - The specified App Identifier is invalid.
      *
      */
-    @Override
-    public void sdkSetupFail(SDKError error) {
-
-    }
+    void sdkSetupFail(SDKError error);
 }
