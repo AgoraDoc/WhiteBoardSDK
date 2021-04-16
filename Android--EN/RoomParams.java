@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
  * Configurations for a {@link Room} instance.
  *
  * @note
- * All methods in this class must be called before joining a room. After successfully joining a room, calling any method in this class does not take effect.
+ * All methods in this class must be called before joining a room. After successfully joining a room, calling any method in this class does not take effect. \\TODO William I'd like to change this to "Any methods in this class that are called after successfully joining a room will not take effect." Is that accurate? From the orignal, I am not sure if the call or the method is what doesn't take effect (I assume the latter).
  *
  */
 public class RoomParams extends WhiteObject {
@@ -27,8 +27,8 @@ public class RoomParams extends WhiteObject {
      * Sets the data center.
      *
      * @note
-     * - The data center set in this method must be the same as the data center of the live Interactive Whiteboard live room to be joined; otherwise the SDK fails to connects to the room.
-     * - You can call either this method or the {@link WhiteSdkConfiguration#setRegion(Region) setRegion} method in the `WhiteSdkConfiguration` class to set the data center. If you call both， this method overrides the {@link WhiteSdkConfiguration#setRegion(Region) setRegion} method.
+     * - The data center set in this method must be the same as the data center of the live Interactive Whiteboard live room to be joined; otherwise, the SDK fails to connect to the room. //TODO William Re: "the live Interactive Whiteboard live room": Delete second "live", I believe?
+     * - You can call either this method or the {@link WhiteSdkConfiguration#setRegion(Region) setRegion} method in the `WhiteSdkConfiguration` class to set the data center. If you call both，this method overrides the {@link WhiteSdkConfiguration#setRegion(Region) setRegion} method.
      *
      * @param region The data center. See {@link Region Region}.
      */
@@ -58,20 +58,20 @@ public class RoomParams extends WhiteObject {
      *
      * @return Whether the user joins the whiteboard room in interactive mode:
      * - `true`: The user joins the whiteboard room in interactive mode.
-     * - `false`: The user joins the whiteboard room in interactive mode.
+     * - `false`: The user joins the whiteboard room in subscription mode.
      */
     public boolean isWritable() {
         return isWritable;
     }
 
     /**
-     * Sets whether a user join the whiteboard room in interactive mode.
+     * Sets whether a user joins the whiteboard room in interactive mode.
      *
      * Users can join a live Interactive Whiteboard room in one of the following modes:
      * - Interactive mode, in which users have read and write permissions on the whiteboard, appear in the member list of the room, and are visible to all other users in the room.
-     * - Subscription mode, in which users read-only access to the whiteboard, do not appear in the member list of the room, and invisible to all other users in the room.
+     * - Subscription mode, in which users have read-only access to the whiteboard, do not appear in the member list of the room, and are invisible to all other users in the room.
      *
-     * @param writable Wether to join the room in interactive mode:
+     * @param writable Whether to join the room in interactive mode:
      *                 - `true`: (Default) Join the room in interactive mode.
      *                 - `false`: Join the room in subscription mode.
      */
@@ -207,8 +207,8 @@ public class RoomParams extends WhiteObject {
      * Gets whether adjusting the view of the whiteboard by the local user is disabled.
      *
      * @return Whether adjusting the view of the whiteboard by the local user is disabled:
-     * - `true`: Disable the local user from adjusting the view of the whiteboard.
-     * - `false`：Enable the local user to adjust the view of the whiteboard.
+     * - `true`: Adjusting the view of the whiteboard by the local user is disabled. //TODO William Perhaps "The local user can/cannot adjust the view of the whiteboard."?
+     * - `false`：Adjusting the view of the whiteboard by the local user is enabled.
      */
     public boolean isDisableCameraTransform() {
         return disableCameraTransform;
@@ -239,6 +239,7 @@ public class RoomParams extends WhiteObject {
      * // Could you please explain the meaning of "stroke effect"
      * // The original Chinese phrase is "笔锋效果", with which the text written with the pencil on the whiteboard looks more natural and close to handwriting text. Each stroke will end with a tip, rather than stop suddenly.
      * // I am considering using the phrase "the handwriting effect", but not sure if it is proper here.
+     * //TODO William @ CT As far as I know, this is being called the "stroke effect". I would stick with it here. What is being mimicked is likely the physical movement/effect (the "stroke") of a using a writing tool rather than "handwriting" per se.
      *
      * @since 2.12.2
      *
@@ -250,8 +251,8 @@ public class RoomParams extends WhiteObject {
      *      - Web SDK v2.12.5 or later
      *
      * @param disableNewPencil Whether to disable the handwriting effect of the pencil:
-     * - `true`: (Default) Disable the handwriting effect of the pencil.
-     * - `false`: Enable the handwriting effect of the pencil.
+     * - `true`: (Default) Disable the stroke effect of the pencil.
+     * - `false`: Enable the stroke effect of the pencil.
      */
     public void setDisableNewPencil(boolean disableNewPencil) {
         this.disableNewPencil = disableNewPencil;
@@ -289,12 +290,12 @@ public class RoomParams extends WhiteObject {
      *
      * @since 2.0.0
      *
-     * You can pass in customized user information, such as user ID, nickname, and avatar in the `userPayload` and call this method to send the information to the application.
+     * You can pass in customized user information, such as user ID, nickname, and avatar, in the `userPayload` and call this method to send the information to the application.
      *
      * @note
      * To ensure the format of the customized user information is correct, the `userPayload` must extend the {@link WhiteObject} class.
      *
-     * @param userPayload Customized user information in key-value pairs, for example, `"avatar", "https://example.com/user.png")`.
+     * @param userPayload Customized user information in key-value pairs, for example, `"avatar", "https://example.com/user.png")`. //TODO William I assume the paranthesis after ".png" is an error, but I'm not sure. Please check.
      *
      */
     public void setUserPayload(Object userPayload) {
@@ -304,9 +305,9 @@ public class RoomParams extends WhiteObject {
     private Object userPayload;
 
     /**
-     * Initializes an `RoomParams` instance.
+     * Initializes a `RoomParams` instance.
      *
-     * @param uuid      The UUID of the room, which is unique identifier of the room. Ensure that the room UUID is the same as the one you use to generate the Room Token.
+     * @param uuid The unique identifier of the room. Ensure that the room UUID is the same as the one you use to generate the Room Token.
      * @param roomToken The Room Token for authentication.
      */
     public RoomParams(String uuid, String roomToken) {
@@ -314,12 +315,12 @@ public class RoomParams extends WhiteObject {
     }
 
     /**
-     * Initializes an `RoomParams` instance with customized user information.
+     * Initializes a `RoomParams` instance with customized user information.
      *
      * @deprecated This method is deprecated. Use {@link RoomParams(String, String, Object) RoomParams} instead.
      *
-     * @param uuid       The UUID of the room, which is unique identifier of the room. Ensure that the room UUID is the same as the one you use to generate the Room Token.
-     * @param roomToken  The Room Token for authentication.
+     * @param uuid The unique identifier of the room. Ensure that the room UUID is the same as the one you use to generate the Room Token.
+     * @param roomToken The Room Token for authentication.
      * @param memberInfo Customized user information. See {@link MemberInformation MemberInformation}.
      */
     @Deprecated
@@ -330,12 +331,12 @@ public class RoomParams extends WhiteObject {
     }
 
     /**
-     * Initializes an `RoomParams` instance with customized user information.
+     * Initializes a `RoomParams` instance with customized user information.
      *
      * @since 2.0.0
      *
-     * @param uuid        The UUID of the room, which is unique identifier of the room. Ensure that the room UUID is the same as the one you use to generate the Room Token.
-     * @param roomToken   The Room Token for authentication.
+     * @param uuid The unique identifier of the room. Ensure that the room UUID is the same as the one you use to generate the Room Token.
+     * @param roomToken The Room Token for authentication.
      * @param userPayload Customized user information, which must be a subclass of {@link WhiteObject} to ensure the data format is correct.
      */
     public RoomParams(String uuid, String roomToken, Object userPayload) {
@@ -374,7 +375,7 @@ public class RoomParams extends WhiteObject {
     /**
      * Gets the UUID of the room.
      *
-     * @return The UUID of the room, which is the unique identifier of the room.
+     * @return The unique identifier of the room.
      */
     public String getUuid() {
         return uuid;
@@ -383,7 +384,7 @@ public class RoomParams extends WhiteObject {
     /**
      * Sets the UUID of the room.
      *
-     * @param uuid The UUID of the room, which is the unique identifier of the room.
+     * @param uuid The unique identifier of the room.
      */
     public void setUuid(String uuid) {
         this.uuid = uuid;
