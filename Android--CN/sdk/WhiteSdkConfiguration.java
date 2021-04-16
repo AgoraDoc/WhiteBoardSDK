@@ -71,7 +71,6 @@ public class WhiteSdkConfiguration extends WhiteObject {
          *  - `true`：开启。
          *  - `false`：关闭。
          */
-
         public boolean isUseServerWrap() {
             return useServerWrap;
         }
