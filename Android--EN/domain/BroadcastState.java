@@ -1,7 +1,9 @@
 package com.herewhite.sdk.domain;
 
 /**
- * 视角状态，包含视角为主播模式的用户信息。
+ * The view state of the local user, as well as the user information of the host (if any) in the room.
+ *
+ * When the local user is in the `Follower` view mode, you can call {@link #getBroadcasterId} and {@link #getBroadcasterInformation} to get the information of the host in the room.
  */
 public class BroadcastState extends WhiteObject {
 
@@ -10,30 +12,30 @@ public class BroadcastState extends WhiteObject {
     private RoomMember broadcasterInformation;
 
     /**
-     * 获取用户的视角模式。
+     * Gets the view mode of the user.
      *
-     * @return 用户的视角模式。
+     * @return The view mode of the user.
      */
     public ViewMode getMode() {
         return mode;
     }
 
     /**
-     * 获取主播模式用户在房间中的用户 ID。
+     * Gets the user ID of the host.
      *
-     * 2.4.6 版本前，当房间中没有主播时，错误地返回了 0。
-     * 2.4.8 版本修复了该问题。修复后，当房间内没有主播时，返回值为 null。
+     * For the SDK earlier than v2.4.8, this method call returns `0` by mistake when there is no host in the room.
+     * v2.4.8 fixed this issue. As of v2.4.8, this method call returns `null` when there is no host in the room.
      *
-     * @return 主播模式用户的用户 ID。
+     * @return The user ID of the host.
      */
     public Long getBroadcasterId() {
         return broadcasterId;
     }
 
     /**
-     * 获取主播模式用户的用户信息。
+     * Gets the user information of the host.
      *
-     * @return 用户信息。详见 {@link RoomMember RoomMember}。
+     * @return The user information of the host. See {@link RoomMember RoomMember}.
      */
     public RoomMember getBroadcasterInformation() {
         return broadcasterInformation;

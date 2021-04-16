@@ -5,7 +5,7 @@ package com.herewhite.sdk.domain;
  */
 
 /**
- * `MemberState` 类，用于设置互动白板实时房间的教具状态。
+ * Settings of the whiteboard tool in use.
  */
 public class MemberState extends WhiteObject {
     private String currentApplianceName;
@@ -17,36 +17,36 @@ public class MemberState extends WhiteObject {
     }
 
     /**
-     * 获取互动白板实时房间内当前使用的教具名称。
+     * Gets the name of the whiteboard tool in use.
      *
-     * @return 互动白板实时房间内当前使用的教具名称。
+     * @return The name of the whiteboard tool in use.
      */
     public String getCurrentApplianceName() {
         return currentApplianceName;
     }
 
     /**
-     * 设置互动白板实时房间内使用的教具。
+     * Sets the currently-used whiteboard tool.
      *
-     * @param currentApplianceName 教具名称，详见 {@link Appliance}。
+     * @param currentApplianceName The whiteboard tool. See {@link Appliance}.
      */
     public void setCurrentApplianceName(String currentApplianceName) {
         this.currentApplianceName = currentApplianceName;
     }
 
     /**
-     * 获取用户设置的线条颜色。
+     * Gets the stroke color.
      *
-     * @return 线条颜色，为 RGB 格式，例如，(0, 0, 255) 表示蓝色。
+     * @return The stroke color in the RGB format, for example, `0, 0, 255` (blue).
      */
     public int[] getStrokeColor() {
         return strokeColor;
     }
 
     /**
-     * 设置线条颜色。
+     * Sets the stroke color.
      *
-     * @param strokeColor 线条颜色，为 RGB 格式，例如，(0, 0, 255) 表示蓝色。
+     * @param strokeColor The stroke color in the RGB format, for example, `0, 0, 255` (blue).
      */
     public void setStrokeColor(int[] strokeColor) {
         this.strokeColor = strokeColor;
@@ -54,18 +54,18 @@ public class MemberState extends WhiteObject {
 
 
     /**
-     * 获取用户设置的线条粗细。
+     * Gets the stroke width.
      *
-     * @return 线条粗细。
+     * @return The stroke width.
      */
     public double getStrokeWidth() {
         return strokeWidth;
     }
 
     /**
-     * 设置线条粗细。
+     * Sets the stroke width.
      *
-     * @param strokeWidth 线条粗细。// TODO 单位？
+     * @param strokeWidth The stroke width.
      */
     public void setStrokeWidth(double strokeWidth) {
         this.strokeWidth = strokeWidth;
@@ -73,18 +73,18 @@ public class MemberState extends WhiteObject {
 
 
     /**
-     * 获取用户设置的字体大小。
+     * Gets the text size.
      *
-     * @return 字体大小。
+     * @return The text size.
      */
     public double getTextSize() {
         return textSize;
     }
 
     /**
-     * 设置字体大小。
+     * Sets the text size.
      *
-     * @param textSize 字体大小。Chrome 浏览器对于小于 12 的字体会自动调整为 12。// TODO 单位？
+     * @param textSize The text size. The Chrome browser automatically adjusts the fonts smaller than 12 to 12.
      */
     public void setTextSize(double textSize) {
         this.textSize = textSize;
