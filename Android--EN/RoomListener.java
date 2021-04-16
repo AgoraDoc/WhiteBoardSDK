@@ -19,7 +19,7 @@ public interface RoomListener {
     void onPhaseChanged(RoomPhase phase);
 
     /**
-     * Occurs when the SDK loses connection with the Interactive Whiteboard  server.
+     * Occurs when the SDK loses connection with the Interactive Whiteboard server.
      *
      * @param e An error message.
      */
@@ -44,7 +44,7 @@ public interface RoomListener {
     /**
      * Occurs when the number of undoable actions changes.
      *
-     * The SDK triggers this callback every time when the local user calls {@link Room#undo undo} and reports the number of remaining undoable actions.
+     * The SDK triggers this callback every time the local user calls {@link Room#undo undo} and reports the number of remaining undoable actions.
      *
      * @param canUndoSteps The number of remaining undoable actions.
      */
@@ -53,7 +53,7 @@ public interface RoomListener {
     /**
      * Occurs when the number of redoable actions changes.
      *
-     * The SDK triggers this callback every time when the local user calls {@link Room#redo redo} and reports the number of remaining redoable actions.
+     * The SDK triggers this callback every time the local user calls {@link Room#redo redo} and reports the number of remaining redoable actions.
      *
      * @param canRedoSteps The number of remaining redoable actions.
      */
@@ -62,7 +62,7 @@ public interface RoomListener {
     /**
      * Reports the errors that occur during the synchronization of a user's operations.
      *
-     * @param userId The user ID of the the user whose operations is being synchronized.
+     * @param userId The user ID of the user whose operations are being synchronized.
      * @param error  An error message.
      */
     void onCatchErrorWhenAppendFrame(long userId, Exception error);
