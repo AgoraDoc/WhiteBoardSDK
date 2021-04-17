@@ -11,7 +11,7 @@ import wendu.dsbridge.DWebView;
 import wendu.dsbridge.OnReturnValue;
 
 /**
- * white on 2018/8/10. //TODO William Should this be the "Created by" statement?
+ * white on 2018/8/10. 
  */
 
 /**
