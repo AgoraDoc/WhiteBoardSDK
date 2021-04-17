@@ -17,16 +17,16 @@ public class MemberState extends WhiteObject {
     }
 
     /**
-     * Gets the name of the whiteboard tool in use.
+     * Gets the name of the whiteboard tool currently in use.
      *
-     * @return The name of the whiteboard tool in use.
+     * @return The name of the whiteboard tool currently in use.
      */
     public String getCurrentApplianceName() {
         return currentApplianceName;
     }
 
     /**
-     * Sets the currently-used whiteboard tool.
+     * Sets the whiteboard tool.
      *
      * @param currentApplianceName The whiteboard tool. See {@link Appliance}.
      */
@@ -37,7 +37,7 @@ public class MemberState extends WhiteObject {
     /**
      * Gets the stroke color.
      *
-     * @return The stroke color in the RGB format, for example, `0, 0, 255` (blue).
+     * @return The stroke color in RGB format, for example, `0, 0, 255` (blue).
      */
     public int[] getStrokeColor() {
         return strokeColor;
@@ -46,7 +46,7 @@ public class MemberState extends WhiteObject {
     /**
      * Sets the stroke color.
      *
-     * @param strokeColor The stroke color in the RGB format, for example, `0, 0, 255` (blue).
+     * @param strokeColor The stroke color in RGB format, for example, `0, 0, 255` (blue).
      */
     public void setStrokeColor(int[] strokeColor) {
         this.strokeColor = strokeColor;
@@ -65,7 +65,7 @@ public class MemberState extends WhiteObject {
     /**
      * Sets the stroke width.
      *
-     * @param strokeWidth The stroke width.
+     * @param strokeWidth The stroke width. 
      */
     public void setStrokeWidth(double strokeWidth) {
         this.strokeWidth = strokeWidth;
@@ -73,18 +73,18 @@ public class MemberState extends WhiteObject {
 
 
     /**
-     * Gets the text size.
+     * Gets the font size of the text. 
      *
-     * @return The text size.
+     * @return The font size of the text. 
      */
     public double getTextSize() {
         return textSize;
     }
 
     /**
-     * Sets the text size.
+     * Sets the font size of the text. 
      *
-     * @param textSize The text size. The Chrome browser automatically adjusts the fonts smaller than 12 to 12.
+     * @param textSize The font size of the text. The Chrome browser automatically adjusts fonts smaller than 12 to 12. 
      */
     public void setTextSize(double textSize) {
         this.textSize = textSize;
