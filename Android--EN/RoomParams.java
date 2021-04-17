@@ -8,15 +8,10 @@ import com.herewhite.sdk.domain.WhiteObject;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by buhe on 2018/8/11.
- */
-
-/**
  * Configurations for a {@link Room} instance.
  *
  * @note
- * All methods in this class must be called before joining a room. After successfully joining a room, calling any method in this class does not take effect. \\TODO William I'd like to change this to "Any methods in this class that are called after successfully joining a room will not take effect." Is that accurate? From the orignal, I am not sure if the call or the method is what doesn't take effect (I assume the latter).
- *
+ * All methods in this class must be called before joining a room. Any methods in this class that are called after successfully joining a room do not take effect.
  */
 public class RoomParams extends WhiteObject {
 
@@ -207,8 +202,8 @@ public class RoomParams extends WhiteObject {
      * Gets whether adjusting the view of the whiteboard by the local user is disabled.
      *
      * @return Whether adjusting the view of the whiteboard by the local user is disabled:
-     * - `true`: Adjusting the view of the whiteboard by the local user is disabled. //TODO William Perhaps "The local user can/cannot adjust the view of the whiteboard."?
-     * - `false`：Adjusting the view of the whiteboard by the local user is enabled.
+     * - `true`: The local user can adjust the view of the whiteboard. 
+     * - `false`: The local user can adjust the view of the whiteboard.
      */
     public boolean isDisableCameraTransform() {
         return disableCameraTransform;
@@ -235,12 +230,7 @@ public class RoomParams extends WhiteObject {
 
     /**
      * Disables/Enables the stroke effect of the pencil.
-     * // TODO CT @William I see that "the stroke effect" is used in Interactive Whiteboard release notes, but I am not sure if "stroke effect" match with the original Chinese meaning.
-     * // Could you please explain the meaning of "stroke effect"
-     * // The original Chinese phrase is "笔锋效果", with which the text written with the pencil on the whiteboard looks more natural and close to handwriting text. Each stroke will end with a tip, rather than stop suddenly.
-     * // I am considering using the phrase "the handwriting effect", but not sure if it is proper here.
-     * //TODO William @ CT As far as I know, this is being called the "stroke effect". I would stick with it here. What is being mimicked is likely the physical movement/effect (the "stroke") of a using a writing tool rather than "handwriting" per se.
-     *
+     * 
      * @since 2.12.2
      *
      * @note
@@ -295,8 +285,8 @@ public class RoomParams extends WhiteObject {
      * @note
      * To ensure the format of the customized user information is correct, the `userPayload` must extend the {@link WhiteObject} class.
      *
-     * @param userPayload Customized user information in key-value pairs, for example, `"avatar", "https://example.com/user.png")`. //TODO William I assume the paranthesis after ".png" is an error, but I'm not sure. Please check.
-     *
+     * @param userPayload Customized user information in key-value pairs, for example, `"avatar", "https://example.com/user.png"`. 
+     
      */
     public void setUserPayload(Object userPayload) {
         this.userPayload = userPayload;
