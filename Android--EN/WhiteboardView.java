@@ -10,9 +10,6 @@ import android.webkit.WebChromeClient;
 import wendu.dsbridge.DWebView;
 import wendu.dsbridge.OnReturnValue;
 
-/**
- * white on 2018/8/10. 
- */
 
 /**
  * Configurations for the whiteboard view.
