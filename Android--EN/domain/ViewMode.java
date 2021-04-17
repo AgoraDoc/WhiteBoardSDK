@@ -38,8 +38,8 @@ public enum ViewMode {
      // TODO CT I agree that for the consistency between the code and the mode desvription, "Broadcaster mode" is better. 
      However, we were askded to change all "broadcaster" to "host" for the `broadcaster` user role in RTC API documentation. (the code is still `broadcaster`) I think the change is 
      *
-     * In this mode, the user can freely adjust their view and synchonize thier view to other users in the room. 
-     * // TODO CT The user in `broadcaster` view mode can synchonize his or her view to other users, which means other users watch the whiteboars in the same view as the host.
+     * In this mode, the user can freely adjust their view and synchronize thier view to other users in the room. 
+     * // TODO CT The user in `broadcaster` view mode can synchronize his or her view to other users, which means other users watch the whiteboars in the same view as the host.
      *
      * @note
      * - Each room can have only one user in `Broadcaster` view mode. 
