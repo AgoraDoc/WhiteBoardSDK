@@ -14,9 +14,9 @@ public class RoomState extends WhiteDisplayerState {
     private Double zoomScale;
 
     /**
-     * Gets the state of the whiteboard tool in use.
+     * Gets the state of the whiteboard tool currently in use.
      *
-     * @return The state of the whiteboard tool in use. See {@link MemberState MemberState}.
+     * @return The state of the whiteboard tool currently in use. See {@link MemberState MemberState}.
      */
     public MemberState getMemberState() {
         return memberState;
@@ -32,7 +32,7 @@ public class RoomState extends WhiteDisplayerState {
     }
 
     /**
-     * Gets the scale of the view.
+     * Gets the scale of the view. 
      *
      * @return The scale of the view.
      */
