@@ -10,9 +10,6 @@ import android.webkit.WebChromeClient;
 import wendu.dsbridge.DWebView;
 import wendu.dsbridge.OnReturnValue;
 
-/**
- * white on 2018/8/10.
- */
 
 /**
  * Configurations for the whiteboard view.
@@ -24,7 +21,7 @@ public class WhiteboardView extends DWebView implements JsBridgeInterface {
     /**
      * Initializes the whiteboard view.
      *
-     * @param context The context of Android Activity.
+     * @param context The context of the Android Activity.
      */
     public WhiteboardView(Context context) {
         super(getFixedContext(context));
@@ -34,8 +31,8 @@ public class WhiteboardView extends DWebView implements JsBridgeInterface {
     /**
      * Initializes the whiteboard view.
      *
-     * @param context The context of Android Activity.
-     * @param attrs   Custom attributes set for the whiteboard view. See [AttributeSet](https://developer.android.com/reference/android/util/AttributeSet).
+     * @param context The context of the Android Activity.
+     * @param attrs Custom attributes set for the whiteboard view. See [AttributeSet](https://developer.android.com/reference/android/util/AttributeSet).
      */
     public WhiteboardView(Context context, AttributeSet attrs) {
         super(getFixedContext(context), attrs);
