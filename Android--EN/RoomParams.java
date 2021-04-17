@@ -22,7 +22,7 @@ public class RoomParams extends WhiteObject {
      * Sets the data center.
      *
      * @note
-     * - The data center set in this method must be the same as the data center of the live Interactive Whiteboard live room to be joined; otherwise, the SDK fails to connect to the room. //TODO William Re: "the live Interactive Whiteboard live room": Delete second "live", I believe?
+     * - The data center set in this method must be the same as the data center of the live Interactive Whiteboard room to be joined; otherwise, the SDK fails to connect to the room. 
      * - You can call either this method or the {@link WhiteSdkConfiguration#setRegion(Region) setRegion} method in the `WhiteSdkConfiguration` class to set the data center. If you call both，this method overrides the {@link WhiteSdkConfiguration#setRegion(Region) setRegion} method.
      *
      * @param region The data center. See {@link Region Region}.
