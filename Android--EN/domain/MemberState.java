@@ -65,7 +65,7 @@ public class MemberState extends WhiteObject {
     /**
      * Sets the stroke width.
      *
-     * @param strokeWidth The stroke width. //TODO William What unit is used? Pixels?
+     * @param strokeWidth The stroke width. 
      */
     public void setStrokeWidth(double strokeWidth) {
         this.strokeWidth = strokeWidth;
@@ -73,18 +73,18 @@ public class MemberState extends WhiteObject {
 
 
     /**
-     * Gets the text size. //TODO William Perhaps "Gets the font size of the text."?
+     * Gets the font size of the text. 
      *
-     * @return The text size. //TODO William Perhaps "The font size of the text."?
+     * @return The font size of the text. 
      */
     public double getTextSize() {
         return textSize;
     }
 
     /**
-     * Sets the text size. //TODO William Perhaps "Sets the font size of the text."?
+     * Sets the font size of the text. 
      *
-     * @param textSize The text size. The Chrome browser automatically adjusts fonts smaller than 12 to 12. //TODO William Perhaps "The font size of the text."?
+     * @param textSize The font size of the text. The Chrome browser automatically adjusts fonts smaller than 12 to 12. 
      */
     public void setTextSize(double textSize) {
         this.textSize = textSize;
