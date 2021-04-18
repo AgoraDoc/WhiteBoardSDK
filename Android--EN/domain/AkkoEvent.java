@@ -5,10 +5,10 @@ public class AkkoEvent extends WhiteObject {
     private Object payload;
 
     /**
-     * `AkkoEvent` 构造方法，用于初始化自定义事件。
+     * The `AkkoEvent` constructor, for initializing a customized event.
      *
-     * @param eventName 自定义事件名称
-     * @param payload   自定义事件信息，必须为 {@link WhiteObject} 子类，以保证数据格式正确。
+     * @param eventName The name of the customized event.
+     * @param payload   The content of the customized event, which must extend the {@link WhiteObject} class to ensure the data format is correct.
      */
     public AkkoEvent(String eventName, Object payload) {
         this.eventName = eventName;
@@ -16,36 +16,36 @@ public class AkkoEvent extends WhiteObject {
     }
 
     /**
-     * 获取自定义事件的名称。
+     * Gets the name of the customized event.
      *
-     * @return 自定义事件的名称。
+     * @return The name of the customized event.
      */
     public String getEventName() {
         return eventName;
     }
 
     /**
-     * 设置自定义事件的名称。
+     * Sets the name of the customized event.
      *
-     * @param eventName 自定义事件的名称。
+     * @param eventName The name of the customized event.
      */
     public void setEventName(String eventName) {
         this.eventName = eventName;
     }
 
     /**
-     * 设置自定义事件的内容。
+     * Gets the content of the customized event.
      *
-     * @return 自定义事件的内容。
+     * @return The content of the customized event.
      */
     public Object getPayload() {
         return payload;
     }
 
     /**
-     * 设置自定义事件的内容。
+     * sets the content of the customized event.
      *
-     * @param payload 自定义事件的内容，必须为 {@link WhiteObject} 子类，以保证数据格式正确。
+     * @param payload The content of the customized event, which must extend the {@link WhiteObject} class to ensure the data format is correct.
      */
     public void setPayload(Object payload) {
         this.payload = payload;

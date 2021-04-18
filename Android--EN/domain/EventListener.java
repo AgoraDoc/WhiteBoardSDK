@@ -1,13 +1,13 @@
 package com.herewhite.sdk.domain;
 
 /**
- * `EventListener` 接口类。该类包含你想要注册监听的事件回调。
+ * The `EventListener` interface, for reporting for customized events.
  */
 public interface EventListener {
     /**
-     * 收到监听的事件回调。
+     * Reports a customized event.
      *
-     * @param eventEntry 监听的事件，详见 {@link EventEntry}。
+     * @param eventEntry The customized event. See {@link EventEntry}.
      */
     void onEvent(EventEntry eventEntry);
 }

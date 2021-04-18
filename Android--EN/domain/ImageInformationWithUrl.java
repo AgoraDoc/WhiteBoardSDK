@@ -1,7 +1,7 @@
 package com.herewhite.sdk.domain;
 
 /**
- * 图片信息及图片的 URL 地址。
+ * Information and the URL address of the image,
  */
 public class ImageInformationWithUrl extends WhiteObject {
 
@@ -9,13 +9,13 @@ public class ImageInformationWithUrl extends WhiteObject {
     }
 
     /**
-     * `ImageInformationWithUrl` 构造方法，用于初始化 `ImageInformationWithUrl` 实例。
+     * The `ImageInformationWithUrl` constructor, for initializing an `ImageInformationWithUrl` object.
      *
-     * @param centerX 图片的中心在世界坐标系（以白板初始化时的中心点为原点的坐标系）中的横向坐标。
-     * @param centerY 图片的中心在世界坐标系（以白板初始化时的中心点为原点的坐标系）中的纵向坐标。
-     * @param width   图片的宽度，单位为像素。
-     * @param height  图片的高度，单位为像素。
-     * @param url     图片的 URL 地址。必须确保 app 客户端能访问该 URL，否则无法正常展示图片。
+     * @param centerX The X coordinate of the center of the image in the world coordinate system (taking the center of the initial whiteboard as the origin).
+     * @param centerY The Y coordinate of the center of the image in the world coordinate system (taking the center of the initial whiteboard as the origin).
+     * @param width   The width (px) of the image.
+     * @param height  The height (px) of the image.
+     * @param url     The URL address of the image. Ensure the application client can access the URL; otherwise, the image cannot be displayed.
      */
     public ImageInformationWithUrl(Double centerX, Double centerY, Double width, Double height, String url) {
         this.centerX = centerX;
@@ -32,90 +32,92 @@ public class ImageInformationWithUrl extends WhiteObject {
     private String url;
 
     /**
-     * 获取图片的中心在世界坐标系（以白板初始化时的中心点为原点的坐标系）中的横向坐标。
+     * Gets the X coordinate of the center of the image in the world coordinate system (taking the center of the initial whiteboard as the origin).
      *
-     * @return 图片的中心在世界坐标系中的横向坐标。
+     * @return The X coordinate of the center of the image in the world coordinate system.
      */
     public double getCenterX() {
         return centerX;
     }
 
     /**
-     * 设置图片的中心在世界坐标系（以白板初始化时的中心点为原点的坐标系）中的横向坐标。
+     * Sets the X coordinate of the center of the image in the world coordinate system (taking the center of the initial whiteboard as the origin).
      *
-     * @param centerX 图片的中心在世界坐标系中的横向坐标。
+     * @param centerX The X coordinate of the center of the image in the world coordinate system.
      */
     public void setCenterX(double centerX) {
         this.centerX = centerX;
     }
 
     /**
-     * 获取图片的中心在世界坐标系（以白板初始化时的中心点为原点的坐标系）中的纵向坐标。
+     * Gets the Y coordinate of the center of the image in the world coordinate system (taking the center of the initial whiteboard as the origin).
      *
-     * @return 图片的中心在世界坐标系中的纵向坐标。
+     * @return The Y coordinate of the center of the image in the world coordinate system.
      */
     public double getCenterY() {
         return centerY;
     }
 
     /**
-     * 设置图片的中心在世界坐标系（以白板初始化时的中心点为原点的坐标系）中的纵向坐标。
+     * Sets the Y coordinate of the center of the image in the world coordinate system (taking the center of the initial whiteboard as the origin).
      *
-     * @param centerY 图片的中心在世界坐标系中的纵向坐标。
+     * @param centerY The Y coordinate of the center of the image in the world coordinate system.
      */
     public void setCenterY(double centerY) {
         this.centerY = centerY;
     }
 
     /**
-     * 获取图片的宽度。
+     * Gets the width of the image.
      *
-     * @return 图片的宽度，单位为像素。
+     * @return The width (px) of the image.
      */
     public double getWidth() {
         return width;
     }
 
     /**
-     * 设置图片的宽度。
+     * Sets the width of the image.
      *
-     * @param width 图片的宽度，单位为像素。如果图片的宽度超出视角的边界，用户将看不到超出部分。
+     * @param width The width (px) of the image.
+     * If the width of the image is greater than the boundary of the view, then users cannot see the excess part.
      */
     public void setWidth(double width) {
         this.width = width;
     }
 
     /**
-     * 获取图片的高度。
+     * Gets the height of the image.
      *
-     * @return 图片的高度，单位为像素。
+     * @return The height (px) of the image.
      */
     public double getHeight() {
         return height;
     }
 
     /**
-     * 设置图片的高度。
+     * Sets the height of the image.
      *
-     * @param height 图片的高度，单位为像素。如果图片的高度超出视角的边界，用户将看不到超出部分。
+     * @param height The height (px) of the image.
+     * If the height of the image is greater than the boundary of the view, then users cannot see the excess part.
      */
     public void setHeight(double height) {
         this.height = height;
     }
 
     /**
-     * 获取图片的 URL 地址。
+     * Gets the URL address of the image.
      *
-     * @return 图片的 URL 地址。
+     * @return The URL address of the image.
      */
     public String getUrl() {
         return url;
     }
 
     /**
-     * 设置图片的 URL 地址。
+     * Sets the URL address of the image.
      *
-     * @param url 图片的 URL 地址。必须确保 app 客户端能访问该 URL，否则无法正常展示图片。
+     * @param url The URL address of the image. Ensure the application client can access the URL; otherwise, the image cannot be displayed.
      */
     public void setUrl(String url) {
         this.url = url;

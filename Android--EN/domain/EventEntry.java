@@ -1,7 +1,7 @@
 package com.herewhite.sdk.domain;
 
 /**
- * `EventEntry` 类。该类包含 SDK 可以触发的自定义事件回调。
+ * The `EventEntry` class, for getting the customized events.
  */
 public class EventEntry extends WhiteObject {
     private String eventName;
@@ -10,37 +10,36 @@ public class EventEntry extends WhiteObject {
     private long authorId;
 
     /**
-     * 文档中隐藏
-     * 对外能修改，用户只应该查看 eventName 和 payload
+     * Hidden in the documentation
      */
     public String getScope() {
         return scope;
     }
 
     /**
-     * 获取事件触发者的用户 ID。
-     * <p>
-     * 若是系统事件，则为 `AdminObserverId`。
+     * Gets the user ID of the event trigger.
+
+     * If it is a system event, the user ID is `AdminObserverId`.
      *
-     * @return 事件触发者的用户 ID。
+     * @return The user ID of the event trigger.
      */
     public long getAuthorId() {
         return authorId;
     }
 
     /**
-     * 获取回调事件的名称。
+     * Gets the name of the event.
      *
-     * @return 回调事件名称。
+     * @return The name of the event.
      */
     public String getEventName() {
         return eventName;
     }
 
     /**
-     * 获取回调事件的内容。
+     * Gets the content of the event.
      *
-     * @return 回调事件内容。
+     * @return The content of the event.
      */
     public Object getPayload() {
         return payload;

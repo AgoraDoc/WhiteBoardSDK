@@ -1,7 +1,7 @@
 package com.herewhite.sdk.domain;
 
 /**
- * 场景类。
+ * Settings for a scene.
  */
 public class Scene extends WhiteObject {
 
@@ -10,27 +10,27 @@ public class Scene extends WhiteObject {
     private PptPage ppt;
 
     /**
-     * `Scene` 构造方法，用于初始化场景实例。
+     * The `Scene` constructor, for initializing a `Scene` object.
      *
-     * @note 在插入调用该方法初始化的场景时，SDK 会随机给新场景命名。
+     * @note When you insert the scene initialized by calling this method, the SDK randomly names the new scene.
      */
     public Scene() {
     }
 
     /**
-     * `Scene` 构造方法，用于初始化场景实例。
+     * The `Scene` constructor, for initializing a `Scene` object.
      *
-     * @param name 场景名称。
+     * @param name The name of the scene.
      */
     public Scene(String name) {
         this.name = name;
     }
 
     /**
-     * `Scene` 构造方法，用于初始化场景实例。
+     * The `Scene` constructor, for initializing a `Scene` object.
      *
-     * @param name 场景名称。
-     * @param ppt  场景背景图实例配置。详见 {@link PptPage PptPage}。
+     * @param name The name of the scene.
+     * @param ppt  Settings of the image to be inserted into the scene. See {@link PptPage PptPage}.
      */
     public Scene(String name, PptPage ppt) {
         this.name = name;
@@ -38,27 +38,27 @@ public class Scene extends WhiteObject {
     }
 
     /**
-     * 获取场景名称。
+     * Gets the name of the scene.
      *
-     * @return 场景名称。
+     * @return The name of the scene.
      */
     public String getName() {
         return name;
     }
 
     /**
-     * 设置场景名称。
+     * Sets the name of the scene.
      *
-     * @param name 场景名称。
+     * @param name The name of the scene.
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     * 获取场景中的笔画数。
+     * Gets the number of strokes in the scene.
      *
-     * @return 场景中的笔画数。
+     * @return The number of strokes in the scene.
      */
     public Long getComponentsCount() {
         return componentsCount;
@@ -74,9 +74,9 @@ public class Scene extends WhiteObject {
     }
 
     /**
-     * 设置场景背景图。
+     * Sets the image to be inserted into the scene.
      *
-     * @param ppt 场景背景图实例的配置信息，详见 {@link PptPage PptPage}。
+     * @param ppt Settings of the image to be inserted into the scene. See {@link PptPage PptPage}.
      */
     public void setPpt(PptPage ppt) {
         this.ppt = ppt;

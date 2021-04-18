@@ -1,7 +1,7 @@
 package com.herewhite.sdk.domain;
 
 /**
- * 场景状态。
+ * The scene state.
  */
 public class SceneState extends WhiteObject {
 
@@ -10,27 +10,27 @@ public class SceneState extends WhiteObject {
     private int index;
 
     /**
-     * 获取当前场景组下所有场景的列表。
+     * Gets the list of scenes under the current scene directory.
      *
-     * @return 当前场景组下所有场景的列表。
+     * @return The list of scenes under the current scene directory.
      */
     public Scene[] getScenes() {
         return scenes;
     }
 
     /**
-     * 获取当前场景的路径。
+     * Gets the path of the current scene.
      *
-     * @return 当前场景的路径。
+     * @return The path of the current scene.
      */
     public String getScenePath() {
         return scenePath;
     }
 
     /**
-     * 获取当前场景在所属场景组中的索引号。
+     * Gets the index of the current scene under its scene directory.
      *
-     * @return 当前场景在所属场景组中的索引号。
+     * @return The index of the current scene under its scene directory.
      */
     public int getIndex() {
         return index;

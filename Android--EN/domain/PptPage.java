@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  */
 
 /**
- * `PptPage` 类，用于在初始化场景时配置场景的背景图。
+ * The `PptPage` 类，用于在初始化场景时配置场景的背景图。
  */
 public class PptPage extends WhiteObject {
 
@@ -17,15 +17,16 @@ public class PptPage extends WhiteObject {
     private Double height;
 
     /**
-     * `PptPage` 构造方法，用于创建背景图实例。
+     * The `PptPage` constructor, for initializing a `PptPage` object.
      * <p>
      * 该方法只能在场景初始化的时候调用。
+     * This method can only be called when the scene is initialized.
      * <p>
-     * 场景背景图的中心点默认为世界坐标系得原点，背景图无法移动，即无法改变背景图在白板内部的位置。
+     * 场景背景图的中心点默认为世界坐标系的原点，背景图无法移动，即无法改变背景图在白板内部的位置。
      *
-     * @param src    图片的 URL 地址。
-     * @param width  图片在白板中的宽度，单位为像素。
-     * @param height 图片在白板中的高度，单位为像素。
+     * @param src    The URL address of the image.
+     * @param width  The width (px) of the image.
+     * @param height The height (px) of the image.
      */
     public PptPage(String src, Double width, Double height) {
         this.src = src;
@@ -34,54 +35,54 @@ public class PptPage extends WhiteObject {
     }
 
     /**
-     * 获取场景背景图的 URL 地址。
+     * Gets the URL address of the image.
      *
-     * @return 背景图的 URL 地址。
+     * @return The URL address of the image.
      */
     public String getSrc() {
         return src;
     }
 
     /**
-     * 通过设置 URL 指定背景图。
+     * Sets the URL address of the image.
      *
-     * @param src 背景图的 URL 地址。
+     * @param src The URL address of the image.
      */
     public void setSrc(String src) {
         this.src = src;
     }
 
     /**
-     * 获取背景图在白板中的宽度。
+     * Gets the width of the image.
      *
-     * @return 背景图在白板中的宽度，单位为像素。
+     * @return The width (px) of the image.
      */
     public double getWidth() {
         return width;
     }
 
     /**
-     * 设置背景图在白板中的宽度。
+     * Sets the width of the image.
      *
-     * @param width 背景图在白板中的宽度，单位为像素。
+     * @param width The width (px) of the image.
      */
     public void setWidth(double width) {
         this.width = width;
     }
 
     /**
-     * 获取背景图在白板中的高度。
+     * Gets the height of the image.
      *
-     * @return 背景图在白板中的高度，单位为像素。
+     * @return The height (px) of the image.
      */
     public double getHeight() {
         return height;
     }
 
     /**
-     * 设置背景图在白板中的高度。
+     * Sets the height of the image.
      *
-     * @return 背景图在白板中的高度，单位为像素。
+     * @return The height (px) of the image.
      */
     public void setHeight(double height) {
         this.height = height;

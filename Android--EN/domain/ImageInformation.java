@@ -5,7 +5,7 @@ package com.herewhite.sdk.domain;
  */
 
 /**
- * 图片信息。
+ * Image information.
  */
 public class ImageInformation extends WhiteObject {
 
@@ -16,26 +16,24 @@ public class ImageInformation extends WhiteObject {
     private Double height;
 
     /**
-     * 获取是否锁定图片。
+     * Gets whether the image is locked.
      *
-     * 图片被锁定后，用户无法移动或缩放图片。
-     *
-     * @return 是否锁定图片：
-     * - `true`：锁定。
-     * - `false`：不锁定。
+     * @return Whether the image is locked:
+     * - `true`: Locked. When an image is locked, users cannot move or zoom the image.
+     * - `false`: Unlocked.
      */
     public Boolean getLocked() {
         return locked;
     }
 
     /**
-     * 设置锁定图片。
+     * Locks an image.
      *
-     * 图片被锁定后，用户无法移动或缩放图片。
+     * When an image is locked, users cannot move or zoom the image.
      *
-     * @param locked 是否锁定图片：
-     *               - `true`：锁定。
-     *               - `false`：（默认）不锁定。
+     * @param locked Whether to lock the image:
+     * - `true`: Locks the image.
+     * - `false`: (Default) Do not lock the image
      */
     public void setLocked(Boolean locked) {
         this.locked = locked;
@@ -44,93 +42,94 @@ public class ImageInformation extends WhiteObject {
     private Boolean locked = false;
 
     /**
-     * 获取图片的 UUID。
+     * Gets the unique identifier (UUID) of the image.
      *
-     * @return 图片的 UUID，即图片在互动白板实时房间中的唯一标识符。
+     * @return The UUID of the image in string format.
      */
     public String getUuid() {
         return uuid;
     }
 
     /**
-     * 设置图片的 UUID。
+     * Sets the unique identifier (UUID) of the image.
      *
-     * 图片的 UUID 是一个字符串，为图片在互动白板实时房间中的标识符。在同一个互动白板实时房间中，每张图片的 UUID 必须是唯一的。
-     * 你可以使用 UUID 生成库来生成图片的 UUID。
+     * The UUID of the image is a string, which is the identifier of the image and must be unique in the live interactive whiteboard room.
+     * You can use the UUID generation library to generate the UUID of the image.
      *
-     * @param uuid 图片的 UUID，字符串格式。
+     * @param uuid The UUID of the image in string format.
      */
     public void setUuid(String uuid) {
         this.uuid = uuid;
     }
 
     /**
-     * 获取图片的中心在世界坐标系（以白板初始化时的中心点为原点的坐标系）中的横向坐标。
-     *
-     * @return 图片的中心在世界坐标系中的横向坐标。
+     * Gets the X coordinate of the center of the image in the world coordinate system (taking the center of the initial whiteboard as the origin).
+     * @return The X coordinate of the center of the image in the world coordinate system.
      */
     public double getCenterX() {
         return centerX;
     }
 
     /**
-     * 设置图片的中心在世界坐标系（以白板初始化时的中心点为原点的坐标系）中的横向坐标。
+     * Sets the X coordinate of the center of the image in the world coordinate system (taking the center of the initial whiteboard as the origin).
      *
-     * @param centerX 图片的中心在世界坐标系中的横向坐标。
+     * @param centerX The X coordinate of the center of the image in the world coordinate system.
      */
     public void setCenterX(double centerX) {
         this.centerX = centerX;
     }
 
     /**
-     * 获取图片的中心在世界坐标系（以白板初始化时的中心点为原点的坐标系）中的纵向坐标。
+     * Gets the Y coordinate of the center of the image in the world coordinate system (taking the center of the initial whiteboard as the origin).
      *
-     * @return 图片的中心在世界坐标系中的纵向坐标。
+     * @return The Y coordinate of the center of the image in the world coordinate system.
      */
     public double getCenterY() {
         return centerY;
     }
 
     /**
-     * 设置图片的中心在世界坐标系（以白板初始化时的中心点为原点的坐标系）中的纵向坐标。
+     * Sets the Y coordinate of the center of the image in the world coordinate system (taking the center of the initial whiteboard as the origin).
      *
-     * @param centerY 图片的中心在世界坐标系中的纵向坐标。
+     * @param centerY The Y coordinate of the center of the image in the world coordinate system.
      */
     public void setCenterY(double centerY) {
         this.centerY = centerY;
     }
 
     /**
-     * 获取图片的宽度。
+     * Gets the width of the image.
      *
-     * @return 图片的宽度，单位为像素。
+     * @return The width (px) of the image.
      */
     public double getWidth() {
         return width;
     }
 
     /**
-     * 设置图片的宽度。
+     * Sets the width of the image.
      *
-     * @param width 图片的宽度，单位为像素。如果图片的宽度超出视角的边界，用户将看不到超出部分。
+     * @param width The width (px) of the image.
+     * If the width of the image is greater than the boundary of the view, then users cannot see the excess part.
      */
     public void setWidth(double width) {
         this.width = width;
     }
 
     /**
-     * 获取图片的高度。
+     * Gets the height of the image.
      *
-     * @return 图片的高度，单位为像素。
+     * @return The height (px) of the image.
      */
     public double getHeight() {
         return height;
     }
 
     /**
-     * 设置图片的高度。
+     * Sets the height of the image.
      *
-     * @param height 图片的高度，单位为像素。如果图片的高度超出视角的边界，用户将看不到超出部分。
+     * @param height The height (px) of the image.
+     * If the height of the image is greater than the boundary of the view, then users cannot see the excess part.
      */
     public void setHeight(double height) {
         this.height = height;
