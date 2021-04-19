@@ -31,7 +31,7 @@ import androidx.annotation.Nullable;
 import wendu.dsbridge.OnReturnValue;
 
 /**
- * The `Room` class provides methods to operate a live Interactive Whiteboard room.
+ * The `Room` class, which provides methods to operate a live Interactive Whiteboard room.
  */
 public class Room extends Displayer {
     private SyncDisplayerState<RoomState> syncRoomState;

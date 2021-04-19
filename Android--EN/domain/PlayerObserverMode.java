@@ -1,26 +1,27 @@
 package com.herewhite.sdk.domain;
 
 /**
- * 白板回放的查看模式。
+ * The mode for watching the whiteboard playback.
  */
 public enum PlayerObserverMode {
 
     /**
-     * （默认）跟随模式。
-     * 在跟随模式下，用户观看白板回放时的视角跟随规则如下：
-     * - 如果录制的实时房间中有主播，则跟随主播的视角。
-     * - 如果录制的实时房间中没有主播，即跟随用户 ID 最小的具有读写权限用户（即房间内的第一个互动模式的用户）的视角。
-     * - 如果录制的实时房间中既没有主播，也没有读写权限的用户，则以白板初始化时的视角（中心点在世界坐标系的原点，缩放比例为 1.0）观看回放。
+     * (Default) Follower mode.
+     *
+     * In this mode, the user watches the playback from one of the following views:
+     * - The view of the host, if there is a host in the live Interactive Whiteboard room when the recording is taken.
+     * - The view of the first user who joins the room in interactive mode, If there is not a host in the live Interactive Whiteboard room when the recording is taken.
+     * - The initial view of the whiteboard, If there is neither a host nor users in interactive mode in the live Interactive Whiteboard room when the recording is taken.
      *
      * @note
-     * 在跟随模式下，如果用户通过触屏手势调整了视角，则会自动切换到自由模式。
+     * If the user in `directory` mode adjusts their view through touch screen gestures, the SDK automatically switches their mode to `freedom`.
      */
     directory,
 
     /**
-     * 自由模式。
+     * Freedom mode.
      *
-     * 在自由模式下，用户观看回放时可以自由调整视角。
+     * In this mode, the user can freely adjust their view when watching the playback.
      */
     freedom
 }

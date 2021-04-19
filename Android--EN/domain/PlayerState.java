@@ -1,12 +1,12 @@
 package com.herewhite.sdk.domain;
 
 /**
- * 白板回放的状态。
+ * The state of the the `Player` instance.
  */
 public class PlayerState extends WhiteDisplayerState {
 
     /**
-     * 白板回放的查看模式。详见 {@link PlayerObserverMode}。
+     * The mode for watching the whiteboard playback. See {@link PlayerObserverMode}.
      */
     private PlayerObserverMode observerMode;
 }

@@ -3,32 +3,32 @@ package com.herewhite.sdk.domain;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * 白板回放的阶段。
+ * The phase of the whiteboard playback.
  */
 public enum PlayerPhase {
     /**
-     * 正在等待白板回放的第一帧。这是白板回放的初始阶段。
+     * The SDK is waiting for the first frame of the playback, which is the initial phase.
      */
     waitingFirstFrame,
     /**
-     * 白板回放正在播放。
+     * The playback is playing.
      */
     playing,
     /**
-     * 白板回放已暂停。
+     * The playback pauses.
      */
     pause,
     /**
-     * 白板回放已停止。
+     * The playback stops.
      */
     @SerializedName("stop")
     stopped,
     /**
-     * 白板回放已结束。
+     * The playback finishes.
      */
     ended,
     /**
-     * 白板回放正在缓存。
+     * The playback is buffering.
      */
     buffering,
 }
