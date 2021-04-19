@@ -1,7 +1,7 @@
 package com.herewhite.sdk.domain;
 
 /**
- * The `EventListener` interface, for reporting for customized events.
+ * The `EventListener` interface, for reporting customized events.
  */
 public interface EventListener {
     /**
