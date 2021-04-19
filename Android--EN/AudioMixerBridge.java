@@ -1,13 +1,13 @@
 package com.herewhite.sdk;
 
 /**
- * The `AudioMixerBridge` interface, for bridging the audio mixing method of the Agora RTC SDK and the whiteboard SDK.
+ * The `AudioMixerBridge` interface, for bridging the audio mixing method of the Agora RTC SDK and the Interactive Whiteboard SDK. // TODO William Maybe "methods"? Does the whiteboard SDK have its own audio mixing? Are you supplanting one with the other?
  *
  * @since 2.9.15
  *
  * When you use the Agora RTC SDK and Interactive Whiteboard SDK at the same time, and the dynamic PPT slides displayed in the whiteboard contain audio files,
- * you may encounter the issues of low volume or echoes when playing the audio in the PPT slides.
- * To solve the issues, you can use the `AudioMixerBridge` interface to call the audio mixing method of the Agora RTC SDK to play the audio files in the dynamic PPT slides.
+ * you may encounter the issues of low volume and/or echoes when playing the audio in the PPT slides.
+ * To solve these issues, you can use the `AudioMixerBridge` interface to call the audio mixing method of the Agora RTC SDK to play the audio files in the dynamic PPT slides.
  *
  * @note
  * This interface is designed based on the audio mixing method of the Agora RTC SDK.
@@ -25,8 +25,8 @@ public interface AudioMixerBridge {
      * - `true`: Only play music files on the local client so that only the local user can hear the music.
      * - `false`: Publish music files to remote clients so that both the local user and remote users can hear the music.
      * @param replace  Whether to replace the audio collected by the microphone with a music file:
-     * - `true`: Replace. Users can only hear music.
-     * - `false`: Do not replace. Users can hear both music and audio collected by the microphone.
+     * - `true`: Replace the audio. Users can only hear music.
+     * - `false`: Do not replace the audio. Users can hear both music and audio collected by the microphone.
      * @param cycle The number of times the music file plays.
      * - &ge; 0: The number of playback times. For example, 0 means that the SDK does not play the music file, while 1 means that the SDK plays the music file once.
      * - -1: Play the music in an indefinite loop
