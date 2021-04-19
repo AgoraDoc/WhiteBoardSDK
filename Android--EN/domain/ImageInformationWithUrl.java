@@ -1,7 +1,7 @@
 package com.herewhite.sdk.domain;
 
 /**
- * Information and the URL address of the image,
+ * Information and the URL address of the image. // TODO William Maybe "Coordinate and sizing information for the image and the URL address of the image."? It feels like something more specific than just "information" is warranted. Please rephrase as necessary.
  */
 public class ImageInformationWithUrl extends WhiteObject {
 
@@ -80,7 +80,7 @@ public class ImageInformationWithUrl extends WhiteObject {
      * Sets the width of the image.
      *
      * @param width The width (px) of the image.
-     * If the width of the image is greater than the boundary of the view, then users cannot see the excess part.
+     * If the width of the image is greater than the boundary of the view, then users cannot see the parts that exceed the boundary.
      */
     public void setWidth(double width) {
         this.width = width;
@@ -99,7 +99,7 @@ public class ImageInformationWithUrl extends WhiteObject {
      * Sets the height of the image.
      *
      * @param height The height (px) of the image.
-     * If the height of the image is greater than the boundary of the view, then users cannot see the excess part.
+     * If the height of the image is greater than the boundary of the view, then users cannot see parts that exceed the boundary.
      */
     public void setHeight(double height) {
         this.height = height;
