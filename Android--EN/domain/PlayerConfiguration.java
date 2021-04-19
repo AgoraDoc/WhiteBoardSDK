@@ -3,7 +3,7 @@ package com.herewhite.sdk.domain;
 import java.util.concurrent.TimeUnit;
 
 /**
- * `PlayerConfiguration` 类，用于配置白板回放房间实例。
+ * Configuration of the `Player` instance.
  */
 public class PlayerConfiguration extends WhiteObject {
     private String room;
@@ -24,11 +24,12 @@ public class PlayerConfiguration extends WhiteObject {
     }
 
     /**
+     * Sets the data center for the `Player` instance.
      * 设置待回放的互动白板房间所在的数据中心。
      *
-     * 该方法设置的数据中心必须与初始化互动白板房间实例时设置的数据中心一致。
+     * The data center set in this method must be the same as that in {@link com.herewhite.sdk.RoomParams.setRegion(Region region) setRegion}.
      *
-     * @param region 待回放的互动白板房间所在的数据中心，详见 {@link Region Region}。
+     * @param region The data center for the `Player` instance. See {@link Region Region}.
      */
     public void setRegion(Region region) {
         this.region = region;
@@ -37,10 +38,10 @@ public class PlayerConfiguration extends WhiteObject {
     private Region region;
 
     /**
-     * 回放房间的构造方法，用于初始化回放房间实例。
+     * The `PlayerConfiguration` constructor, for initializing a `PlayerConfiguration` object.
      *
-     * @param room      房间 UUID，即房间唯一标识符，必须和初始化互动白板房间实例时设置的房间 UUID 一致。
-     * @param roomToken 用于鉴权的 Room Token，必须和初始化互动白板房间实例时设置的 Room Token 一致。
+     * @param room      The unique identifier of the room, which must be the same as the one set in `roomParams` parameter of the `joinRoom` method.
+     * @param roomToken The Room Token for authentication, which must be the same as the one set in `roomParams` parameter of the `joinRoom` method.
      */
     public PlayerConfiguration(String room, String roomToken) {
         this.room = room;
@@ -68,10 +69,10 @@ public class PlayerConfiguration extends WhiteObject {
     }
 
     /**
-     * 设置 SDK 回调播放进度的频率。
+     * Sets the frequency that the SDK reports the current playback position callback.
      *
-     * @param duration 间隔时长，默认为每隔 0.5 秒回调一次播放进度。
-     * @param timeUnit 时长单位，默认值为毫秒 （`MILLISECONDS`），取值详见 [TimeUnit](https://www.android-doc.com/reference/java/util/concurrent/TimeUnit.html)。
+     * @param duration The time interval between two playback position callbacks. By default, the SDK reports the current playback position every 0.5 seconds.
+     * @param timeUnit The unit of the `duration` parameter. The default value is `MILLISECONDS`. For all supported values, see [TimeUnit](https://www.android-doc.com/reference/java/util/concurrent/TimeUnit.html).
      */
     public void setStep(Long duration, TimeUnit timeUnit) {
         this.step = TimeUnit.MILLISECONDS.convert(duration, timeUnit);
@@ -79,16 +80,14 @@ public class PlayerConfiguration extends WhiteObject {
 
 
     /**
-     * 文档中隐藏
-     * 音频地址，暂不支持视频。
-     * Player 会自动与音视频播放做同步，保证同时播放，当一方缓冲时，会暂停。
+     * Hidden in documentation.
      */
     private String mediaURL;
 
     /**
-     * 获取待回放的互动白板房间的 UUID。
+     * Gets the room UUID.
      *
-     * @return 待回放的互动白板房间的 UUID。
+     * @return The the room UUID.
      */
     public String getRoom() {
         return room;
