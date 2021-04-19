@@ -3,14 +3,14 @@ package com.herewhite.sdk.domain;
 /**
  * The `RoomMember` class, for getting the information of the users in interactive mode in the live Interactive Whiteboard room.
  *
- * @note This class applies to the users interactive mode only, because the users in subscription mode are not room members.
+ * @note This class applies to the users in interactive mode only, because the users in subscription mode are not room members.
  */
 public class RoomMember {
     private Long memberId;
     private MemberInformation information;
 
     /**
-     * Gets the state of the whiteboard tool currently in use of the user.
+     * Gets the state of the whiteboard tool currently in use by the user.
      *
      * @since 2.4.8
      *
@@ -46,7 +46,7 @@ public class RoomMember {
     }
 
     /**
-     * Gets the whiteboard tool currently in use of the user.
+     * Gets the whiteboard tool currently in use by the user.
      *
      * @since 2.4.8
      * @deprecated This method is deprecated. Use {@link #getMemberState() getMemberState} instead.
