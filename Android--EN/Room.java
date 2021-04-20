@@ -919,7 +919,7 @@ public class Room extends Displayer {
      * You need to call {@link #setScenePath(String) setScenePath(} to switch to one of the newly inserted scenes.
      *
      *
-     * @param dir    The path of the scene directory, which must starts with `/` and cannot be the path of a scene. For example, `"/math"`. // TODO Willima I am unsure if these parameter lists are supposed to be aligned or not; sometimes they are, sometimes they aren't. I'm leaving them "as is" for now.
+     * @param dir    The path of the scene directory, which must starts with `/` and cannot be the path of a scene. For example, `"/math"`. 
      * @param scenes An array of scenes. For the files of a single scene, see {@link Scene Scene}.
      * @param index  The index of the first scene to be inserted. The index of scene under a scene directory can start from 0.
      * If the index is greater than the total number of existing scenes under the scene directory, the new scene is put after the last scene.
@@ -1155,7 +1155,7 @@ public class Room extends Displayer {
      *
      * @note This method does not delays the content the local users see, that is, when the local user writes or draws on the whiteboard, they see the content on their own whiteboard immediately.
      *
-     * @param delaySec The delay time in seconds. // TODO William Not milliseconds? It looks like it's being multiplied by 1000? Please doublecheck.
+     * @param delaySec The delay time in seconds. 
      */
     public void setTimeDelay(Integer delaySec) {
         bridge.callHandler("room.setTimeDelay", new Object[]{delaySec * 1000});
@@ -1213,7 +1213,6 @@ public class Room extends Displayer {
         /**
          * Hidden in documentation
          *
-         * @param eventEntry {@link EventEntry} 自定义事件内容，相对于 {@link AkkoEvent} 多了发送者的 memberId // TODO William Translate?
          */
         @Override
         public void fireMagixEvent(EventEntry eventEntry) {
