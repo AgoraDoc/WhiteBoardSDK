@@ -43,7 +43,7 @@ public class PlayerTimeInfo {
     }
 
     /**
-     * Gets the Unix timestamp (ms) indicating when the playback started. // TODO William Verb tense.
+     * Gets the Unix timestamp (ms) indicating when the playback started.
      *
      * This method call returns a Unix timestamp in milliseconds.
      * You can convert the Unix timestamp to UTC time. For example, if the return value is `1615370614269`, the UTC time is 2021-03-10 18:03:34 GMT+0800.
