@@ -12,7 +12,7 @@ public class Scene extends WhiteObject {
     /**
      * The `Scene` constructor, for initializing a `Scene` object.
      *
-     * @note When you insert the scene initialized by calling this method, the SDK randomly names the new scene. // TODO William "Randomly"? Are there no guidelines?
+     * @note When you insert the scene initialized by calling this method, the SDK randomly names the new scene. 
      */
     public Scene() {
     }
@@ -65,9 +65,9 @@ public class Scene extends WhiteObject {
     }
 
     /**
-     * 获取场景背景图的配置信息。// TODO William "Gets the configuration information of the background image for the scene."? Is this supposed to be in?
+     * Gets the settings of the image to be inserted into the scene.
      *
-     * @return 场景背景图的配置信息，详见 {@link PptPage PptPage}。// TODO William "The configuration information of the background image for the scene."? Is this supposed to be in?
+     * @return Settings of the image to be inserted into the scene. See {@link PptPage PptPage}.
      */
     public PptPage getPpt() {
         return ppt;
