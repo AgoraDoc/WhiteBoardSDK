@@ -5,8 +5,11 @@ package com.herewhite.sdk.domain;
  *
  * @since 2.2.0
  *
- * The view rectangle defines the view area. After setting a view rectangle, the view area is automatically adjusted to exactly cover the view rectangle.
- * Content within the view rectangle can be displayed completely on all sizes of screens.
+ * The view rectangle defines a rectangle area which the view must cover.
+ * After you set a view rectangle, the SDK automatically adjusts the view to fully contain the rectangle area, so as to ensure contents within the rectangle area are completely displayed.
+ *
+ * You can set a rectangle according to the size of a PPT slide or image to be displayed, to ensure the same content is displayed completely on screens of different sizes.
+ *
  */
 public class RectangleConfig extends WhiteObject {
     private Double originX;
@@ -16,15 +19,15 @@ public class RectangleConfig extends WhiteObject {
 
     /**
      * The `RectangleConfig` constructor.
-     * <p>
-     * In this method, pass in the `width`, `height`, and `mode` parameters. Based on the `width` and `height` you pass in, the SDK calculates `originX` and `originY`, the X and Y coordinates of the top left corner of the view rectangle in the world coordinate system, in the following ways:
-     * `originX = - width / 2.0d`
-     * `originY = - height / 2.0d`
-     * <p>
-     * You can use this method to quickly display the PPT file completely.
      *
-     * @param width  The width of the view rectangle. Do not set this parameter to a value lower than the width of the area you want to display; otherwise, the user may not see the area completely.
-     * @param height The height of the view rectangle. Do not set this parameter to a value lower than the height of the area you want to display; otherwise, the user may not see the area completely.
+     * In this method, pass in the `width`, `height`, and `mode` parameters. Based on the `width` and `height` you pass in, the SDK calculates `originX` and `originY`, the X and Y coordinates of the top left corner of the view rectangle in the world coordinate system, in the following ways:
+     * - `originX = - width / 2.0d`
+     * - `originY = - height / 2.0d`
+     *
+     * You can use this method to quickly display a PPT slide completely.
+     *
+     * @param width  The width of the view rectangle. Do not set this parameter to a value smaller than the width of the area you want to display; otherwise, the user may not see the area completely.
+     * @param height The height of the view rectangle. Do not set this parameter to a value smaller than the height of the area you want to display; otherwise, the user may not see the area completely.
      * @param mode   The animation mode of the view rectangle. See {@link AnimationMode}.
      */
     public RectangleConfig(Double width, Double height, AnimationMode mode) {
@@ -44,10 +47,10 @@ public class RectangleConfig extends WhiteObject {
      * <p>
      * This method does not support setting the animation mode of the view rectangle. By default, the SDK sets the animation mode to `Continuous`.
      * <p>
-     * You can use this method to quickly display the PPT file completely.
+     * You can use this method to quickly display a PPT slide completely.
      *
-     * @param width  The width of the view rectangle. Do not set this parameter to a value lower than the width of the area you want to display; otherwise, the user may not see the area completely.
-     * @param height The height of the view rectangle. Do not set this parameter to a value lower than the height of the area you want to display; otherwise, the user may not see the area completely.
+     * @param width  The width of the view rectangle. Do not set this parameter to a value smaller than the width of the area you want to display; otherwise, the user may not see the area completely.
+     * @param height The height of the view rectangle. Do not set this parameter to a value smaller than the height of the area you want to display; otherwise, the user may not see the area completely.
      */
     public RectangleConfig(Double width, Double height) {
         this(width, height, AnimationMode.Continuous);
@@ -60,10 +63,10 @@ public class RectangleConfig extends WhiteObject {
      * <p>
      * This method does not support setting the animation mode of the view rectangle. By default, the SDK sets the animation mode to `Continuous`.
      *
-     * @param originX The X coordinate of the top left endpoint of the view rectangle in the world coordinate system (taking the center of the initial whiteboard as the origin).
-     * @param originY The Y coordinate of the top left endpoint of the view rectangle in the world coordinate system (taking the center of the initial whiteboard as the origin).
-     * @param width   The width of the view rectangle. Do not set this parameter to a value lower than the width of the area you want to display; otherwise, the user may not see the area completely.
-     * @param height  The height of the view rectangle. Do not set this parameter to a value lower than the height of the area you want to display; otherwise, the user may not see the area completely.
+     * @param originX The X coordinate of the top left corner of the view rectangle in the world coordinate system (taking the center of the initial whiteboard as the origin).
+     * @param originY The Y coordinate of the top left corner of the view rectangle in the world coordinate system (taking the center of the initial whiteboard as the origin).
+     * @param width   The width of the view rectangle. Do not set this parameter to a value smaller than the width of the area you want to display; otherwise, the user may not see the area completely.
+     * @param height  The height of the view rectangle. Do not set this parameter to a value smaller than the height of the area you want to display; otherwise, the user may not see the area completely.
      */
     public RectangleConfig(Double originX, Double originY, Double width, Double height) {
         this(originX, originY, width, height, AnimationMode.Continuous);
@@ -75,10 +78,10 @@ public class RectangleConfig extends WhiteObject {
      * In this method, pass in the `originX`, `originY`, `width`, `height`, and `mode` parameters.
      * Based on these parameters, the SDK determines the position and size of the view rectangle in the world coordinate system.
      *
-     * @param originX The X coordinate of the top left endpoint of the view rectangle in the world coordinate system (taking the center of the initial whiteboard as the origin).
-     * @param originY The Y coordinate of the top left endpoint of the view rectangle in the world coordinate system (taking the center of the initial whiteboard as the origin).
-     * @param width   The width of the view rectangle. Do not set this parameter to a value lower than the width of the area you want to display; otherwise, the user may not see the area completely.
-     * @param height  The height of the view rectangle. Do not set this parameter to a value lower than the height of the area you want to display; otherwise, the user may not see the area completely.
+     * @param originX The X coordinate of the top left corner of the view rectangle in the world coordinate system (taking the center of the initial whiteboard as the origin).
+     * @param originY The Y coordinate of the top left corner of the view rectangle in the world coordinate system (taking the center of the initial whiteboard as the origin).
+     * @param width   The width of the view rectangle. Do not set this parameter to a value smaller than the width of the area you want to display; otherwise, the user may not see the area completely.
+     * @param height  The height of the view rectangle. Do not set this parameter to a value smaller than the height of the area you want to display; otherwise, the user may not see the area completely.
      * @param mode    The animation mode of the view rectangle. See {@link AnimationMode}.
      */
     public RectangleConfig(Double originX, Double originY, Double width, Double height, AnimationMode mode) {
@@ -90,36 +93,36 @@ public class RectangleConfig extends WhiteObject {
     }
 
     /**
-     * Gets the X coordinate of the top left endpoint of the view rectangle in the world coordinate system (taking the center of the initial whiteboard as the origin).
+     * Gets the X coordinate of the top left corner of the view rectangle in the world coordinate system (taking the center of the initial whiteboard as the origin).
      *
-     * @return The X coordinate of the top left endpoint of the view rectangle in the world coordinate system.
+     * @return The X coordinate of the top left corner of the view rectangle in the world coordinate system.
      */
     public Double getOriginX() {
         return originX;
     }
 
     /**
-     * Sets the X coordinate of the top left endpoint of the view rectangle in the world coordinate system (taking the center of the initial whiteboard as the origin).
+     * Sets the X coordinate of the top left corner of the view rectangle in the world coordinate system (taking the center of the initial whiteboard as the origin).
      *
-     * @param originX The X coordinate of the top left endpoint of the view rectangle in the world coordinate system.
+     * @param originX The X coordinate of the top left corner of the view rectangle in the world coordinate system.
      */
     public void setOriginX(Double originX) {
         this.originX = originX;
     }
 
     /**
-     * Gets the Y coordinate of the top left endpoint of the view rectangle in the world coordinate system (taking the center of the initial whiteboard as the origin).
+     * Gets the Y coordinate of the top left corner of the view rectangle in the world coordinate system (taking the center of the initial whiteboard as the origin).
      *
-     * @return The Y coordinate of the top left endpoint of the view rectangle in the world coordinate system.
+     * @return The Y coordinate of the top left corner of the view rectangle in the world coordinate system.
      */
     public Double getOriginY() {
         return originY;
     }
 
     /**
-     * Sets the Y coordinate of the top left endpoint of the view rectangle in the world coordinate system (taking the center of the initial whiteboard as the origin).
+     * Sets the Y coordinate of the top left corner of the view rectangle in the world coordinate system (taking the center of the initial whiteboard as the origin).
      *
-     * @param originY The Y coordinate of the top left endpoint of the view rectangle in the world coordinate system.
+     * @param originY The Y coordinate of the top left corner of the view rectangle in the world coordinate system.
      */
     public void setOriginY(Double originY) {
         this.originY = originY;
