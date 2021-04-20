@@ -1,7 +1,7 @@
 package com.herewhite.sdk.domain;
 
-/**
- * Information and the URL address of the image. // TODO William Maybe "Coordinate and sizing information for the image and the URL address of the image."? It feels like something more specific than just "information" is warranted. Please rephrase as necessary.
+/** 
+ * Position and sizing information for the image and the URL address of the image.
  */
 public class ImageInformationWithUrl extends WhiteObject {
 
