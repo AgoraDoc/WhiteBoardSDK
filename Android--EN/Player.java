@@ -15,7 +15,7 @@ import com.herewhite.sdk.internal.Logger;
 import wendu.dsbridge.OnReturnValue;
 
 /**
- * The `Player` class, which provides methods to manage the playback of the whiteboard content.
+ * The `Player` class, which provides methods to manage the playback of whiteboard content.
  */
 public class Player extends Displayer {
     private SyncDisplayerState<PlayerState> syncPlayerState;
@@ -32,11 +32,11 @@ public class Player extends Displayer {
      *
      * @note
      * - This method call is synchronous.
-     * - The value you get by this method means the multiple times the original playback speed. For example, if the return value is
+     * - The value you get by this method is a multiple of the original playback speed. For example, if the return value is
      * `2.0`, the playback speed is two times the original speed.
      * - Even when the playback pauses when you call this method, the return value cannot be `0`.
      *
-     * @return The multiple times the original playback speed.
+     * @return The multiple of the original playback speed.
      */
     public double getPlaybackSpeed() {
         return playbackSpeed;
@@ -45,11 +45,11 @@ public class Player extends Displayer {
     /**
      * Sets the playback speed.
      *
-     * This method sets the whiteboard content to play at the multiple times the original speed. For example, if you pass in `2.0`, the set playback speed is two times the original speed.
+     * This method sets the whiteboard content to play at a multiple of the original speed. For example, if you pass in `2.0`, the set playback speed is two times the original speed.
      *
      * @since 2.5.2
      *
-     * @param playbackSpeed The multiple times the original playback speed. The value must be greater than 0.
+     * @param playbackSpeed The multiple of the original playback speed. The value must be greater than 0.
      * When you set this parameter as `1`, the whiteboard content plays at the original speed.
      *
      */
@@ -66,7 +66,7 @@ public class Player extends Displayer {
      * @note
      * - This method call is asynchronous. Agora recommends that you use this method only for debugging or troubleshooting.
      * In most cases, you can use the synchronous method {@link #getPlaybackSpeed() getPlaybackSpeed}[1/2] to get the playback speed.
-     * - The value you get by this method means the multiple times the original playback speed. For example, if the return value is
+     * - The value you get by this method is a multiple of the original playback speed. For example, if the return value is
      * `2.0`, the playback speed is two times the original speed.
      * - Even when the playback pauses when you call this method, the return value cannot be `0`.
      *
@@ -134,7 +134,7 @@ public class Player extends Displayer {
     /**
      * Sets the playback position (ms) of the whiteboard content.
      *
-     * By default, the playback starts from the beginning. You can call this method to enable the playback to start from your specified position.
+     * By default, the playback starts from the beginning of the file. You can call this method to enable the playback to start from your specified position.
      *
      * @param seekTime The playback position (ms)
      */
@@ -263,11 +263,11 @@ public class Player extends Displayer {
      * @since 2.4.0
      *
      * A successful method call returns the time information of the `Player` instance,
-     * including the current playback position (ms), the total duration (ms) of the playback, and the Unix timestamp (ms) indicating when the playback starts.
+     * including the current playback position (ms), the total duration (ms) of the playback, and the Unix timestamp (ms) indicating when the playback started. 
      *
      * @note
      * - This method call is synchronous.
-     * - The playback position returned by this method may be not accurate.
+     * - The playback position returned by this method may be not accurate. 
      *
      * @return The time information of the `Player` instance. See {@link PlayerTimeInfo}.
      */
@@ -279,7 +279,7 @@ public class Player extends Displayer {
      * Gets the time information of the `Player` instance.
      *
      * A successful method call returns the time information of the `Player` instance,
-     * including the current playback position (ms), the total duration (ms) of the playback, and the Unix timestamp (ms) indicating when the playback starts.
+     * including the current playback position (ms), the total duration (ms) of the playback, and the Unix timestamp (ms) indicating when the playback started.
      *
      *
      * @note
