@@ -1,7 +1,7 @@
 package com.herewhite.sdk.domain;
 
 /**
- * The state of the the `Player` instance.
+ * The state of the `Player` instance.
  */
 public class PlayerState extends WhiteDisplayerState {
 
