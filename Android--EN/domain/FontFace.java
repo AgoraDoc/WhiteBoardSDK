@@ -3,15 +3,15 @@ package com.herewhite.sdk.domain;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * 字体配置文件，与 CSS 中的 FontFace 属性对应。
+ * Font file configurations. This class is similar to the `@font-face` attribute in CSS.
  *
  * @since 2.11.2
  */
 public class FontFace extends WhiteObject {
 
     /**
-     * @param name 字体名称，需要和 CSS 中 `font-family` 字段的值对应。
-     * @param src  字体文件的地址，需要和 CSS 中 `src` 字段的值对应。支持的格式为 `url()`，表示指向远程字体文件位置，例如，`url("https://white-pan.oss-cn-shanghai.aliyuncs.com/Pacifico-Regular.ttf")`。
+     * @param name The font name. This parameter is equivalent to the `font-family` field in CSS.
+     * @param src  The path to the font file. This parameter is equivalent to the `src` field in CSS. The supported format is `url()`, where you can fill in the URL to a remote font file location, for example, `url("https://white-pan.oss-cn-shanghai.aliyuncs.com/Pacifico-Regular.ttf")`.
      *
      */
     public FontFace(String name, String src) {
@@ -24,56 +24,56 @@ public class FontFace extends WhiteObject {
     private String src;
 
     /**
-     * 获取字体样式。
+     * Gets the font style.
      *
-     * @return 字体样式。
+     * @return The font style.
      */
     public String getFontStyle() {
         return fontStyle;
     }
 
     /**
-     * 设置字体样式。
+     * Sets the font style.
      *
-     * @param fontStyle 字体样式，需要和 CSS 中 `font-style` 字段的值对应，取值包括：
-     * - `normal`：（默认）常规。
-     * - `italic`：斜体。
+     * @param fontStyle The font style. This parameter is equivalent to the `font-style` field in CSS, and can be set to:
+     * - `normal`：(Default) Normal.
+     * - `italic`：Italic.
      */
     public void setFontStyle(String fontStyle) {
         this.fontStyle = fontStyle;
     }
 
     /**
-     * 获取字体粗细。
+     * Gets the font weight.
      *
-     * @return 字体粗细。
+     * @return The font weight.
      */
     public String getFontWeight() {
         return fontWeight;
     }
 
     /**
-     * 设置字体粗细。
+     * Sets the font weight.
      *
-     * @param fontWeight 字体粗细，需要和 CSS 中 `font-weight` 字段的值对应。
+     * @param fontWeight The font weight. This parameter is equivalent to the `font-weight` field in CSS.
      */
     public void setFontWeight(String fontWeight) {
         this.fontWeight = fontWeight;
     }
 
     /**
-     * 获取字体的字符编码范围。
+     * Gets the range of Unicode code points to be used by the font.
      *
-     * @return 字体的字符编码范围
+     * @return The range of Unicode code points to be used by the font.
      */
     public String getUnicodeRange() {
         return unicodeRange;
     }
 
     /**
-     * 设置字体的字符编码范围。
+     * Sets the range of Unicode code points to be used by the font.
      *
-     * @param unicodeRange 字体的字符编码范围，需要和 CSS 中 `unicode-range` 字段的值对应。
+     * @param unicodeRange The range of Unicode code points to be used by the font. This parameter is equivalent to the `unicode-range` field in CSS.
      */
     public void setUnicodeRange(String unicodeRange) {
         this.unicodeRange = unicodeRange;

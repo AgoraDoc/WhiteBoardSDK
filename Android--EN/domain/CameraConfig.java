@@ -1,29 +1,29 @@
 package com.herewhite.sdk.domain;
 
 /**
- * `CameraConfig` 类，用于配置视角参数。
+ * Configurations for the view.
  *
  * @since 2.2.0
  */
 public class CameraConfig extends WhiteObject {
 
     /**
-     * 获取视角调整时的动画模式。
+     * Gets the animation mode of the view.
      *
      * @since 2.3.2
      *
-     * @return 视角调整时的动画模式，详见 {@link AnimationMode}。
+     * @return The animation mode of the view. See {@link AnimationMode}.
      */
     public AnimationMode getAnimationMode() {
         return animationMode;
     }
 
     /**
-     * 设置视角调整时的动画模式。
+     * Sets the animation mode of the view.
      *
      * @since 2.3.2
      *
-     * @param animationMode 视角调整时的动画模式，详见 {@link AnimationMode}。
+     * @param animationMode The animation mode of the view. See {@link AnimationMode}.
      */
     public void setAnimationMode(AnimationMode animationMode) {
         this.animationMode = animationMode;
@@ -32,54 +32,54 @@ public class CameraConfig extends WhiteObject {
     private AnimationMode animationMode;
 
     /**
-     * 获取视角的中心点在世界坐标系（以白板初始化时的中心点为原点的坐标系）中的 X 轴坐标。
+     * Gets the X coordinate of the center of the view in the world coordinate system (taking the center of the initial whiteboard as the origin).
      *
-     * @return 视角的中心点在世界坐标系中的 X 轴坐标。
+     * @return The X coordinate of the center of the view in the world coordinate system.
      */
     public Double getCenterX() {
         return centerX;
     }
 
     /**
-     * 设置视角的中心点在世界坐标系（以白板初始化时的中心点为原点的坐标系）中的 X 轴坐标。
+     * Sets the X coordinate of the center of the view in the world coordinate system (taking the center of the initial whiteboard as the origin).
      *
-     * @param centerX 视角的中心点在世界坐标系中的 X 轴坐标。默认值为 0。
+     * @param centerX The X coordinate of the center of the view in the world coordinate system. The default value is 0.
      */
     public void setCenterX(Double centerX) {
         this.centerX = centerX;
     }
 
     /**
-     * 获取视角的中心点在世界坐标系（以白板初始化时的中心点为原点的坐标系）中的 Y 轴坐标。
+     * Gets the Y coordinate of the center of the view in the world coordinate system (taking the center of the initial whiteboard as the origin).
      *
-     * @return 视角的中心点在世界坐标系中的 Y 轴坐标。
+     * @return The Y coordinate of the center of the view in the world coordinate system.
      */
     public Double getCenterY() {
         return centerY;
     }
 
     /**
-     * 设置视角的中心点在世界坐标系（以白板初始化时的中心点为原点的坐标系）中的 Y 轴坐标。
+     * Sets the Y coordinate of the center of the view in the world coordinate system (taking the center of the initial whiteboard as the origin).
      *
-     * @param centerY 视角的中心点在世界坐标系中的 Y 轴坐标。默认值为 0。
+     * @param centerY The Y coordinate of the center of the view in the world coordinate system. The default value is 0.
      */
     public void setCenterY(Double centerY) {
         this.centerY = centerY;
     }
 
     /**
-     * 获取视角的缩放比例。
+     * Gets the scale factor of the view.
      *
-     * @return 视角的缩放比例。
+     * @return The scale factor of the view.
      */
     public Double getScale() {
         return scale;
     }
 
     /**
-     * 设置视角的缩放比例。
+     * Sets the scale factor of the view.
      *
-     * @param scale 视角的缩放比例。
+     * @param scale The scale factor of the view.
      */
     public void setScale(Double scale) {
         this.scale = scale;

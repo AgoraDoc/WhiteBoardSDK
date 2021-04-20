@@ -1,12 +1,12 @@
 package com.herewhite.sdk.domain;
 
 /**
- * `RectangleConfig` 类，用于配置白板的视觉矩形。
+ * Configurations for the view rectangle.
  *
  * @since 2.2.0
  *
- * 视觉矩形是用户的视角必须容纳的区域。设置好视觉矩形后，视角会自动调整到刚好可以完整展示视觉矩形所表示的范围。
- * 该方法可用于保证同样的内容在不同的设备上都可以显示完整。
+ * The view rectangle defines the view area. After setting a view rectangle, the view area is automatically adjusted to exactly cover the view rectangle.
+ * Content within the view rectangle can be displayed completely on all sizes of screens.
  */
 public class RectangleConfig extends WhiteObject {
     private Double originX;
@@ -15,16 +15,17 @@ public class RectangleConfig extends WhiteObject {
     private Double height;
 
     /**
-     * `RectangleConfig` 构造函数。
+     * The `RectangleConfig` constructor.
      * <p>
-     * 在该函数中，你需要传入 `width`，`height` 和 `mode`。SDK 会根据你传入 `width` 和 `height` 计算视觉矩形左上角原点
-     * 在世界坐标系中的位置 `originX` 和 `originY`, 即 `originX = - width / 2.0d`，`originY = - height / 2.0d`。
+     * In this method, pass in the `width`, `height`, and `mode` parameters. Based on the `width` and `height` you pass in, the SDK calculates `originX` and `originY`, the X and Y coordinates of the top left corner of the view rectangle in the world coordinate system, in the following ways:
+     * `originX = - width / 2.0d`
+     * `originY = - height / 2.0d`
      * <p>
-     * 该方法适用于需要快速显示完整 PPT 内容的场景。
+     * You can use this method to quickly display the PPT file completely.
      *
-     * @param width  白板视觉矩形的宽度。视觉矩形的宽度不能小于实际展示内容的宽度，否则用户将看不见超出的部分。
-     * @param height 白板视觉矩形的高度。视觉矩形的高度不能小于实际展示内容的宽度，否则用户将看不见超出的部分。
-     * @param mode   视觉矩形的动画模式，详见 {@link AnimationMode}。
+     * @param width  The width of the view rectangle. Do not set this parameter to a value lower than the width of the area you want to display; otherwise, the user may not see the area completely.
+     * @param height The height of the view rectangle. Do not set this parameter to a value lower than the height of the area you want to display; otherwise, the user may not see the area completely.
+     * @param mode   The animation mode of the view rectangle. See {@link AnimationMode}.
      */
     public RectangleConfig(Double width, Double height, AnimationMode mode) {
         this.width = width;
@@ -35,49 +36,50 @@ public class RectangleConfig extends WhiteObject {
     }
 
     /**
-     * `RectangleConfig` 构造函数。
+     * The `RectangleConfig` constructor.
      * <p>
-     * 在该函数中，你需要传入 `width` 和 `height`。SDK 会根据你传入 `width` 和 `height` 计算视觉矩形左上角原点
-     * 在世界坐标系中的位置 `originX` 和 `originY`, 即 `originX = - width / 2.0d`，`originY = - height / 2.0d`。
+     * In this method, pass in the `width`, `height`, and `mode` parameters. Based on the `width` and `height` you pass in, the SDK calculates `originX` and `originY`, the X and Y coordinates of the top left corner of the view rectangle in the world coordinate system, in the following ways:
+     * `originX = - width / 2.0d`
+     * `originY = - height / 2.0d`
      * <p>
-     * 该方法不支持设置动画模式，SDK 会默认将动画模式设置为 `Continuous`，即连续动画的模式。
+     * This method does not support setting the animation mode of the view rectangle. By default, the SDK sets the animation mode to `Continuous`.
      * <p>
-     * 该方法适用于需要快速显示完整 PPT 内容的场景。
+     * You can use this method to quickly display the PPT file completely.
      *
-     * @param width  视觉矩形宽度。视觉矩形的宽度不能小于实际展示内容的宽度，否则用户将看不见超出的部分。
-     * @param height 视觉矩形高度。视觉矩形的高度不能小于实际展示内容的宽度，否则用户将看不见超出的部分。
+     * @param width  The width of the view rectangle. Do not set this parameter to a value lower than the width of the area you want to display; otherwise, the user may not see the area completely.
+     * @param height The height of the view rectangle. Do not set this parameter to a value lower than the height of the area you want to display; otherwise, the user may not see the area completely.
      */
     public RectangleConfig(Double width, Double height) {
         this(width, height, AnimationMode.Continuous);
     }
 
     /**
-     * `RectangleConfig` 构造函数。
+     * The `RectangleConfig` constructor.
      * <p>
-     * 在该函数中，你需要传入 `originX`、`originY`、`width` 和 `height`。SDK 会根据你传入的 `originX`、`originY`、`width` 和 `height` 确定视觉矩形在世界坐标系（即世界坐标系）中的位置和大小。
+     * In this method, pass in the `originX`, `originY`, `width`, and `height` parameters. Based on these parameters, the SDK determines the position and size of the view rectangle in the world coordinate system.
      * <p>
-     * 该方法不支持设置动画模式，而是使用默认的连续动画 `Continuous` 模式。
+     * This method does not support setting the animation mode of the view rectangle. By default, the SDK sets the animation mode to `Continuous`.
      *
-     * @param originX 视觉矩形左上角原点在世界坐标系（以白板初始化时的中心点为原点的坐标系）中的 X 轴坐标。
-     * @param originY 视觉矩形左上角原点在世界坐标系（以白板初始化时的中心点为原点的坐标系）中的 Y 轴坐标。
-     * @param width   视觉矩形的宽度。视觉矩形的宽度不能小于实际展示内容的宽度，否则用户将看不见超出的部分。
-     * @param height  视觉矩形的高度。视觉矩形的高度不能小于实际展示内容的宽度，否则用户将看不见超出的部分。
+     * @param originX The X coordinate of the top left endpoint of the view rectangle in the world coordinate system (taking the center of the initial whiteboard as the origin).
+     * @param originY The Y coordinate of the top left endpoint of the view rectangle in the world coordinate system (taking the center of the initial whiteboard as the origin).
+     * @param width   The width of the view rectangle. Do not set this parameter to a value lower than the width of the area you want to display; otherwise, the user may not see the area completely.
+     * @param height  The height of the view rectangle. Do not set this parameter to a value lower than the height of the area you want to display; otherwise, the user may not see the area completely.
      */
     public RectangleConfig(Double originX, Double originY, Double width, Double height) {
         this(originX, originY, width, height, AnimationMode.Continuous);
     }
 
     /**
-     * `RectangleConfig` 构造函数。
+     * The `RectangleConfig` constructor.
      * <p>
-     * 在该函数中，你需要传入 `originX`、`originY`、`width`、`height` 和 `mode`。
-     * SDK 会根据你传入的 `originX`、`originY`、`width`、`height` 和 `mode` 确定视觉矩形在世界坐标系（即世界坐标系）中的位置、大小和动画模式。
+     * In this method, pass in the `originX`, `originY`, `width`, `height`, and `mode` parameters.
+     * Based on these parameters, the SDK determines the position and size of the view rectangle in the world coordinate system.
      *
-     * @param originX 视觉矩形左上角原点在世界坐标系（以白板初始化时的中心点为原点的坐标系）中的 X 轴坐标。
-     * @param originY 视觉矩形左上角原点在世界坐标系（以白板初始化时的中心点为原点的坐标系）中的 Y 轴坐标。
-     * @param width   视觉矩形的宽度。视觉矩形的宽度不能小于实际展示内容的宽度，否则用户将看不见超出的部分。
-     * @param height  视觉矩形的高度。视觉矩形的高度不能小于实际展示内容的宽度，否则用户将看不见超出的部分。
-     * @param mode    视觉矩形的动画模式，详见 {@link AnimationMode}。
+     * @param originX The X coordinate of the top left endpoint of the view rectangle in the world coordinate system (taking the center of the initial whiteboard as the origin).
+     * @param originY The Y coordinate of the top left endpoint of the view rectangle in the world coordinate system (taking the center of the initial whiteboard as the origin).
+     * @param width   The width of the view rectangle. Do not set this parameter to a value lower than the width of the area you want to display; otherwise, the user may not see the area completely.
+     * @param height  The height of the view rectangle. Do not set this parameter to a value lower than the height of the area you want to display; otherwise, the user may not see the area completely.
+     * @param mode    The animation mode of the view rectangle. See {@link AnimationMode}.
      */
     public RectangleConfig(Double originX, Double originY, Double width, Double height, AnimationMode mode) {
         this.originX = originX;
@@ -88,90 +90,90 @@ public class RectangleConfig extends WhiteObject {
     }
 
     /**
-     * 获取视觉矩形左上角原点在世界坐标系（以白板初始化时的中心点为原点的坐标系）中的 X 轴坐标。
+     * Gets the X coordinate of the top left endpoint of the view rectangle in the world coordinate system (taking the center of the initial whiteboard as the origin).
      *
-     * @return 视觉矩形左上角原点在世界坐标系（以白板初始化时的中心点为原点的坐标系）中的 X 轴坐标。
+     * @return The X coordinate of the top left endpoint of the view rectangle in the world coordinate system.
      */
     public Double getOriginX() {
         return originX;
     }
 
     /**
-     * 设置视觉矩形左上角原点在世界坐标系（以白板初始化时的中心点为原点的坐标系）中的 X 轴坐标。
+     * Sets the X coordinate of the top left endpoint of the view rectangle in the world coordinate system (taking the center of the initial whiteboard as the origin).
      *
-     * @param originX 视觉矩形左上角原点在世界坐标系（以白板初始化时的中心点为原点的坐标系）中的 X 轴坐标。
+     * @param originX The X coordinate of the top left endpoint of the view rectangle in the world coordinate system.
      */
     public void setOriginX(Double originX) {
         this.originX = originX;
     }
 
     /**
-     * 获取视觉矩形左上角原点在世界坐标系（以白板初始化时的中心点为原点的坐标系）中的 Y 轴坐标。
+     * Gets the Y coordinate of the top left endpoint of the view rectangle in the world coordinate system (taking the center of the initial whiteboard as the origin).
      *
-     * @return 视觉矩形左上角原点在世界坐标系（以白板初始化时的中心点为原点的坐标系）中的 Y 轴坐标。
+     * @return The Y coordinate of the top left endpoint of the view rectangle in the world coordinate system.
      */
     public Double getOriginY() {
         return originY;
     }
 
     /**
-     * 设置视觉矩形左上角原点在世界坐标系（以白板初始化时的中心点为原点的坐标系）中的 Y 轴坐标。
+     * Sets the Y coordinate of the top left endpoint of the view rectangle in the world coordinate system (taking the center of the initial whiteboard as the origin).
      *
-     * @param originY 视觉矩形左上角原点在世界坐标系（以白板初始化时的中心点为原点的坐标系）中的 Y 轴坐标。
+     * @param originY The Y coordinate of the top left endpoint of the view rectangle in the world coordinate system.
      */
     public void setOriginY(Double originY) {
         this.originY = originY;
     }
 
     /**
-     * 获取视觉矩形的宽度。
+     * Gets the width of the view rectangle.
      *
-     * @return 视觉矩形的宽度。
+     * @return The width of the view rectangle.
      */
     public Double getWidth() {
         return width;
     }
 
     /**
-     * 设置视觉矩形的宽度。
+     * Sets the width of the view rectangle.
      *
-     * @param width 视觉矩形的宽度。
+     * @param width The width of the view rectangle.
      */
     public void setWidth(Double width) {
         this.width = width;
     }
 
     /**
-     * 获取视觉矩形的高度。
+     * Gets the height of the view rectangle.
      *
-     * @return 视觉矩形的高度。
+     * @return The height of the view rectangle.
      */
     public Double getHeight() {
         return height;
     }
 
     /**
-     * 设置视觉矩形的高度。
+     * Sets the height of the view rectangle.
      *
-     * @param height 视觉矩形的高度。
+     * @param height The height of the view rectangle.
      */
     public void setHeight(Double height) {
         this.height = height;
     }
 
     /**
-     * 获取视觉矩形的动画模式。
+     * Gets the animation mode of the view rectangle
      *
-     * @return 视觉矩形的动画模式，详见 {@link AnimationMode}。
+     * @return The animation mode of the view rectangle. See {@link AnimationMode}.
      */
     public AnimationMode getAnimationMode() {
         return animationMode;
     }
 
     /**
-     * 设置视觉矩形的动画模式。
+     * Sets the animation mode of the view rectangle.
      *
-     * @param animationMode 视觉矩形的动画模式，详见 {@link AnimationMode}。
+     * @param animationMode The animation mode of the view rectangle. See {@link AnimationMode}.
      */
     public void setAnimationMode(AnimationMode animationMode) {
         this.animationMode = animationMode;

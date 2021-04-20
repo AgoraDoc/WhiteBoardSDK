@@ -3,18 +3,18 @@ package com.herewhite.sdk.domain;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * 移动或缩放视角时的动画模式。
+ * Animation mode for switching the view.
  *
  * @since 2.3.2
  */
 public enum AnimationMode {
     /**
-     * （默认）渐变模式。
+     * (Default) The view switches continuously.
      */
     @SerializedName("continuous")
     Continuous,
     /**
-     * 瞬间切换模式。
+     * The view switches instantly.
      */
     @SerializedName("immediately")
     Immediately

@@ -15,21 +15,20 @@ public class PlayerConfiguration extends WhiteObject {
     private Long step = 500L;
 
     /**
-     * 获取待回放的互动白板房间所在的数据中心。
+     * Gets the data center of the `Player` instance.
      *
-     * @return 待回放的互动白板房间所在的数据中心。，详见 {@link Region Region}。
+     * @return The data center of the `Player` instance. See {@link Region Region}.
      */
     public Region getRegion() {
         return region;
     }
 
     /**
-     * Sets the data center for the `Player` instance.
-     * 设置待回放的互动白板房间所在的数据中心。
+     * Sets the data center of the `Player` instance.
      *
-     * The data center set in this method must be the same as that in {@link com.herewhite.sdk.RoomParams.setRegion(Region region) setRegion}.
+     * @note If you do not set the data center, the SDK uses the region set in {@link com.herewhite.sdk.WhiteSdkConfiguration WhiteSdkConfiguration}.
      *
-     * @param region The data center for the `Player` instance. See {@link Region Region}.
+     * @param region The data center of the `Player` instance. See {@link Region Region}.
      */
     public void setRegion(Region region) {
         this.region = region;
@@ -40,8 +39,8 @@ public class PlayerConfiguration extends WhiteObject {
     /**
      * The `PlayerConfiguration` constructor, for initializing a `PlayerConfiguration` object.
      *
-     * @param room      The unique identifier of the room, which must be the same as the one set in `roomParams` parameter of the `joinRoom` method.
-     * @param roomToken The Room Token for authentication, which must be the same as the one set in `roomParams` parameter of the `joinRoom` method.
+     * @param room The unique identifier of the room, which must be the same as the one set in `roomParams` parameter of the `joinRoom` method.
+     * @param roomToken The Room Token for authentication, which must be generated using the room UUID above.
      */
     public PlayerConfiguration(String room, String roomToken) {
         this.room = room;
@@ -49,20 +48,18 @@ public class PlayerConfiguration extends WhiteObject {
     }
 
     /**
-     * 获取本地用户观看回放时的视角边界。
+     * Gets the viewable area of the local user.
      *
-     * @return 视角边界，详见 {@link CameraBound CameraBound}。
+     * @return The viewable area of the local user. See {@link CameraBound CameraBound}.
      */
     public CameraBound getCameraBound() {
         return cameraBound;
     }
 
     /**
-     * 设置本地用户观看回放时的视角边界。
+     * Sets the viewable area of the local user.
      *
-     * 该方法设置的视角边界必须和 {@link com.herewhite.sdk.RoomParams#setCameraBound(CameraBound)} 中设置视角边界一致。
-     *
-     * @param cameraBound 视角边界，详见 {@link CameraBound CameraBound}。
+     * @param cameraBound The viewable area of the local user. See {@link CameraBound CameraBound}.
      */
     public void setCameraBound(CameraBound cameraBound) {
         this.cameraBound = cameraBound;
@@ -85,43 +82,43 @@ public class PlayerConfiguration extends WhiteObject {
     private String mediaURL;
 
     /**
-     * Gets the room UUID.
+     * Gets the unique identifier of the room to be replayed.
      *
-     * @return The the room UUID.
+     * @return The unique identifier of the room to be replayed.
      */
     public String getRoom() {
         return room;
     }
 
     /**
-     * 设置待回放的互动白板房间的 UUID。
+     * Sets the unique identifier of the room to be replayed.
      *
-     * @param room 房间 UUID，即房间唯一标识符，必须和初始化互动白板房间实例时设置的房间 UUID 一致。
+     * @param room The unique identifier of the room to be replayed, which must be the same as the one set in `roomParams` parameter of the `joinRoom` method.
      */
     public void setRoom(String room) {
         this.room = room;
     }
 
     /**
-     * 获取待回放的互动白板房间的 Room Token。
+     * Gets the Room Token of the room to be replayed.
      *
-     * @return 互动白板房间的 Room Token。
+     * @return The Room Token for authentication.
      */
     public String getRoomToken() {
         return roomToken;
     }
 
     /**
-     * 设置待回放的互动白板房间的 Room Token。
+     * Sets the Room Token of the room to be replayed.
      *
-     * @return 用于鉴权的 Room Token，必须和初始化互动白板房间实例时设置的 Room Token 一致。
+     * @return The Room Token for authentication, which must be generated using the room UUID you set for this `Player` instance.
      */
     public void setRoomToken(String roomToken) {
         this.roomToken = roomToken;
     }
 
     /**
-     * 文档中隐藏
+     * Hidden in documentation
      *
      * @return
      */
@@ -130,7 +127,7 @@ public class PlayerConfiguration extends WhiteObject {
     }
 
     /**
-     * 文档中隐藏
+     * Hidden in documentation
      *
      * @return
      */
@@ -139,45 +136,46 @@ public class PlayerConfiguration extends WhiteObject {
     }
 
     /**
-     * 白板回放的起始时间。
+     * Gets the Unix timestamp (ms) representing the starting UTC time of the playback.
      *
-     * @return Unix 时间戳（毫秒），表示回放的起始 UTC 时间。
+     * This method call returns a Unix timestamp in milliseconds.
+     * You can convert the Unix timestamp to UTC time. For example, if the return value is `1615370614269`, the UTC time is 2021-03-10 18:03:34 GMT+0800.
+     *
+     * @return The Unix timestamp (ms) representing the starting UTC time of the playback.
      */
     public Long getBeginTimestamp() {
         return beginTimestamp;
     }
 
     /***
-     * 设置白板回放的起始时间。
+     * Sets the Unix timestamp (ms) representing the starting UTC time of the playback.
      *
-     * 在该方法中，你需要传入单位为毫秒的 Unix 时间戳，表示 UTC 时间，例如，如果要将回放的起始时间设为 2021-03-10 18:03:34 GMT+0800，你需要传入 `1615370614269`。
-     *
-     * @param beginTimestamp Unix 时间戳（毫秒），表示回放的起始 UTC 时间。例如，`1615370614269` 表示 2021-03-10 18:03:34 GMT+0800。
+     * @param beginTimestamp The Unix timestamp (ms) representing the starting UTC time of the playback. For example, if want to set the staring UTC time of the playback as 2021-03-10 18:03:34 GMT+0800, you need to pass in `1615370614269`.
      */
     public void setBeginTimestamp(Long beginTimestamp) {
         this.beginTimestamp = beginTimestamp;
     }
 
     /**
-     * 设置回放的持续时长。
+     * Gets the playback duration (ms).
      *
-     * @return 回放的持续时长，单位为毫秒。
+     * @return The playback duration (ms).
      */
     public Long getDuration() {
         return duration;
     }
 
     /**
-     * 设置回放的持续时长。
+     * Sets the playback duration (ms).
      *
-     * @param duration 回放的持续时长，单位为毫秒。
+     * @param duration The playback duration (ms).
      */
     public void setDuration(Long duration) {
         this.duration = duration;
     }
 
     /**
-     * 文档中隐藏
+     * Hidden in documentation
      * @return
      */
     public String getMediaURL() {
@@ -185,7 +183,7 @@ public class PlayerConfiguration extends WhiteObject {
     }
 
     /**
-     * 文档中隐藏
+     * Hidden in documentation
      * @param mediaURL
      */
     public void setMediaURL(String mediaURL) {

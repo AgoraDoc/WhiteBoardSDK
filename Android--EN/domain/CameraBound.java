@@ -1,81 +1,82 @@
 package com.herewhite.sdk.domain;
 
 /**
- * `CameraBound` 类，用于设置视角边界。
+ * The `CameraBound` class, for setting the boundaries for the view.
  *
- * 视角边界指白板场景内，用户可以移动视角的范围。当视角超出视角边界时，视角会被拉回。
+ * The area enclosed by the boundaries is the viewable area. Within the viewable area, the user can flexibly move or zoom the view.
+ * When the user tries to move the view beyond the viewable area, the SDK automatically drags the view back into the viewable area.
  *
  * @since 2.5.0
  */
 public class CameraBound extends WhiteObject {
 
     /**
-     * 获取视角边界的中心点在世界坐标系（以白板初始化时的中心点为原点的坐标系）中的 X 轴坐标。
+     * Gets the X coordinate of the center of the viewable area in the world coordinate system (taking the center of the initial whiteboard as the origin).
      *
-     * @return 视角边界的中心点在世界坐标系中的 X 轴坐标。
+     * @return The X coordinate of the center of the viewable area in the world coordinate system.
      */
     public Double getCenterX() {
         return centerX;
     }
 
     /**
-     * 设置视角边界的中心点在世界坐标系（以白板初始化时的中心点为原点的坐标系）中的 X 轴坐标。
+     * Sets the X coordinate of the center of the viewable area in the world coordinate system (taking the center of the initial whiteboard as the origin).
      *
-     * @param centerX 视角边界的中心点在世界坐标系的 X 轴坐标。默认值为 0.0。
+     * @param centerX The X coordinate of the center of the viewable area in the world coordinate system. The default value is `0.0`.
      */
     public void setCenterX(Double centerX) {
         this.centerX = centerX;
     }
 
     /**
-     * 获取视角边界的中心点在世界坐标系（以白板初始化时的中心点为原点的坐标系）中的 Y 轴坐标。
+     * Gets the Y coordinate of the center of the viewable area in the world coordinate system (taking the center of the initial whiteboard as the origin).
      *
-     * @return 视角边界的中心点在世界坐标系中的 Y 轴坐标。
+     * @return The Y coordinate of the center of the viewable area in the world coordinate system.
      */
     public Double getCenterY() {
         return centerY;
     }
 
     /**
-     * 设置视角边界的中心点在世界坐标系（以白板初始化时的中心点为原点的坐标系）中的 Y 轴坐标。
+     * Sets the Y coordinate of the center of the viewable area in the world coordinate system (taking the center of the initial whiteboard as the origin).
      *
-     * @param centerY 视角边界的中心点在世界坐标系中的 Y 轴坐标。默认值为 0.0。
+     * @param centerY The Y coordinate of the center of the viewable area in the world coordinate system. The default value is `0.0`.
      */
     public void setCenterY(Double centerY) {
         this.centerY = centerY;
     }
 
     /**
-     * 获取视角边界的宽度。
+     * Gets the width of the viewable area.
      *
-     * @return 视角边界的宽度，单位为像素。
+     * @return The width (pixels) of the viewable area.
      */
     public Double getWidth() {
         return width;
     }
 
     /**
-     * 设置视角边界的宽度。
+     * Sets the width of the viewable area.
      *
-     * @param width 视角边界的宽度，单位为像素。如果不填，则表示无限制。
+     * @param width The width (pixels) of the viewable area. If you do not set this parameter, the viewable area has no width limit.
      */
     public void setWidth(Double width) {
         this.width = width;
     }
 
     /**
-     * 获取视角边界的宽度。
+     * Gets the height of the viewable area.
      *
-     * @return 视角边界的宽度，单位为像素。
+     * @return The height (pixels) of the viewable area.
      */
     public Double getHeight() {
         return height;
     }
 
     /**
-     * 设置视角边界的高度。
+     * Sets the height of the viewable area.
      *
-     * @param height 视角边界的高度，单位为像素。如果不填，则表示无限制。
+     * @param height The height (pixels) of the viewable area. If you do not set this parameter, the viewable area has no height limit.
      */
     public void setHeight(Double height) {
         this.height = height;
@@ -83,18 +84,18 @@ public class CameraBound extends WhiteObject {
 
 
     /**
-     * 获取视角边界的缩放模式和最大缩放比例。
+     * Gets the scale mode and the maximum scale factor of the viewable area.
      *
-     * @return 视角边界的缩放模式和最大缩放比例，详见 {@link ContentModeConfig ContentModeConfig}。
+     * @return The scale mode and the maximum scale factor of the viewable area. See {@link ContentModeConfig ContentModeConfig}.
      */
     public ContentModeConfig getMaxContentMode() {
         return maxContentMode;
     }
 
     /**
-     * 设置视角边界的缩放模式和最大缩放比例。
+     * Sets the scale mode and the maximum scale factor of the viewable area.
      *
-     * @param maxContentMode 视角边界的最大缩放比例，详见 {@link ContentModeConfig ContentModeConfig}。
+     * @param maxContentMode The scale mode and the maximum scale factor of the viewable area. See {@link ContentModeConfig ContentModeConfig}.
      */
     public void setMaxContentMode(ContentModeConfig maxContentMode) {
         this.maxContentMode = maxContentMode;
@@ -102,38 +103,38 @@ public class CameraBound extends WhiteObject {
 
 
     /**
-     * 获取视角边界的缩放模式和最小缩放比例。
+     * Gets the scale mode and the minimum scale factor of the viewable area.
      *
-     * @return 视角边界的缩放模式和最小缩放比例，详见 {@link ContentModeConfig ContentModeConfig}。
+     * @return The scale mode and the minimum scale factor of the viewable area. See {@link ContentModeConfig ContentModeConfig}.
      */
     public ContentModeConfig getMinContentMode() {
         return minContentMode;
     }
 
     /**
-     * 设置视角边界的缩放模式和最小缩放比例。
+     * Sets the scale mode and the minimum scale factor of the viewable area.
      *
-     * @param minContentMode 视角边界的缩放模式和最小缩放比例，详见 {@link ContentModeConfig ContentModeConfig}。
+     * @param minContentMode The scale mode and the minimum scale factor of the viewable area. See {@link ContentModeConfig ContentModeConfig}.
      */
     public void setMinContentMode(ContentModeConfig minContentMode) {
         this.minContentMode = minContentMode;
     }
 
     /**
-     * 获取用户将视角移出视角边界时感受到的阻力。
+     * Gets the resistance felt by the user when the user moves or scales up the view beyond the viewable area.
      *
-     * @return 用户将视角移出视角边界时感受到的阻力。
+     * @return The resistance coefficient.
      */
     public Double getDamping() {
         return damping;
     }
 
     /**
-     * 设置用户将视角移出视角边界时感受到的阻力。
+     * Sets the resistance felt by the user when the user moves or scales up the view beyond the viewable area.
      *
-     * @param damping 阻力大小，取值范围为 [0.0,1.0]。取值越大，用户感受到的阻力越大。
-     *                - `0.0`: 用户将视角移出视角边界时，完全感受不到阻力，但当其手指离开屏幕时，视角会恢复到原位。
-     *                - `1.0`: 用户完全无法将视角移出视角边界。
+     * @param damping The resistance coefficient. The value range is [0.0,1.0]. The higher the value, the larger the resistance felt by the user.
+     * - `0.0`: The user feels no resistance when moving or scaling up the view beyond the viewable area. Once the user stops moving or scaling up, the view returns to its original position.
+     * - `1.0`: The user cannot move or scale up the view beyond the viewable area.
      */
     public void setDamping(Double damping) {
         this.damping = damping;
@@ -152,10 +153,10 @@ public class CameraBound extends WhiteObject {
     }
 
     /**
-     * 初始化视角边界。
+     * Initializes the viewable area.
      *
-     * @param miniScale 视角边界的最小缩放比例。
-     * @param maxScale  视角边界的最大缩放比例。
+     * @param miniScale The minimum scale factor of the viewable area.
+     * @param maxScale  The maximum scale factor of the viewable area.
      */
     public CameraBound(Double miniScale, Double maxScale) {
         this();

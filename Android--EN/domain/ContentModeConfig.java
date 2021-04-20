@@ -4,7 +4,7 @@ package com.herewhite.sdk.domain;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * `ContentModeConfig` 类，设置视角边界的缩放模式和缩放比例。
+ * Configurations for the scale mode and scale factor of the viewable area.
  *
  * @since 2.5.0
  */
@@ -17,57 +17,59 @@ public class ContentModeConfig extends WhiteObject {
     }
 
     /**
-     * 视角边界的缩放模式。
+     * The scale mode of the viewable area.
      */
     public enum ScaleMode {
         /**
-         * （默认）基于设置的 `scale` 缩放视角边界。
+         * (Default) Resize the viewable area by the specified `scale`.
          */
         @SerializedName("Scale")
         CENTER,
         /**
-         * 等比例缩放视角边界，使视角边界的长边正好顶住与其垂直的屏幕的两边，以保证在屏幕上完整展示视角边界。
+         * Resizes the viewable area proportionately until its longer sides meet with the screen sides perpendicular to them, so that the viewable area is completely displayed on the screen.
          */
         @SerializedName("AspectFit")
         CENTER_INSIDE,
         /**
-         * 等比例缩放视角边界，使视角边界的长边正好顶住与其垂直的屏幕的两边，以保证在屏幕上完整展示视角边界；在此基础上，再将视角边界缩放指定的倍数。
+         * Resizes the viewable area proportionately until its longer sides meet with the screen sides perpendicular to them, so that the viewable area is completely displayed on the screen.
+         * Then, resize the viewable area by a specified scale factor.
          */
         @SerializedName("AspectFitScale")
         CENTER_INSIDE_SCALE,
         /**
-         * 等比例缩放视角边界，使视角边界的长边正好顶住与其垂直的屏幕的两边；在此基础上，在视角边界的四周填充指定的空白空间。
+         * Resizes the viewable area proportionately until its longer sides meet with the screen sides perpendicular to them, so that the viewable area is completely displayed on the screen.
+         * Then, adds the specified spaces around the viewable area.
          */
         @SerializedName("AspectFitSpace")
         CENTER_INSIDE_SPACE,
         /**
-         * 等比例缩放视角边界，使视角边界的短边正好顶住与其垂直的屏幕的两边，以保证视角边界铺满屏幕。
+         * Resizes the viewable area proportionately until its shorter sides meet with the screen sides perpendicular to them, so that the viewable area completely covers the screen.
          */
         @SerializedName("AspectFill")
         CENTER_CROP,
         /**
-         * 等比例缩放视角边界，使视角边界的短边正好顶住与其垂直的屏幕的两边，以保证视角边界铺满屏幕；在此基础上再将视角边界缩放指定的倍数。
-         *
+         * Resizes the viewable area proportionately until its shorter sides meet with the screen sides perpendicular to them, so that the viewable area completely covers the screen.
+         * Then, resizes the viewable area by the specified scale factor.
          */
         @SerializedName("AspectFillScale")
         CENTER_CROP_SPACE,
     }
 
     /**
-     * 获取视角边界的缩放比例。
+     * Gets the scale factor of the viewable area.
      *
-     * @return 视角边界的缩放比例。
+     * @return The scale factor of the viewable area.
      */
     public Double getScale() {
         return scale;
     }
 
     /**
-     * 设置视角边界的缩放比例。
+     * Sets the scale factor of the viewable area.
      *
-     * @param scale 视角边界的缩放比例，默认值为 1.0，即保持视角边界的原始大小。
+     * @param scale The scale factor of the viewable area. The default value is `1.0`, which means keeping the original size.
      *
-     * @note 该方法仅在以下缩放模式下生效：
+     * @note This method takes effect only when the scale mode is set as one the following values:
      * - {@link ScaleMode#CENTER}
      * - {@link ScaleMode#CENTER_INSIDE}
      * - {@link ScaleMode#CENTER_INSIDE_SCALE}
@@ -78,20 +80,20 @@ public class ContentModeConfig extends WhiteObject {
     }
 
     /**
-     * 获取在视角边界的四周填充的空白空间。
+     * Gets the space added around the viewable area.
      *
-     * @return 在视角边界的四周填充的空白空间，单位为像素。
+     * @return The space (pixels) added around the viewable area.
      */
     public Double getSpace() {
         return space;
     }
 
     /**
-     * 设置在视角边界的四周填充的空白空间。
+     * Adds the space around the viewable area.
      *
-     * @note 该方法仅在 {@link ScaleMode#CENTER_INSIDE_SPACE} 缩放模式下生效。
+     * @note This method takes effect only when the scale mode is set as {@link ScaleMode#CENTER_INSIDE_SPACE}.
      *
-     * @param space 在视角边界的四周填充的空白空间，单位为像素，默认值为 0。
+     * @param space The space (pixels) around the viewable area. The default value is `0`.
      *
      */
     public void setSpace(Double space) {
@@ -99,18 +101,18 @@ public class ContentModeConfig extends WhiteObject {
     }
 
     /**
-     * 获取视角边界的缩放模式。
+     * Gets the scale mode of the viewable area.
      *
-     * @return 视角边界的缩放模式，详见 {@link ScaleMode ScaleMode}。
+     * @return The scale mode of the viewable area. See {@link ScaleMode ScaleMode}.
      */
     public ScaleMode getMode() {
         return mode;
     }
 
     /**
-     * 设置视角边界的缩放模式。
+     * Sets the scale mode of the viewable area.
      *
-     * @param mode 视角边界的缩放模式，详见 {@link ScaleMode ScaleMode}。
+     * @param mode The scale mode of the viewable area. See {@link ScaleMode ScaleMode}.
      */
     public void setMode(ScaleMode mode) {
         this.mode = mode;
