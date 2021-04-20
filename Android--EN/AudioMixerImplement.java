@@ -20,15 +20,15 @@ public class AudioMixerImplement {
      *
      * You need to call this method in the `onAudioMixingStateChanged` callback triggered by the Agora RTC SDK to pass the playback state of the audio file
      * to the dynamic PPT slides in the whiteboard.
-     * The dynamic PPT slides PPT plays the video based on the received audio playback state to ensure the synchronization of audio and video.
+     * The dynamic PPT slides play the video based on the received audio playback state to ensure the synchronization of audio and video.
      *
      * @note Ensure that the real-time audio and video SDK you are using has an audio mixing state callback; otherwise, the audio and video playback of the dynamic PPT slides may be unsynchronized.
      *
      * @param state     The current audio file playback state：
      *                  - `MEDIA_ENGINE_AUDIO_EVENT_MIXING_PLAY(710)`: The audio mixing file is playing.
-     *                  - `MEDIA_ENGINE_AUDIO_EVENT_MIXING_PAUSED(711)`: The audio mixing file pauses playing.
-     *                  - `MEDIA_ENGINE_AUDIO_EVENT_MIXING_STOPPED(713)`：The audio mixing file stops playing.
-     *                  - `MEDIA_ENGINE_AUDIO_EVENT_MIXING_ERROR(714)`: An exception occurs during the playback of the audio mixing file.
+     *                  - `MEDIA_ENGINE_AUDIO_EVENT_MIXING_PAUSED(711)`: The audio mixing file has paused playing. 
+     *                  - `MEDIA_ENGINE_AUDIO_EVENT_MIXING_STOPPED(713)`：The audio mixing file has stopped playing.
+     *                  - `MEDIA_ENGINE_AUDIO_EVENT_MIXING_ERROR(714)`: An exception has occurred during the playback of the audio mixing file.
      * @param errorCode The reason for the change of the audio file playback state:
      *                  - `MEDIA_ENGINE_AUDIO_ERROR_MIXING_OPEN(701)`: The SDK cannot open the audio mixing file.
      *                  - `MEDIA_ENGINE_AUDIO_ERROR_MIXING_TOO_FREQUENT(702)`: The SDK opens the audio mixing file too frequently.
