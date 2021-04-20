@@ -1,7 +1,7 @@
 package com.herewhite.sdk.domain;
 
 /**
- * The `EventEntry` class, for getting the customized events.
+ * The `EventEntry` class, for getting customized events.
  */
 public class EventEntry extends WhiteObject {
     private String eventName;

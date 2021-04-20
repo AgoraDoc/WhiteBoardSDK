@@ -15,16 +15,16 @@ public enum PlayerPhase {
      */
     playing,
     /**
-     * The playback pauses.
+     * The playback is paused. // TODO William Again, I think the "natural" verb tense sounds better.
      */
     pause,
     /**
-     * The playback stops.
+     * The playback has stopped.
      */
     @SerializedName("stop")
     stopped,
     /**
-     * The playback finishes.
+     * The playback has finished.
      */
     ended,
     /**
