@@ -263,11 +263,11 @@ public class Player extends Displayer {
      * @since 2.4.0
      *
      * A successful method call returns the time information of the `Player` instance,
-     * including the current playback position (ms), the total duration (ms) of the playback, and the Unix timestamp (ms) indicating when the playback started. // TODO William Past tense makes more sense here.
+     * including the current playback position (ms), the total duration (ms) of the playback, and the Unix timestamp (ms) indicating when the playback started. 
      *
      * @note
      * - This method call is synchronous.
-     * - The playback position returned by this method may be not accurate. // TODO William Perhaps explain why not?
+     * - The playback position returned by this method may be not accurate. 
      *
      * @return The time information of the `Player` instance. See {@link PlayerTimeInfo}.
      */
