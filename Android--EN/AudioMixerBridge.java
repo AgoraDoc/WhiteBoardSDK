@@ -1,7 +1,7 @@
 package com.herewhite.sdk;
 
 /**
- * The `AudioMixerBridge` interface, for bridging the audio mixing method of the Agora RTC SDK and the Interactive Whiteboard SDK. // TODO William Maybe "methods"? Does the whiteboard SDK have its own audio mixing? Are you supplanting one with the other?
+ * The `AudioMixerBridge` interface, for bridging the audio mixing method of the Agora RTC SDK and the Interactive Whiteboard SDK. 
  *
  * @since 2.9.15
  *
