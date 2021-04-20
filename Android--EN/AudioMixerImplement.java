@@ -26,7 +26,7 @@ public class AudioMixerImplement {
      *
      * @param state     The current audio file playback state：
      *                  - `MEDIA_ENGINE_AUDIO_EVENT_MIXING_PLAY(710)`: The audio mixing file is playing.
-     *                  - `MEDIA_ENGINE_AUDIO_EVENT_MIXING_PAUSED(711)`: The audio mixing file has paused playing. // TODO William I think having the verb tense that is most appropriate sounds better.
+     *                  - `MEDIA_ENGINE_AUDIO_EVENT_MIXING_PAUSED(711)`: The audio mixing file has paused playing. 
      *                  - `MEDIA_ENGINE_AUDIO_EVENT_MIXING_STOPPED(713)`：The audio mixing file has stopped playing.
      *                  - `MEDIA_ENGINE_AUDIO_EVENT_MIXING_ERROR(714)`: An exception has occurred during the playback of the audio mixing file.
      * @param errorCode The reason for the change of the audio file playback state:
