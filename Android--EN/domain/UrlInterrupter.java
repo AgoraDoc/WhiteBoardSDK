@@ -1,7 +1,7 @@
 package com.herewhite.sdk.domain;
 
 /**
- * @deprecated 该接口已废弃。请使用 {@link com.herewhite.sdk.CommonCallback CommonCallback} 中的 {@link com.herewhite.sdk.CommonCallback#urlInterrupter(String)} 方法。
+ * @deprecated This interface is deprecated. Use the {@link com.herewhite.sdk.CommonCallback#urlInterrupter(String) urlInterrupter} method in {@link com.herewhite.sdk.CommonCallback CommonCallback} instead.
  */
 public interface UrlInterrupter {
     String urlInterrupter(String sourceUrl);

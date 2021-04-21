@@ -6,7 +6,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
 /**
- * `WhiteDisplayerState` 类，为互动白板实时房间和回放房间共有的状态类。
+ * The `WhiteDisplayerState` class, which is inherited by the `Room` and `Player` instance.
  *
  * @since 2.4.8
  */
@@ -16,23 +16,23 @@ public class WhiteDisplayerState extends WhiteObject {
     static Class<?> customClass = GlobalState.class;
 
     /**
-     * 设置自定义 `GlobalState`类。
+     * Sets the customized `GlobalState` class.
      *
      * @since 2.4.8
      * <p>
-     * 设置后，所有 `GlobalState` 都会转换为该类的实例。
+     * A successful call of this method casts all `GlobalState` variables to the instances of the customized class.
      *
-     * @param <T>      类型约束，自定义的 'GlobalState' 类必须继承 {@link GlobalState GlobalState} 类。
-     * @param classOfT 自定义的 'GlobalState' 类。
+     * @param <T>      Type constraint. The customized `GlobalState`must extends the {@link GlobalState GlobalState} class.
+     * @param classOfT The customized `GlobalState` class.
      */
     public static <T extends GlobalState> void setCustomGlobalStateClass(Class<T> classOfT) {
         customClass = classOfT;
     }
 
     /**
-     * 获取房间的全局状态。
+     * Gets the global state of the room.
      *
-     * @return 房间的全局状态。
+     * @return The global state of the room.
      */
     public GlobalState getGlobalState() {
         String str = gson.toJson(globalState);
@@ -50,18 +50,21 @@ public class WhiteDisplayerState extends WhiteObject {
     }
 
     /**
-     * 获取房间中所有的互动模式（具有读写权限）的用户。
+     * Gets the list of members in the room.
      *
-     * @return 互动模式（具有读写权限）的用户列表，详见 {@link RoomMember}。
+     * @note
+     * Only users in interactive mode (with read and write permissions) are room members; users in subscription mode (with read-only permission) are not included in the member list.
+     *
+     * @return The member list of the room. See {@link RoomMember RoomMember}.
      */
     public RoomMember[] getRoomMembers() {
         return roomMembers;
     }
 
     /**
-     * 获取当前场景组下的场景状态。
+     * Gets the state of the scenes under the current scene directory.
      *
-     * @return 当前场景组下的场景状态，详见 {@link SceneState}。
+     * @return The state of the scenes under the current scene directory. See {@link SceneState}.
      */
     public SceneState getSceneState() {
         return sceneState;
@@ -72,9 +75,9 @@ public class WhiteDisplayerState extends WhiteObject {
     private SceneState sceneState;
 
     /**
-     * 获取视角状态。
+     * Gets he state of the view.
      *
-     * @return 视角状态，详见 {@link CameraState}。
+     * @return The state of the view. See {@link CameraState}.
      */
     public CameraState getCameraState() {
         return cameraState;

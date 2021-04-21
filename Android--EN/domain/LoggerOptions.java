@@ -3,53 +3,65 @@ package com.herewhite.sdk.domain;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * 输出日志选项。
+ * The output log options.
  */
 public class LoggerOptions extends WhiteObject {
 
     /**
-     * 日志等级。
+     * The output log level.
      *
      * @since 2.11.10
      *
-     * 日志级别顺序依次为 `error`，`warn`，`info`，和 `debug`。选择一个级别，你就可以看到在该级别之前所有级别的日志信息。
-     * 例如，你选择 `info` 级别，就可以看到在 `error`，`warn`，`info` 级别上的所有日志信息。
+     * The log level follows the sequence of `error`, `warn`, `info`, and `debug`. When choosing a level, you can see the logs preceding that level.
+     *
+     * For example, if you set the log level to `info`, the SDK outputs the logs within levels `error`，`warn`，and `info`.
      */
     public enum Level {
         /**
-         * 调试日志：最详细的日志，目前内容与 `info` 一致。
+         * Logs of the `debug` level.
+         *
+         * Set your log level as `debug` if you want to get the most complete log file.
+         *
+         * @note
+         * At present, the `debug` level equals the `info` level.
          */
         debug,
         /**
-         * 信息日志：主要为连接状态。
+         * Logs of the `info` level.
+         *
+         * logs at this level mainly provides information on connection states of the SDK.
          */
         info,
         /**
-         * 警告日志：当传入的参数不符合 SDK 要求时，SDK 会自动调整并发出警告。
+         * Logs of the `warn` level.
+         *
+         * logs at this level mainly reports the issues that the SDK have encountered but automatically solved.
          *
          * @note
-         * 如果调用废弃 API，SDK 不会发出警告信息。
+         * If you call a deprecated method, the SDK does not send warning messages.
          */
         warn,
         /**
-         * 报错日志：报错日志：直接导致 SDK 无法正常运行的错误。
+         * Logs of the `error` level.
+         *
+         * logs at this level mainly reports the errors that cause the SDK fail to work.
          */
         error,
     }
 
     /**
-     * 上报模式。
+     * The mode of the SDK to report information.
      *
      * @since 2.11.10
      */
     public enum ReportMode {
         /**
-         * （默认）总是上报。
+         * (Default) Enable the SDK to report information all the time.
          */
         @SerializedName("alwaysReport")
         always,
         /**
-         * 禁止上报。
+         * Disable the SDK from reporting information.
          */
         @SerializedName("banReport")
         ban,
@@ -58,24 +70,24 @@ public class LoggerOptions extends WhiteObject {
     private Boolean disableReportLog;
 
     /**
-     * 获取是否关闭日志上报。
+     * Gets whether log reporting is disabled.
      *
-     * @return 是否关闭日志上报：
-     * - `true`：关闭。
-     * - `false`：开启。
+     * @return Whether log reporting is disabled.
+     * - `true`: Disabled.
+     * - `false`: Enabled.
      */
     public Boolean getDisableReportLog() {
         return disableReportLog;
     }
 
     /**
-     * 开启/关闭日志上报。
+     * Disables/Enables log reporting.
      *
-     * @deprecated 该方法已废弃。请使用 {@link #getReportDebugLogMode()}、{@link #getReportQualityMode()} 和 {@link #getReportLevelMask()}。
+     * @deprecated This method is deprecated. Use {@link #getReportDebugLogMode()}, {@link #getReportQualityMode()}, and {@link #getReportLevelMask()}.
      *
-     * @param disableReportLog 是否关闭日志上报；
-     *                         - `true`：关闭。
-     *                         - `false`：（默认）开启日志上报。
+     * @param disableReportLog Whether to disable log reporting:
+     *  - `true`: Disable the SDK from reporting logs.
+     *  - `false`: (Default) Enable the SDK to report logs.
      */
     public void setDisableReportLog(Boolean disableReportLog) {
         if (disableReportLog) {
@@ -85,82 +97,82 @@ public class LoggerOptions extends WhiteObject {
     }
 
     /**
-     * 获取日志打印等级。
+     * Gets the printing level of the log.
      *
-     * @return 日志打印等级。详见 {@link Level Level}。
+     * @return The printing level of the log. See {@link Level Level}.
      */
     public Level getPrintLevelMask() {
         return printLevelMask;
     }
 
     /**
-     * 设置日志打印等级。
+     * Sets the log printing level of the SDK.
      *
      * @since 2.11.10
      *
-     * @param printLevelMask 日志打印等级，详见 {@link Level Level}。默认等级为 `info`。
+     * @param printLevelMask The log printing level of the SDK. The default level is `info`. See {@link Level Level}.
      */
     public void setPrintLevelMask(Level printLevelMask) {
         this.printLevelMask = printLevelMask;
     }
 
     /**
-     * 获取 SDK 的日志上报等级。
+     * Gets the log reporting level of the SDK.
      *
-     * @return 日志上报等级，详见 {@link Level Level}。
+     * @return The log reporting level of the SDK. See {@link Level Level}.
      */
     public Level getReportLevelMask() {
         return reportLevelMask;
     }
 
     /**
-     * 设置 SDK 上报的日志等级。
+     * Sets the log reporting level of the SDK.
      *
      * @since 2.11.10
      *
-     * @param reportLevelMask 日志上报等级，详见 {@link Level Level}。默认等级为 `info`。
+     * @param reportLevelMask The log reporting level of the SDK. The default level is `info`. See {@link Level Level}.
      */
     public void setReportLevelMask(Level reportLevelMask) {
         this.reportLevelMask = reportLevelMask;
     }
 
     /**
-     * 获取 SDK 上报日志信息的模式。
+     * Gets the mode for the SDK to report logs.
      *
-     * @return 上报模式，详见 {@link ReportMode ReportMode}。
+     * @return The mode for the SDK to report logs. See {@link ReportMode ReportMode}.
      */
     public ReportMode getReportDebugLogMode() {
         return reportDebugLogMode;
     }
 
     /**
-     * 设置 SDK 上报 `debug` 等级日志的模式。
+     * Sets the mode for the SDK to report logs.
      *
      * @since 2.11.10
      *
-     * @param reportDebugLogMode 上报模式，详见 {@link ReportMode ReportMode}。默认为总是上报。
+     * @param reportDebugLogMode The mode for the SDK to report logs. The default value is `always`. See {@link ReportMode ReportMode}.
      */
     public void setReportDebugLogMode(ReportMode reportDebugLogMode) {
         this.reportDebugLogMode = reportDebugLogMode;
     }
 
     /**
-     * 获取 SDK 上报连接质量数据的模式。
+     * Gets the mode for the SDK to report connection quality data.
      *
-     * @return SDK 上报连接质量数据的模式。
+     * @return The mode for the SDK to report connection quality data. See {@link ReportMode ReportMode}.
      */
     public ReportMode getReportQualityMode() {
         return reportQualityMode;
     }
 
     /**
-     * 设置 SDK 上报连接质量数据的模式。
+     * Sets the mode for the SDK to report connection quality data.
      *
      * @since 2.11.10
      *
-     * 连接质量数据包括连接时长和连接稳定性等。
+     * The connection quality data includes connection duration and connection stability.
      *
-     * @param reportQualityMode 上报模式，详见 {@link ReportMode ReportMode}。默认为总是上报。
+     * @param reportQualityMode The mode for the SDK to report connection quality data. The default value is `always`. See {@link ReportMode ReportMode}.
      */
     public void setReportQualityMode(ReportMode reportQualityMode) {
         this.reportQualityMode = reportQualityMode;

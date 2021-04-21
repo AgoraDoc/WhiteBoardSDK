@@ -3,23 +3,23 @@ package com.herewhite.sdk.domain;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * 白板场景的路径类型。
+ * The scene path types.
  *
  * @since 2.6.4
  */
 public enum WhiteScenePathType {
     /**
-     * 查询的路径不存在。
+     * The queried path does not exist.
      */
     @SerializedName("none")
     Empty,
     /**
-     * 查询路径为场景路径。
+     * The queried path is the path of a scene.
      */
     @SerializedName("page")
     Page,
     /**
-     * 查询路径为场景组路径。
+     * The queried path is the path of a scene directory.
      */
     @SerializedName("dir")
     Dir,
