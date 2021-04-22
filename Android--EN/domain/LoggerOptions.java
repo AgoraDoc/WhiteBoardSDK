@@ -23,13 +23,13 @@ public class LoggerOptions extends WhiteObject {
          * Set your log level as `debug` if you want to get the most complete log file.
          *
          * @note
-         * At present, the `debug` level equals the `info` level. // TODO William What do you mean "equals"? Perhaps "is functionaly the same as"?
+         * At present, logs at the `debug` level have the same information as those at the `info` level. 
          */
         debug,
         /**
          * Logs of the `info` level.
          *
-         * Logs at this level mainly provide information on connection states of the SDK. // TODO William I think "SDK connection states" sounds better, but does it mean the same thing?
+         * Logs at this level mainly provide information on SDK connection states. 
          */
         info,
         /**
@@ -44,7 +44,7 @@ public class LoggerOptions extends WhiteObject {
         /**
          * Logs of the `error` level.
          *
-         * Logs at this level mainly report the errors that cause the SDK to fail to complete a task. // TODO William Maybe?
+         * Logs at this level mainly report the errors that cause the SDK to fail to complete a task.
          */
         error,
     }
@@ -108,7 +108,9 @@ public class LoggerOptions extends WhiteObject {
     /**
      * Sets the log printing level of the SDK.
      *
-     * @since 2.11.10 // TODO William Discuss printing level vs reporting level?
+     * @since 2.11.10 
+     *
+     * This method specifies the log level that the SDK prints in the WebView.
      *
      * @param printLevelMask The log printing level of the SDK. The default level is `info`. See {@link Level Level}.
      */
@@ -129,6 +131,8 @@ public class LoggerOptions extends WhiteObject {
      * Sets the log reporting level of the SDK.
      *
      * @since 2.11.10
+     * 
+     * This method specifies the log level that the SDK reports to the Agora Interactive Whiteboard server.
      *
      * @param reportLevelMask The log reporting level of the SDK. The default level is `info`. See {@link Level Level}.
      */
