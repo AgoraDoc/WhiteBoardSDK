@@ -147,7 +147,7 @@ public class PlayerSyncManager {
     /**
      * Sets the playback position of the `Player` instance.
      *
-     * After setting the playback position of the `NativePlayer` instance, call this method to update the playback position of the in `Player` instance accordingly.
+     * After setting the playback position of the `NativePlayer` instance, call this method to update the playback position in the `Player` instance accordingly.
      *
      * @param time     The playback position of the `Player` instance.
      * @param timeUnit The time duration in milliseconds. See [TimeUnit](https://www.android-doc.com/reference/java/util/concurrent/TimeUnit.html).
@@ -246,7 +246,7 @@ public class PlayerSyncManager {
     }
 
     /**
-     * Updates the phase of the `Player` instance to the the `PlayerSyncManager`.
+     * Updates the phase of the `Player` instance to the `PlayerSyncManager`.
      *
      * @param phase The phase of the `Player` instance. See {@link PlayerPhase}.
      */
