@@ -43,7 +43,7 @@ public class CameraConfig extends WhiteObject {
     /**
      * Sets the X coordinate of the center of the view in the world coordinate system (taking the center of the initial whiteboard as the origin).
      *
-     * @param centerX The X coordinate of the center of the view in the world coordinate system. The default value is 0.
+     * @param centerX The X coordinate of the center of the view in the world coordinate system. The default value is 0.0. 
      */
     public void setCenterX(Double centerX) {
         this.centerX = centerX;
@@ -61,7 +61,7 @@ public class CameraConfig extends WhiteObject {
     /**
      * Sets the Y coordinate of the center of the view in the world coordinate system (taking the center of the initial whiteboard as the origin).
      *
-     * @param centerY The Y coordinate of the center of the view in the world coordinate system. The default value is 0.
+     * @param centerY The Y coordinate of the center of the view in the world coordinate system. The default value is 0.0. 
      */
     public void setCenterY(Double centerY) {
         this.centerY = centerY;
