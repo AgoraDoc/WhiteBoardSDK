@@ -35,7 +35,7 @@ public interface NativePlayer {
     /**
      * Gets the phase of the `NativePlayer` instance.
      *
-     * @return the phase of the `NativePlayer` instance. See {@link NativePlayer#NativePlayerPhase NativePlayerPhase}.
+     * @return The phase of the `NativePlayer` instance. See {@link NativePlayer#NativePlayerPhase NativePlayerPhase}.
      */
     NativePlayerPhase getPhase();
 
