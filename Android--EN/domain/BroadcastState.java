@@ -1,7 +1,7 @@
 package com.herewhite.sdk.domain;
 
 /**
- * The view state of the local user, as well as the user information of the host (if any) in the room.
+ * The view state of the local user, as well as the user information of the host (if any) in the room. 
  *
  * When the local user is in the `Follower` view mode, you can call {@link #getBroadcasterId} and {@link #getBroadcasterInformation} to get the information of the host in the room.
  */
