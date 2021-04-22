@@ -21,18 +21,18 @@ public class ContentModeConfig extends WhiteObject {
      */
     public enum ScaleMode {
         /**
-         * (Default) Resize the viewable area by the specified `scale`.
+         * (Default) Resizes the viewable area by the specified `scale`.
          */
         @SerializedName("Scale")
         CENTER,
         /**
-         * Resizes the viewable area proportionately until its longer sides meet with the screen sides perpendicular to them, so that the viewable area is completely displayed on the screen.
+         * Resizes the viewable area proportionately until its longer sides meet with the screen sides perpendicular to them, so that the viewable area is completely displayed on the screen.  
          */
         @SerializedName("AspectFit")
         CENTER_INSIDE,
         /**
          * Resizes the viewable area proportionately until its longer sides meet with the screen sides perpendicular to them, so that the viewable area is completely displayed on the screen.
-         * Then, resize the viewable area by a specified scale factor.
+         * Then, resizes the viewable area by a specified scale factor.
          */
         @SerializedName("AspectFitScale")
         CENTER_INSIDE_SCALE,
