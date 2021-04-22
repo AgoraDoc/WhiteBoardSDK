@@ -6,7 +6,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
 /**
- * The `WhiteDisplayerState` class, which is inherited by the `Room` and `Player` instance. // TODO William Maybe "instances"? Are they separate?
+ * The `WhiteDisplayerState` class, which is inherited by the `Room` and `Player` instances. 
  *
  * @since 2.4.8
  */
