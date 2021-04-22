@@ -1,10 +1,6 @@
 package com.herewhite.sdk.domain;
 
 /**
- * Created by buhe on 2018/8/18.
- */
-
-/**
  * Whiteboard tools.
  */
 public class Appliance {

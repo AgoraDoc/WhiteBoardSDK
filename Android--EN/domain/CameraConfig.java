@@ -43,7 +43,7 @@ public class CameraConfig extends WhiteObject {
     /**
      * Sets the X coordinate of the center of the view in the world coordinate system (taking the center of the initial whiteboard as the origin).
      *
-     * @param centerX The X coordinate of the center of the view in the world coordinate system. The default value is 0.0. 
+     * @param centerX The X coordinate of the center of the view in the world coordinate system. The default value is 0.0.
      */
     public void setCenterX(Double centerX) {
         this.centerX = centerX;
@@ -61,7 +61,7 @@ public class CameraConfig extends WhiteObject {
     /**
      * Sets the Y coordinate of the center of the view in the world coordinate system (taking the center of the initial whiteboard as the origin).
      *
-     * @param centerY The Y coordinate of the center of the view in the world coordinate system. The default value is 0.0. 
+     * @param centerY The Y coordinate of the center of the view in the world coordinate system. The default value is 0.0.
      */
     public void setCenterY(Double centerY) {
         this.centerY = centerY;
@@ -70,7 +70,7 @@ public class CameraConfig extends WhiteObject {
     /**
      * Gets the scale factor of the view.
      *
-     * @return The scale factor of the view. // TODO William CameraState.java includes this line: "The initial value is `1.0`." Should it be included here?
+     * @return The scale factor of the view.
      */
     public Double getScale() {
         return scale;
@@ -79,7 +79,7 @@ public class CameraConfig extends WhiteObject {
     /**
      * Sets the scale factor of the view.
      *
-     * @param scale The scale factor of the view.
+     * @param scale The scale factor of the view. The default value is `1.0`.
      */
     public void setScale(Double scale) {
         this.scale = scale;

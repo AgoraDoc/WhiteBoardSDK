@@ -22,7 +22,7 @@ public class RoomParams extends WhiteObject {
      * Sets the data center.
      *
      * @note
-     * - The data center set in this method must be the same as the data center of the live Interactive Whiteboard room to be joined; otherwise, the SDK fails to connect to the room. 
+     * - The data center set in this method must be the same as the data center of the live Interactive Whiteboard room to be joined; otherwise, the SDK fails to connect to the room.
      * - You can call either this method or the {@link WhiteSdkConfiguration#setRegion(Region) setRegion} method in the `WhiteSdkConfiguration` class to set the data center. If you call both，this method overrides the {@link WhiteSdkConfiguration#setRegion(Region) setRegion} method.
      *
      * @param region The data center. See {@link Region Region}.
@@ -202,7 +202,7 @@ public class RoomParams extends WhiteObject {
      * Gets whether adjusting the view of the whiteboard by the local user is disabled.
      *
      * @return Whether adjusting the view of the whiteboard by the local user is disabled:
-     * - `true`: The local user can adjust the view of the whiteboard. 
+     * - `true`: The local user can adjust the view of the whiteboard.
      * - `false`: The local user can adjust the view of the whiteboard.
      */
     public boolean isDisableCameraTransform() {
@@ -230,7 +230,7 @@ public class RoomParams extends WhiteObject {
 
     /**
      * Disables/Enables the stroke effect of the pencil.
-     * 
+     *
      * @since 2.12.2
      *
      * @note
@@ -285,8 +285,8 @@ public class RoomParams extends WhiteObject {
      * @note
      * To ensure the format of the customized user information is correct, the `userPayload` must extend the {@link WhiteObject} class.
      *
-     * @param userPayload Customized user information in key-value pairs, for example, `"avatar", "https://example.com/user.png"`. 
-     
+     * @param userPayload Customized user information in key-value pairs, for example, `"avatar", "https://example.com/user.png"`.
+
      */
     public void setUserPayload(Object userPayload) {
         this.userPayload = userPayload;

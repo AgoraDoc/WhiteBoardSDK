@@ -2,12 +2,10 @@ package com.herewhite.sdk.domain;
 
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by buhe on 2018/8/15.
- */
 
 /**
- * The `PptPage` 类，用于在初始化场景时配置场景的背景图。
+ * The `PptPage` class, for setting the parameters of a PPT slide.
+ *
  */
 public class PptPage extends WhiteObject {
 
@@ -17,16 +15,11 @@ public class PptPage extends WhiteObject {
     private Double height;
 
     /**
-     * The `PptPage` constructor, for initializing a `PptPage` object.
-     * <p>
-     * 该方法只能在场景初始化的时候调用。
-     * This method can only be called when the scene is initialized.
-     * <p>
-     * 场景背景图的中心点默认为世界坐标系的原点，背景图无法移动，即无法改变背景图在白板内部的位置。
+     * The `PptPage` constructor, for initializing a `PptPage` instance.
      *
-     * @param src    The URL address of the image.
-     * @param width  The width (px) of the image.
-     * @param height The height (px) of the image.
+     * @param src    The URL address of the PPT slide.
+     * @param width  The width (px) of the PPT slide.
+     * @param height The height (px) of the PPT slide.
      */
     public PptPage(String src, Double width, Double height) {
         this.src = src;
@@ -35,54 +28,54 @@ public class PptPage extends WhiteObject {
     }
 
     /**
-     * Gets the URL address of the image.
+     * Gets the URL address of the PPT slide.
      *
-     * @return The URL address of the image.
+     * @return The URL address of the PPT slide.
      */
     public String getSrc() {
         return src;
     }
 
     /**
-     * Sets the URL address of the image.
+     * Sets the URL address of the PPT slide.
      *
-     * @param src The URL address of the image.
+     * @param src The URL address of the PPT slide.
      */
     public void setSrc(String src) {
         this.src = src;
     }
 
     /**
-     * Gets the width of the image.
+     * Gets the width of the PPT slide.
      *
-     * @return The width (px) of the image.
+     * @return The width (px) of the PPT slide.
      */
     public double getWidth() {
         return width;
     }
 
     /**
-     * Sets the width of the image.
+     * Sets the width of the PPT slide.
      *
-     * @param width The width (px) of the image.
+     * @param width The width (px) of the PPT slide.
      */
     public void setWidth(double width) {
         this.width = width;
     }
 
     /**
-     * Gets the height of the image.
+     * Gets the height of the PPT slide.
      *
-     * @return The height (px) of the image.
+     * @return The height (px) of the PPT slide.
      */
     public double getHeight() {
         return height;
     }
 
     /**
-     * Sets the height of the image.
+     * Sets the height of the PPT slide.
      *
-     * @return The height (px) of the image.
+     * @return The height (px) of the PPT slide.
      */
     public void setHeight(double height) {
         this.height = height;

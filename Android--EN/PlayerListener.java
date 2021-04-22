@@ -41,7 +41,7 @@ public interface PlayerListener {
     void onScheduleTimeChanged(long time);
 
     /**
-     * Reports an error that occurs when the SDK loads a frame. // TODO
+     * Reports an error that occurs when the SDK appends a frame.
      *
      */
     void onCatchErrorWhenAppendFrame(SDKError error);

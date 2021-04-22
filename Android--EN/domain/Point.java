@@ -1,47 +1,44 @@
 package com.herewhite.sdk.domain;
 
-/**
- * Created by buhe on 2018/8/15.
- */
 
 /**
- * `Point` 类，用于描述世界坐标系（以白板初始化时的中心点为原点的坐标系）中的点。
+ * The `Point` class, for describing a point in the world coordinate system (taking the center of the initial whiteboard as the origin).
  */
 public class Point extends WhiteObject {
     private Double x;
     private Double y;
 
     /**
-     * 获取点在世界坐标系中的 X 轴坐标。
+     * Gets the X coordinate of the point in the world coordinate system.
      *
-     * @return 点在世界坐标系中的 X 轴坐标。
+     * @return The X coordinate of the point in the world coordinate system.
      */
     public double getX() {
         return x;
     }
 
     /**
-     * 设置点在世界坐标系中的 X 轴坐标。
+     * Sets the X coordinate of the point in the world coordinate system.
      *
-     * @param x 点在世界坐标系中的 X 轴坐标。
+     * @param x The X coordinate of the point in the world coordinate system.
      */
     public void setX(double x) {
         this.x = x;
     }
 
     /**
-     * 获取点在世界坐标系中的 Y 轴坐标。
+     * Gets the Y coordinate of the point in the world coordinate system.
      *
-     * @return 点在世界坐标系中的 Y 轴坐标
+     * @return The Y coordinate of the point in the world coordinate system.
      */
     public double getY() {
         return y;
     }
 
     /**
-     * 设置点在世界坐标系中的 Y 轴坐标。
+     * Sets the Y coordinate of the point in the world coordinate system.
      *
-     * @param y 点在世界坐标系中的 Y 轴坐标。
+     * @param y The Y coordinate of the point in the world coordinate system.
      */
     public void setY(double y) {
         this.y = y;

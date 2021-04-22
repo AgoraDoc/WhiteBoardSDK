@@ -15,7 +15,7 @@ public enum PlayerPhase {
      */
     playing,
     /**
-     * The playback is paused. // TODO William Again, I think the "natural" verb tense sounds better.
+     * The playback is paused.
      */
     pause,
     /**

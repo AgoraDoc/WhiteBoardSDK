@@ -4,9 +4,6 @@ import com.herewhite.sdk.domain.RoomPhase;
 import com.herewhite.sdk.domain.RoomState;
 
 /**
- * Created by buhe on 2018/8/12.
- */
-/**
  * The event callback interface of the {@link Room} instance.
  */
 public interface RoomListener {
