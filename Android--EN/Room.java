@@ -126,7 +126,7 @@ public class Room extends Displayer {
     /**
      * Modifies the state of the whiteboard tool currently in use.
      *
-     * A successful call of this method updates {@link MemberState MemberState} of the room immediately.
+     * A successful call of this method updates the {@link MemberState MemberState} of the room immediately. 
      *
      * You can call {@link #getMemberState() getMemberState} to get the latest {@link MemberState MemberState}.
      *
@@ -148,7 +148,7 @@ public class Room extends Displayer {
      *
      * @since 2.9.3
      *
-     * This method stores the the selected content to the memory, but does not paste it to the whiteboard.
+     * This method stores the selected content to the memory, but does not paste it to the whiteboard.
      *
      * @note
      * This method takes effect only when you set {@link #disableSerialization disableSerialization} as `false`.
@@ -254,7 +254,7 @@ public class Room extends Displayer {
      * In the live Interactive Whiteboard room, you can set one of the following view modes for a user:
      * - `Broadcaster`: Host mode.
      * - `Follower`: Follower mode.
-     * - `Freedom`: (Default) Freedom mode.
+     * - `Freedom`: (Default) Freedom mode. 
      *
      * @note
      * The view mode setting of a user is affected by the view mode setting of other users in the room as follows:
@@ -355,7 +355,7 @@ public class Room extends Displayer {
      * Inserts and displays an image on the whiteboard.
      *
      * This method wraps the {@link #insertImage(ImageInformation) insertImage} and {@link #completeImageUpload(String, String) completeImageUpload} methods.
-     * You can pass in the image information and URL address at the same in this method to directly insert and display the image on the whiteboard.
+     * You can pass in the image information and URL address at the same time in this method to directly insert and display the image on the whiteboard.
      *
      * @param imageInformationWithUrl The information and the URL address of the image. See {@link ImageInformationWithUrl ImageInformationWithUrl}。
      */
@@ -508,7 +508,7 @@ public class Room extends Displayer {
      * - Only users in interactive mode (with read and write permissions) are room members; users in subscription mode (with read-only permission) are not included in the member list.
      *
      * @param promise The`Promise<RoomMember[]>` interface instance. See{@link Promise<> Promise<T>}. You can get the call result of `getRoomMembers` through this interface:
-     * - The member lis of the room, if the method call succeeds. See {@link RoomMember RoomMember}.
+     * - The member list of the room, if the method call succeeds. See {@link RoomMember RoomMember}.
      * - An error message, if the method call fails.
      */
     public void getRoomMembers(final Promise<RoomMember[]> promise) {
@@ -710,7 +710,7 @@ public class Room extends Displayer {
      * In this case, you can use {@link #getZoomScale(Promise) getZoomScale}[2/2] instead.
      *
      * @param promise The `Promise<Number>` interface instance. See {@link Promise<> Promise<T>}. You can get the call result of `getZoomScale` through this interface:
-     * - The scale of the view., if the method call succeeds.
+     * - The scale of the view, if the method call succeeds.
      * - An error message, if the method call fails.
      */
     public void getZoomScale(final Promise<Number> promise) {
@@ -844,7 +844,7 @@ public class Room extends Displayer {
      * - The specified scene does not exist.
      * - The path passed in is the path of the scene directory, not the path of the scene.
      *
-     * @param path The path of the scene that you want to switch to，Ensure the scene path stars with `/` and consists of the scene directory and scene name. For example, `/math/classA`.
+     * @param path The path of the scene that you want to switch to. Ensure the scene path stars with `/` and consists of the scene directory and scene name. For example, `/math/classA`.
      */
     public void setScenePath(String path) {
         bridge.callHandler("room.setScenePath", new Object[]{path});
@@ -912,14 +912,14 @@ public class Room extends Displayer {
     }
 
     /**
-     * Insert multiples scenes under the specified scene directory.
+     * Inserts multiples scenes under the specified scene directory.
      *
      * @note
      * This method does not switch the whiteboard scene to any of the newly inserted scenes.
      * You need to call {@link #setScenePath(String) setScenePath(} to switch to one of the newly inserted scenes.
      *
      *
-     * @param dir    The path of the scene directory, which must starts with `/` and cannot be the path of a scene. For example, `"/math"`.
+     * @param dir    The path of the scene directory, which must starts with `/` and cannot be the path of a scene. For example, `"/math"`. 
      * @param scenes An array of scenes. For the files of a single scene, see {@link Scene Scene}.
      * @param index  The index of the first scene to be inserted. The index of scene under a scene directory can start from 0.
      * If the index is greater than the total number of existing scenes under the scene directory, the new scene is put after the last scene.
@@ -947,8 +947,8 @@ public class Room extends Displayer {
      *
      * @param sourcePath      The original path of the scene to be moved. It cannot be the path of a scene directory.
      * @param targetDirOrPath The path of the target scene directory or the target path of the scene under the current directory:
-     *                        - If you pass in the path of the target scene directory, the path of the scene changes, but the name of the scene does not changes.
-     *                        - If you pass in the target path of the scene under the current, both the path of the scene and the name of the scene change.
+     *                        - If you pass in the path of the target scene directory, the path of the scene changes, but the name of the scene does not change.
+     *                        - If you pass in the target path of the scene under the current directory, both the path of the scene and the name of the scene change.
      */
     public void moveScene(String sourcePath, String targetDirOrPath) {
         bridge.callHandler("room.moveScene", new Object[]{sourcePath, targetDirOrPath});
@@ -958,17 +958,17 @@ public class Room extends Displayer {
      * Deletes a scene or a scene directory.
      *
      * @note
-     * - There must be at least one scene in the live Interactive Whiteboard roo. If you delete all scenes, the SDK automatically creates
+     * - There must be at least one scene in the live Interactive Whiteboard room. If you delete all scenes, the SDK automatically creates
      * an initial scene with the path of `/init`.
-     * - If you delete the whiteboard current scene, the whiteboard displays the last under the current scene directory.
+     * - If you delete the current whiteboard scene, the whiteboard displays the last scene under the current scene directory.
      * - If you delete a scene directory, all scenes under the directory will be deleted.
      * - If you delete the current scene directory, for example, `dirA`, the SDK executes upward recursive logic to locate the new scene:
      *    1. If there is a scene directory after the deleted scene directory under the same directory, for example, `dirB`，the SDK switches the whiteboard scene to the first scene under `dirB` (with the index of 0).
-     *    2. If there is not a scene directory after the deleted scene directory under the same directory, then the SDK looks for scenes under the directory.
+     *    2. If there is no scene directory after the deleted scene directory under the same directory, then the SDK looks for scenes under the directory.
      *       If there are scenes under the directory, the SDK switches the whiteboard scene to the first scene (with the index of 0).
      *    3. If there is neither a scene directory after the deleted scene directory nor scenes under the same directory, then the SDK looks for scene directories before the deleted scene directory.
      *       If there is a scene directory, for example, `dirC`， before the deleted `dirA`, then the SDK switches the whiteboard scene to the first scene under `dirC` (with the index of 0).
-     * The SKD continues executing upward recursive logic until a new scene is found.
+     * The SDK continues executing upward recursive logic until a new scene is found.
      *
      *
      * @param dirOrPath The path of a scene or a scene directory. If you pass in the path of a scene directory, this method deletes all scenes under the directory.
@@ -978,11 +978,11 @@ public class Room extends Displayer {
     }
 
     /**
-     * Clears all the contents on the current scene.
+     * Clears all contents on the current scene. 
      *
      * @param retainPpt Whether to retain the PPT slide:
      * - `true`: Leave the PPT slide on the scene.
-     * - `false`: Clear the PPT slide together with all other contents.
+     * - `false`: Clear the PPT slide together with all other contents. 
      */
     public void cleanScene(boolean retainPpt) {
         bridge.callHandler("room.cleanScene", new Object[]{retainPpt});
@@ -1074,9 +1074,9 @@ public class Room extends Displayer {
      * - Interactive mode, in which users have read and write permissions on the whiteboard, appear in the member list of the room, and are visible to all other users in the room.
      * - Subscription mode, in which users have read-only access to the whiteboard, do not appear in the member list of the room, and are invisible to all other users in the room.
      *
-     * @param writable Whether the use is in interactive mode:
-     *                 - `true`: In interactive mode.
-     *                 - `false`: In subscription mode.
+     * @param writable Whether the user is in interactive mode:
+     *                 - `true`: The user is in interactive mode.
+     *                 - `false`: The user is in subscription mode.
      * @param promise  The `Promise<Boolean>` interface instance. See {@link Promise<> Promise<T>}. You can get the call result of `setWritable` through this interface:
      * - Whether the user is interactive mode, if the method call succeeds.
      * - An error message, if the method call fails.
@@ -1149,13 +1149,13 @@ public class Room extends Displayer {
     /**
      * Sets the delay time for sending the whiteboard contents of the local user to the remote users.
      *
-     * After calling this method, the SDK delays sending the whiteboard contents of the local user with the remote users per the set time.
+     * After calling this method, the SDK delays sending the whiteboard contents of the local user to the remote users per the set time.
      *
      * This method helps synchronize the whiteboard contents with audio and video in CND live streaming.
      *
      * @note This method does not delays the content the local users see, that is, when the local user writes or draws on the whiteboard, they see the content on their own whiteboard immediately.
      *
-     * @param delaySec The delay time in seconds.
+     * @param delaySec The delay time in seconds. 
      */
     public void setTimeDelay(Integer delaySec) {
         bridge.callHandler("room.setTimeDelay", new Object[]{delaySec * 1000});
@@ -1165,7 +1165,7 @@ public class Room extends Displayer {
     /**
      * Gets the delay time for synchronizing the whiteboard contents of the local user to the remote users.
      *
-     * @return The delay time in seconds.
+     * @return The delay time in seconds. 
      */
     public Integer getTimeDelay() {
         return this.timeDelay;
@@ -1213,7 +1213,6 @@ public class Room extends Displayer {
         /**
          * Hidden in documentation
          *
-         * @param eventEntry {@link EventEntry} 自定义事件内容，相对于 {@link AkkoEvent} 多了发送者的 memberId
          */
         @Override
         public void fireMagixEvent(EventEntry eventEntry) {
