@@ -70,7 +70,7 @@ public class CameraConfig extends WhiteObject {
     /**
      * Gets the scale factor of the view.
      *
-     * @return The scale factor of the view.
+     * @return The scale factor of the view. // TODO William CameraState.java includes this line: "The initial value is `1.0`." Should it be included here?
      */
     public Double getScale() {
         return scale;
