@@ -39,6 +39,7 @@ public interface NativePlayer {
      */
     NativePlayerPhase getPhase();
 
+    /** The phase of the `NativePlayer` instance.  */
     enum NativePlayerPhase {
         /**
          * The video playback has not started or has finished.

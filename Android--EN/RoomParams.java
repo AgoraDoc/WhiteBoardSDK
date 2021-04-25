@@ -265,7 +265,7 @@ public class RoomParams extends WhiteObject {
      *
      * @since 2.5.0
      *
-     * @param cameraBound The boundary of the view. See {@link CameraBound CameraBound}.
+     * @param cameraBound The boundary of the view. See {@link com.herewhite.sdk.domain.CameraBound CameraBound}.
      */
     public void setCameraBound(CameraBound cameraBound) {
         this.cameraBound = cameraBound;

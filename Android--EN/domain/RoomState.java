@@ -32,7 +32,9 @@ public class RoomState extends WhiteDisplayerState {
     }
 
     /**
-     * Gets the scale of the view. 
+     * Gets the scale of the view.
+     *
+     * @deprecated This method is deprecated.
      *
      * @return The scale of the view.
      */

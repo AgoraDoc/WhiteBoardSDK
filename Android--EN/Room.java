@@ -126,7 +126,7 @@ public class Room extends Displayer {
     /**
      * Modifies the state of the whiteboard tool currently in use.
      *
-     * A successful call of this method updates the {@link MemberState MemberState} of the room immediately. 
+     * A successful call of this method updates the {@link MemberState MemberState} of the room immediately.
      *
      * You can call {@link #getMemberState() getMemberState} to get the latest {@link MemberState MemberState}.
      *
@@ -254,7 +254,7 @@ public class Room extends Displayer {
      * In the live Interactive Whiteboard room, you can set one of the following view modes for a user:
      * - `Broadcaster`: Host mode.
      * - `Follower`: Follower mode.
-     * - `Freedom`: (Default) Freedom mode. 
+     * - `Freedom`: (Default) Freedom mode.
      *
      * @note
      * The view mode setting of a user is affected by the view mode setting of other users in the room as follows:
@@ -690,6 +690,8 @@ public class Room extends Displayer {
      *
      * @since 2.4.0
      *
+     * @deprecated This method is deprecated.
+     *
      * @note
      * - This method call is synchronous.
      * - You cannot get the latest view scale through {@link #getZoomScale() getZoomScale}[1/2] immediately after calling {@link #zoomChange(double)} or {@link #moveCamera(CameraConfig)}.
@@ -703,6 +705,8 @@ public class Room extends Displayer {
 
     /**
      * Gets the scale of the view.
+     *
+     * @deprecated This method is deprecated.
      *
      * @note
      * - This method call is asynchronous.
@@ -919,7 +923,7 @@ public class Room extends Displayer {
      * You need to call {@link #setScenePath(String) setScenePath(} to switch to one of the newly inserted scenes.
      *
      *
-     * @param dir    The path of the scene directory, which must starts with `/` and cannot be the path of a scene. For example, `"/math"`. 
+     * @param dir    The path of the scene directory, which must starts with `/` and cannot be the path of a scene. For example, `"/math"`.
      * @param scenes An array of scenes. For the files of a single scene, see {@link Scene Scene}.
      * @param index  The index of the first scene to be inserted. The index of scene under a scene directory can start from 0.
      * If the index is greater than the total number of existing scenes under the scene directory, the new scene is put after the last scene.
@@ -978,11 +982,11 @@ public class Room extends Displayer {
     }
 
     /**
-     * Clears all contents on the current scene. 
+     * Clears all contents on the current scene.
      *
      * @param retainPpt Whether to retain the PPT slide:
      * - `true`: Leave the PPT slide on the scene.
-     * - `false`: Clear the PPT slide together with all other contents. 
+     * - `false`: Clear the PPT slide together with all other contents.
      */
     public void cleanScene(boolean retainPpt) {
         bridge.callHandler("room.cleanScene", new Object[]{retainPpt});
@@ -1155,7 +1159,7 @@ public class Room extends Displayer {
      *
      * @note This method does not delays the content the local users see, that is, when the local user writes or draws on the whiteboard, they see the content on their own whiteboard immediately.
      *
-     * @param delaySec The delay time in seconds. 
+     * @param delaySec The delay time in seconds.
      */
     public void setTimeDelay(Integer delaySec) {
         bridge.callHandler("room.setTimeDelay", new Object[]{delaySec * 1000});
@@ -1165,7 +1169,7 @@ public class Room extends Displayer {
     /**
      * Gets the delay time for synchronizing the whiteboard contents of the local user to the remote users.
      *
-     * @return The delay time in seconds. 
+     * @return The delay time in seconds.
      */
     public Integer getTimeDelay() {
         return this.timeDelay;
