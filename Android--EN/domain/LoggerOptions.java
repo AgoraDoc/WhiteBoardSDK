@@ -12,7 +12,7 @@ public class LoggerOptions extends WhiteObject {
      *
      * @since 2.11.10
      *
-     * The log level follows the sequence of `error`, `warn`, `info`, and `debug`. When choosing a level, you can see the logs preceding that level.
+     * The log level follows the sequence of `error`, `warn`, `info`, and `debug`. When choosing a level, you can also see the logs preceding that level.
      *
      * For example, if you set the log level to `info`, the SDK outputs the logs within levels `error`，`warn`，and `info`.
      */
@@ -23,19 +23,19 @@ public class LoggerOptions extends WhiteObject {
          * Set your log level as `debug` if you want to get the most complete log file.
          *
          * @note
-         * At present, the `debug` level equals the `info` level.
+         * At present, logs at the `debug` level have the same information as those at the `info` level. 
          */
         debug,
         /**
          * Logs of the `info` level.
          *
-         * logs at this level mainly provides information on connection states of the SDK.
+         * Logs at this level mainly provide information on SDK connection states. 
          */
         info,
         /**
          * Logs of the `warn` level.
          *
-         * logs at this level mainly reports the issues that the SDK have encountered but automatically solved.
+         * Logs at this level mainly report the issues that the SDK has encountered but automatically solved.
          *
          * @note
          * If you call a deprecated method, the SDK does not send warning messages.
@@ -44,7 +44,7 @@ public class LoggerOptions extends WhiteObject {
         /**
          * Logs of the `error` level.
          *
-         * logs at this level mainly reports the errors that cause the SDK fail to work.
+         * Logs at this level mainly report the errors that cause the SDK to fail to complete a task.
          */
         error,
     }
@@ -72,9 +72,9 @@ public class LoggerOptions extends WhiteObject {
     /**
      * Gets whether log reporting is disabled.
      *
-     * @return Whether log reporting is disabled.
-     * - `true`: Disabled.
-     * - `false`: Enabled.
+     * @return Whether log reporting is disabled:
+     * - `true`: Log reporting is disabled.
+     * - `false`: Log reporting is enabled.
      */
     public Boolean getDisableReportLog() {
         return disableReportLog;
@@ -97,7 +97,7 @@ public class LoggerOptions extends WhiteObject {
     }
 
     /**
-     * Gets the printing level of the log.
+     * Gets the printing level of the log. 
      *
      * @return The printing level of the log. See {@link Level Level}.
      */
@@ -108,7 +108,9 @@ public class LoggerOptions extends WhiteObject {
     /**
      * Sets the log printing level of the SDK.
      *
-     * @since 2.11.10
+     * @since 2.11.10 
+     *
+     * This method specifies the log level that the SDK prints in the WebView.
      *
      * @param printLevelMask The log printing level of the SDK. The default level is `info`. See {@link Level Level}.
      */
@@ -129,6 +131,8 @@ public class LoggerOptions extends WhiteObject {
      * Sets the log reporting level of the SDK.
      *
      * @since 2.11.10
+     * 
+     * This method specifies the log level that the SDK reports to the Agora Interactive Whiteboard server.
      *
      * @param reportLevelMask The log reporting level of the SDK. The default level is `info`. See {@link Level Level}.
      */
