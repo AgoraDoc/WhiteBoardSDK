@@ -229,7 +229,7 @@ public class Displayer {
      * @param y The Y coordinate of the point in the Android internal coordinate system.
      * @param promise The `Promise<Point>` interface instance. See {@link com.herewhite.sdk.domain.Promise Promise}.
      * You can get the call result of `convertToPointInWorld` through this interface:
-     * - The global state of the room, if the method call succeeds. See {@link com.herewhite.sdk.domain.Point Point}. // TODO William This doesn't return the new (world) coordinates? Does the "global state" include these coordinates?
+     * - The new coordinates, if the method call succeeds. See {@link com.herewhite.sdk.domain.Point Point}.
      * - An error message, if the method call fails.
      */
     public void convertToPointInWorld(double x, double y, final Promise<Point> promise) {
@@ -272,7 +272,7 @@ public class Displayer {
      * @note This method applies to the local user's whiteboard only and does not change the background color of other users' whiteboards.
      *
      * @param intColor The background color of the whiteboard in RGBA hex value.
-     * The alpha channel does not have a value that makes the whiteboard transparent. // TODO William I am assuming you mean there is no "transparent value"? If you meant that the alpha channel having no value renders the whiteboard transparent, then it should be "...a value, which makes..."
+     * The alpha channel does not have a value that makes the whiteboard transparent.
      */
     @Deprecated
     public void setBackgroundColor(@ColorInt int intColor) {
@@ -371,7 +371,7 @@ public class Displayer {
      *
      * @since 2.11.0
      *
-     * This method disables the user from moving or zooming the view through touch-screen gestures. // TODO William Only touch-screen gestures? Not mouse/keyboard?
+     * This method disables the user from moving or zooming the view through touch-screen gestures. 
      *
      * @param disable Whether to disable the user from adjusting the view:
      * - `true`: Disable the user from adjusting the view.
