@@ -36,7 +36,7 @@ import wendu.dsbridge.OnReturnValue;
 
 /**
  * The `Displayer` class, which is the parent class of the {@link com.herewhite.sdk.Room Room} class and the {@link com.herewhite.sdk.Player Player} class.
- * The `Room` class and the `Player` class can inherit the methods of the `Displayer` class.
+ * The `Room` class and the `Player` class can both inherit the methods of the `Displayer` class.
  */
 public class Displayer {
     protected final static Gson gson = new Gson();
@@ -177,7 +177,7 @@ public class Displayer {
      *
      * You can receive the customized event callback after a successful call of this method.
      *
-     * @note The SDK triggers only one callback for the customized events with the sane name.
+     * @note The SDK triggers only one callback for customized events with the same name.
      *
      * @param eventName The name of the event.
      * @param eventListener The customized event callback. See {@link com.herewhite.sdk.domain.EventListener EventListener}.
@@ -194,12 +194,12 @@ public class Displayer {
      *
      * You can receive the customized event callback after a successful call of this method.
      *
-     * @note The SDK triggers only one callback for the customized events with the sane name.
+     * @note The SDK triggers only one callback for customized events with the same name.
      *
      * @param eventName     The name of the event.
      * @param eventListener The customized event callback. See {@link com.herewhite.sdk.domain.FrequencyEventListener FrequencyEventListener}.
      * If you add multiple callbacks for the same event, the callback added later overrides the one added earlier.
-     * @param fireInterval  The interval (ms) at which the SDK triggers the callback. The minimum interval is 500 ms. The SDK automatically adjusts the value smaller than 500 to 500.
+     * @param fireInterval  The interval (ms) at which the SDK triggers the callback. The minimum interval is 500 ms. The SDK automatically adjusts values smaller than 500 to 500.
      */
     public void addHighFrequencyEventListener(String eventName, FrequencyEventListener eventListener, Integer fireInterval) {
         if (fireInterval < 500) {
@@ -229,7 +229,7 @@ public class Displayer {
      * @param y The Y coordinate of the point in the Android internal coordinate system.
      * @param promise The `Promise<Point>` interface instance. See {@link com.herewhite.sdk.domain.Promise Promise}.
      * You can get the call result of `convertToPointInWorld` through this interface:
-     * - The global state of the room, if the method call succeeds. See {@link com.herewhite.sdk.domain.Point Point}.
+     * - The new coordinates, if the method call succeeds. See {@link com.herewhite.sdk.domain.Point Point}.
      * - An error message, if the method call fails.
      */
     public void convertToPointInWorld(double x, double y, final Promise<Point> promise) {
@@ -269,10 +269,10 @@ public class Displayer {
      *
      * @deprecated This method is deprecated. Use the Android native method [setBackgroundColor](https://developer.android.com/reference/android/view/View#setBackgroundColor(int)) instead.
      *
-     * @note This method applies to the local user's whiteboard only and does not change the background color of other users' whiteboard.
+     * @note This method applies to the local user's whiteboard only and does not change the background color of other users' whiteboards.
      *
      * @param intColor The background color of the whiteboard in RGBA hex value.
-     * The alpha channel does not have a value which makes the whiteboard transparent.
+     * The alpha channel does not have a value that makes the whiteboard transparent.
      */
     @Deprecated
     public void setBackgroundColor(@ColorInt int intColor) {
@@ -371,7 +371,7 @@ public class Displayer {
      *
      * @since 2.11.0
      *
-     * This method disables the user from moving or zooming the view through touch screen gestures.
+     * This method disables the user from moving or zooming the view through touch-screen gestures. 
      *
      * @param disable Whether to disable the user from adjusting the view:
      * - `true`: Disable the user from adjusting the view.

@@ -5,10 +5,10 @@ package com.herewhite.sdk.domain;
  *
  * @since 2.2.0
  *
- * The view rectangle defines a rectangle area which the view must cover.
- * After you set a view rectangle, the SDK automatically adjusts the view to fully contain the rectangle area, so as to ensure contents within the rectangle area are completely displayed.
+ * The view rectangle defines a rectangular area that the view must cover.
+ * After you set a view rectangle, the SDK automatically adjusts the view to fully contain the rectangular area, so as to ensure contents within the rectangle area are completely displayed.
  *
- * You can set a rectangle according to the size of a PPT slide or image to be displayed, to ensure the same content is displayed completely on screens of different sizes.
+ * You can set a view rectangle according to the size of a PPT slide or image to be displayed, to ensure the same content is displayed completely on screens of different sizes.
  *
  */
 public class RectangleConfig extends WhiteObject {
@@ -40,8 +40,8 @@ public class RectangleConfig extends WhiteObject {
 
     /**
      * The `RectangleConfig` constructor.
-     * <p>
-     * In this method, pass in the `width`, `height`, and `mode` parameters. Based on the `width` and `height` you pass in, the SDK calculates `originX` and `originY`, the X and Y coordinates of the top left corner of the view rectangle in the world coordinate system, in the following ways:
+     * <p> // TODO William Why do you use paragraph tags sometimes but not others? Does it matter? Is there some variation in output?
+     * In this method, pass in the `width`, `height`, and `mode` parameters. Based on the `width` and `height` you pass in, the SDK calculates `originX` and `originY`, the X and Y coordinates of the top left corner of the view rectangle in the world coordinate system, in the following ways: // TODO William Does this method in fact pass in a 'mode' parameter? Isn't that excluded here? Or is it passing in a default value from somewhere?
      * `originX = - width / 2.0d`
      * `originY = - height / 2.0d`
      * <p>
