@@ -17,7 +17,7 @@ export declare type ReconnectionOptions = {
 
 /**
  * 设备类型。
- * The type of the device.
+ * The device type.
  */
 export declare enum DeviceType {
     /**
@@ -27,12 +27,12 @@ export declare enum DeviceType {
     Desktop = "desktop",
     /**
      * 触碰板设备，比如智能手机、平板电脑。
-     * A touch screen device, such as a smartphone or tablet.
+     * A touchscreen device, such as a smartphone or tablet.
      */
     Touch = "touch",
     /**
      * 同时支持键盘、鼠标、触碰板的设备。
-     * A device that supports keyboard, mouse, and touch screen/touch pad.
+     * A device that supports keyboard, mouse, and touchscreen/touchpad.
      */
     Surface = "surface",
 }
@@ -78,13 +78,13 @@ export declare interface Cursor {
 
     /**
      * 光标指示区域中心的 X 轴坐标（以白板左上角为原点）。
-     * The X coordinate of the center of the area the cursor is pointing to (taking the left corner of the initial whiteboard as the origin).
+     * The X coordinate of the center of the area the cursor is pointing to (taking the upper left corner of the initial whiteboard as the origin).
      */
     readonly x: number;
 
     /**
      * 光标指示区域中心的 Y 轴坐标（以白板左上角为原点）。
-     * The Y coordinate of the center of the area the cursor is pointing to (taking the left corner of the initial whiteboard as the origin).
+     * The Y coordinate of the center of the area the cursor is pointing to (taking the upper left corner of the initial whiteboard as the origin).
      */
     readonly y: number;
 
@@ -154,7 +154,7 @@ export declare interface Cursor {
 export declare interface CursorMember {
     /**
      * 用户选择的颜色。
-     * The stroke color selected by the user.
+     * The stroke color selected by the user. // TODO William Include format (presumably RGB)?
      */
     readonly color: Color;
 
@@ -178,7 +178,7 @@ export declare interface CursorMember {
 export declare interface CursorAdapter {
     /**
      * 创建光标的描述。该方法在用户光标首次出现之前会被调用。
-     * Creates cursor description. This method is called before the user's cursor appears for the first time.
+     * Creates the cursor description. This method is called before the user's cursor appears for the first time.
      *
      * @param memberId 用户 ID。
      *                 The ID of the user.
@@ -216,8 +216,8 @@ export declare interface CursorAdapter {
      * @param positionY 光标指示区域中心的 Y 轴坐标（以白板左上角为原点）。
      *
      * @param cursor The cursor object.
-     * @param positionX The X coordinate of the center of the area the cursor is pointing to (taking the left corner of the initial whiteboard as the origin).
-     * @param positionY The Y coordinate of the center of the area the cursor is pointing to (taking the left corner of the initial whiteboard as the origin).
+     * @param positionX The X coordinate of the center of the area the cursor is pointing to (taking the upper left corner of the initial whiteboard as the origin).
+     * @param positionY The Y coordinate of the center of the area the cursor is pointing to (taking the upper left corner of the initial whiteboard as the origin).
      */
     readonly onMovingCursor: ((cursor: Cursor, positionX: number, positionY: number)=>void) | undefined;
 
@@ -230,12 +230,12 @@ export declare interface CursorAdapter {
 export declare type CursorDescription = {
     /**
      * 光标指示区域中心的 X 轴坐标（以光标图形的左上角为原点）。
-     * The X coordinate of the center of the area the cursor is pointing to (taking the left corner of the cursor icon as the origin).
+     * The X coordinate of the center of the area the cursor is pointing to (taking the upper left corner of the cursor icon as the origin).
      */
     x: number;
     /**
      * 光标指示区域中心的 Y 轴坐标（以光标图形的左上角为原点）。
-     * The Y coordinate of the center of the area the cursor is pointing to (taking the left corner of the cursor icon as the origin).
+     * The Y coordinate of the center of the area the cursor is pointing to (taking the upper left corner of the cursor icon as the origin).
      */
     y: number;
     /**
@@ -275,7 +275,9 @@ export declare function createPlugins<C_MAP extends Object>(plugins: Readonly<{
 
 /**
  * 组件插件的描述。Agora 支持的自定义插件包括组件插件和不可见插件。
- * Description of component plugins. Agora supports two kinds of custom plugins: component plugins and invisible plugins.
+ * Description of component plugins. // TODO William Parallel structure with invisible plugins section (line 392). Should there be a @since value here?
+ *
+ * Agora supports two kinds of custom plugins: component plugins and invisible plugins.
  */
 export declare type Plugin<C = {
 }, T = any> = {
@@ -332,14 +334,14 @@ export declare type Plugin<C = {
      * - `true`：拦截。
      * - `false`：不拦截。
      *
-     * Whether to interrupt the native events of the component plugin:
+     * Determines whether to interrupt the native events of the component plugin.
      *
      * @param plugin The component plugin instance.
      * @param event The native events.
      *
-     * @returns
+     * @returns Whether to interrupt the native events of the component plugin:
      * - `true`：Interrupt the native events.
-     * - `false`：Not interrupt the native events.
+     * - `false`：Do not interrupt the native events.
      */
      (plugin: PluginInstance<C, T>, event: NativeEvent)=>boolean;
 };
@@ -392,7 +394,7 @@ export declare interface Plugins<C_MAP extends Object = {
  *
  * Agora supports two kinds of custom plugins: component plugins and invisible plugins. Note that:
  * - An invisible plugin is a global and unique variable in a room; it can have one instance only.
- * - An invisible plugin does not have appearance. Its attributes are automatically synchronized in the room.
+ * - An invisible plugin has no appearance. Its attributes are automatically synchronized in the room.
  */
 export declare abstract class InvisiblePlugin<A extends Object> {
     /**
@@ -588,8 +590,8 @@ export declare enum AsyncModuleLoadMode {
  * - `false`：该对象不是 `Room` 实例。
  *
  * @returns Whether the `displayer` object is a `Room` instance:
- * - `true`：A `Room` instance.
- * - `false`：Not a `Room` instance.
+ * - `true`：The `displayer` object is a `Room` instance.
+ * - `false`：The `displayer` object is not a `Room` instance.
  */
 export declare function isRoom(displayer: Displayer): boolean;
 
@@ -605,8 +607,8 @@ export declare function isRoom(displayer: Displayer): boolean;
  * - `false`：该对象不是 `Player` 实例。
  *
  * @returns Whether the `displayer` object is a `Player` instance：
- * - `true`：A `Player` instance.
- * - `false`：Not a `Player` instance.
+ * - `true`：The `displayer` object is a `Player` instance.
+ * - `false`：The `displayer` object is not a `Player` instance.
  */
 export declare function isPlayer(displayer: Displayer): boolean;
 
@@ -632,7 +634,7 @@ export declare interface Callbacks<CALLBACKS> {
      * @param name 注册函数名。
      * @param listener 回调函数。
      *
-     * Registers a callback that is used once only.
+     * Registers a callback that is used only once.
      * @param name The callback name.
      * @param listener The callback function.
      */
@@ -726,7 +728,7 @@ export declare type HotKeys = {
     changeToSelector: HotKey;
     /**
      * 切换到激光笔（`laserPointer`）。
-     * Switch to laser point (`laserPointer`).
+     * Switch to laser pointer (`laserPointer`).
      */
     changeToLaserPointer: HotKey;
     /**
@@ -770,22 +772,22 @@ export declare type HotKeys = {
  * 自定义快捷键。
  */
 /**
- * Customized hotkey.
+ * Customized hotkeys. // TODO William Note that a "hotkey" can be a combination of more than one key. I think the overall title of this section should be plural here ("Customized hotkeys"), but the individual definitions below should be singular, because they describe a specific hotkey example. I've edited it this way, but you might want to doublecheck.
  */
 export declare type HotKey = string | HotKeyDescription | ReadonlyArray<string | HotKeyDescription> | HotKeyChecker;
 
 /**
- * 自定义快捷键的描述。
+ * 自定义快捷键的描述。 
  */
 /**
- * Description of the customized hotkeys.
+ * Description of the customized hotkey. 
  */
 export declare type HotKeyDescription = {
     /**
      * 指定的键。
      */
     /**
-     * A specified key.
+     * The specified key.
      */
     key: string;
     /**
@@ -815,12 +817,12 @@ export declare type HotKeyDescription = {
  * 自定义快捷键的事件。
  */
 /**
- * The event of the customized hotkeys.
+ * The event of the customized hotkey. 
  */
 export declare type HotKeyEvent = {
     /**
      * 浏览器的原生事件。
-     * Thr browser event.
+     * The browser event.
      */
     nativeEvent?: KeyboardEvent;
     /**
@@ -829,9 +831,9 @@ export declare type HotKeyEvent = {
      * - `KeyUp`：键被松开。
      */
     /**
-     * The event of the hotkeys:
-     * - `KeyDown`：The hotkeys are pressed.
-     * - `KeyUp`：The hotkeys are released.
+     * The event of the hotkey: 
+     * - `KeyDown`：The hotkey is pressed. 
+     * - `KeyUp`：The hotkey is released. 
      */
     kind: "KeyDown" | "KeyUp";
     /**
@@ -867,14 +869,14 @@ export declare type HotKeyEvent = {
  * - `false`：不是指定的快捷键。
  */
 /**
- * Checks the hotkeys.
+ * Checks the hotkey. // TODO William Is this a specific check for a specific hotkey? If so, I think it should be singular ("hotkey").
  *
- * @param event The event of the customized hotkeys.
- * @param kind The type of the keyboard.
+ * @param event The event of the customized hotkey.
+ * @param kind The type of keyboard.
  *
- * @returns Whether the hotkeys are the customized hotkeys:
- * - `true`：The hotkeys are the customized hotkeys.
- * - `false`：The hotkeys are not the customized hotkeys.
+ * @returns Whether the hotkey is the customized hotkey:
+ * - `true`：The hotkey is the customized hotkey.
+ * - `false`：The hotkey is not the customized hotkey.
  */
 export declare type HotKeyChecker = (event: HotKeyEvent, kind: KeyboardKind)=>boolean;
 
@@ -902,7 +904,7 @@ export declare interface PPTTask {
      * @returns 如果方法调用成功，会返回 PPT 文件的描述。
      */
     /**
-     * Sets to regularly query the real-time state of the file-conversion task. The query stops once the task succeeds or fails.
+     * Sets the automatic querying of the real-time state of the file-conversion task. The querying stops once the task succeeds or fails.
      */
     checkUtilGet(): Promise<PPT>;
 
@@ -927,17 +929,17 @@ export declare type PPTTaskProgress = {
     currentStep?: PPTTaskStep;
     /**
      * PPT 文件的总页数。
-     * The number of the total pages of the PPT file.
+     * The total number of pages of the PPT file.
      */
     totalPageSize: number;
     /**
      * 已转换的页数。
-     * The number of converted pages.
+     * The number of pages converted.
      */
     convertedPageSize: number;
     /**
      * 转换进度（百分比）。
-     * The conversion progress (in percentage).
+     * The progress of the conversion (in percentage).
      */
     convertedPercentage: number;
 };
@@ -964,17 +966,17 @@ export declare type PPTTaskParams = {
     kind: PPTKind;
     /**
      * 转换任务的 Task Token。
-     * The Task Token for authentication.
+     * The Task Token for authentication of the file-conversion task.
      */
     taskToken: string;
     /**
      * 轮询转换任务状态的时间间隔（毫秒）。
-     * The interval (ms) to regularly query the state of the file-conversion task.
+     * The time interval (ms) to automatically query the state of the file-conversion task.
      */
     checkProgressInterval?: number;
     /**
      * 轮询的超时时间（毫秒）。
-     * The timeout (ms) of the regular query.
+     * The timeout (ms) of the automatic query.
      */
     checkProgressTimeout?: number;
     /**
@@ -1043,7 +1045,7 @@ export declare interface Displayer<CALLBACKS extends DisplayerCallbacks = Displa
     /**
      * The ID of the user.
      * - In a live Interactive Whiteboard room, `observerId` is the ID of the local user.
-     * - During a whiteboard playback:
+     * - During whiteboard playback:
      *   - If the user's `ObserverMode` is `Directory`, `observerId` is the ID of the user whose view is displayed in the playback.
      *   - If the user's `ObserverMode` is `Freedom`, `observerId` is `AdminObserverId`.
      */
@@ -1053,7 +1055,7 @@ export declare interface Displayer<CALLBACKS extends DisplayerCallbacks = Displa
      * 该客户端的设备类型，决定 SDK 如何处理鼠标事件和触碰事件。
      */
     /**
-     * The type of the user's device, which determines how the SDK handles mouse and touch events.
+     * The user's device type, which determines how the SDK handles mouse and touch events.
      */
     readonly deviceType: DeviceType;
 
@@ -1061,7 +1063,7 @@ export declare interface Displayer<CALLBACKS extends DisplayerCallbacks = Displa
      * 用户的屏幕类型，用于调整手势识别参数。
      */
     /**
-     * The type of the user's screen, which is used to adjust parameters for gesture recognition.
+     * The user's screen type, which is used to adjust parameters for gesture recognition.
      */
     readonly screenType: ScreenType;
 
@@ -1074,7 +1076,7 @@ export declare interface Displayer<CALLBACKS extends DisplayerCallbacks = Displa
      * - `false`：不可写。
      */
     /**
-     * Currently whether the user has write permission:
+     * Whether the user currently has write permission:
      *
      * @since 2.10.0
      *
@@ -1102,7 +1104,7 @@ export declare interface Displayer<CALLBACKS extends DisplayerCallbacks = Displa
      * 该属性不影响自己的高亮框显示。
      */
     /**
-     * Whether to disable the highlighted box when another user puts their cursors on an object on the whiteboard:
+     * Whether to disable the highlighted box when another user puts their cursor on an object on the whiteboard:
      *
      * @since 2.12.0
      *
@@ -1115,7 +1117,7 @@ export declare interface Displayer<CALLBACKS extends DisplayerCallbacks = Displa
 
     /**
      * 是否禁止用户通过触屏手势或鼠标滚轮移动或缩放调整视角。
-     * Whether to disable the user from adjusting (moving or zooming) the view through touch screen gestures or mouses.
+     * Whether to disable the user from adjusting (moving or zooming) the view through touchscreen gestures or mousewheel movement.
      *
      * @since 2.11.0
      *
@@ -1205,7 +1207,7 @@ export declare type DisplayerCallbacks = {
      * - `true`：可写。
      * - `false`：不可写。
      *
-     * @param enableWriteNow Whether the user has write permission at the moment:
+     * @param enableWriteNow Whether the user currently has write permission:
      * - `true`：The user has write permission.
      * - `false`：The user does not have write permission.
      */
@@ -1221,8 +1223,8 @@ export declare type DisplayerCallbacks = {
     /**
      * Occurs when the hand tool is enabled or disabled.
      * @param active Whether the hand tool is enabled:
-     * - `true`：Enabled.
-     * - `false`：Disabled.
+     * - `true`：The hand tool is enabled.
+     * - `false`：The hand tool is disabled.
      */
      (active: boolean)=>void;
 
@@ -1259,7 +1261,7 @@ export declare type DisplayerCallbacks = {
      * Reports the progress of loading the PPT file when converting it to web pages.
      *
      * @param uuid The unique identifier of the conversion task (Task UUID).
-     * @param progress The loading progress. The value ranges is [0.0, 1.0].
+     * @param progress The loading progress. The value range is [0.0, 1.0].
      */
     (uuid: string, progress: number)=>void;
 
@@ -1323,7 +1325,7 @@ export declare interface Room extends Displayer {
     /**
      * 远端白板画面的同步延时，单位为毫秒，默认值为 `0`。如果将该值设为大于 `0`，可以模拟网络延时的效果，防止用户感知错位。
      * The delay time (ms) for synchronizing the whiteboard contents of the local user to the remote users. The default value is `0`.
-     * You can set it to a value greater than `0` so that the remote user has smooth watching experience when the network is poor.
+     * You can set it to a value greater than `0` so that the remote user has a smooth watching experience when the network is poor.
      */
     timeDelay: number;
 
@@ -1334,7 +1336,7 @@ export declare interface Room extends Displayer {
      * @param timestamp 同步延时，为 unix 时间戳，单位为毫秒。
      */
     /**
-     * The delay time for synchronizing audios and videos to the whiteboard. This parameter overrides {@link timeDelay}.
+     * The delay time for synchronizing audio and video to the whiteboard. This parameter overrides {@link timeDelay}.
      *
      * @since 2.12.11
      * @param timestamp The Unix timestamp (ms) representing the delay time.
@@ -1425,7 +1427,7 @@ export declare enum RoomErrorLevel {
     ThrowError = "throwError",
     /**
      * 拦截该操作，并在控制台打印警告。
-     * The SDK interrupts the user's attempt and prints a warning in Console.
+     * The SDK interrupts the user's attempt and prints a warning in Console. // TODO William Perhaps "in the console"? Is "Console" a capitalized term?
      */
     Warn = "warn",
     /**
@@ -1463,8 +1465,8 @@ export declare type RoomCallbacks = DisplayerCallbacks & {
      * | kickByAdmin    | The user is removed by the admin.                   |
      * | roomDelete     | The room is deleted.             |
      * | roomZombie     | The room is not active.                    |
-     * | roomBan        | The room is disabled.                   |
-     * | GatewayAdjust  | The gateway is adjusted.                     |
+     * | roomBan        | The room is disabled.                   |  // TODO William Is this correct? "Banned" usually means something stronger than "disabled".
+     * | GatewayAdjust  | The gateway is adjusted.                     | // TODO William What does it mean when the gateway is "adjusted"?
      * | replaceByOther | The user is replaced by another user.|
      * | crash          | The server crashes.                  |
      */
@@ -1479,7 +1481,7 @@ export declare type RoomCallbacks = DisplayerCallbacks & {
     /**
      * Whether to intercept the keyboard event for which you have set a listener:
      * - `true`: Intercept the keyboard event, which implies that the event does not trigger the callback.
-     * - `false`: Not intercept the keyboard event.
+     * - `false`: Do not intercept the keyboard event.
      */
     (event: KeyboardEvent)=>boolean;
 
@@ -1570,7 +1572,7 @@ export declare interface CustomInput {
 export declare enum ApplianceNames {
     /**
      * 互动工具。该工具没有默认行为，可供所有插件使用。目前主要用于 H5 课件。
-     * Clicker. This tool has no default behavior and can be used by any plugin. Currently is is mainly used for H5 files.
+     * Clicker. This tool has no default behavior and can be used by any plugin. Currently, this is mainly used for H5 files. // TODO William "Clicker" = "Interactive tool"?
      */
     clicker = "clicker",
 }
@@ -1587,7 +1589,7 @@ export declare type PluginProps<C, T> = {
     plugin: PluginInstance<C, T>;
     /**
      * 组件插件图标周围的空白。
-     * The spaces around the component plugin icon.
+     * The space around the component plugin icon.
      */
     margin: Margin;
     /**
@@ -1636,13 +1638,13 @@ export declare interface PluginInstance<C, A> {
 
     /**
      * 组件插件实例的左上角在世界坐标系（以白板初始化时的中心点为原点的坐标系）中的 X 轴坐标。
-     * The X coordinate of the left corner of the component plugin instance in the world coordinate system (taking the center of the initial whiteboard as the origin).
+     * The X coordinate of the upper left corner of the component plugin instance in the world coordinate system (taking the center of the initial whiteboard as the origin).
      */
     readonly originX: number;
 
     /**
      * 组件插件实例的左上角在世界坐标系（以白板初始化时的中心点为原点的坐标系）中的 Y 轴坐标。
-     * The Y coordinate of the left corner of the component plugin instance in the world coordinate system (taking the center of the initial whiteboard as the origin).
+     * The Y coordinate of the upper left corner of the component plugin instance in the world coordinate system (taking the center of the initial whiteboard as the origin).
      */
     readonly originY: number;
 
@@ -1696,21 +1698,21 @@ export declare interface PluginInstance<C, A> {
      * - `true`：在播放。在白板实时房间内，取值一直为 `true`。
      * - `false`：不在播放。
      *
-     * * Whether the component plugin instance is being played:
-     * - `true`：The component plugin instance is being played. In a live Interactive Whiteboard room, this parameter stays as `true`.
+     * Whether the component plugin instance is being played:
+     * - `true`：The component plugin instance is being played. In a live Interactive Whiteboard room, this parameter is always `true`.
      * - `false`：The component plugin instance is not being played.
      */
     readonly isPlaying: boolean;
 
     /**
      * 组件插件实例当前播放位置的时间戳（若为实时房间，则恒为 0）。
-     * The Unix timestamp of the current playback position of the component plugin instance (this parameter stays as `0` in a live Interactive Whiteboard room).
+     * The Unix timestamp of the current playback position of the component plugin instance. This parameter is always `0` in a live Interactive Whiteboard room. // TODO William Should you include the unit?
      */
     readonly playerTimestamp: number;
 
     /**
      * 组件插件实例当前的播放速率倍率（若为实时房间，则恒为 `1.0`）。
-     * The current playback speed of the component plugin instance (this parameter stays as `1.0` in a live Interactive Whiteboard room).
+     * The current playback speed of the component plugin instance. This parameter is always `1.0` in a live Interactive Whiteboard room.
      */
     readonly playbackSpeed: number;
 
@@ -1761,12 +1763,12 @@ export declare interface PluginInstance<C, A> {
 export declare type PluginDescription<A = any> = {
     /**
      * 组件插件实例的左上角在世界坐标系（以白板初始化时的中心点为原点的坐标系）中的 X 轴坐标。
-     * The X coordinate of the left corner of the component plugin instance in the world coordinate system (taking the center of the initial whiteboard as the origin).
+     * The X coordinate of the upper left corner of the component plugin instance in the world coordinate system (taking the center of the initial whiteboard as the origin).
      */
     originX?: number;
     /**
      * 组件插件实例的左上角在世界坐标系（以白板初始化时的中心点为原点的坐标系）中的 Y 轴坐标。
-     * The Y coordinate of the left corner of the component plugin instance in the world coordinate system (taking the center of the initial whiteboard as the origin).
+     * The Y coordinate of the upper left corner of the component plugin instance in the world coordinate system (taking the center of the initial whiteboard as the origin).
      */
     originY?: number;
     /**
@@ -1776,7 +1778,7 @@ export declare type PluginDescription<A = any> = {
     width?: number;
     /**
      * 组件插件实例的高。
-     * The width of the component plugin instance.
+     * The height of the component plugin instance.
      */
     height?: number;
     /**
@@ -1798,7 +1800,7 @@ export declare type PluginDescription<A = any> = {
 
 /**
  * 颜色，格式为 RGB。例如 `[0, 0, 255]` 代表蓝色。
- * Color in RGB format. For example, `[0, 0, 255]` stands for blue.
+ * Color in RGB format. For example, `[0, 0, 255]` represents blue.
  */
 export declare type Color = number[];
 
@@ -1836,29 +1838,29 @@ export declare enum CursorNames {
     HandGrasp = "cursor-hand-grasp",
     /**
      * 指向西北和东南的双向箭头。
-     * A double-headed arrow pointing to northwest and southeast.
+     * A double-headed arrow pointing northwest and southeast.
      */
     Nwse = "cursor-nwse",
     /**
      * 指向东北和西南的双向箭头。
-     * A double-headed arrow pointing to northeast and southwest.
+     * A double-headed arrow pointing northeast and southwest.
      */
     Nesw = "cursor-nesw",
     /**
      * 指向南北的双向箭头。
-     * A double-headed arrow pointing to north and south.
+     * A double-headed arrow pointing north and south.
      */
     Ns = "cursor-ns",
     /**
      * 指向东西的双向箭头。
-     * A double-headed arrow pointing to east and west.
+     * A double-headed arrow pointing east and west.
      */
     Ew = "cursor-ew",
 }
 
 /**
  * 屏幕类型。
- * The type of the user's screen.
+ * The user's screen type.
  */
 export declare enum ScreenType {
     /**
@@ -1897,13 +1899,13 @@ export declare type WhiteWebSdkConfiguration = {
      * - `false`：不用 MobX 监听 `displayer.state`。
      *
      * Whether to use MobX to listen for `displayer.state`:
-     * - `true`：Use MobX to listen for `displayer.state`, which turns `displayer.state` to a MobX observable object. See [Creating observable state](https://mobx.js.org/observable-state.html#observable).
-     * - `false`：Not use MobX to listen for `displayer.state`.
+     * - `true`：Use MobX to listen for `displayer.state`, which turns `displayer.state` into a MobX observable object. See [Creating observable state](https://mobx.js.org/observable-state.html#observable).
+     * - `false`：Do not use MobX to listen for `displayer.state`.
      */
     useMobXState?: boolean;
     /**
      * 该客户端的设备类型，决定 SDK 如何处理鼠标事件和触碰事件。
-     * The type of the device, which determines how the SDK handles mouse and touch events.
+     * The device type, which determines how the SDK handles mouse and touch events.
      *
      * 如果填写错误，会导致 SDK 对设备输入的响应行为不符合预期。如果不填，SDK 会根据内在逻辑自动判断设备的类型。
      * If you pass in an incorrect value, the SDK may not respond to the device inputs as expected.
@@ -1912,7 +1914,7 @@ export declare type WhiteWebSdkConfiguration = {
     deviceType?: DeviceType;
     /**
      * 该客户端的屏幕类型，用于调整手势识别参数。默认为 `Desktop`。
-     * The type of the user's screen, which is used to adjust parameters for gesture recognition.
+     * The user's screen type, which is used to adjust parameters for gesture recognition.
      */
     screenType?: ScreenType;
     /**
@@ -2009,7 +2011,7 @@ export declare type WhiteWebSdkConfiguration = {
      * });
      * ```
      * 如果是因为参数原因初始化失败，会在调用 `new WhiteWebSdk({...})` 时提示发生错误。该回调仅用于网络或鉴权失败时的错误处理。
-     * If there is an error in the parameters, you can get the error message when calling `new WhiteWebSdk({...})`.
+     * If there is an error in the parameters, you can get an error message when calling `new WhiteWebSdk({...})`.
      * This callback only reports network and authentication errors.
      *
      * @param error 错误信息。
@@ -2036,9 +2038,9 @@ export declare type ConstructRoomParams = {
      * - `true`：关闭。关闭后，如果视角的尺寸发生改变，必须主动调用 `refreshViewSize` 来保证适配。
      * - `false`：（默认）不关闭。
      *
-     * Whether to disable the auto resize function:
-     * - `true`：Disable the function. In this case, you need to call `refreshViewSize` every time the size of the view changes.
-     * - `false`：(Default) Enable the function.
+     * Whether to disable the auto-resize function:
+     * - `true`：Disable the auto-resize function. In this case, you need to call `refreshViewSize` every time the size of the view changes.
+     * - `false`：(Default) Enable the auto-resize function.
      */
     disableAutoResize?: boolean;
     /**
@@ -2057,7 +2059,7 @@ export declare type ConstructRoomParams = {
      * 该属性不影响自己的高亮框显示。
      */
     /**
-     * Whether to disable the highlighted box when another user puts their cursors on an object on the whiteboard:
+     * Whether to disable the highlighted box when another user puts their cursor on an object on the whiteboard: 
      *
      * @since 2.12.0
      *
@@ -2079,7 +2081,7 @@ export declare type JoinRoomParams = ConstructRoomParams & {
      * Customized user information. This parameter can use any data type.
      *
      * 房间内其他用户可以通过如下代码读取特定用户在加入房间时设置的 `userPayload`：
-     * Refer to the following code to enable other users to read the `userPayload` of a specific user, which is set when the user joining the room:
+     * Refer to the following code to enable other users to read the `userPayload` of a specific user, which is set when the user is joining the room:
      *
      * @example
      * ```javascript
@@ -2178,7 +2180,7 @@ export declare type ReplayRoomParams = ConstructRoomParams & {
      *
      * 该参数需要和 `room` 同时传入。传入该参数表明只回放特定片段，因此禁止再传入 `beginTimestamp` 和 `duration`。
      * This parameter must be passed in together with `room`.
-     * Do not pass in `beginTimestamp` or `duration` after passing in this parameter, which indicates playing a specific clip from the recording.
+     * Passing in this parameter indicates that only a specific segment is played back, so passing in `beginTimestamp` and `duration` is forbidden. 
      */
     slice?: string;
     /**
@@ -2187,7 +2189,7 @@ export declare type ReplayRoomParams = ConstructRoomParams & {
      * - 如果只传该参数，不传 `beginTimestamp` 和 `duration`，则表明回放该房间的所有录像片段。
      * - 如果同时传入该参数和 `beginTimestamp` 和 `duration`，则表明回放该房间在对应时间范围内的所有录像片段。
      *
-     * - If you pass in this parameter only, the SDK replays all recordings of the room.
+     * - If you pass in only this parameter (without `beginTimestamp` and `duration`), the SDK replays all the recordings of the room.
      * - If you pass in this parameter together with `beginTimestamp` and `duration`, the SDK replays the recordings within the specified time range.
      */
     room: string;
@@ -2209,7 +2211,7 @@ export declare type ReplayRoomParams = ConstructRoomParams & {
 
 /**
  * 检查白板房间是否可以回放的参数配置。
- * Configurations of checking if the whiteboard content of a live room can be replayed.
+ * Configurations of checking whether the whiteboard content of a live room can be replayed.
  */
 export declare type PlayableCheckingParams = {
 };
@@ -2234,7 +2236,7 @@ export declare class WhiteWebSdk {
 
     /**
      * 用户的屏幕类型，用于调整手势识别参数。
-     * The type of the user's screen, which is used to adjust parameters for gesture recognition.
+     * The user's screen type, which is used to adjust parameters for gesture recognition.
      */
     readonly screenType: ScreenType;
 
@@ -2242,7 +2244,7 @@ export declare class WhiteWebSdk {
 
 /**
  * @deprecated 该类已废弃。请使用 `UserPayload` 自定义用户信息。
- * @deprecated You can use `UserPayload` instead.
+ * @deprecated You can use `UserPayload` instead. // TODO William Why "You can use..." instead of just "Use..."? Are there other options?
  */
 export declare type MemberInformation = {
     /**
@@ -2323,14 +2325,14 @@ export declare type RenderPlugin<C = {
      * - `true`：拦截。
      * - `false`：不拦截。
      *
-     * Whether to interrupt the native events of the component plugin:
+     * Determines whether to interrupt the native events of the component plugin.
      *
      * @param plugin The component plugin instance.
      * @param event The native events.
      *
-     * @returns
+     * @returns Whether to interrupt the native events of the component plugin:
      * - `true`：Interrupt the native events.
-     * - `false`：Not interrupt the native events.
+     * - `false`：Do not interrupt the native events.
      */
     (plugin: PluginInstance<C, T>, event: NativeEvent)=>boolean;
 };
