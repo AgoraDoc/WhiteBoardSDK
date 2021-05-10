@@ -6,7 +6,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
 /**
- * The `WhiteDisplayerState` class, which is inherited by the `Room` and `Player` instances. 
+ * The `WhiteDisplayerState` class, which is inherited by the `Room` and `Player` instances.
  *
  * @since 2.4.8
  */
@@ -22,7 +22,7 @@ public class WhiteDisplayerState extends WhiteObject {
      * <p>
      * A successful call of this method casts all `GlobalState` variables to the instances of the customized class.
      *
-     * @param <T>      Type constraint. The customized `GlobalState` must extend the {@link GlobalState GlobalState} class.
+     * @param <T>      Type constraint. The customized `GlobalState` must extend the {@link com.herewhite.sdk.domain.GlobalState GlobalState} class.
      * @param classOfT The customized `GlobalState` class.
      */
     public static <T extends GlobalState> void setCustomGlobalStateClass(Class<T> classOfT) {

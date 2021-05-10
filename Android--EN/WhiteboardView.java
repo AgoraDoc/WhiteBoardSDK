@@ -47,14 +47,17 @@ public class WhiteboardView extends DWebView implements JsBridgeInterface {
         }
     }
 
+    /// @cond test
     /**
      * Hidden in documentation
      */
     public void setAutoResize(boolean autoResize) {
         this.autoResize = autoResize;
     }
+    /// @endcond
 
 
+    /// @cond test
     /**
      * Hidden in documentation
      */
@@ -65,6 +68,7 @@ public class WhiteboardView extends DWebView implements JsBridgeInterface {
             return context;
         }
     }
+    /// @endcond
 
     private void init() {
         getSettings().setMediaPlaybackRequiresUserGesture(false);

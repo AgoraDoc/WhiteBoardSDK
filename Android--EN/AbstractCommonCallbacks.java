@@ -5,7 +5,7 @@ import com.herewhite.sdk.domain.SDKError;
 import org.json.JSONObject;
 
 /**
- * The default (empty) implementation of the `CommonCallbacks` interface. See {@link CommonCallbacks}.
+ * The default (empty) implementation of the `CommonCallbacks` interface. See {@link CommonCallbacks CommonCallbacks}.
  *
  * @deprecated This interface is deprecated.
  */

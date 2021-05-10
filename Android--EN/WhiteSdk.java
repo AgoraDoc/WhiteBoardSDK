@@ -34,9 +34,9 @@ public class WhiteSdk {
     /**
      * Sets common event callbacks.
      *
-     * The SDK uses the {@link commonCallbacks} class to report SDK runtime events to the application.
+     * The SDK uses the {@link com.herewhite.sdk.CommonCallbacks CommonCallbacks} class to report SDK runtime events to the application.
      *
-     * @param commonCallbacks Common event callbacks. See {@link commonCallbacks commonCallbacks}.
+     * @param commonCallbacks Common event callbacks. See {@link com.herewhite.sdk.CommonCallbacks CommonCallbacks}.
      */
     public void setCommonCallbacks(CommonCallbacks commonCallbacks) {
         sdkJsInterface.setCommonCallbacks(commonCallbacks);
@@ -87,7 +87,7 @@ public class WhiteSdk {
      * @param bridge The whiteboard view. See {@link WhiteboardView WhiteboardView}.
      * @param context The context of the Android Activity.
      * @param whiteSdkConfiguration Configurations for the `WhiteSdk` instance. See {@link WhiteSdkConfiguration WhiteSdkConfiguration}.
-     * @param commonCallbacks Common callback events. See {@link commonCallbacks commonCallbacks}.
+     * @param commonCallback Common callback events. See {@link com.herewhite.sdk.CommonCallback CommonCallback}.
      */
     public WhiteSdk(JsBridgeInterface bridge, Context context, WhiteSdkConfiguration whiteSdkConfiguration, @Nullable CommonCallback commonCallback) {
         this(bridge, context, whiteSdkConfiguration, commonCallback, null);
@@ -96,12 +96,14 @@ public class WhiteSdk {
     /**
      * Initializes the `WhiteSdk` instance.
      *
+     * @deprecated @deprecated The `urlInterrupter` parameter in this method is deprecated. Use the {@link CommonCallbacks#urlInterrupter(String) urlInterrupter} method of the `CommonCallbacks` interface instead.
+     *
      * Ensure that you call `WhiteSdk` to create and initialize a `WhiteSdk` instance before calling any other APIs.
      *
      * @param bridge The whiteboard view, see {@link WhiteboardView WhiteboardView}.
      * @param context The context of the Android Activity.
      * @param whiteSdkConfiguration Configurations for the `WhiteSdk` instance. See {@link WhiteSdkConfiguration WhiteSdkConfiguration}.
-     * @param urlInterrupter Sets the interception of image URL addresses. See {@link UrlInterrupter}. @deprecated This parameter is deprecated. Use the {@link CommonCallbacks#urlInterrupter(String) urlInterrupter} method of the `CommonCallbacks` interface instead.
+     * @param urlInterrupter Sets the interception of image URL addresses. See {@link com.herewhite.sdk.domain.UrlInterrupter UrlInterrupter}.
      */
     public WhiteSdk(JsBridgeInterface bridge, Context context, WhiteSdkConfiguration whiteSdkConfiguration, UrlInterrupter urlInterrupter) {
         this(bridge, context, whiteSdkConfiguration);
@@ -116,8 +118,9 @@ public class WhiteSdk {
      * @param bridge The whiteboard view, see {@link WhiteboardView WhiteboardView}.
      * @param context The context of the Android Activity.
      * @param whiteSdkConfiguration Configurations for the `WhiteSdk` instance. See {@link WhiteSdkConfiguration WhiteSdkConfiguration}.
-     * @param commonCallbacks Common callback events. See {@link commonCallbacks commonCallbacks}.
-     * @param audioMixerBridge Sets audio mixing. See {@link AudioMixerBridge AudioMixerBridge}. When you use the Agora RTC SDK and Interactive Whiteboard SDK at the same time, and the dynamic PPT displayed in the whiteboard contains audio files, you can call the `AudioMixerBridge` interface to play the audio in the dynamic PPT using the Agora RTC SDK interface.
+     * @param commonCallback Common callback events. See {@link com.herewhite.sdk.CommonCallback CommonCallback}.
+     * @param audioMixerBridge Sets audio mixing. See {@link com.herewhite.sdk.AudioMixerBridge AudioMixerBridge}.
+     * When you use the Agora RTC SDK and Interactive Whiteboard SDK at the same time, and the dynamic PPT displayed in the whiteboard contains audio files, you can call the `AudioMixerBridge` interface to play the audio in the dynamic PPT using the Agora RTC SDK interface.
      */
     public WhiteSdk(JsBridgeInterface bridge, Context context, WhiteSdkConfiguration whiteSdkConfiguration, @Nullable CommonCallback commonCallback, @Nullable AudioMixerBridge audioMixerBridge) {
         this.bridge = bridge;
@@ -152,7 +155,7 @@ public class WhiteSdk {
      * Joins the live Interactive Whiteboard room.
      *
      * @param roomParams Configurations for the `Room` instance. See {@link RoomParams RoomParams}.
-     * @param roomPromise `Promise<Room>` interface instance. See {@link Promise Promise}. You can get the call result of `joinRoom` through this interface.
+     * @param roomPromise `Promise<Room>` interface instance. See {@link com.herewhite.sdk.domain.Promise Promise}. You can get the call result of `joinRoom` through this interface:
      * - The `Room` instance, if the method call succeeds. See {@link Room}.
      * - An error message, if the method call fails.
      */
@@ -165,7 +168,7 @@ public class WhiteSdk {
      *
      * @param roomParams Configurations for the `Room` instance. See {@link RoomParams RoomParams}.
      * @param roomListener Sets room event callbacks. See {@link RoomListener RoomListener}. When the SDK reconnects to the Interactive Whiteboard server, if you do not pass in the `roomListener` parameter, the SDK uses the previously set `roomListener` parameter. To release the `roomListener`, call {@link #releaseRoom(String) releaseRoom}.
-     * @param roomPromise `Promise<Room>` interface instance. See {@link Promise Promise}. You can get the call result of `joinRoom` through this interface:
+     * @param roomPromise `Promise<Room>` interface instance. See {@link com.herewhite.sdk.domain.Promise Promise}. You can get the call result of `joinRoom` through this interface:
      * - The `Room` instance, if the method call succeeds. See {@link Room}.
      * - An error message, if the method call fails.
      */
@@ -203,9 +206,9 @@ public class WhiteSdk {
     /**
      * Creates a `Player` instance, which is used to replay the whiteboard content of a live Interactive Whiteboard room.
      *
-     * @param playerConfiguration Configurations for the `Player` instance. See {@link PlayerConfiguration PlayerConfiguration}.
-     * @param playerPromise `Promise<Player>` interface instance. See {@link Promise Promise}. You can get the call result of `createPlayer` through this interface:
-     * - The `Player` instance, if the method call succeeds.  See {@link Player}.
+     * @param playerConfiguration Configurations for the `Player` instance. See {@link com.herewhite.sdk.domain.PlayerConfiguration PlayerConfiguration}.
+     * @param playerPromise `Promise<Player>` interface instance. See {@link com.herewhite.sdk.domain.Promise Promise}. You can get the call result of `createPlayer` through this interface:
+     * - The `Player` instance, if the method call succeeds. See {@link com.herewhite.sdk.Player Player}.
      * - An error message, if the method call fails.
      */
     public void createPlayer(final PlayerConfiguration playerConfiguration, final Promise<Player> playerPromise) {
@@ -215,10 +218,10 @@ public class WhiteSdk {
     /**
      * Creates a `Player` instance, which is used to replay the whiteboard content of a live Interactive Whiteboard room.
      *
-     * @param playerConfiguration Configurations for the `Player` instance. See {@link PlayerConfiguration PlayerConfiguration}.
-     * @param listener The event listener of the `Player` instance. See {@link PlayerEventListener}.
-     * @param playerPromise `Promise<Player>` interface instance. See {@link Promise Promise}. You can get the call result of `createPlayer` through this interface:
-     * - The `Player` instance, if the method call succeeds. See {@link Player}.
+     * @param playerConfiguration Configurations for the `Player` instance. See {@link com.herewhite.sdk.domain.PlayerConfiguration PlayerConfiguration}.
+     * @param listener The event listener of the `Player` instance. See {@link com.herewhite.sdk.PlayerEventListener PlayerEventListener}.
+     * @param playerPromise `Promise<Player>` interface instance. See {@link com.herewhite.sdk.domain.Promise Promise}. You can get the call result of `createPlayer` through this interface:
+     * - The `Player` instance, if the method call succeeds. See {@link com.herewhite.sdk.Player Player}.
      * - An error message, if the method call fails.
      */
     public void createPlayer(final PlayerConfiguration playerConfiguration, final PlayerListener listener, final Promise<Player> playerPromise) {
@@ -254,8 +257,8 @@ public class WhiteSdk {
      *
      * @since 2.11.0
      *
-     * @param playerConfiguration Configurations for the `Player` instance. See {@link PlayerConfiguration PlayerConfiguration}.
-     * @param playablePromise The `Promise` interface instance, see {@link Promise Promise} for details. You can get the result of calling `isPlayable` through this interface:
+     * @param playerConfiguration Configurations for the `Player` instance. See {@link com.herewhite.sdk.domain.PlayerConfiguration PlayerConfiguration}.
+     * @param playablePromise The `Promise` interface instance, see {@link com.herewhite.sdk.domain.Promise Promise} for details. You can get the result of calling `isPlayable` through this interface:
      * - `true`, if the method call succeeds.
      * - `false`, if the method call fails.
      */
@@ -285,7 +288,7 @@ public class WhiteSdk {
      * - Each time this method is called, it overrides the original font declaration.
      * - Do not call this method and the `loadFontFaces` method at the same time; otherwise, unexpected results may occur.
      *
-     * @param fontFaces The specified fonts. See {@link FontFace FontFace}.
+     * @param fontFaces The specified fonts. See {@link com.herewhite.sdk.domain.FontFace FontFace}.
      */
     public void setupFontFaces(FontFace[] fontFaces) {
         bridge.callHandler("sdk.updateNativeFontFaceCSS", new Object[]{fontFaces});
@@ -308,8 +311,8 @@ public class WhiteSdk {
      * - Fonts declared and preloaded by this method cannot be deleted. Each method call adds the new fonts to the already preloaded fonts.
      * - Do not call this method and the `setupFontFaces` method at the same time; otherwise, unexpected results may occur.
      *
-     * @param fontFaces The specified fonts. See {@link FontFace}.
-     * @param loadPromise The `Promise` interface instance. See {@link Promise Promise}. You can get the call result of `loadFontFaces` through this interface:
+     * @param fontFaces The specified fonts. See {@link com.herewhite.sdk.domain.FontFace FontFace}.
+     * @param loadPromise The `Promise` interface instance. See {@link com.herewhite.sdk.domain.Promise Promise}. You can get the call result of `loadFontFaces` through this interface:
      * - The `FontFace` object, if the method call succeeds.
      * - An error message, if the method call fails.
      */
@@ -373,7 +376,7 @@ public class WhiteSdk {
     /**
      * Releases the playback room and removes the `PlayerEventListener` callback.
      *
-     * @deprecated This method is deprecated. Please use {@link releasePlayer() releasePlayer} instead.
+     * @deprecated This method is deprecated. Please use {@link #releasePlayer() releasePlayer} instead.
      *
      * @param uuid Room UUID, the unique identifier of a room.
      * You do not need to specify this parameter because a `WhiteSdk` instance supports creating only one `Player` instance.

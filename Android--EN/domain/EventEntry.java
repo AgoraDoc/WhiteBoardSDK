@@ -9,12 +9,14 @@ public class EventEntry extends WhiteObject {
     private String scope;
     private long authorId;
 
+    /// @cond test
     /**
      * Hidden in the documentation
      */
     public String getScope() {
         return scope;
     }
+    /// @endcond
 
     /**
      * Gets the user ID of the event trigger.

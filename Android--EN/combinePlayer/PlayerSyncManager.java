@@ -248,7 +248,7 @@ public class PlayerSyncManager {
     /**
      * Updates the phase of the `Player` instance to the `PlayerSyncManager`.
      *
-     * @param phase The phase of the `Player` instance. See {@link PlayerPhase}.
+     * @param phase The phase of the `Player` instance. See {@link com.herewhite.sdk.domain.PlayerPhase PlayerPhase}.
      */
     public void updateWhitePlayerPhase(PlayerPhase phase) {
         if (phase == PlayerPhase.buffering || phase == PlayerPhase.waitingFirstFrame) {

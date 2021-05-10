@@ -25,7 +25,7 @@ public class RoomParams extends WhiteObject {
      * - The data center set in this method must be the same as the data center of the live Interactive Whiteboard room to be joined; otherwise, the SDK fails to connect to the room.
      * - You can call either this method or the {@link WhiteSdkConfiguration#setRegion(Region) setRegion} method in the `WhiteSdkConfiguration` class to set the data center. If you call both，this method overrides the {@link WhiteSdkConfiguration#setRegion(Region) setRegion} method.
      *
-     * @param region The data center. See {@link Region Region}.
+     * @param region The data center. See {@link com.herewhite.sdk.domain.Region Region}.
      */
     public void setRegion(Region region) {
         this.region = region;
@@ -34,7 +34,7 @@ public class RoomParams extends WhiteObject {
     /**
      * Gets the data center.
      *
-     * @return The data center. See {@link Region Region}.
+     * @return The data center. See {@link com.herewhite.sdk.domain.Region Region}.
      */
     public Region getRegion() {
         return region;
@@ -129,9 +129,6 @@ public class RoomParams extends WhiteObject {
      *
      * @since 2.5.0
      *
-     * @note
-     * You can call either this method or the {@link WhiteSdkConfiguration#setDisableDeviceInputs(boolean) setDisableDeviceInputs} method. This method call overrides the {@link WhiteSdkConfiguration#setDisableDeviceInputs(boolean) setDisableDeviceInputs} method.
-     *
      * @param disableDeviceInputs Whether to disable the whiteboard tools from responding to users' inputs:
      *   - `true`: Disable the whiteboard tools from responding to users' inputs.
      *   - `false`: (Default) Enable the whiteboard tools to respond to users' inputs.
@@ -224,6 +221,13 @@ public class RoomParams extends WhiteObject {
     private boolean disableCameraTransform = false;
     private boolean disableBezier = false;
 
+    /**
+     * Gets whether the stroke effect is disabled.
+     *
+     * @return Whether the stroke effect is enabled:
+     * - true: The stroke effect is disabled.
+     * - false: The stroke effect is enabled.
+     */
     public boolean isDisableNewPencil() {
         return disableNewPencil;
     }
@@ -271,6 +275,11 @@ public class RoomParams extends WhiteObject {
         this.cameraBound = cameraBound;
     }
 
+    /**
+     * Gets the customized user information.
+     *
+     * @return The customized user information.
+     */
     public Object getUserPayload() {
         return userPayload;
     }
@@ -283,7 +292,7 @@ public class RoomParams extends WhiteObject {
      * You can pass in customized user information, such as user ID, nickname, and avatar, in the `userPayload` and call this method to send the information to the application.
      *
      * @note
-     * To ensure the format of the customized user information is correct, the `userPayload` must extend the {@link WhiteObject} class.
+     * To ensure the format of the customized user information is correct, the `userPayload` must extend the {@link com.herewhite.sdk.domain.WhiteObject WhiteObject} class.
      *
      * @param userPayload Customized user information in key-value pairs, for example, `"avatar", "https://example.com/user.png"`.
 
@@ -307,11 +316,11 @@ public class RoomParams extends WhiteObject {
     /**
      * Initializes a `RoomParams` instance with customized user information.
      *
-     * @deprecated This method is deprecated. Use {@link RoomParams(String, String, Object) RoomParams} instead.
+     * @deprecated This method is deprecated. Use {@link RoomParams(String, String, Object) RoomParams}[2/2] instead.
      *
      * @param uuid The unique identifier of the room. Ensure that the room UUID is the same as the one you use to generate the Room Token.
      * @param roomToken The Room Token for authentication.
-     * @param memberInfo Customized user information. See {@link MemberInformation MemberInformation}.
+     * @param memberInfo Customized user information. See {@link com.herewhite.sdk.domain.MemberInformation MemberInformation}.
      */
     @Deprecated
     public RoomParams(String uuid, String roomToken, MemberInformation memberInfo) {
@@ -327,7 +336,7 @@ public class RoomParams extends WhiteObject {
      *
      * @param uuid The unique identifier of the room. Ensure that the room UUID is the same as the one you use to generate the Room Token.
      * @param roomToken The Room Token for authentication.
-     * @param userPayload Customized user information, which must be a subclass of {@link WhiteObject} to ensure the data format is correct.
+     * @param userPayload Customized user information, which must be a subclass of {@link com.herewhite.sdk.domain.WhiteObject WhiteObject} to ensure the data format is correct.
      */
     public RoomParams(String uuid, String roomToken, Object userPayload) {
         this.uuid = uuid;
@@ -338,9 +347,9 @@ public class RoomParams extends WhiteObject {
     /**
      * Gets customized user information.
      *
-     * @deprecated This method is deprecated. Use {@link #getUserPayload() getUserPayload} instead.
+     * @deprecated This method is deprecated. Use {@link getUserPayload() getUserPayload} instead.
      *
-     * @return Customized user information. See {@link MemberInformation MemberInformation}.
+     * @return Customized user information. See {@link com.herewhite.sdk.domain.MemberInformation MemberInformation}.
      */
     @Deprecated
     public MemberInformation getMemberInfo() {
@@ -353,9 +362,9 @@ public class RoomParams extends WhiteObject {
     /**
      * Sets customized user information.
      *
-     * @deprecated This method is deprecated. Use {@link #getUserPayload() getUserPayload} instead.
+     * @deprecated This method is deprecated. Use {@link getUserPayload() getUserPayload} instead.
      *
-     * @param memberInfo Customized user information. See {@link MemberInformation MemberInformation}.
+     * @param memberInfo Customized user information. See {@link com.herewhite.sdk.domain.MemberInformation MemberInformation}.
      */
     @Deprecated
     public void setMemberInfo(MemberInformation memberInfo) {

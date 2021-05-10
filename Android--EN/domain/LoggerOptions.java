@@ -23,13 +23,13 @@ public class LoggerOptions extends WhiteObject {
          * Set your log level as `debug` if you want to get the most complete log file.
          *
          * @note
-         * At present, logs at the `debug` level have the same information as those at the `info` level. 
+         * At present, logs at the `debug` level have the same information as those at the `info` level.
          */
         debug,
         /**
          * Logs of the `info` level.
          *
-         * Logs at this level mainly provide information on SDK connection states. 
+         * Logs at this level mainly provide information on SDK connection states.
          */
         info,
         /**
@@ -83,7 +83,8 @@ public class LoggerOptions extends WhiteObject {
     /**
      * Disables/Enables log reporting.
      *
-     * @deprecated This method is deprecated. Use {@link #getReportDebugLogMode()}, {@link #getReportQualityMode()}, and {@link #getReportLevelMask()}.
+     * @deprecated This method is deprecated. Use {@link #getReportDebugLogMode() getReportDebugLogMode},
+     * {@link #getReportQualityMode() getReportQualityMode}, and {@link #getReportLevelMask() getReportLevelMask}.
      *
      * @param disableReportLog Whether to disable log reporting:
      *  - `true`: Disable the SDK from reporting logs.
@@ -97,7 +98,7 @@ public class LoggerOptions extends WhiteObject {
     }
 
     /**
-     * Gets the printing level of the log. 
+     * Gets the printing level of the log.
      *
      * @return The printing level of the log. See {@link Level Level}.
      */
@@ -108,7 +109,7 @@ public class LoggerOptions extends WhiteObject {
     /**
      * Sets the log printing level of the SDK.
      *
-     * @since 2.11.10 
+     * @since 2.11.10
      *
      * This method specifies the log level that the SDK prints in the WebView.
      *
@@ -131,7 +132,7 @@ public class LoggerOptions extends WhiteObject {
      * Sets the log reporting level of the SDK.
      *
      * @since 2.11.10
-     * 
+     *
      * This method specifies the log level that the SDK reports to the Agora Interactive Whiteboard server.
      *
      * @param reportLevelMask The log reporting level of the SDK. The default level is `info`. See {@link Level Level}.

@@ -71,6 +71,7 @@ public class Room extends Displayer {
     private Integer timeDelay;
     private Long observerId;
 
+    /// @cond test
     /**
      * Hidden in documentation
      */
@@ -80,6 +81,7 @@ public class Room extends Displayer {
         this.syncRoomState = new SyncDisplayerState<>(RoomState.class, "{}", disableCallbackWhilePutting);
         this.syncRoomState.setListener(localRoomStateListener);
     }
+    /// @endcond
 
     void setSyncRoomState(String stateJSON) {
         syncRoomState.syncDisplayerState(stateJSON);
@@ -116,7 +118,7 @@ public class Room extends Displayer {
      * All users in the room can read the `globalState` object, while users in interactive mode can modify the `globalState` object.
      * The modified `globalState` object will be updated to all users in the room immediately.
      *
-     * @param globalState The global public state the room. See {@link GlobalState}.
+     * @param globalState The global public state the room. See {@link com.herewhite.sdk.domain.GlobalState GlobalState}.
      */
     public void setGlobalState(GlobalState globalState) {
         syncRoomState.putProperty("globalState", globalState);
@@ -126,11 +128,11 @@ public class Room extends Displayer {
     /**
      * Modifies the state of the whiteboard tool currently in use.
      *
-     * A successful call of this method updates the {@link MemberState MemberState} of the room immediately.
+     * A successful call of this method updates the {@link com.herewhite.sdk.domain.MemberState MemberState} of the room immediately.
      *
-     * You can call {@link #getMemberState() getMemberState} to get the latest {@link MemberState MemberState}.
+     * You can call {@link #getMemberState() getMemberState} to get the latest {@link com.herewhite.sdk.domain.MemberState MemberState}.
      *
-     * @param memberState The state of the whiteboard tool. See {@link MemberState MemberState}.
+     * @param memberState The state of the whiteboard tool. See {@link com.herewhite.sdk.domain.MemberState MemberState}.
      */
     public void setMemberState(MemberState memberState) {
         syncRoomState.putProperty("memberState", memberState);
@@ -211,9 +213,9 @@ public class Room extends Displayer {
      *
      * @warning
      * To set `disableSerialization` as `false`, ensure that every user in the room uses one of the following SDKs; otherwise, the application may crash:
+     *  - Web SDK v2.9.3 or later
      *  - Android SDK v2.9.3 or later
      *  - iOS SDK v2.9.3 or later
-     *  - Web SDK v2.9.2 or later
      *
      * @param disable Whether to disable the local serialization:
      *  - `true`: (Default) Disable the local serialization.
@@ -261,11 +263,11 @@ public class Room extends Displayer {
      * - When there is no host in the room, all users are in `Freedom` view mode by default.
      * - When a user’s view mode is set as `Broadcaster`, the view mode of every other user in the room (including users that join subsequently) is automatically set as 'Follower'.
      * - When a user in `Follower` view mode operates the whiteboard, their view mode automatically switches to `Freedom` mode.
-     * If needed, you can call {@link disableOperations(boolean) disableOperations} to disable the user from operating the whiteboard, so as to lock their view mode.
+     * If needed, you can call {@link #disableOperations(boolean) disableOperations}(true) to disable the user from operating the whiteboard, so as to lock their view mode.
      *
-     * This method call is asynchronous. After calling this method, you can call the {@link #getBroadcastState(Promise) getBroadcastState} method to get the latest view mode of the user.
+     * This method call is asynchronous. After calling this method, you can call the {@link #getBroadcastState(Promise<BroadcastState> promise) getBroadcastState}[2/2] method to get the latest view mode of the user.
      *
-     * @param viewMode The view mode of the user. See {@link ViewMode ViewMode}.
+     * @param viewMode The view mode of the user. See {@link com.herewhite.sdk.domain.ViewMode ViewMode}.
      */
     public void setViewMode(ViewMode viewMode) {
         bridge.callHandler("room.setViewMode", new Object[]{viewMode.name()});
@@ -280,7 +282,7 @@ public class Room extends Displayer {
      * The user that has left the room must call {@link WhiteSdk#joinRoom(RoomParams roomParams, RoomListener roomListener, Promise<Room> roomPromise) joinRoom}[1/2]
      * or {@link WhiteSdk#joinRoom(final RoomParams roomParams, final RoomListener roomListener, final Promise<Room> roomPromise) joinRoom}[2/2] again to join the room.
      *
-     * @note This method does not trigger a callback to report whether the SDK successfully disconnects from the room. You can use {@link #disconnect(Promise) disconnect} instead.
+     * @note This method does not trigger a callback to report whether the SDK successfully disconnects from the room. You can use {@link #disconnect(@Nullable Promise<Object> promise) disconnect}[2/2] instead.
      */
     public void disconnect() {
         disconnect(null);
@@ -295,7 +297,7 @@ public class Room extends Displayer {
      *
      * You can pass in an instance of the `Promise<Object>` interface to get the call result of this method.
      *
-     * @param promise The `Promise<Object>` interface instance. See {@link Promise<> Promise<T>}. You can get the call result of `disconnect` through this interface:
+     * @param promise The `Promise<Object>` interface instance. See {@link com.herewhite.sdk.domain.Promise Promise}. You can get the call result of `disconnect` through this interface:
      * - The global state of the room, if the method call succeeds.
      * - An error message, if the method call fails.
      */
@@ -331,7 +333,7 @@ public class Room extends Displayer {
      *
      * @note You can call {@link #insertImage(ImageInformationWithUrl) insertImage} to pass in the image information and URL address at the same time.
      *
-     * @param imageInfo The image information. See {@link ImageInformation ImageInformation}.
+     * @param imageInfo The image information. See {@link com.herewhite.sdk.domain.ImageInformation ImageInformation}.
      */
     public void insertImage(ImageInformation imageInfo) {
         bridge.callHandler("room.insertImage", new Object[]{imageInfo});
@@ -344,7 +346,7 @@ public class Room extends Displayer {
      *
      * @note Ensure that you have called {@link #insertImage(ImageInformation) insertImage} to insert an image placeholder on the whiteboard.
      *
-     * @param uuid The unique identifier of the image, which is the image UUID that you pass in {@link ImageInformation ImageInformation} of the {@link #insertImage(ImageInformation) insertImage} method.
+     * @param uuid The unique identifier of the image, which is the image UUID that you pass in {@link com.herewhite.sdk.domain.ImageInformation ImageInformation} of the {@link #insertImage(ImageInformation) insertImage} method.
      * @param url  The URL address of the image. Ensure the application client can access the URL; otherwise, the image cannot be displayed.
      */
     public void completeImageUpload(String uuid, String url) {
@@ -357,7 +359,7 @@ public class Room extends Displayer {
      * This method wraps the {@link #insertImage(ImageInformation) insertImage} and {@link #completeImageUpload(String, String) completeImageUpload} methods.
      * You can pass in the image information and URL address at the same time in this method to directly insert and display the image on the whiteboard.
      *
-     * @param imageInformationWithUrl The information and the URL address of the image. See {@link ImageInformationWithUrl ImageInformationWithUrl}。
+     * @param imageInformationWithUrl The information and the URL address of the image. See {@link com.herewhite.sdk.domain.ImageInformationWithUrl ImageInformationWithUrl}。
      */
     public void insertImage(ImageInformationWithUrl imageInformationWithUrl) {
         ImageInformation imageInformation = new ImageInformation();
@@ -381,10 +383,10 @@ public class Room extends Displayer {
      *
      * @note
      * - This method call is synchronous.
-     * - This method can get and cast the custom `GlobalState` set by the {@link com.herewhite.sdk.domain.WhiteDisplayerState#setCustomGlobalStateClass(Class) setCustomGlobalStateClass} method.
-     * - You can call this method immediately after calling the {@link #setGlobalState(GlobalState)} method.
+     * - This method can get and cast the custom `GlobalState` set by the {@link com.herewhite.sdk.domain.WhiteDisplayerState#setCustomGlobalStateClass(Class<T> classOfT) setCustomGlobalStateClass} method.
+     * - You can call this method immediately after calling the {@link #setGlobalState(GlobalState) setGlobalState} method.
      *
-     * @return The global state of the room. See {@link GlobalState GlobalState}.
+     * @return The global state of the room. See {@link com.herewhite.sdk.domain.GlobalState GlobalState}.
      *
      */
     public GlobalState getGlobalState() {
@@ -394,14 +396,14 @@ public class Room extends Displayer {
     /**
      * Gets the global state of the room.
      *
-     * @deprecated This method is deprecated. Use {@link #getGlobalState() getGlobalState} instead.
+     * @deprecated This method is deprecated. Use {@link #getGlobalState() getGlobalState}[1/2] instead.
      *
      * @note
      * - This method call is asynchronous.
-     * - This method can get and cast the custom `GlobalState` set by the {@link com.herewhite.sdk.domain.WhiteDisplayerState#setCustomGlobalStateClass(Class) setCustomGlobalStateClass} method.
+     * - This method can get and cast the custom `GlobalState` set by the {@link com.herewhite.sdk.domain.WhiteDisplayerState#setCustomGlobalStateClass(Class<T> classOfT) setCustomGlobalStateClass} method.
      *
-     * @param promise The `Promise<GlobalState>` interface instance. See {@link Promise<> Promise<T>}. You can get the call result of `getGlobalState` through this interface:
-     * - The `GlobalState` object, if the method call succeeds. See {@link GlobalState GlobalState}.
+     * @param promise The `Promise<GlobalState>` interface instance. See {@link com.herewhite.sdk.domain.Promise Promise}. You can get the call result of `getGlobalState` through this interface:
+     * - The `GlobalState` object, if the method call succeeds. See {@link com.herewhite.sdk.domain.GlobalState GlobalState}.
      * - An error message, if the method call fails.
      */
     public void getGlobalState(final Promise<GlobalState> promise) {
@@ -449,9 +451,9 @@ public class Room extends Displayer {
      *
      * @note
      * - This method call is synchronous.
-     * - You can call this method to get the latest `MemberState` immediately after calling the {@link #setMemberState(MemberState)} method.
+     * - You can call this method to get the latest `MemberState` immediately after calling the {@link #setMemberState(MemberState) setMemberState} method.
      *
-     * @return The state of the whiteboard tool currently in use. See {@link MemberState}.
+     * @return The state of the whiteboard tool currently in use. See {@link com.herewhite.sdk.domain.MemberState MemberState}.
      *
      */
     public MemberState getMemberState() {
@@ -463,8 +465,8 @@ public class Room extends Displayer {
      *
      * @note This method call is asynchronous.
      *
-     * @param promise The `Promise<MemberState>` interface instance. See {@link Promise<> Promise<T>}. You can get the call result of `getMemberState` through this interface:
-     * - The `MemberState` object, if the method call succeeds. See {@link MemberState MemberState}.
+     * @param promise The `Promise<MemberState>` interface instance. See {@link com.herewhite.sdk.domain.Promise Promise}. You can get the call result of `getMemberState` through this interface:
+     * - The `MemberState` object, if the method call succeeds. See {@link com.herewhite.sdk.domain.MemberState MemberState}.
      * - An error message, if the method call fails.
      */
     public void getMemberState(final Promise<MemberState> promise) {
@@ -493,7 +495,7 @@ public class Room extends Displayer {
      * - This method call is synchronous.
      * - Only users in interactive mode (with read and write permissions) are room members; users in subscription mode (with read-only permission) are not included in the member list.
      *
-     * @return The member list of the room. See {@link RoomMember RoomMember}.
+     * @return The member list of the room. See {@link com.herewhite.sdk.domain.RoomMember RoomMember}.
      *
      */
     public RoomMember[] getRoomMembers() {
@@ -507,8 +509,8 @@ public class Room extends Displayer {
      * - This method call is asynchronous.
      * - Only users in interactive mode (with read and write permissions) are room members; users in subscription mode (with read-only permission) are not included in the member list.
      *
-     * @param promise The`Promise<RoomMember[]>` interface instance. See{@link Promise<> Promise<T>}. You can get the call result of `getRoomMembers` through this interface:
-     * - The member list of the room, if the method call succeeds. See {@link RoomMember RoomMember}.
+     * @param promise The`Promise<RoomMember[]>` interface instance. See{@link com.herewhite.sdk.domain.Promise Promise}. You can get the call result of `getRoomMembers` through this interface:
+     * - The member list of the room, if the method call succeeds. See {@link com.herewhite.sdk.domain.RoomMember RoomMember}.
      * - An error message, if the method call fails.
      */
     public void getRoomMembers(final Promise<RoomMember[]> promise) {
@@ -537,10 +539,10 @@ public class Room extends Displayer {
      *
      * @note
      * - This method call is synchronous.
-     * - You cannot get the latest view state of the user by calling this method immediately after calling {@link #setViewMode(ViewMode)}.
-     * In this case, use {@link #getBroadcastState(Promise) getBroadcastState}[2/2] instead.
+     * - You cannot get the latest view state of the user by calling this method immediately after calling {@link #setViewMode(ViewMode) setViewMode}.
+     * In this case, use {@link #getBroadcastState(Promise<BroadcastState> promise) getBroadcastState}[2/2] instead.
      *
-     * @return The view state of the user. See {@link BroadcastState BroadcastState}.
+     * @return The view state of the user. See {@link com.herewhite.sdk.domain.BroadcastState BroadcastState}.
      *
      */
     public BroadcastState getBroadcastState() {
@@ -552,11 +554,11 @@ public class Room extends Displayer {
      *
      * @note
      * - This method call is asynchronous.
-     * - You cannot get the latest view state of the user by calling {@link #getBroadcastState getBroadcastState}[1/2] immediately after calling {@link #setViewMode(ViewMode)}.
+     * - You cannot get the latest view state of the user by calling {@link #getBroadcastState getBroadcastState}[1/2] immediately after calling {@link #setViewMode(ViewMode) setViewMode}.
      * In this case, use this method instead.
      *
-     * @param promise The `Promise<BroadcastState>` interface instance. See {@link Promise<> Promise<T>}. You can get the call result of `getBroadcastState` through this interface:
-     * - The view state of the user, if the method call succeeds. See {@link BroadcastState BroadcastState}.
+     * @param promise The `Promise<BroadcastState>` interface instance. See {@link com.herewhite.sdk.domain.Promise Promise}. You can get the call result of `getBroadcastState` through this interface:
+     * - The view state of the user, if the method call succeeds. See {@link com.herewhite.sdk.domain.BroadcastState BroadcastState}.
      * - An error message, if the method call fails.
      */
     public void getBroadcastState(final Promise<BroadcastState> promise) {
@@ -586,12 +588,13 @@ public class Room extends Displayer {
      * @note
      * - This method call is synchronous.
      * - You cannot get the latest scene state through {@link #getSceneState() getSceneState}[1/2] immediately after calling the following methods:
-     *   - {@link #setScenePath(String, Promise)}
-     *   - {@link #setScenePath(String)}
+     *   - {@link #setScenePath(String path) setScenePath}[1/2]
+     *   - {@link #setScenePath(String path, Promise<Boolean> promise) setScenePath}[2/2]
      *   - {@link #putScenes(String, Scene[], int)}
-     * In ths case, use {@link #getSceneState(final Promise<SceneState> promise) getSceneState}[2/2] instead.
      *
-     * @return The state of the scenes under the current scene directory. See {@link SceneState SceneState}.
+     * In ths case, use {@link #getSceneState(Promise<SceneState> promise) getSceneState}[2/2] instead.
+     *
+     * @return The state of the scenes under the current scene directory. See {@link com.herewhite.sdk.domain.SceneState SceneState}.
      */
     public SceneState getSceneState() {
         return syncRoomState.getDisplayerState().getSceneState();
@@ -603,13 +606,13 @@ public class Room extends Displayer {
      * @note
      * - This method call is asynchronous.
      * - You cannot get the latest scene state through {@link #getSceneState() getSceneState}[1/2] immediately after calling the following methods:
-     *   - {@link #setScenePath(String, Promise)}
-     *   - {@link #setScenePath(String)}
-     *   - {@link #putScenes(String, Scene[], int)}
+     *   - {@link #setScenePath(String path) setScenePath}[1/2]
+     *   - {@link #setScenePath(String path, Promise<Boolean> promise) setScenePath}[2/2]
+     *   - {@link #putScenes(String, Scene[], int) putScenes}
      * In ths case, use {@link #getSceneState(final Promise<SceneState> promise) getSceneState}[2/2] instead.
      *
-     * @param promise The `Promise<SceneState>` interface instance. See {@link Promise<> Promise<T>}. You can get the call result of `getSceneState` through this interface:
-     * - The scene state under the current scene directory, if the method call succeeds. See {@link SceneState SceneState}.
+     * @param promise The `Promise<SceneState>` interface instance. See {@link com.herewhite.sdk.domain.Promise Promise}. You can get the call result of `getSceneState` through this interface:
+     * - The scene state under the current scene directory, if the method call succeeds. See {@link com.herewhite.sdk.domain.SceneState SceneState}.
      * - An error message, if the method call fails.
      */
     public void getSceneState(final Promise<SceneState> promise) {
@@ -639,12 +642,12 @@ public class Room extends Displayer {
      * @note
      * - This method call is synchronous.
      * - You cannot get the latest list of scenes immediately through {@link #getScenes() getScenes}[1/2] after calling the following methods:
-     *   - {@link #setScenePath(String, Promise)}
-     *   - {@link #setScenePath(String)}
-     *   - {@link #putScenes(String, Scene[], int)}
-     * In this case, you can use {@link #getScenes(Promise) getScenes}[2/2] instead.
+     *   - {@link #setScenePath(String path) setScenePath}[1/2]
+     *   - {@link #setScenePath(String path, Promise<Boolean> promise) setScenePath}[2/2]
+     *   - {@link #putScenes(String, Scene[], int) putScenes}
+     * In this case, you can use {@link #getScenes(Promise<Scene[]> promise) getScenes} instead.
      *
-     * @return The list of scenes under the current scene directory. See {@link Scene Scene}.
+     * @return The list of scenes under the current scene directory. See {@link com.herewhite.sdk.domain.Scene Scene}.
      */
     public Scene[] getScenes() {
         return this.getSceneState().getScenes();
@@ -656,13 +659,13 @@ public class Room extends Displayer {
      * @note
      * - This method call is asynchronous.
      * - You cannot get the latest list of scenes immediately through {@link #getScenes() getScenes}[1/2] after calling the following methods:
-     *   - {@link #setScenePath(String, Promise)}
-     *   - {@link #setScenePath(String)}
-     *   - {@link #putScenes(String, Scene[], int)}
-     * In this case, you can use {@link #getScenes(Promise) getScenes}[2/2] instead.
+     *   - {@link #setScenePath(String path) setScenePath}[1/2]
+     *   - {@link #setScenePath(String path, Promise<Boolean> promise) setScenePath}[2/2]
+     *   - {@link #putScenes(String, Scene[], int) putScenes}
+     * In this case, you can use {@link #getScenes(Promise<Scene[]> promise) getScenes} instead.
      *
-     * @param promise The `Promise<Scene[]>` interface instance. See {@link Promise<> Promise<T>}. You can get the call result of `getScenes` through this interface:
-     * - The list of scenes under the current scene directory, if the method call succeeds. See {@link Scene Scene}.
+     * @param promise The `Promise<Scene[]>` interface instance. See {@link com.herewhite.sdk.domain.Promise Promise}. You can get the call result of `getScenes` through this interface:
+     * - The list of scenes under the current scene directory, if the method call succeeds. See {@link com.herewhite.sdk.domain.Scene Scene}.
      * - An error message, if the method call fails.
      */
     public void getScenes(final Promise<Scene[]> promise) {
@@ -694,8 +697,8 @@ public class Room extends Displayer {
      *
      * @note
      * - This method call is synchronous.
-     * - You cannot get the latest view scale through {@link #getZoomScale() getZoomScale}[1/2] immediately after calling {@link #zoomChange(double)} or {@link #moveCamera(CameraConfig)}.
-     * In this case, you can use {@link #getZoomScale(Promise) getZoomScale}[2/2] instead.
+     * - You cannot get the latest view scale through {@link #getZoomScale() getZoomScale}[1/2] immediately after calling {@link #zoomChange(double) zoomChange} or {@link #moveCamera(CameraConfig) moveCamera}.
+     * In this case, you can use {@link #getZoomScale(Promise<Number> promise) getZoomScale}[2/2] instead.
      *
      * @return The scale of the view.
      */
@@ -710,10 +713,10 @@ public class Room extends Displayer {
      *
      * @note
      * - This method call is asynchronous.
-     * - You cannot get the latest view scale through {@link #getZoomScale() getZoomScale}[1/2] immediately after calling {@link #zoomChange(double)} or {@link #moveCamera(CameraConfig)}.
-     * In this case, you can use {@link #getZoomScale(Promise) getZoomScale}[2/2] instead.
+     * - You cannot get the latest view scale through {@link #getZoomScale() getZoomScale}[1/2] immediately after calling {@link #zoomChange(double) zoomChange} or {@link #moveCamera(CameraConfig) moveCamera}.
+     * In this case, you can use {@link #getZoomScale(Promise<Number> promise) getZoomScale}[2/2] instead.
      *
-     * @param promise The `Promise<Number>` interface instance. See {@link Promise<> Promise<T>}. You can get the call result of `getZoomScale` through this interface:
+     * @param promise The `Promise<Number>` interface instance. See {@link com.herewhite.sdk.domain.Promise Promise}. You can get the call result of `getZoomScale` through this interface:
      * - The scale of the view, if the method call succeeds.
      * - An error message, if the method call fails.
      */
@@ -743,10 +746,11 @@ public class Room extends Displayer {
      *
      * @note
      * - This method call is synchronous.
-     * - You cannot get the latest connection state of the room through {@link #getRoomPhase() getRoomPhase}[1/2] immediately after calling {@link #disconnect()} or {@link #disconnect(Promise)}.
-     * In this case, you can use {@link #getRoomPhase(final Promise<RoomPhase> promise) getRoomPhase}[2/2] instead.
+     * - You cannot get the latest connection state of the room through {@link #getRoomPhase() getRoomPhase}[1/2] immediately
+     * after calling {@link #disconnect() disconnect}[1/2] or {@link #disconnect(@Nullable Promise<Object> promise) disconnect}[2/2].
+     * In this case, you can use {@link #getRoomPhase(Promise<RoomPhase> promise) getRoomPhase}[2/2] instead.
      *
-     * @return The connection state of the room. See {@link RoomPhase RoomPhase}.
+     * @return The connection state of the room. See {@link com.herewhite.sdk.domain.RoomPhase RoomPhase}.
      */
     public RoomPhase getRoomPhase() {
         return this.roomPhase;
@@ -757,11 +761,12 @@ public class Room extends Displayer {
      *
      * @note
      * - This method call is asynchronous.
-     * - You cannot get the latest connection state of the room through {@link #getRoomPhase() getRoomPhase}[1/2] immediately after calling {@link #disconnect()} or {@link #disconnect(Promise)}.
-     * In this case, you can use {@link #getRoomPhase(final Promise<RoomPhase> promise) getRoomPhase}[2/2] instead.
+     * - You cannot get the latest connection state of the room through {@link #getRoomPhase() getRoomPhase}[1/2] immediately
+     * after calling {@link #disconnect() disconnect}[1/2] or {@link #disconnect(@Nullable Promise<Object> promise) disconnect}[2/2].
+     * In this case, you can use {@link #getRoomPhase(Promise<RoomPhase> promise) getRoomPhase}[2/2] instead.
      *
-     * @param promise The `Promise<RoomPhase>` interface instance. See {@link Promise<> Promise<T>}. You can get the call result of `getRoomPhase` through this interface:
-     * - The connection state of the room, if the method call succeeds. See {@link RoomPhase RoomPhase}.
+     * @param promise The `Promise<RoomPhase>` interface instance. See {@link com.herewhite.sdk.domain.Promise Promise}. You can get the call result of `getRoomPhase` through this interface:
+     * - The connection state of the room, if the method call succeeds. See {@link com.herewhite.sdk.domain.RoomPhase RoomPhase}.
      * - An error message, if the method call fails.
      */
     public void getRoomPhase(final Promise<RoomPhase> promise) {
@@ -791,9 +796,9 @@ public class Room extends Displayer {
      * @note
      * - This method call is synchronous.
      * - You cannot get the latest room state through {@link getRoomState() getRoomState}[1/2] immediately after modifying the {@link RoomState} variables.
-     * In this case, you can user {@link #getRoomState(Promise) getRoomState}[2/2] instead.
+     * In this case, you can user {@link #getRoomState(Promise<RoomState> promise) getRoomState}[2/2] instead.
      *
-     * @return The current room state. See {@link RoomState RoomState}.
+     * @return The current room state. See {@link com.herewhite.sdk.domain.RoomState RoomState}.
      *
      */
     public RoomState getRoomState() {
@@ -805,11 +810,11 @@ public class Room extends Displayer {
      *
      * @note
      * - This method call is synchronous.
-     * - You cannot get the latest room state through {@link getRoomState() getRoomState}[1/2] immediately after modifying the {@link RoomState} variables.
-     * In this case, you can user {@link #getRoomState(Promise) getRoomState}[2/2] instead.
+     * - You cannot get the latest room state through {@link getRoomState() getRoomState}[1/2] immediately after modifying the {@link com.herewhite.sdk.domain.RoomState RoomState} variables.
+     * In this case, you can user {@link #getRoomState(Promise<RoomState> promise) getRoomState}[2/2] instead.
      *
-     * @param promise The `Promise<RoomState>` interface instance. See {@link Promise<> Promise<T>}. You can get the call result of `getRoomState` through this interface:
-     * - The current room state, if the method call succeeds. See {@link RoomState RoomState}.
+     * @param promise The `Promise<RoomState>` interface instance. See {@link com.herewhite.sdk.domain.Promise Promise}. You can get the call result of `getRoomState` through this interface:
+     * - The current room state, if the method call succeeds. See {@link com.herewhite.sdk.domain.RoomState RoomState}.
      * - An error message, if the method call fails.
      */
     public void getRoomState(final Promise<RoomState> promise) {
@@ -841,7 +846,7 @@ public class Room extends Displayer {
      *
      * @note
      * - This method call is synchronous.
-     * - To get the callback of the method call, use {@link #setScenePath(String, Promise) setScenePath}[2/2] instead.
+     * - To get the callback of the method call, use {@link #setScenePath(String path, Promise<Boolean> promise) setScenePath}[2/2] instead.
      *
      * The scene switch may fail due to the following reasons:
      * - The specified scene path is invalid. Ensure the scene path stars with `/` and consists of the scene directory and scene name.
@@ -867,7 +872,7 @@ public class Room extends Displayer {
      * - The path passed in is the path of the scene directory, not the path of the scene.
      *
      * @param path The path of the scene that you want to switch to，Ensure the scene path stars with `/` and consists of the scene directory and scene name. For example, `/math/classA`.
-     * @param promise The `Promise<Boolean>` interface instance. See{@link Promise<> Promise<T>. You can get the call result of `setScenePath` through this interface:
+     * @param promise The `Promise<Boolean>` interface instance. See {@link com.herewhite.sdk.domain.Promise Promise}. You can get the call result of `setScenePath` through this interface:
      * - `true`, if the method call succeeds.
      * - An error message, if the method call fails.
      */
@@ -894,7 +899,7 @@ public class Room extends Displayer {
      * The specified scene must exist in the current scene directory; otherwise, the method call fails.
      *
      * @param index The index of the target scene in the current scene directory.
-     * @param promise The `Promise<Boolean>` interface instance. See {@link Promise<> Promise<T>}. You can get the call result of `setSceneIndex` through this interface:
+     * @param promise The `Promise<Boolean>` interface instance. See {@link com.herewhite.sdk.domain.Promise Promise}. You can get the call result of `setSceneIndex` through this interface:
      * - `true`, if the method call succeeds.
      * - An error message, if the method call fails.
      */
@@ -924,7 +929,7 @@ public class Room extends Displayer {
      *
      *
      * @param dir    The path of the scene directory, which must starts with `/` and cannot be the path of a scene. For example, `"/math"`.
-     * @param scenes An array of scenes. For the files of a single scene, see {@link Scene Scene}.
+     * @param scenes An array of scenes. For the files of a single scene, see {@link com.herewhite.sdk.domain.Scene Scene}.
      * @param index  The index of the first scene to be inserted. The index of scene under a scene directory can start from 0.
      * If the index is greater than the total number of existing scenes under the scene directory, the new scene is put after the last scene.
      *
@@ -1037,7 +1042,7 @@ public class Room extends Displayer {
      *
      * @since 2.6.2
      *
-     * @param promise The `Promise<JSONObject>` interface instance. See {@link Promise<> Promise<T>}. You can get the call result of `debugInfo` through this interface:
+     * @param promise The `Promise<JSONObject>` interface instance. See {@link com.herewhite.sdk.domain.Promise Promise}. You can get the call result of `debugInfo` through this interface:
      * - The debug logs, if the method call succeeds.
      * - An error message, if the method call fails.
      */
@@ -1081,7 +1086,7 @@ public class Room extends Displayer {
      * @param writable Whether the user is in interactive mode:
      *                 - `true`: The user is in interactive mode.
      *                 - `false`: The user is in subscription mode.
-     * @param promise  The `Promise<Boolean>` interface instance. See {@link Promise<> Promise<T>}. You can get the call result of `setWritable` through this interface:
+     * @param promise  The `Promise<Boolean>` interface instance. See {@link com.herewhite.sdk.domain.Promise Promise}. You can get the call result of `setWritable` through this interface:
      * - Whether the user is interactive mode, if the method call succeeds.
      * - An error message, if the method call fails.
      */
@@ -1181,7 +1186,7 @@ public class Room extends Displayer {
      *
      * @note All users that listen for this event receive the notification.
      *
-     * @param eventEntry The custom event. See {@link AkkoEvent}.
+     * @param eventEntry The custom event. See {@link com.herewhite.sdk.domain.AkkoEvent AkkoEvent}.
      */
     public void dispatchMagixEvent(AkkoEvent eventEntry) {
         bridge.callHandler("room.dispatchMagixEvent", new Object[]{eventEntry});
@@ -1226,6 +1231,7 @@ public class Room extends Displayer {
             }
         }
 
+        /// @cond test
         /**
          * Hidden in documentation
          *
@@ -1238,6 +1244,7 @@ public class Room extends Displayer {
                 eventListener.onEvent(eventEntries);
             }
         }
+        /// @endcond
 
         @Override
         public void firePhaseChanged(RoomPhase valueOf) {

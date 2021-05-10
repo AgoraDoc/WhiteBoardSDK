@@ -10,7 +10,7 @@ import com.herewhite.sdk.domain.SDKError;
  */
 
 /**
- * The default (empty) implementation of the {@link PlayerEventListener} interface.
+ * The default (empty) implementation of the {@link PlayerEventListener PlayerEventListener} interface.
  *
  @deprecated This interface is deprecated.
  */

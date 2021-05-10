@@ -21,37 +21,37 @@ public class ContentModeConfig extends WhiteObject {
      */
     public enum ScaleMode {
         /**
-         * (Default) Resizes the viewable area by the specified `scale`.
+         * `CENTER`: (Default) Resizes the viewable area by the specified `scale`.
          */
-        @SerializedName("Scale")
+        //SerializedName("Scale")
         CENTER,
         /**
-         * Resizes the viewable area proportionately until its longer sides meet with the screen sides perpendicular to them, so that the viewable area is completely displayed on the screen.  
+         * `CENTER_INSIDE`: Resizes the viewable area proportionately until its longer sides meet with the screen sides perpendicular to them, so that the viewable area is completely displayed on the screen.
          */
-        @SerializedName("AspectFit")
+        //SerializedName("AspectFit")
         CENTER_INSIDE,
         /**
-         * Resizes the viewable area proportionately until its longer sides meet with the screen sides perpendicular to them, so that the viewable area is completely displayed on the screen.
+         * `CENTER_INSIDE_SCALE`: Resizes the viewable area proportionately until its longer sides meet with the screen sides perpendicular to them, so that the viewable area is completely displayed on the screen.
          * Then, resizes the viewable area by a specified scale factor.
          */
-        @SerializedName("AspectFitScale")
+        //SerializedName("AspectFitScale")
         CENTER_INSIDE_SCALE,
         /**
-         * Resizes the viewable area proportionately until its longer sides meet with the screen sides perpendicular to them, so that the viewable area is completely displayed on the screen.
+         * `CENTER_INSIDE_SPACE`: Resizes the viewable area proportionately until its longer sides meet with the screen sides perpendicular to them, so that the viewable area is completely displayed on the screen.
          * Then, adds the specified spaces around the viewable area.
          */
-        @SerializedName("AspectFitSpace")
+        //SerializedName("AspectFitSpace")
         CENTER_INSIDE_SPACE,
         /**
-         * Resizes the viewable area proportionately until its shorter sides meet with the screen sides perpendicular to them, so that the viewable area completely covers the screen.
+         * `CENTER_CROP`: Resizes the viewable area proportionately until its shorter sides meet with the screen sides perpendicular to them, so that the viewable area completely covers the screen.
          */
-        @SerializedName("AspectFill")
+        //SerializedName("AspectFill")
         CENTER_CROP,
         /**
-         * Resizes the viewable area proportionately until its shorter sides meet with the screen sides perpendicular to them, so that the viewable area completely covers the screen.
+         * `CENTER_CROP_SPACE`: Resizes the viewable area proportionately until its shorter sides meet with the screen sides perpendicular to them, so that the viewable area completely covers the screen.
          * Then, resizes the viewable area by the specified scale factor.
          */
-        @SerializedName("AspectFillScale")
+        //SerializedName("AspectFillScale")
         CENTER_CROP_SPACE,
     }
 
@@ -103,7 +103,7 @@ public class ContentModeConfig extends WhiteObject {
     /**
      * Gets the scale mode of the viewable area.
      *
-     * @return The scale mode of the viewable area. See {@link ScaleMode ScaleMode}.
+     * @return The scale mode of the viewable area. See {@link ContentModeConfig#ScaleMode ScaleMode}.
      */
     public ScaleMode getMode() {
         return mode;
@@ -112,7 +112,7 @@ public class ContentModeConfig extends WhiteObject {
     /**
      * Sets the scale mode of the viewable area.
      *
-     * @param mode The scale mode of the viewable area. See {@link ScaleMode ScaleMode}.
+     * @param mode The scale mode of the viewable area. See {@link ContentModeConfig#ScaleMode ScaleMode}.
      */
     public void setMode(ScaleMode mode) {
         this.mode = mode;

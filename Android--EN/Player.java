@@ -70,7 +70,7 @@ public class Player extends Displayer {
      * `2.0`, the playback speed is two times the original speed.
      * - Even when the playback pauses when you call this method, the return value cannot be `0`.
      *
-     * @param promise The Promise<Double> interface instance. See {@link Promise<> Promise<T>}. You can get the call result of `getPlaybackSpeed` through this interface:
+     * @param promise The Promise<Double> interface instance. See {@link com.herewhite.sdk.domain.Promise Promise}. You can get the call result of `getPlaybackSpeed` through this interface:
      * - The playback speed, if the method call succeeds.
      * - An error message, if the method call fails.
      */
@@ -87,6 +87,7 @@ public class Player extends Displayer {
 
     private PlayerPhase playerPhase = PlayerPhase.waitingFirstFrame;
 
+    /// @cond test
     /**
      * Hidden in documentation
      */
@@ -95,6 +96,7 @@ public class Player extends Displayer {
         syncPlayerState = new SyncDisplayerState(PlayerState.class, "{}", true);
         syncPlayerState.setListener(localPlayStateListener);
     }
+    /// @endcond
 
     void setPlayerTimeInfo(PlayerTimeInfo playerTimeInfo) {
         this.scheduleTime = playerTimeInfo.getScheduleTime();
@@ -145,7 +147,8 @@ public class Player extends Displayer {
     /**
      * Sets the mode for watching the whiteboard playback.
      *
-     * @param mode The mode for watching the whiteboard playback. See {@link PlayerObserverMode}.
+     * @param mode The mode for watching the whiteboard playback.
+     * See {@link com.herewhite.sdk.domain.PlayerObserverMode PlayerObserverMode}.
      */
     public void setObserverMode(PlayerObserverMode mode) {
         bridge.callHandler("player.setObserverMode", new Object[]{mode.name()});
@@ -162,10 +165,11 @@ public class Player extends Displayer {
      *
      * @note
      * - This method call is synchronous.
-     * - You cannot get the latest playback phase through {@link #getPlayerPhase getPlayerPhase} immediately after calling {@link #stop() stop}, {@link #play() play}, or {@link #pause() pause}.
+     * - You cannot get the latest playback phase through {@link #getPlayerPhase getPlayerPhase} immediately after
+     * calling {@link #stop() stop}, {@link #play() play}, or {@link #pause() pause}.
      * In this case, you can use {@link #getPhase(final Promise<PlayerPhase> promise) getPhase} instead.
      *
-     * @return The current phase of the `Player` instance. See {@link PlayerPhase}.
+     * @return The current phase of the `Player` instance. See {@link com.herewhite.sdk.domain.PlayerPhase PlayerPhase}.
      *
      */
     public PlayerPhase getPlayerPhase() {
@@ -179,12 +183,13 @@ public class Player extends Displayer {
      *
      * @note
      * - This method call is asynchronous. Agora recommends that you use this method only for debugging or troubleshooting.
-     * In most cases, you can use the synchronous method {@link #getPlayerPhase()} to get the playback phase.
-     * - You cannot get the latest playback phase through {@link #getPlayerPhase getPlayerPhase} immediately after calling {@link #stop() stop}, {@link #play() play}, or {@link #pause() pause}.
+     * In most cases, you can use the synchronous method {@link #getPlayerPhase() getPlayerPhase} to get the playback phase.
+     * - You cannot get the latest playback phase through {@link #getPlayerPhase getPlayerPhase} immediately after
+     * calling {@link #stop() stop}, {@link #play() play}, or {@link #pause() pause}.
      * In this case, you can use {@link #getPhase(final Promise<PlayerPhase> promise) getPhase}.
      *
-     * @param promise The `Promise<PlayerPhase>` interface instance. See {@link Promise<> Promise<T>}. You can get the call result of `getPhase` through this interface:
-     * - The current playback phase, if the method call succeeds. See {@link PlayerPhase}.
+     * @param promise The `Promise<PlayerPhase>` interface instance. See {@link com.herewhite.sdk.domain.Promise Promise}. You can get the call result of `getPhase` through this interface:
+     * - The current playback phase, if the method call succeeds. See {@link com.herewhite.sdk.domain.PlayerPhase PlayerPhase}.
      * - An error message, if the method call fails.
      */
     public void getPhase(final Promise<PlayerPhase> promise) {
@@ -215,7 +220,7 @@ public class Player extends Displayer {
      * - This method call is asynchronous.
      * - This method call returns `null` if the `Player` instance is in the `waitingFirstFrame` phase.
      *
-     * @return The state of the the `Player` instance. See {@link PlayerState}.
+     * @return The state of the the `Player` instance. See {@link com.herewhite.sdk.domain.PlayerState PlayerState}.
      *
      */
     public PlayerState getPlayerState() {
@@ -233,8 +238,8 @@ public class Player extends Displayer {
      * In most cases, you can use the synchronous method {@link #getPlayerPhase() getPlayerPhase}[1/2] to get the `Player` state.
      * - This method call returns `null` if the `Player` instance is in the `waitingFirstFrame` phase.
      *
-     * @param promise The `Promise<PlayerState>` interface instance. See {@link Promise<> Promise<T>}. You can get the call result of `getPlayerState` through this interface:
-     * - The state of the the `Player` instance. See {@link PlayerState}.
+     * @param promise The `Promise<PlayerState>` interface instance. See {@link com.herewhite.sdk.domain.Promise Promise}. You can get the call result of `getPlayerState` through this interface:
+     * - The state of the the `Player` instance. See {@link com.herewhite.sdk.domain.PlayerState PlayerState}.
      * - An error message, if the method call fails.
      */
     public void getPlayerState(final Promise<PlayerState> promise) {
@@ -263,13 +268,13 @@ public class Player extends Displayer {
      * @since 2.4.0
      *
      * A successful method call returns the time information of the `Player` instance,
-     * including the current playback position (ms), the total duration (ms) of the playback, and the Unix timestamp (ms) indicating when the playback started. 
+     * including the current playback position (ms), the total duration (ms) of the playback, and the Unix timestamp (ms) indicating when the playback started.
      *
      * @note
      * - This method call is synchronous.
-     * - The playback position returned by this method may be not accurate. 
+     * - The playback position returned by this method may be not accurate.
      *
-     * @return The time information of the `Player` instance. See {@link PlayerTimeInfo}.
+     * @return The time information of the `Player` instance. See {@link com.herewhite.sdk.domain.PlayerTimeInfo PlayerTimeInfo}.
      */
     public PlayerTimeInfo getPlayerTimeInfo() {
         return new PlayerTimeInfo(this.scheduleTime, this.timeDuration, this.framesCount, this.beginTimestamp);
@@ -286,8 +291,8 @@ public class Player extends Displayer {
      * - This method call is asynchronous. Agora recommends that you use this method only for debugging or troubleshooting.
      * In most cases, you can use the synchronous method {@link #getPlayerTimeInfo() getPlayerTimeInfo}[1/2] to get the time information.
      *
-     * @param promise The `Promise<PlayerTimeInfo>` interface instance. See {@link Promise<> Promise<T>}. You can get the call result of `getPlayerTimeInfo` through this interface:
-     * - The time information of the `Player` instance. See {@link PlayerTimeInfo}.
+     * @param promise The `Promise<PlayerTimeInfo>` interface instance. See {@link com.herewhite.sdk.domain.Promise Promise}. You can get the call result of `getPlayerTimeInfo` through this interface:
+     * - The time information of the `Player` instance. See {@link com.herewhite.sdk.domain.PlayerTimeInfo PlayerTimeInfo}.
      * - An error message, if the method call fails.
      */
     public void getPlayerTimeInfo(final Promise<PlayerTimeInfo> promise) {

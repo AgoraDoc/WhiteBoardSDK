@@ -9,13 +9,13 @@ import com.google.gson.annotations.SerializedName;
  */
 public enum AnimationMode {
     /**
-     * (Default) The view switches continuously.
+     * `Continuous`: (Default) The view switches continuously.
      */
-    @SerializedName("continuous")
+    //@SerializedName("continuous")
     Continuous,
     /**
-     * The view switches instantly.
+     * `Immediately`: The view switches instantly.
      */
-    @SerializedName("immediately")
+    //@SerializedName("immediately")
     Immediately
 }

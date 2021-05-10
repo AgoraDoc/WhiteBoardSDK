@@ -52,19 +52,23 @@ public class WhiteSdkConfiguration extends WhiteObject {
      */
     public static class PptParams extends WhiteObject {
 
+        /// @cond test
         /**
          * Hidden in documentation.
          */
         public String getScheme() {
             return scheme;
         }
+        /// @endcond
 
+        /// @cond test
         /**
          * Hidden in documentation.
          */
         public void setScheme(String scheme) {
             this.scheme = scheme;
         }
+        /// @endcond
 
         private String scheme;
 
@@ -96,12 +100,14 @@ public class WhiteSdkConfiguration extends WhiteObject {
 
         private boolean useServerWrap;
 
+        /// @cond test
         /**
          * Hidden in documentation.
          */
         public PptParams(String scheme) {
             this.scheme = scheme;
         }
+        /// @endcond
     }
 
 
@@ -152,7 +158,7 @@ public class WhiteSdkConfiguration extends WhiteObject {
     /**
      * Gets the data center.
      *
-     * @return The data center. See {@link Region}.
+     * @return The data center. See {@link com.herewhite.sdk.domain.Region Region}.
      */
     public Region getRegion() {
         return region;
@@ -164,7 +170,7 @@ public class WhiteSdkConfiguration extends WhiteObject {
      * @note
      * The data center set in this method must be the same as the data center of the live Interactive Whiteboard room to be joined; otherwise, the SDK fails to connect to the room.
      *
-     * @param region The data center. See {@link Region}.
+     * @param region The data center. See {@link com.herewhite.sdk.domain.Region Region}.
      */
     public void setRegion(Region region) {
         this.region = region;
@@ -174,6 +180,7 @@ public class WhiteSdkConfiguration extends WhiteObject {
         return enableRtcIntercept;
     }
 
+    /// @cond test
     /**
      *
      * Sets whether to play the audio in dynamic PPT slides using the audio mixing method of the Agora RTC SDK.
@@ -182,7 +189,7 @@ public class WhiteSdkConfiguration extends WhiteObject {
      *
      * When you use the Agora RTC SDK and Interactive Whiteboard SDK at the same time, and the dynamic PPT slides displayed in the whiteboard contain audio files, you can call this method to play the audio in the dynamic PPT slides using the audio mixing method of the Agora RTC SDK.
      *
-     * If you implement and pass in the {@link AudioMixerBridge} class when initializing the `WhiteSdk` instance, the SDK automatically sets `setEnableRtcIntercept(true)`. Therefore you do not need to call this method.
+     * If you implement and pass in the {@link AudioMixerBridge AudioMixerBridge} class when initializing the `WhiteSdk` instance, the SDK automatically sets `setEnableRtcIntercept(true)`. Therefore you do not need to call this method.
      *
      * @param enableRtcIntercept Whether to play the audio in a dynamic PPT using the audio mixing method of the Agora RTC SDK:
      * - `true`: Play the audio in dynamic PPT slides using the audio mixing method of the Agora RTC SDK.
@@ -192,14 +199,18 @@ public class WhiteSdkConfiguration extends WhiteObject {
     void setEnableRtcIntercept(boolean enableRtcIntercept) {
         this.enableRtcIntercept = enableRtcIntercept;
     }
+    /// @endcond
 
+    /// @cond test
     /**
      * Hidden in documentation.
      */
     public boolean isDisableDeviceInputs() {
         return disableDeviceInputs;
     }
+    /// @endcond
 
+    /// @cond test
     /**
      *
      * Hidden in documentation.
@@ -207,6 +218,7 @@ public class WhiteSdkConfiguration extends WhiteObject {
     public void setDisableDeviceInputs(boolean disableDeviceInputs) {
         this.disableDeviceInputs = disableDeviceInputs;
     }
+    /// @endcond
 
     /**
      * Sets the rendering mode for drawings.
@@ -343,7 +355,7 @@ public class WhiteSdkConfiguration extends WhiteObject {
     /**
      * Gets log options.
      *
-     * @return The set log options. See {@link LoggerOptions LoggerOptions}.
+     * @return The set log options. See {@link com.herewhite.sdk.domain.LoggerOptions LoggerOptions}.
      */
     public LoggerOptions getLoggerOptions() {
         return loggerOptions;
@@ -354,7 +366,7 @@ public class WhiteSdkConfiguration extends WhiteObject {
      *
      * @since 2.4.2
      *
-     * @param loggerOptions Log options. See {@link LoggerOptions LoggerOptions}.
+     * @param loggerOptions Log options. See {@link com.herewhite.sdk.domain.LoggerOptions LoggerOptions}.
      */
     public void setLoggerOptions(LoggerOptions loggerOptions) {
         this.loggerOptions = loggerOptions;
@@ -369,24 +381,29 @@ public class WhiteSdkConfiguration extends WhiteObject {
         return routeBackup;
     }
 
+    /// @cond test
     /**
      * Hidden in documentation.
      */
     public void setRouteBackup(boolean routeBackup) {
         this.routeBackup = routeBackup;
     }
+    /// @endcond
 
+    /// @cond test
     /**
      * Hidden in documentation.
      */
     public DeviceType getDeviceType() {
         return deviceType;
     }
+    /// @endcond
 
     /**
      * Sets whether to display a user avatar.
      *
-     * To display a user avatar, ensure that you pass in a key-value pair for the avatar in the `userPayload` object and call {@link com.herewhite.sdk.RoomParams.setUserPayload(Object userPayload)}.
+     * To display a user avatar, ensure that you pass in a key-value pair for the avatar in the `userPayload` object
+     * and call {@link com.herewhite.sdk.RoomParams#setUserPayload(Object userPayload) setUserPayload}.
      *
      * @param userCursor Whether to display the user avatar:
      * - `true`: Display the user avatar.
@@ -429,12 +446,14 @@ public class WhiteSdkConfiguration extends WhiteObject {
         this.onlyCallbackRemoteStateModify = onlyCallbackRemoteStateModify;
     }
 
+    /// @cond test
     /**
      * Hidden in documentation.
      */
     public void setDeviceType(DeviceType deviceType) {
         this.deviceType = deviceType;
     }
+    /// @endcond
 
     /**
      * Gets whether debug logging is enabled.

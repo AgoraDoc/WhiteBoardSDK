@@ -76,10 +76,12 @@ public class PlayerConfiguration extends WhiteObject {
     }
 
 
+    /// @cond test
     /**
      * Hidden in documentation.
      */
     private String mediaURL;
+    /// @endcond
 
     /**
      * Gets the unique identifier of the room to be replayed.
@@ -117,6 +119,7 @@ public class PlayerConfiguration extends WhiteObject {
         this.roomToken = roomToken;
     }
 
+    /// @cond test
     /**
      * Hidden in documentation
      *
@@ -125,7 +128,9 @@ public class PlayerConfiguration extends WhiteObject {
     public String getSlice() {
         return slice;
     }
+    /// @endcond
 
+    /// @cond test
     /**
      * Hidden in documentation
      *
@@ -134,6 +139,7 @@ public class PlayerConfiguration extends WhiteObject {
     public void setSlice(String slice) {
         this.slice = slice;
     }
+    /// @endcond
 
     /**
      * Gets the Unix timestamp (ms) representing the starting UTC time of the playback.
@@ -174,6 +180,7 @@ public class PlayerConfiguration extends WhiteObject {
         this.duration = duration;
     }
 
+    /// @cond test
     /**
      * Hidden in documentation
      * @return
@@ -181,7 +188,9 @@ public class PlayerConfiguration extends WhiteObject {
     public String getMediaURL() {
         return mediaURL;
     }
+    /// @endcond
 
+    /// @cond test
     /**
      * Hidden in documentation
      * @param mediaURL
@@ -189,4 +198,5 @@ public class PlayerConfiguration extends WhiteObject {
     public void setMediaURL(String mediaURL) {
         this.mediaURL = mediaURL;
     }
+    /// @endcond
 }

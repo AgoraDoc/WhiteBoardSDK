@@ -11,7 +11,7 @@ public interface RoomListener {
     /**
      * Occurs when the room connection state changes.
      *
-     * @param phase The current connection state of the room. See {@link RoomPhase RoomPhase}.
+     * @param phase The current connection state of the room. See {@link com.herewhite.sdk.domain.RoomPhase RoomPhase}.
      */
     void onPhaseChanged(RoomPhase phase);
 
@@ -34,7 +34,7 @@ public interface RoomListener {
      *
      * This callback reports only the room state fields that have changed and returns `null` for the room state fields that have not changed.
      *
-     * @param modifyState The room state that has changed. See {@link RoomState RoomState}.
+     * @param modifyState The room state that has changed. See {@link com.herewhite.sdk.domain.RoomState RoomState}.
      */
     void onRoomStateChanged(RoomState modifyState);
 

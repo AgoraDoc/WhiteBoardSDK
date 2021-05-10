@@ -371,7 +371,7 @@ public class Displayer {
      *
      * @since 2.11.0
      *
-     * This method disables the user from moving or zooming the view through touch-screen gestures. 
+     * This method disables the user from moving or zooming the view through touch-screen gestures.
      *
      * @param disable Whether to disable the user from adjusting the view:
      * - `true`: Disable the user from adjusting the view.

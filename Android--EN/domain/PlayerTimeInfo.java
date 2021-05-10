@@ -10,6 +10,13 @@ public class PlayerTimeInfo {
     private int framesCount;
     private long beginTimestamp;
 
+    /**
+     * The `PlayerTimeInfo` constructor.
+     * @param scheduleTime The current playback position (ms).
+     * @param timeDuration The total duration (ms) of the playback.
+     * @param framesCount Reserved.
+     * @param beginTimestamp The Unix timestamp (ms) indicating when the playback started.
+     */
     public PlayerTimeInfo(long scheduleTime, long timeDuration, int framesCount, long beginTimestamp) {
         this.scheduleTime = scheduleTime;
         this.timeDuration = timeDuration;
@@ -35,12 +42,14 @@ public class PlayerTimeInfo {
         return timeDuration;
     }
 
+    /// @cond test
     /**
      * Hidden in documentation.
      */
     public int getFramesCount() {
         return framesCount;
     }
+    /// @endcond
 
     /**
      * Gets the Unix timestamp (ms) indicating when the playback started.

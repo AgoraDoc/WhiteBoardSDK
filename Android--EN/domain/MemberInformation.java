@@ -1,9 +1,9 @@
 package com.herewhite.sdk.domain;
 
 /**
- * `MemberInformation` 类，用于自定义用户信息。
+ * The `MemberInformation` class, for setting customized user information.
  *
- * @deprecated 该类已废弃。请使用 {@link com.herewhite.sdk.RoomParams#setUserPayload(Object)} 自定义用户信息。
+ * @deprecated This class is deprecated. Use {@link com.herewhite.sdk.RoomParams#setUserPayload(Object) setUserPayload} instead.
  */
 public class MemberInformation extends WhiteObject {
     private Long id;
@@ -12,88 +12,88 @@ public class MemberInformation extends WhiteObject {
     private String userId;
 
     /**
-     * `MemberInformation` 构造方法，用于初始化用户信息实例。
+     * The `MemberInformation` constructor, for initializing a `MemberInformation` instance.
      */
     public MemberInformation() {
 
     }
 
     /**
-     * `MemberInformation` 构造方法，用于初始化用户信息实例。
+     * The `MemberInformation` constructor, for initializing a `MemberInformation` instance.
      *
-     * @param userId 用户 ID。
+     * @param userId ID of the user.
      */
     public MemberInformation(String userId) {
         this.userId = userId;
     }
 
     /**
-     * 获取 long 型的用户 ID。
+     * Gets the user ID in long format.
      *
-     * @return long 型的用户 ID。
+     * @return The user ID in long format.
      */
     public long getId() {
         return id;
     }
 
     /**
-     * 设置 long 型的用户 ID。
+     * Sets the user ID in long format.
      *
-     * @param id long 型的用户 ID。
+     * @param id The user ID in long format.
      */
     public void setId(long id) {
         this.id = id;
     }
 
     /**
-     * 设置用户昵称。
+     * Gets the user's nickname.
      *
-     * @return 用户昵称。
+     * @return The user's nickname.
      */
     public String getNickName() {
         return nickName;
     }
 
     /**
-     * 获取 String 型的用户 ID。
+     * Gets the user ID in string format.
      *
-     * @return String 型的用户 ID。
+     * @return The user ID in string format.
      */
     public String getUserId() {
         return userId;
     }
 
     /**
-     * 设置 String 型的用户 ID。
+     * Sets the user ID in string format.
      *
-     * @param userId String 型的用户 ID。
+     * @param userId The user ID in string format.
      */
     public void setUserId(String userId) {
         this.userId = userId;
     }
 
     /**
-     * 设置用户昵称。
+     * Sets a nickname for the user.
      *
-     * @param nickName 用户昵称。
+     * @param nickName The nickname.
      */
     public void setNickName(String nickName) {
         this.nickName = nickName;
     }
 
     /**
-     * 获取用户头像。
+     * Gets the user avatar.
      *
-     * @return 用户头像的 URL 地址。
+     * @return The URL address to the user avatar.
      */
     public String getAvatar() {
         return avatar;
     }
 
     /**
-     * 设置用户头像。
+     * Sets the user avatar.
      *
-     * @param avatar 用户头像 URL 地址。
+     * @param avatar The URL address to the user avatar.
      *
      */
     public void setAvatar(String avatar) {
