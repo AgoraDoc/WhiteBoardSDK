@@ -71,8 +71,8 @@ public interface CommonCallback {
      * You must initialize a `WhiteSdk` instance before calling any other APIs. You can try reinitializing the SDK.
      *
      * The SDK initialization failure may be due to the following reasons:
-     *  - Failure to obtain configuration information due to network connection issues.
-     *  - The specified App Identifier is invalid.
+     * - Failure to obtain configuration information due to network connection issues.
+     * - The specified App Identifier is invalid.
      *
      */
     void sdkSetupFail(SDKError error);

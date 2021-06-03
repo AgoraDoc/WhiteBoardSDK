@@ -18,10 +18,12 @@ public interface PlayerListener {
      */
     void onLoadFirstFrame();
 
+    /// @cond test
     /**
      * Hidden in documentation.
      */
     void onSliceChanged(String slice);
+    /// @endcond
 
     /**
      * Occurs when the player state changes.

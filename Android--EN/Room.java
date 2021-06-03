@@ -1,5 +1,7 @@
 package com.herewhite.sdk;
 
+import androidx.annotation.Nullable;
+
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
 import com.herewhite.sdk.domain.AkkoEvent;
@@ -22,12 +24,12 @@ import com.herewhite.sdk.domain.Scene;
 import com.herewhite.sdk.domain.SceneState;
 import com.herewhite.sdk.domain.ViewMode;
 import com.herewhite.sdk.internal.Logger;
+import com.herewhite.sdk.internal.RoomDelegate;
 
 import org.json.JSONObject;
 
 import java.util.UUID;
 
-import androidx.annotation.Nullable;
 import wendu.dsbridge.OnReturnValue;
 
 /**
@@ -818,7 +820,7 @@ public class Room extends Displayer {
      * - An error message, if the method call fails.
      */
     public void getRoomState(final Promise<RoomState> promise) {
-        bridge.callHandler("room.state.getDisplayerState", new OnReturnValue<Object>() {
+        bridge.callHandler("room.state.getRoomState", new OnReturnValue<Object>() {
             @Override
             public void onValue(Object o) {
                 try {
@@ -933,6 +935,7 @@ public class Room extends Displayer {
      * @param index  The index of the first scene to be inserted. The index of scene under a scene directory can start from 0.
      * If the index is greater than the total number of existing scenes under the scene directory, the new scene is put after the last scene.
      *
+     * **Example**
      * <pre>
      * {@code
      * room.putScenes("ppt", new Scene[]{new Scene("page1", new PptPage("https://white-pan.oss-cn-shanghai.aliyuncs.com/101/image/alin-rusu-1239275-unsplash_opt.jpg", 1024d, 768d))}, 0);
@@ -1253,37 +1256,47 @@ public class Room extends Displayer {
 
         @Override
         public void fireCanUndoStepsUpdate(long canUndoSteps) {
-            if (roomListener != null) {
-                roomListener.onCanUndoStepsUpdate(canUndoSteps);
-            }
+            post(() -> {
+                if (roomListener != null) {
+                    roomListener.onCanUndoStepsUpdate(canUndoSteps);
+                }
+            });
         }
 
         @Override
         public void onCanRedoStepsUpdate(long canRedoSteps) {
-            if (roomListener != null) {
-                roomListener.onCanRedoStepsUpdate(canRedoSteps);
-            }
+            post(() -> {
+                if (roomListener != null) {
+                    roomListener.onCanRedoStepsUpdate(canRedoSteps);
+                }
+            });
         }
 
         @Override
         public void fireKickedWithReason(String reason) {
-            if (roomListener != null) {
-                roomListener.onKickedWithReason(reason);
-            }
+            post(() -> {
+                if (roomListener != null) {
+                    roomListener.onKickedWithReason(reason);
+                }
+            });
         }
 
         @Override
         public void fireDisconnectWithError(Exception exception) {
-            if (roomListener != null) {
-                roomListener.onDisconnectWithError(exception);
-            }
+            post(() -> {
+                if (roomListener != null) {
+                    roomListener.onDisconnectWithError(exception);
+                }
+            });
         }
 
         @Override
         public void fireCatchErrorWhenAppendFrame(long userId, Exception exception) {
-            if (roomListener != null) {
-                roomListener.onCatchErrorWhenAppendFrame(userId, exception);
-            }
+            post(() -> {
+                if (roomListener != null) {
+                    roomListener.onCatchErrorWhenAppendFrame(userId, exception);
+                }
+            });
         }
 
         @Override

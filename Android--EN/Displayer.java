@@ -152,6 +152,15 @@ public class Displayer {
     }
 
     /**
+     * Adjusts the view to ensure the complete display of the HTML5 file.
+     *
+     * @since 2.12.13
+     */
+    public void scaleIframeToFit() {
+        bridge.callHandler("displayer.scaleIframeToFit", new Object[]{});
+    }
+
+    /**
      * Adjusts the view in `Continuous` mode to ensure the complete display of the PPT slide.
      *
      * @since 2.4.22

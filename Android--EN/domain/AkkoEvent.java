@@ -1,5 +1,8 @@
 package com.herewhite.sdk.domain;
 
+/**
+ * The `AkkoEvent` class, for setting the customized events.
+ */
 public class AkkoEvent extends WhiteObject {
     private String eventName;
     private Object payload;

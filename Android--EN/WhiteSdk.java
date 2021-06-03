@@ -11,6 +11,10 @@ import com.herewhite.sdk.domain.Promise;
 import com.herewhite.sdk.domain.RoomPhase;
 import com.herewhite.sdk.domain.SDKError;
 import com.herewhite.sdk.domain.UrlInterrupter;
+import com.herewhite.sdk.internal.PlayerJsInterfaceImpl;
+import com.herewhite.sdk.internal.RoomJsInterfaceImpl;
+import com.herewhite.sdk.internal.RtcJsInterfaceImpl;
+import com.herewhite.sdk.internal.SdkJsInterfaceImpl;
 
 import org.json.JSONObject;
 
@@ -34,12 +38,12 @@ public class WhiteSdk {
     /**
      * Sets common event callbacks.
      *
-     * The SDK uses the {@link com.herewhite.sdk.CommonCallbacks CommonCallbacks} class to report SDK runtime events to the application.
+     * The SDK uses the {@link com.herewhite.sdk.CommonCallback CommonCallback} class to report SDK runtime events to the application.
      *
-     * @param commonCallbacks Common event callbacks. See {@link com.herewhite.sdk.CommonCallbacks CommonCallbacks}.
+     * @param commonCallback Common event callbacks. See {@link com.herewhite.sdk.CommonCallback CommonCallback}.
      */
-    public void setCommonCallbacks(CommonCallbacks commonCallbacks) {
-        sdkJsInterface.setCommonCallbacks(commonCallbacks);
+    public void setCommonCallbacks(CommonCallback commonCallback) {
+        sdkJsInterface.setCommonCallbacks(commonCallback);
     }
 
     private final boolean onlyCallbackRemoteStateModify;
@@ -96,14 +100,14 @@ public class WhiteSdk {
     /**
      * Initializes the `WhiteSdk` instance.
      *
-     * @deprecated @deprecated The `urlInterrupter` parameter in this method is deprecated. Use the {@link CommonCallbacks#urlInterrupter(String) urlInterrupter} method of the `CommonCallbacks` interface instead.
-     *
      * Ensure that you call `WhiteSdk` to create and initialize a `WhiteSdk` instance before calling any other APIs.
      *
      * @param bridge The whiteboard view, see {@link WhiteboardView WhiteboardView}.
      * @param context The context of the Android Activity.
      * @param whiteSdkConfiguration Configurations for the `WhiteSdk` instance. See {@link WhiteSdkConfiguration WhiteSdkConfiguration}.
      * @param urlInterrupter Sets the interception of image URL addresses. See {@link com.herewhite.sdk.domain.UrlInterrupter UrlInterrupter}.
+     * @deprecated The `urlInterrupter` parameter in this method is deprecated. Use the {@link CommonCallbacks#urlInterrupter(String) urlInterrupter} method of the `CommonCallbacks` interface instead.
+     *
      */
     public WhiteSdk(JsBridgeInterface bridge, Context context, WhiteSdkConfiguration whiteSdkConfiguration, UrlInterrupter urlInterrupter) {
         this(bridge, context, whiteSdkConfiguration);
@@ -212,7 +216,7 @@ public class WhiteSdk {
      * - An error message, if the method call fails.
      */
     public void createPlayer(final PlayerConfiguration playerConfiguration, final Promise<Player> playerPromise) {
-        createPlayer(playerConfigurcreateation, null, playerPromise);
+        createPlayer(playerConfiguration, null, playerPromise);
     }
 
     /**

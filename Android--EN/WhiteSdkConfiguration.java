@@ -90,15 +90,17 @@ public class WhiteSdkConfiguration extends WhiteObject {
          *
          * As of February 10, 2021, when converting dynamic PPT slides to HTML web pages, the Agora Interactive Whiteboard server supports typesetting the dynamic PPT slides to ensure the presentation of the text in the dynamic PPT slides is consistent across platforms.
          *
+         * @note From 2.12.27, the default value of `useServerWrap` is changed from `false` to `true`.
+         *
          * @param useServerWrap Whether to enable server-side typesetting for dynamic PPT slides.
-         * - `true`: Enable server-side typesetting.
-         * - `false`: (Default) Disable server-side typesetting.
+         * - `true`: (Default) Enable server-side typesetting.
+         * - `false`: Disable server-side typesetting.
          */
         public void setUseServerWrap(boolean useServerWrap) {
             this.useServerWrap = useServerWrap;
         }
 
-        private boolean useServerWrap;
+        private boolean useServerWrap = true;
 
         /// @cond test
         /**
@@ -108,10 +110,16 @@ public class WhiteSdkConfiguration extends WhiteObject {
             this.scheme = scheme;
         }
         /// @endcond
+
+        /// @cond test
+        public PptParams() {
+
+        }
+        /// @endcond
     }
 
 
-
+    private Region region;
     private DeviceType deviceType = DeviceType.touch;
     private boolean log = false;
     private RenderEngineType renderEngine = RenderEngineType.canvas;
@@ -128,7 +136,7 @@ public class WhiteSdkConfiguration extends WhiteObject {
 
     private String appIdentifier;
     private HashMap<String, String> __nativeTags = new HashMap<>();
-    private PptParams pptParams;
+    private PptParams pptParams = new PptParams();
     private HashMap<String, String> fonts;
 
     /**
@@ -168,7 +176,7 @@ public class WhiteSdkConfiguration extends WhiteObject {
      * Sets the data center.
      *
      * @note
-     * The data center set in this method must be the same as the data center of the live Interactive Whiteboard room to be joined; otherwise, the SDK fails to connect to the room.
+     * The data center set in this method must be the same as the data center that you set when creating the room; otherwise, the SDK fails to connect to the room.
      *
      * @param region The data center. See {@link com.herewhite.sdk.domain.Region Region}.
      */
@@ -372,6 +380,7 @@ public class WhiteSdkConfiguration extends WhiteObject {
         this.loggerOptions = loggerOptions;
     }
 
+    /// @cond test
     /**
      * Hidden in documentation.
      *
@@ -380,6 +389,7 @@ public class WhiteSdkConfiguration extends WhiteObject {
     public boolean isRouteBackup() {
         return routeBackup;
     }
+    /// @endcond
 
     /// @cond test
     /**

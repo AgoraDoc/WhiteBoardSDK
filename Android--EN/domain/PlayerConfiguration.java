@@ -27,6 +27,7 @@ public class PlayerConfiguration extends WhiteObject {
      * Sets the data center of the `Player` instance.
      *
      * @note If you do not set the data center, the SDK uses the region set in {@link com.herewhite.sdk.WhiteSdkConfiguration WhiteSdkConfiguration}.
+     * If you neither set the data center when initialing the `WhiteSdk` instance nor when creating the `Player` instance, the SDK reports an error message.
      *
      * @param region The data center of the `Player` instance. See {@link Region Region}.
      */

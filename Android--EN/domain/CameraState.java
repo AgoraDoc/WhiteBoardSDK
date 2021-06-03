@@ -18,7 +18,7 @@ public class CameraState extends WhiteObject {
     /**
      * Gets the Y coordinate of the center of the view in the world coordinate system (taking the center of the initial whiteboard as the origin).
      *
-     * @return The X coordinate of the center of the view in the world coordinate system. The initial value is `0.0`.
+     * @return The Y coordinate of the center of the view in the world coordinate system. The initial value is `0.0`.
      */
     public Double getCenterY() {
         return centerY;

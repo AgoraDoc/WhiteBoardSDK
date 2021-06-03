@@ -44,4 +44,12 @@ public class Appliance {
      * Laser pointer.
      */
     public final static String LASER_POINTER = "laserPointer";
+    /**
+     * Clicker, which can be used for clicking and selectin content on the HTML5 file.
+     */
+    public final static String CLICKER = "clicker";
+    /**
+     * Shape tool.
+     */
+    public final static String SHAPE = "shape";
 }

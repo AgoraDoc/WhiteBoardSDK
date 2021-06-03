@@ -35,6 +35,45 @@ public class MemberState extends WhiteObject {
     }
 
     /**
+     * Sets the whiteboard tool.
+     *
+     * @param currentApplianceName The whiteboard tool. See {@link Appliance}.
+     * @param shapeType The shape type. The default value is `Triangle`. See {@link com.herewhite.sdk.domain.ShapeType ShapeType}.
+     */
+    public void setCurrentApplianceName(String currentApplianceName, ShapeType shapeType) {
+        this.currentApplianceName = currentApplianceName;
+
+        if (Appliance.SHAPE.equals(currentApplianceName)) {
+            if (shapeType == null) {
+                this.shapeType = ShapeType.Triangle;
+            }
+        }
+    }
+
+    /**
+     * Sets the shape type.
+     *
+     * @since 2.12.26
+     *
+     * @param shapeType The shape type. See {@link com.herewhite.sdk.domain.ShapeType ShapeType}.
+     */
+    public void setShapeType(ShapeType shapeType) {
+        this.currentApplianceName = Appliance.SHAPE;
+        this.shapeType = shapeType;
+    }
+
+    /**
+     * Gets the shape type.
+     *
+     * @since 2.12.26
+     *
+     * @return The shape type. See {@link com.herewhite.sdk.domain.ShapeType ShapeType}。
+     */
+    public ShapeType getShapeType() {
+        return shapeType;
+    }
+
+    /**
      * Gets the stroke color.
      *
      * @return The stroke color in RGB format, for example, `0, 0, 255` (blue).
@@ -65,7 +104,7 @@ public class MemberState extends WhiteObject {
     /**
      * Sets the stroke width.
      *
-     * @param strokeWidth The stroke width. 
+     * @param strokeWidth The stroke width.
      */
     public void setStrokeWidth(double strokeWidth) {
         this.strokeWidth = strokeWidth;
@@ -73,18 +112,18 @@ public class MemberState extends WhiteObject {
 
 
     /**
-     * Gets the font size of the text. 
+     * Gets the font size of the text.
      *
-     * @return The font size of the text. 
+     * @return The font size of the text.
      */
     public double getTextSize() {
         return textSize;
     }
 
     /**
-     * Sets the font size of the text. 
+     * Sets the font size of the text.
      *
-     * @param textSize The font size of the text. The Chrome browser automatically adjusts fonts smaller than 12 to 12. 
+     * @param textSize The font size of the text. The Chrome browser automatically adjusts fonts smaller than 12 to 12.
      */
     public void setTextSize(double textSize) {
         this.textSize = textSize;

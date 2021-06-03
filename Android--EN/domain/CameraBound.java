@@ -123,7 +123,7 @@ public class CameraBound extends WhiteObject {
     /**
      * Gets the resistance felt by the user when the user moves or scales up the view beyond the viewable area.
      *
-     * @return The resistance coefficient.
+     * @return The resistance coefficient. The return value range is [0.0,1.0]. The higher the value, the larger the resistance felt by the user.
      */
     public Double getDamping() {
         return damping;

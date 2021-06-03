@@ -40,7 +40,7 @@ public class RectangleConfig extends WhiteObject {
 
     /**
      * The `RectangleConfig` constructor.
-     * <p> // TODO William Why do you use paragraph tags sometimes but not others? Does it matter? Is there some variation in output?
+     *
      * In this method, pass in the `width`, `height`, and `mode` parameters. Based on the `width` and `height` you pass in, the SDK calculates `originX` and `originY`, the X and Y coordinates of the top left corner of the view rectangle in the world coordinate system, in the following ways: // TODO William Does this method in fact pass in a 'mode' parameter? Isn't that excluded here? Or is it passing in a default value from somewhere?
      * `originX = - width / 2.0d`
      * `originY = - height / 2.0d`

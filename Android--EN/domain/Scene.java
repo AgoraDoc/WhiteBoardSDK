@@ -12,7 +12,7 @@ public class Scene extends WhiteObject {
     /**
      * The `Scene` constructor, for initializing a `Scene` object.
      *
-     * @note When you insert the scene initialized by calling this method, the SDK randomly names the new scene. 
+     * @note When you insert the scene initialized by calling this method, the SDK randomly names the new scene.
      */
     public Scene() {
     }
@@ -30,7 +30,7 @@ public class Scene extends WhiteObject {
      * The `Scene` constructor, for initializing a `Scene` object.
      *
      * @param name The name of the scene.
-     * @param ppt  Settings of the image to be inserted into the scene. See {@link PptPage PptPage}.
+     * @param ppt  Settings of the image or dynamic PPT slide to be inserted into the scene. See {@link PptPage PptPage}.
      */
     public Scene(String name, PptPage ppt) {
         this.name = name;
@@ -58,25 +58,28 @@ public class Scene extends WhiteObject {
     /**
      * Gets the number of strokes in the scene.
      *
+     * @deprecated This method is deprecated.This method call returns `null`.
+     *
      * @return The number of strokes in the scene.
      */
+    @Deprecated
     public Long getComponentsCount() {
         return componentsCount;
     }
 
     /**
-     * Gets the settings of the image to be inserted into the scene.
+     * Gets the settings of the image or dynamic PPT slide to be inserted into the scene.
      *
-     * @return Settings of the image to be inserted into the scene. See {@link PptPage PptPage}.
+     * @return Settings of the image or dynamic PPT slide to be inserted into the scene. See {@link PptPage PptPage}.
      */
     public PptPage getPpt() {
         return ppt;
     }
 
     /**
-     * Sets the image to be inserted into the scene.
+     * Sets the image or the dynamic PPT slide to be inserted into the scene.
      *
-     * @param ppt Settings of the image to be inserted into the scene. See {@link PptPage PptPage}.
+     * @param ppt Settings of the image or dynamic PPT slide to be inserted into the scene. See {@link PptPage PptPage}.
      */
     public void setPpt(PptPage ppt) {
         this.ppt = ppt;
