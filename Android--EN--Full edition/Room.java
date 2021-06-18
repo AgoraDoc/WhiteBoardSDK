@@ -1159,15 +1159,14 @@ public class Room extends Displayer {
     //region Delay API
 
     /**
-     * Sets the delay time for sending the whiteboard contents of the local user to the remote users.
+     * Sets the delay time (s) for displaying remote whiteboard contents on the local client.
      *
-     * After calling this method, the SDK delays sending the whiteboard contents of the local user to the remote users per the set time.
+     * After you set this parameter, when the local user receives the remote whiteboard contents, the SDK delays displaying the contents based on the value of `timeDelay`.
      *
-     * This method helps synchronize the whiteboard contents with audio and video in CND live streaming.
+     * In scenarios with significant audio and video transmission delays, for example, when using a CDN to distribute audio and video streams,
+     * you can use this parameter to delay displaying the received remote whiteboard contents, so as to ensure that the whiteboard contents and the audio and video streams are synchronized.
      *
-     * @note This method does not delays the content the local users see, that is, when the local user writes or draws on the whiteboard, they see the content on their own whiteboard immediately.
-     *
-     * @param delaySec The delay time in seconds.
+     * @param delaySec The delay time in seconds, which must be equal to or greater than 0. The default value is 0.
      */
     public void setTimeDelay(Integer delaySec) {
         bridge.callHandler("room.setTimeDelay", new Object[]{delaySec * 1000});
@@ -1175,7 +1174,7 @@ public class Room extends Displayer {
     }
 
     /**
-     * Gets the delay time for synchronizing the whiteboard contents of the local user to the remote users.
+     * Gets the delay time (s) for displaying remote whiteboard contents on the local client.
      *
      * @return The delay time in seconds.
      */
@@ -1183,6 +1182,23 @@ public class Room extends Displayer {
         return this.timeDelay;
     }
     //endregion
+
+    /**
+     * Sets the Unix timestamp (ms) for displaying remote whiteboard contents on the local client.
+     *
+     * @since 2.12.26
+     *
+     * After you call this method, the SDK displays the received remote whiteboard contents based on the value of `timestamp` you set in this method.
+     *
+     * In scenarios where users subscribe to audio and video streams and whiteboard contents at the same time,
+     * you can obtain time information from the SEI frame attached to the audio and video streams,
+     * and call this method to set the local display time for the remote whiteboard contents, so as to ensure audio and video streams and the whiteboard contents are synchronized in real time.
+     *
+     * @param utcMs The Unix timestamp (ms) for displaying remote whiteboard contents on the local client. The default value is 0.
+     */
+    public void syncBlockTimestamp(long utcMs) {
+        bridge.callHandler("room.sync.syncBlockTimestamp", new Object[]{utcMs});
+    }
 
     /**
      * Send a custom event.
